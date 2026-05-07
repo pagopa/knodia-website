@@ -1,6 +1,43 @@
 ---
 import '../styles/global.css'
+import { DropdownMenu } from '../components/DropdownMenu'
+
 const { title } = Astro.props
+const overviewItems = [
+    {
+        id: 'whats-knodia',
+        href: '#whats-knodia',
+        label: "What's Knodia?",
+    },
+    {
+        id: 'why-knodia',
+        href: '#why-knodia',
+        label: 'Why Knodia?',
+    },
+    {
+        id: 'core-components',
+        href: '#core-components',
+        label: 'Core Components',
+    },
+]
+
+const productsItems = [
+    {
+        id: 'product-1',
+        href: '#product-1',
+        label: 'Product 1',
+    },
+    {
+        id: 'product-2',
+        href: '#product-2',
+        label: 'Product 2',
+    },
+    {
+        id: 'product-3',
+        href: '#product-3',
+        label: 'Product 3',
+    },
+]
 ---
 
 <!doctype html>
@@ -14,10 +51,27 @@ const { title } = Astro.props
         <title>{title}</title>
     </head>
     <body>
-        <header class="flex w-full items-center justify-between p-10">
-            <span>Knodia</span>
-            <nav>Navigation</nav>
-            <button>Get Started</button>
+        <header class="flex w-full items-center justify-between p-3 px-17.5">
+            <span class="text-[#4765FF]">Knodia</span>
+            <nav>
+                <ul class="flex justify-between gap-40">
+                    <DropdownMenu
+                        client:load
+                        label="Overview"
+                        items={overviewItems}
+                    />
+                    <DropdownMenu
+                        client:load
+                        label="Products"
+                        items={productsItems}
+                    />
+                    <li><a href="#use-cases">Use cases</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                </ul>
+            </nav>
+            <button class="rounded-lg bg-[#4765FF] px-4 py-2 text-white">
+                Get Started
+            </button>
         </header>
         <main>
             <slot />
