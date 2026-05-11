@@ -13,24 +13,69 @@ const { title } = Astro.props
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
     </head>
-    <body>
+    <body class="flex min-h-screen flex-col">
         <header class="flex w-full items-center justify-between p-10">
             <span>Knodia</span>
             <nav>Navigation</nav>
             <button>Get Started</button>
         </header>
-        <main>
+        <main class="grow">
             <slot />
         </main>
-        <footer>Footer</footer>
-    </body>
-</html>
+        <footer class="mb-0 bg-[#1E3674] px-37.5 py-14.5 text-white">
+            <div>
+                <div class="container pb-3">
+                    <section class="container py-4">
+                        <div
+                            class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+                        >
+                            <div class="pb-2">KNODIA</div>
+                            <div class="flex flex-col gap-4 pb-2">
+                                <a href="" target="_blank" rel="noreferrer">
+                                    Overview
+                                </a>
+                                <a href="" target="_blank" rel="noreferrer">
+                                    Products
+                                </a>
+                                <a href="" target="_blank" rel="noreferrer">
+                                    Use cases
+                                </a>
+                                <a href="" target="_blank" rel="noreferrer">
+                                    Resources
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-2 pb-2">
+                                DIRECT LINK
+                                <a href="" target="_blank" rel="noreferrer">
+                                    Request prototype access
+                                </a>
+                                <a href="" target="_blank" rel="noreferrer">
+                                    Read the operation manual
+                                </a>
+                                <a href="" target="_blank" rel="noreferrer">
+                                    Download the executive summary
+                                </a>
+                            </div>
 
-<style>
-    html,
-    body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-    }
-</style>
+                            <button
+                                onclick="alert('Get in contact')"
+                                class="flex items-start pb-2 font-bold lg:justify-end"
+                            >
+                                Get in contact</button
+                            >
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </footer>
+    </body>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</html>
