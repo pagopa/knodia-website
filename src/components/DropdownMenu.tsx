@@ -14,7 +14,7 @@ type DropdownMenuProps = {
 export function DropdownMenu({ label, items }: DropdownMenuProps) {
     return (
         <MenuTrigger>
-            <Button className="mt-2 min-w-37.5 cursor-pointer rounded-lg transition-colors outline-none hover:text-[#4765FF] focus-visible:ring-2 focus-visible:ring-[#4765FF] focus-visible:ring-offset-2">
+            <Button className="min-w-37.5 cursor-pointer rounded-lg transition-colors outline-none hover:text-[#4765FF] focus-visible:ring-2 focus-visible:ring-[#4765FF] focus-visible:ring-offset-2">
                 <span>{label}</span>
             </Button>
 
