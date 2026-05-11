@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",
@@ -22,8 +23,25 @@
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "21.0.0",
+    "@commitlint/config-conventional": "21.0.0",
+    "@commitlint/types": "21.0.0",
+    "@typescript-eslint/eslint-plugin": "8.59.2",
+    "@typescript-eslint/parser": "8.59.2",
+    "eslint": "10.3.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-astro": "1.7.0",
+    "eslint-plugin-prettier": "5.5.5",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "husky": "9.1.7",
     "prettier": "3.8.3",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.8.0"
+    "prettier-plugin-tailwindcss": "0.8.0",
+    "validate-branch-name": "1.3.2"
+  },
+  "validate-branch-name": {
+    "pattern": "^(feature|release|hotfix|bugfix|refactor|performance|docs|build|ci|chore)/[A-Z]+-[0-9]+_.+$",
+    "errorMsg": "You need to follow this branching name rule: <type>/<JIRA_KEY>_<description>"
   }
 }
