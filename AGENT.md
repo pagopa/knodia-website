@@ -1,0 +1,8 @@
+- Prioritize Figma fidelity to match designs exactly
+- Avoid hardcoded values, use design tokens from Figma where available
+- Follow WCAG requirements for accessibility
+- Make it responsive
+- Reuse existing components (e.g., buttons, inputs, typography, icon wrappers) instead of duplicating functionality.
+- Reuse existing assets (e.g., favicons, backgrounds) when possible
+- Use react-aria to implement the components
+- Use tailwind variants to manage components variants

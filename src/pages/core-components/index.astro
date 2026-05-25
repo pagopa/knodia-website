@@ -1,5 +1,225 @@
 ---
+import Button from '../../components/Button.astro'
 import Layout from '../../layouts/Layout.astro'
+
+const states = [
+    { label: 'Default', value: 'default' },
+    { label: 'Mouseover', value: 'hover' },
+    { label: 'Active', value: 'active' },
+    { label: 'Disabled', value: 'disabled' },
+] as const
+
+const textVariants = [
+    { label: 'Contained', props: { variant: 'contained' } },
+    { label: 'Outlined', props: { variant: 'outlined' } },
+    {
+        label: 'Contained contrast',
+        props: { variant: 'contained', tone: 'contrast' },
+    },
+    {
+        label: 'Outlined contrast',
+        props: { variant: 'outlined', tone: 'contrast' },
+    },
+    { label: 'Naked small', props: { variant: 'naked', size: 'small' } },
+    {
+        label: 'Naked contrast small',
+        props: { variant: 'naked', tone: 'contrast', size: 'small' },
+    },
+    { label: 'Naked medium', props: { variant: 'naked', size: 'medium' } },
+    {
+        label: 'Naked contrast medium',
+        props: { variant: 'naked', tone: 'contrast', size: 'medium' },
+    },
+] as const
+
+const iconVariants = [
+    {
+        label: 'Contained',
+        props: { variant: 'contained', icon: 'arrow-right' },
+    },
+    { label: 'Outlined', props: { variant: 'outlined', icon: 'arrow-right' } },
+    {
+        label: 'Contained contrast',
+        props: { variant: 'contained', tone: 'contrast', icon: 'arrow-right' },
+    },
+    {
+        label: 'Outlined contrast',
+        props: { variant: 'outlined', tone: 'contrast', icon: 'arrow-right' },
+    },
+    {
+        label: 'Naked small',
+        props: { variant: 'naked', size: 'small', icon: 'chevron-down' },
+    },
+] as const
 ---
 
-<Layout title="Core Components"> Core Components </Layout>
+<Layout title="Core Components">
+    <section class="button-showcase">
+        <div class="button-showcase__panel">
+            <h1 class="button-showcase__title">BUTTONS</h1>
+
+            <div class="button-showcase__table-wrap">
+                <div class="button-showcase__table">
+                    <div></div>
+                    {
+                        textVariants.map((variant) => (
+                            <div class="button-showcase__heading">
+                                {variant.label}
+                            </div>
+                        ))
+                    }
+
+                    {
+                        states.map((state) => (
+                            <>
+                                <div class="button-showcase__row-label">
+                                    {state.label}
+                                </div>
+                                {textVariants.map((variant) => (
+                                    <div class="button-showcase__cell">
+                                        <Button
+                                            {...variant.props}
+                                            state={state.value}
+                                        >
+                                            Button
+                                        </Button>
+                                    </div>
+                                ))}
+                            </>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <h2 class="button-showcase__title">BUTTONS WITH ICON</h2>
+
+            <div class="button-showcase__table-wrap">
+                <div
+                    class="button-showcase__table button-showcase__table--icons"
+                >
+                    <div></div>
+                    {
+                        iconVariants.map((variant) => (
+                            <div class="button-showcase__heading">
+                                {variant.label}
+                            </div>
+                        ))
+                    }
+
+                    {
+                        states.map((state) => (
+                            <>
+                                <div class="button-showcase__row-label">
+                                    {state.label}
+                                </div>
+                                {iconVariants.map((variant) => (
+                                    <div class="button-showcase__cell">
+                                        <Button
+                                            {...variant.props}
+                                            state={state.value}
+                                        >
+                                            Button
+                                        </Button>
+                                    </div>
+                                ))}
+                            </>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="button-showcase__feature-block">
+                <div class="button-showcase__heading">Naked + Left icon</div>
+                <Button
+                    variant="feature"
+                    badgeIcon="source"
+                    icon="arrow-right"
+                    href="/what-is-knodia"
+                >
+                    Page title
+                </Button>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .button-showcase {
+        padding: 32px 24px 64px;
+    }
+
+    .button-showcase__panel {
+        background: #8d8d8d;
+        border-radius: 28px;
+        padding: clamp(32px, 5vw, 72px);
+    }
+
+    .button-showcase__title {
+        color: #15fbff;
+        font-family: var(--knodia-type-headline-font-family);
+        font-size: clamp(32px, 4vw, 56px);
+        font-weight: 700;
+        line-height: 1;
+        margin: 0 0 36px;
+    }
+
+    .button-showcase__table-wrap {
+        margin-bottom: 56px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+
+    .button-showcase__table {
+        align-items: center;
+        display: grid;
+        gap: 24px 28px;
+        grid-template-columns: 108px repeat(8, minmax(132px, 1fr));
+        min-width: 1480px;
+    }
+
+    .button-showcase__table--icons {
+        grid-template-columns: 108px repeat(5, minmax(150px, 1fr));
+        min-width: 1040px;
+    }
+
+    .button-showcase__heading,
+    .button-showcase__row-label {
+        color: #15fbff;
+        font-family: var(--knodia-type-headline-font-family);
+        font-size: clamp(18px, 1.5vw, 22px);
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    .button-showcase__heading {
+        min-height: 56px;
+    }
+
+    .button-showcase__cell {
+        align-items: center;
+        display: flex;
+        min-height: 56px;
+    }
+
+    .button-showcase__feature-block {
+        align-items: start;
+        display: grid;
+        gap: 20px;
+        max-width: 360px;
+    }
+
+    @media (max-width: 720px) {
+        .button-showcase {
+            padding: 24px 16px 48px;
+        }
+
+        .button-showcase__panel {
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .button-showcase__title {
+            margin-bottom: 28px;
+        }
+    }
+</style>

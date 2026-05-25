@@ -1,0 +1,433 @@
+---
+type ButtonVariant = 'contained' | 'outlined' | 'naked' | 'feature'
+type ButtonTone = 'default' | 'contrast'
+type ButtonSize = 'small' | 'medium'
+type ButtonState = 'default' | 'hover' | 'active' | 'disabled'
+type ButtonIcon = 'none' | 'arrow-right' | 'chevron-down' | 'source'
+
+interface Props {
+    variant?: ButtonVariant
+    tone?: ButtonTone
+    size?: ButtonSize
+    state?: ButtonState
+    icon?: ButtonIcon
+    iconPosition?: 'left' | 'right'
+    badgeIcon?: ButtonIcon
+    href?: string
+    disabled?: boolean
+    class?: string
+    type?: 'button' | 'submit' | 'reset'
+    target?: string
+    rel?: string
+    ariaLabel?: string
+}
+
+const {
+    variant = 'contained',
+    tone = 'default',
+    size,
+    state = 'default',
+    icon,
+    iconPosition = 'right',
+    badgeIcon = 'none',
+    href,
+    disabled = false,
+    class: className,
+    type = 'button',
+    target,
+    rel,
+    ariaLabel,
+    ...rest
+} = Astro.props as Props & Record<string, unknown>
+
+const resolvedTone = variant === 'feature' ? 'default' : tone
+const resolvedSize = size ?? (variant === 'naked' ? 'small' : 'medium')
+const resolvedIcon: ButtonIcon =
+    icon ?? (variant === 'feature' ? 'arrow-right' : 'none')
+const resolvedBadgeIcon =
+    variant === 'feature'
+        ? badgeIcon === 'none'
+            ? 'source'
+            : badgeIcon
+        : 'none'
+const isDisabled = disabled || state === 'disabled'
+const isLink = Boolean(href) && !isDisabled
+const relValue = target === '_blank' ? (rel ?? 'noreferrer') : rel
+
+const rootClasses = [
+    'knodia-button',
+    `knodia-button--${variant}`,
+    `knodia-button--${resolvedTone}`,
+    `knodia-button--${resolvedSize}`,
+    state !== 'default' && `knodia-button--state-${state}`,
+    isDisabled && 'is-disabled',
+    className,
+]
+
+const showLeadingIcon = resolvedIcon !== 'none' && iconPosition === 'left'
+const showTrailingIcon = resolvedIcon !== 'none' && iconPosition === 'right'
+
+const iconMarkup: Record<ButtonIcon, string> = {
+    none: '',
+    'arrow-right': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 5L19.5 12L12.5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'chevron-down': `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    source: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 6.75C6 5.78 6.78 5 7.75 5H13.63L18 9.37V17.25C18 18.22 17.22 19 16.25 19H7.75C6.78 19 6 18.22 6 17.25V6.75Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13 5V10H18" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12H15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 15H13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+}
+
+const renderIcon = (iconName: ButtonIcon) => iconMarkup[iconName]
+---
+
+{
+    isLink ? (
+        <a
+            href={href}
+            target={target}
+            rel={relValue}
+            class:list={rootClasses}
+            aria-label={ariaLabel}
+            {...rest}
+        >
+            {variant === 'feature' && resolvedBadgeIcon !== 'none' && (
+                <span class="knodia-button__badge" aria-hidden="true">
+                    <span
+                        class:list={[
+                            'knodia-button__icon',
+                            'knodia-button__icon--source',
+                        ]}
+                        set:html={renderIcon(resolvedBadgeIcon)}
+                    />
+                </span>
+            )}
+            <span class="knodia-button__content">
+                {showLeadingIcon && (
+                    <span
+                        class:list={[
+                            'knodia-button__icon',
+                            resolvedIcon === 'chevron-down'
+                                ? 'knodia-button__icon--chevron-down'
+                                : 'knodia-button__icon--default',
+                        ]}
+                        aria-hidden="true"
+                        set:html={renderIcon(resolvedIcon)}
+                    />
+                )}
+                <span class="knodia-button__label">
+                    <slot />
+                </span>
+                {showTrailingIcon && (
+                    <span
+                        class:list={[
+                            'knodia-button__icon',
+                            resolvedIcon === 'chevron-down'
+                                ? 'knodia-button__icon--chevron-down'
+                                : 'knodia-button__icon--default',
+                        ]}
+                        aria-hidden="true"
+                        set:html={renderIcon(resolvedIcon)}
+                    />
+                )}
+            </span>
+        </a>
+    ) : (
+        <button
+            type={type}
+            disabled={isDisabled}
+            class:list={rootClasses}
+            aria-label={ariaLabel}
+            {...rest}
+        >
+            {variant === 'feature' && resolvedBadgeIcon !== 'none' && (
+                <span class="knodia-button__badge" aria-hidden="true">
+                    <span
+                        class:list={[
+                            'knodia-button__icon',
+                            'knodia-button__icon--source',
+                        ]}
+                        set:html={renderIcon(resolvedBadgeIcon)}
+                    />
+                </span>
+            )}
+            <span class="knodia-button__content">
+                {showLeadingIcon && (
+                    <span
+                        class:list={[
+                            'knodia-button__icon',
+                            resolvedIcon === 'chevron-down'
+                                ? 'knodia-button__icon--chevron-down'
+                                : 'knodia-button__icon--default',
+                        ]}
+                        aria-hidden="true"
+                        set:html={renderIcon(resolvedIcon)}
+                    />
+                )}
+                <span class="knodia-button__label">
+                    <slot />
+                </span>
+                {showTrailingIcon && (
+                    <span
+                        class:list={[
+                            'knodia-button__icon',
+                            resolvedIcon === 'chevron-down'
+                                ? 'knodia-button__icon--chevron-down'
+                                : 'knodia-button__icon--default',
+                        ]}
+                        aria-hidden="true"
+                        set:html={renderIcon(resolvedIcon)}
+                    />
+                )}
+            </span>
+        </button>
+    )
+}
+
+<style>
+    .knodia-button {
+        --button-radius: var(--knodia-radius-8);
+        --button-padding-inline: 16px;
+        --button-padding-block: 12px;
+        --button-root-gap: 0px;
+        --button-gap: 8px;
+        --button-border-width: 0px;
+        --button-font-size: var(--knodia-type-buttons-font-size);
+        --button-line-height: var(--knodia-type-buttons-line-height);
+        --button-font-weight: var(--knodia-type-buttons-font-weight);
+        --button-bg: transparent;
+        --button-fg: var(--knodia-color-graphite-black);
+        --button-border: transparent;
+        --button-hover-bg: var(--button-bg);
+        --button-hover-fg: var(--button-fg);
+        --button-hover-border: var(--button-border);
+        --button-active-bg: var(--button-bg);
+        --button-active-fg: var(--button-fg);
+        --button-active-border: var(--button-border);
+        --button-disabled-bg: transparent;
+        --button-disabled-fg: var(--knodia-color-medium-grey);
+        --button-disabled-border: transparent;
+        --button-focus-ring: var(--knodia-color-primary-violet-40);
+        align-items: center;
+        appearance: none;
+        background: var(--button-bg);
+        border: var(--button-border-width) solid var(--button-border);
+        border-radius: var(--button-radius);
+        box-sizing: border-box;
+        color: var(--button-fg);
+        cursor: pointer;
+        display: inline-flex;
+        gap: var(--button-root-gap);
+        justify-content: center;
+        min-height: 48px;
+        overflow: hidden;
+        padding: var(--button-padding-block) var(--button-padding-inline);
+        text-decoration: none;
+        transition:
+            background-color 160ms ease,
+            border-color 160ms ease,
+            color 160ms ease,
+            outline-color 160ms ease;
+        white-space: nowrap;
+    }
+
+    .knodia-button__content {
+        align-items: center;
+        display: inline-flex;
+        gap: var(--button-gap);
+    }
+
+    .knodia-button__label {
+        font-family: var(--knodia-type-body-font-family);
+        font-size: var(--button-font-size);
+        font-weight: var(--button-font-weight);
+        line-height: var(--button-line-height);
+    }
+
+    .knodia-button__icon {
+        display: inline-flex;
+        flex-shrink: 0;
+    }
+
+    .knodia-button__icon--default,
+    .knodia-button__icon--source {
+        height: 24px;
+        width: 24px;
+    }
+
+    .knodia-button__icon--chevron-down {
+        height: 16px;
+        width: 16px;
+    }
+
+    .knodia-button__icon :global(svg) {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    .knodia-button__badge {
+        align-items: center;
+        background: var(--knodia-color-soft-quarz);
+        border-radius: var(--knodia-radius-16);
+        color: var(--knodia-color-primary-violet);
+        display: inline-flex;
+        flex-shrink: 0;
+        height: 64px;
+        justify-content: center;
+        width: 64px;
+    }
+
+    .knodia-button:focus-visible {
+        outline: 3px solid var(--button-focus-ring);
+        outline-offset: 3px;
+    }
+
+    @media (hover: hover) {
+        .knodia-button:not(.is-disabled):hover {
+            background: var(--button-hover-bg);
+            border-color: var(--button-hover-border);
+            color: var(--button-hover-fg);
+        }
+    }
+
+    .knodia-button:not(.is-disabled):active,
+    .knodia-button--state-active:not(.is-disabled) {
+        background: var(--button-active-bg);
+        border-color: var(--button-active-border);
+        color: var(--button-active-fg);
+    }
+
+    .knodia-button--state-hover:not(.is-disabled) {
+        background: var(--button-hover-bg);
+        border-color: var(--button-hover-border);
+        color: var(--button-hover-fg);
+    }
+
+    .knodia-button.is-disabled {
+        background: var(--button-disabled-bg);
+        border-color: var(--button-disabled-border);
+        color: var(--button-disabled-fg);
+        cursor: default;
+        pointer-events: none;
+    }
+
+    .knodia-button--contained,
+    .knodia-button--outlined {
+        --button-font-size: var(--knodia-type-buttons-font-size);
+        --button-line-height: var(--knodia-type-buttons-line-height);
+        --button-font-weight: var(--knodia-type-buttons-font-weight);
+        --button-gap: 8px;
+    }
+
+    .knodia-button--contained.knodia-button--default {
+        --button-bg: var(--knodia-color-primary-violet);
+        --button-fg: var(--knodia-color-pure-white);
+        --button-hover-bg: var(--knodia-color-primary-violet-120);
+        --button-hover-fg: var(--knodia-color-pure-white);
+        --button-active-bg: var(--knodia-color-deep-interface-violet);
+        --button-active-fg: var(--knodia-color-pure-white);
+        --button-disabled-bg: var(--knodia-color-neutral-40);
+        --button-disabled-fg: var(--knodia-color-medium-grey);
+        --button-focus-ring: var(--knodia-color-primary-violet-40);
+    }
+
+    .knodia-button--contained.knodia-button--contrast {
+        --button-bg: var(--knodia-color-pure-white);
+        --button-fg: var(--knodia-color-primary-violet);
+        --button-hover-bg: var(--knodia-color-soft-quarz);
+        --button-hover-fg: var(--knodia-color-primary-violet);
+        --button-active-bg: var(--knodia-color-muted-amber);
+        --button-active-fg: var(--knodia-color-deep-interface-violet);
+        --button-disabled-bg: var(--knodia-color-neutral-40);
+        --button-disabled-fg: var(--knodia-color-medium-grey);
+        --button-focus-ring: var(--knodia-color-soft-quarz);
+    }
+
+    .knodia-button--outlined {
+        --button-border-width: 2px;
+        --button-bg: transparent;
+        --button-disabled-bg: transparent;
+    }
+
+    .knodia-button--outlined.knodia-button--default {
+        --button-border: var(--knodia-color-primary-violet);
+        --button-fg: var(--knodia-color-primary-violet);
+        --button-hover-border: var(--knodia-color-primary-violet-120);
+        --button-hover-fg: var(--knodia-color-primary-violet-120);
+        --button-active-border: var(--knodia-color-deep-interface-violet);
+        --button-active-fg: var(--knodia-color-deep-interface-violet);
+        --button-disabled-border: var(--knodia-color-medium-grey);
+        --button-disabled-fg: var(--knodia-color-medium-grey);
+        --button-focus-ring: var(--knodia-color-primary-violet-40);
+    }
+
+    .knodia-button--outlined.knodia-button--contrast {
+        --button-border: var(--knodia-color-pure-white);
+        --button-fg: var(--knodia-color-pure-white);
+        --button-hover-border: var(--knodia-color-soft-quarz);
+        --button-hover-fg: var(--knodia-color-soft-quarz);
+        --button-active-border: var(--knodia-color-muted-amber);
+        --button-active-fg: var(--knodia-color-muted-amber);
+        --button-disabled-border: var(--knodia-color-medium-grey);
+        --button-disabled-fg: var(--knodia-color-medium-grey);
+        --button-focus-ring: var(--knodia-color-soft-quarz);
+    }
+
+    .knodia-button--naked {
+        --button-border-width: 0px;
+        --button-padding-inline: 0px;
+        --button-padding-block: 0px;
+        --button-gap: 4px;
+        min-height: auto;
+    }
+
+    .knodia-button--naked.knodia-button--small {
+        --button-font-size: var(--knodia-type-small-text-font-size);
+        --button-line-height: var(--knodia-type-small-text-line-height);
+        --button-font-weight: var(--knodia-type-small-text-font-weight);
+    }
+
+    .knodia-button--naked.knodia-button--medium {
+        --button-font-size: var(--knodia-type-normal-text-font-size);
+        --button-line-height: var(--knodia-type-normal-text-line-height);
+        --button-font-weight: var(--knodia-type-normal-text-font-weight);
+    }
+
+    .knodia-button--naked.knodia-button--default {
+        --button-fg: var(--knodia-color-graphite-black);
+        --button-hover-fg: var(--knodia-color-primary-violet-40);
+        --button-active-fg: var(--knodia-color-primary-violet);
+        --button-disabled-fg: var(--knodia-color-medium-grey);
+        --button-focus-ring: var(--knodia-color-primary-violet-40);
+    }
+
+    .knodia-button--naked.knodia-button--contrast {
+        --button-fg: var(--knodia-color-pure-white);
+        --button-hover-fg: var(--knodia-color-soft-quarz);
+        --button-active-fg: var(--knodia-color-muted-amber);
+        --button-disabled-fg: var(--knodia-color-medium-grey);
+        --button-focus-ring: var(--knodia-color-soft-quarz);
+    }
+
+    .knodia-button--feature {
+        --button-radius: 0px;
+        --button-root-gap: 16px;
+        --button-gap: 8px;
+        --button-padding-inline: 0px;
+        --button-padding-block: 0px;
+        --button-font-size: var(--knodia-type-buttons-font-size);
+        --button-line-height: var(--knodia-type-buttons-line-height);
+        --button-font-weight: var(--knodia-type-buttons-font-weight);
+        --button-fg: var(--knodia-color-primary-violet);
+        --button-focus-ring: var(--knodia-color-primary-violet-40);
+        justify-content: flex-start;
+        min-height: auto;
+        overflow: visible;
+    }
+
+    .knodia-button--feature.is-disabled {
+        --button-fg: var(--knodia-color-medium-grey);
+    }
+
+    .knodia-button--feature.is-disabled .knodia-button__badge {
+        background: var(--knodia-color-neutral-40);
+        color: var(--knodia-color-medium-grey);
+    }
+</style>
