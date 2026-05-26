@@ -1,42 +1,27 @@
-import type { ReactNode } from 'react'
-import {
-    Link as AriaLink,
-    type LinkProps as AriaLinkProps,
-} from 'react-aria-components'
+---
 import { tv } from 'tailwind-variants'
-import {
-    ArrowRightIcon,
-    SourceIcon,
-    type IconComponent as ButtonIcon,
-} from './Icon'
+import Icon, { ArrowRightIcon, SourceIcon, type IconName } from './Icon'
 
-export type {
-    IconComponent as ButtonIcon,
-    IconComponentProps as ButtonIconProps,
-} from './Icon'
+type ButtonVariant = 'contained' | 'outlined' | 'naked' | 'feature'
+type ButtonTone = 'default' | 'contrast'
+type ButtonSize = 'small' | 'medium'
+type ButtonState = 'default' | 'hover' | 'active' | 'disabled'
 
-export type ButtonVariant = 'contained' | 'outlined' | 'naked' | 'feature'
-export type ButtonTone = 'default' | 'contrast'
-export type ButtonSize = 'small' | 'medium'
-export type ButtonState = 'default' | 'hover' | 'active' | 'disabled'
-
-type SharedProps = {
-    children: ReactNode
+type Props = {
+    href: string
     variant?: ButtonVariant
     tone?: ButtonTone
     size?: ButtonSize
     state?: ButtonState
-    icon?: ButtonIcon
+    icon?: IconName
     iconPosition?: 'left' | 'right'
-    badgeIcon?: ButtonIcon
+    badgeIcon?: IconName
+    class?: string
     className?: string
     disabled?: boolean
+    rel?: string
+    target?: string
 }
-
-export type Props = SharedProps &
-    Omit<AriaLinkProps, 'children' | 'className' | 'isDisabled' | 'href'> & {
-        href: string
-    }
 
 const buttonRoot = tv({
     base: 'group inline-flex w-fit max-w-full select-none items-center justify-center align-middle whitespace-nowrap transition-colors duration-150 ease-out outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
@@ -57,7 +42,7 @@ const buttonRoot = tv({
             default: 'cursor-pointer',
             hover: 'cursor-pointer',
             active: 'cursor-pointer',
-            disabled: 'cursor-not-allowed pointer-events-none',
+            disabled: 'pointer-events-none cursor-not-allowed',
         },
     },
     compoundVariants: [
@@ -314,108 +299,113 @@ function joinClasses(...classes: Array<string | undefined>) {
     return classes.filter(Boolean).join(' ')
 }
 
-function renderIcon(Icon?: ButtonIcon) {
-    if (Icon == null) {
-        return null
-    }
+const {
+    badgeIcon,
+    class: className,
+    className: legacyClassName,
+    disabled = false,
+    href,
+    icon,
+    iconPosition = 'right',
+    rel,
+    size,
+    state = 'default',
+    target,
+    tone = 'default',
+    variant = 'contained',
+    ...rest
+} = Astro.props as Props & Record<string, unknown>
 
-    return <Icon aria-hidden={true} className="size-full" />
-}
+const resolvedTone = variant === 'feature' ? 'default' : tone
+const resolvedSize = size ?? (variant === 'naked' ? 'small' : 'medium')
+const resolvedIcon =
+    icon ?? (variant === 'feature' ? ArrowRightIcon : undefined)
+const resolvedBadgeIcon =
+    variant === 'feature' ? (badgeIcon ?? SourceIcon) : undefined
+const isDisabled = disabled || state === 'disabled'
+const visualState: ButtonState = isDisabled ? 'disabled' : state
+const showLeadingIcon = resolvedIcon != null && iconPosition === 'left'
+const showTrailingIcon = resolvedIcon != null && iconPosition === 'right'
+const rootClassName = joinClasses(
+    buttonRoot({
+        tone: resolvedTone,
+        variant,
+        visualState,
+    }),
+    className ?? legacyClassName
+)
+const resolvedRel = target === '_blank' && rel == null ? 'noreferrer' : rel
+---
 
-export default function Button(props: Props) {
-    const {
-        badgeIcon,
-        children,
-        className,
-        disabled = false,
-        href,
-        icon,
-        iconPosition = 'right',
-        rel,
-        size,
-        state = 'default',
-        target,
-        tone = 'default',
-        variant = 'contained',
-        ...rest
-    } = props
-
-    const resolvedTone = variant === 'feature' ? 'default' : tone
-    const resolvedSize = size ?? (variant === 'naked' ? 'small' : 'medium')
-    const resolvedIcon =
-        icon ?? (variant === 'feature' ? ArrowRightIcon : undefined)
-    const resolvedBadgeIcon =
-        variant === 'feature' ? (badgeIcon ?? SourceIcon) : undefined
-    const isDisabled = disabled || state === 'disabled'
-    const visualState: ButtonState = isDisabled ? 'disabled' : state
-    const showLeadingIcon = resolvedIcon != null && iconPosition === 'left'
-    const showTrailingIcon = resolvedIcon != null && iconPosition === 'right'
-    const rootClassName = joinClasses(
-        buttonRoot({
-            tone: resolvedTone,
-            variant,
-            visualState,
-        }),
-        className
-    )
-
-    const content = (
-        <span className={buttonContent({ variant })}>
-            {variant === 'feature' && resolvedBadgeIcon != null ? (
-                <span aria-hidden="true" className={featureBadge}>
+<a
+    {...rest}
+    aria-disabled={isDisabled || undefined}
+    class={rootClassName}
+    href={isDisabled ? undefined : href}
+    rel={resolvedRel}
+    tabindex={isDisabled ? -1 : undefined}
+    target={target}
+>
+    <span class={buttonContent({ variant })}>
+        {
+            variant === 'feature' && resolvedBadgeIcon != null ? (
+                <span aria-hidden="true" class={featureBadge}>
                     <span
-                        className={buttonIcon({
+                        class={buttonIcon({
                             size: 'medium',
                             variant: 'feature',
                         })}
                     >
-                        {renderIcon(resolvedBadgeIcon)}
+                        <Icon
+                            ariaHidden={true}
+                            class="size-full"
+                            name={resolvedBadgeIcon}
+                        />
                     </span>
                 </span>
-            ) : null}
-            {showLeadingIcon ? (
+            ) : null
+        }
+        {
+            showLeadingIcon ? (
                 <span
                     aria-hidden="true"
-                    className={buttonIcon({
+                    class={buttonIcon({
                         size: resolvedSize,
                         variant,
                     })}
                 >
-                    {renderIcon(resolvedIcon)}
+                    <Icon
+                        ariaHidden={true}
+                        class="size-full"
+                        name={resolvedIcon!}
+                    />
                 </span>
-            ) : null}
-            <span
-                className={buttonLabel({
-                    size: resolvedSize,
-                    variant,
-                })}
-            >
-                {children}
-            </span>
-            {showTrailingIcon ? (
-                <span
-                    aria-hidden="true"
-                    className={buttonIcon({
-                        size: resolvedSize,
-                        variant,
-                    })}
-                >
-                    {renderIcon(resolvedIcon)}
-                </span>
-            ) : null}
-        </span>
-    )
-
-    return (
-        <AriaLink
-            {...rest}
-            className={rootClassName}
-            href={href}
-            isDisabled={isDisabled}
-            rel={target === '_blank' && rel == null ? 'noreferrer' : rel}
-            target={target}
+            ) : null
+        }
+        <span
+            class={buttonLabel({
+                size: resolvedSize,
+                variant,
+            })}
         >
-            {content}
-        </AriaLink>
-    )
-}
+            <slot />
+        </span>
+        {
+            showTrailingIcon ? (
+                <span
+                    aria-hidden="true"
+                    class={buttonIcon({
+                        size: resolvedSize,
+                        variant,
+                    })}
+                >
+                    <Icon
+                        ariaHidden={true}
+                        class="size-full"
+                        name={resolvedIcon!}
+                    />
+                </span>
+            ) : null
+        }
+    </span>
+</a>

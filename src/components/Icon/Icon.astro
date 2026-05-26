@@ -1,0 +1,104 @@
+---
+import { tv } from 'tailwind-variants'
+import type { IconName, IconSize } from './icon'
+
+type Props = {
+    name: IconName
+    size?: IconSize
+    class?: string
+    title?: string
+    ariaHidden?: boolean
+}
+
+const materialIconRoot = tv({
+    base: 'knodia-material-symbol inline-flex shrink-0 items-center justify-center leading-none text-current',
+    variants: {
+        size: {
+            button: 'text-[length:var(--button-icon-size)]',
+            'button-small': 'text-[length:var(--button-icon-size-sm)]',
+            showcase: 'text-[length:var(--icon-showcase-icon-size)]',
+        },
+    },
+    defaultVariants: {
+        size: 'button',
+    },
+})
+
+const svgIconRoot = tv({
+    base: 'inline-block shrink-0 text-current',
+    variants: {
+        size: {
+            button: 'size-[var(--button-icon-size)]',
+            'button-small': 'size-[var(--button-icon-size-sm)]',
+            showcase: 'size-[var(--icon-showcase-icon-size)]',
+        },
+    },
+    defaultVariants: {
+        size: 'button',
+    },
+})
+
+function joinClasses(...classes: Array<string | undefined>) {
+    return classes.filter(Boolean).join(' ')
+}
+
+const {
+    ariaHidden = true,
+    class: className,
+    name,
+    size = 'button',
+    title,
+} = Astro.props as Props
+
+const isDecorative = title == null
+---
+
+{
+    name === 'source' ? (
+        <svg
+            aria-hidden={isDecorative ? ariaHidden : undefined}
+            aria-label={title}
+            class={joinClasses(svgIconRoot({ size }), className)}
+            fill="none"
+            role={title ? 'img' : undefined}
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            {title ? <title>{title}</title> : null}
+            <path
+                d="M6 6.75C6 5.78 6.78 5 7.75 5H13.63L18 9.37V17.25C18 18.22 17.22 19 16.25 19H7.75C6.78 19 6 18.22 6 17.25V6.75Z"
+                stroke="currentColor"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            />
+            <path
+                d="M13 5V10H18"
+                stroke="currentColor"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            />
+            <path
+                d="M9 12H15"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="1.8"
+            />
+            <path
+                d="M9 15H13.5"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="1.8"
+            />
+        </svg>
+    ) : (
+        <span
+            aria-hidden={isDecorative ? ariaHidden : undefined}
+            aria-label={title}
+            class={joinClasses(materialIconRoot({ size }), className)}
+            role={title ? 'img' : undefined}
+            title={title}
+        >
+            {name}
+        </span>
+    )
+}

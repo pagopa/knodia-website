@@ -1,17 +1,16 @@
 # Knodia Website — Agent Guidelines
 
-You are building UI for an **Astro + Tailwind CSS v4** site. Interactive widgets are React islands hydrated from `.astro` pages. Follow the rules below for every component or page you produce.
+You are building UI for an **Astro + Tailwind CSS v4** site. The site is **static-first**: prefer plain `.astro` components, native HTML, and CSS over any client-side framework or runtime library. Follow the rules below for every component or page you produce.
 
 ---
 
 ## 1. Stack & Conventions
 
-- **Framework:** Astro pages/layouts in `src/pages/` and `src/layouts/`. Static markup lives in `.astro` files.
+- **Framework:** Astro pages/layouts in `src/pages/` and `src/layouts/`. All markup lives in `.astro` files and is rendered to static HTML.
 - **Styling:** Tailwind CSS v4 configured via `src/styles/global.css`. There is **no `tailwind.config.js`** — design tokens live in the `@theme` block of `global.css` as CSS custom properties.
-- **Interactivity:** React components (`.tsx`) hydrated as Astro islands with `client:*` directives.
-- **Variants:** Use [`tailwind-variants`](https://www.tailwind-variants.org/) (`tv()`) for every component with more than one visual state. Do not hand-roll conditional class strings.
-- **Accessible primitives:** Use [`react-aria-components`](https://react-spectrum.adobe.com/react-aria/) for any interactive element (buttons, links acting as buttons, inputs, dialogs, menus, tabs, etc.). Do **not** re-implement focus management, keyboard handling, or ARIA wiring by hand.
-- **Astro ↔ React boundary:** Props crossing the boundary must be serializable. Pass strings/ids/data — never functions. Handle events inside the React island.
+- **Interactivity:** Default to zero JavaScript. When behavior is unavoidable, write a minimal vanilla `<script>` block scoped to the `.astro` component (or a small Astro island only as a last resort). Do **not** introduce a UI framework, runtime, or component library to handle interaction.
+- **Variants:** Use [`tailwind-variants`](https://www.tailwind-variants.org/) (`tv()`) for components with more than one visual state. Do not hand-roll conditional class strings. `tv()` may be imported into `.astro` frontmatter — it produces a plain class string and does not ship runtime JS to the client.
+- **No new dependencies:** Do not add packages to solve a problem that can be done with native HTML, CSS, Tailwind, or a few lines of inline script. If a dependency seems necessary, justify it explicitly first.
 
 ---
 
@@ -25,7 +24,7 @@ When a Figma node/URL is provided:
 4. **Reuse before you build.** Scan `src/components/` and `src/assets/` for existing matches (Button, backgrounds, favicons, etc.) before creating anything new.
 5. **Verify visually.** For complex layouts, request `get_screenshot` and compare against the implementation.
 
-The Figma response is a **reference**, not final code. Always adapt to this project's stack (Astro + Tailwind v4 + react-aria + tailwind-variants).
+The Figma response is a **reference**, not final code. Always adapt it to this project's stack (Astro + Tailwind v4 + `tailwind-variants`) and convert any framework-specific output (React, Vue, etc.) into static `.astro` markup.
 
 > Note: Figma `get_design_context` may return SVG assets even for nodes labeled as raster sizes (e.g. favicons). When you need a true PNG, use `get_screenshot`.
 
@@ -50,16 +49,21 @@ Before creating a new component, confirm:
 
 If you do create a new component:
 
-- Place reusable UI in `src/components/`.
-- Co-locate variants via `tv()` in the same file (or a sibling `*.variants.ts`).
-- Export a typed `Props` interface that mirrors the `tailwind-variants` `VariantProps`.
+- Build it as an `.astro` component in `src/components/`.
+- Keep single-file components flat in `src/components/`.
+- **Create a component folder only when the component actually needs multiple related files** (for example variants, supporting data/types, subcomponents, tests, or component-scoped assets). In those cases, group them under one PascalCase folder, e.g. `src/components/Icon/` or `src/components/Button/`.
+- Do not scatter a multi-file component's siblings across `src/components/` at the root. If two or more files exist only to support one component, they belong inside that component's folder.
+- In a multi-file component folder, keep the entry component, co-located variants, supporting data/types, subcomponents, and component-scoped assets together. Import the component via the folder using an `index.ts` re-export, or via the explicit file path.
+- Co-locate variants via `tv()` in the same file or a sibling `*.variants.ts` within the component folder.
+- Type the component's `Props` interface in the frontmatter; mirror the `tailwind-variants` `VariantProps` when applicable.
+- Keep it server-rendered. Only add a `<script>` block if the design strictly requires runtime behavior.
 
 ---
 
 ## 5. Accessibility (WCAG 2.1 AA minimum)
 
-- Use semantic HTML first (`<button>`, `<nav>`, `<main>`, headings in order).
-- Every interactive element must be keyboard reachable with a visible focus ring (rely on react-aria's `data-focus-visible` styling hooks).
+- Use semantic HTML first (`<button>`, `<a>`, `<nav>`, `<main>`, headings in order). Native elements provide focus and keyboard handling for free — do not replace them with `<div>`/`<span>` and re-implement behavior.
+- Every interactive element must be keyboard reachable with a visible focus ring. Style focus via `:focus-visible` in CSS/Tailwind utilities — no JS focus tracking.
 - Color contrast: text ≥ 4.5:1, large text / UI components ≥ 3:1. Verify against actual token values.
 - Provide `aria-label` or visible text for icon-only controls. Decorative SVGs get `aria-hidden="true"`.
 - Form controls require associated `<label>`s. Error messages use `aria-describedby` / `aria-invalid`.
@@ -84,9 +88,9 @@ A component/page is done only when **all** of the following hold:
 1. Matches the Figma frame at the target breakpoint (spacing, typography, color, radius, iconography).
 2. Uses only design tokens — no hardcoded colors, sizes, or spacing.
 3. Reuses existing components/assets where applicable.
-4. Interactive parts use `react-aria-components`.
+4. Implemented as a static `.astro` component; no client JS unless strictly required by the design.
 5. Variants are expressed via `tailwind-variants`.
-6. Keyboard accessible, screen-reader labeled, contrast-checked.
+6. Keyboard accessible via native HTML semantics, screen-reader labeled, contrast-checked.
 7. Responsive across the breakpoints above.
 8. No TypeScript or lint errors.
 
@@ -94,9 +98,9 @@ A component/page is done only when **all** of the following hold:
 
 ## 8. Anti-patterns (do not do)
 
-- ❌ Inline styles or hex colors in JSX/Astro markup.
-- ❌ `className` strings built with template literals or `clsx` for variant logic (use `tv()`).
-- ❌ Custom `useState` / `useEffect` for focus, hover, or open/close state that react-aria already handles.
+- ❌ Inline styles or hex colors in Astro markup.
+- ❌ `class` strings built with template literals or `clsx` for variant logic (use `tv()`).
+- ❌ Reaching for a UI framework or component library (React, Vue, Svelte, Headless UI, Radix, etc.) to implement behavior.
+- ❌ Adding client-side JavaScript when the design can be expressed with HTML and CSS alone (e.g. using `<details>`/`<summary>`, `:focus-within`, `:has()`, `peer`, `group`).
 - ❌ Duplicating an existing component to add one variant.
-- ❌ Passing functions as props from `.astro` into a React island.
-- ❌ Adding new dependencies without confirming they aren't already covered by react-aria / tailwind-variants.
+- ❌ Adding new dependencies without first ruling out a static HTML/CSS solution.
