@@ -58,6 +58,8 @@ export const iconNames = [
     'close',
     'keyboard_arrow_up',
     'arrow_forward',
+    'arrow_forward_ios',
+    'arrow_back_ios_new',
 ] as const
 
 export type MaterialIconName = (typeof iconNames)[number]
