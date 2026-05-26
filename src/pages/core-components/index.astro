@@ -1,225 +1,237 @@
 ---
-import Button from '../../components/Button.astro'
 import Layout from '../../layouts/Layout.astro'
+import Button from '../../components/Button'
+import Icon, {
+    iconShowcaseColumns,
+    ArrowRightIcon,
+    ChevronDownIcon,
+} from '../../components/Icon'
 
-const states = [
-    { label: 'Default', value: 'default' },
-    { label: 'Mouseover', value: 'hover' },
-    { label: 'Active', value: 'active' },
-    { label: 'Disabled', value: 'disabled' },
+const showcaseHref = '#'
+
+const stateRows = [
+    { label: 'Default', state: 'default', disabled: false },
+    { label: 'Mouseover', state: 'hover', disabled: false },
+    { label: 'Active', state: 'active', disabled: false },
+    { label: 'Disabled', state: 'disabled', disabled: true },
 ] as const
 
-const textVariants = [
-    { label: 'Contained', props: { variant: 'contained' } },
-    { label: 'Outlined', props: { variant: 'outlined' } },
+const standardColumns = [
+    { label: 'Contained', props: { href: showcaseHref, variant: 'contained' } },
+    { label: 'Outlined', props: { href: showcaseHref, variant: 'outlined' } },
     {
         label: 'Contained contrast',
-        props: { variant: 'contained', tone: 'contrast' },
+        props: { href: showcaseHref, tone: 'contrast', variant: 'contained' },
     },
     {
         label: 'Outlined contrast',
-        props: { variant: 'outlined', tone: 'contrast' },
-    },
-    { label: 'Naked small', props: { variant: 'naked', size: 'small' } },
-    {
-        label: 'Naked contrast small',
-        props: { variant: 'naked', tone: 'contrast', size: 'small' },
-    },
-    { label: 'Naked medium', props: { variant: 'naked', size: 'medium' } },
-    {
-        label: 'Naked contrast medium',
-        props: { variant: 'naked', tone: 'contrast', size: 'medium' },
-    },
-] as const
-
-const iconVariants = [
-    {
-        label: 'Contained',
-        props: { variant: 'contained', icon: 'arrow-right' },
-    },
-    { label: 'Outlined', props: { variant: 'outlined', icon: 'arrow-right' } },
-    {
-        label: 'Contained contrast',
-        props: { variant: 'contained', tone: 'contrast', icon: 'arrow-right' },
-    },
-    {
-        label: 'Outlined contrast',
-        props: { variant: 'outlined', tone: 'contrast', icon: 'arrow-right' },
+        props: { href: showcaseHref, tone: 'contrast', variant: 'outlined' },
     },
     {
         label: 'Naked small',
-        props: { variant: 'naked', size: 'small', icon: 'chevron-down' },
+        props: { href: showcaseHref, size: 'small', variant: 'naked' },
+    },
+    {
+        label: 'Naked contrast small',
+        props: {
+            href: showcaseHref,
+            size: 'small',
+            tone: 'contrast',
+            variant: 'naked',
+        },
+    },
+    {
+        label: 'Naked medium',
+        props: { href: showcaseHref, size: 'medium', variant: 'naked' },
+    },
+    {
+        label: 'Naked contrast medium',
+        props: {
+            href: showcaseHref,
+            size: 'medium',
+            tone: 'contrast',
+            variant: 'naked',
+        },
+    },
+] as const
+
+const iconColumns = [
+    {
+        label: 'Contained',
+        props: {
+            href: showcaseHref,
+            icon: ArrowRightIcon,
+            variant: 'contained',
+        },
+    },
+    {
+        label: 'Outlined',
+        props: {
+            href: showcaseHref,
+            icon: ArrowRightIcon,
+            variant: 'outlined',
+        },
+    },
+    {
+        label: 'Contained contrast',
+        props: {
+            href: showcaseHref,
+            icon: ArrowRightIcon,
+            tone: 'contrast',
+            variant: 'contained',
+        },
+    },
+    {
+        label: 'Outlined contrast',
+        props: {
+            href: showcaseHref,
+            icon: ArrowRightIcon,
+            tone: 'contrast',
+            variant: 'outlined',
+        },
+    },
+    {
+        label: 'Naked small',
+        props: {
+            href: showcaseHref,
+            icon: ChevronDownIcon,
+            size: 'small',
+            variant: 'naked',
+        },
     },
 ] as const
 ---
 
 <Layout title="Core Components">
-    <section class="button-showcase">
-        <div class="button-showcase__panel">
-            <h1 class="button-showcase__title">BUTTONS</h1>
+    <section class="space-y-16 px-4 py-8 sm:px-6 lg:px-8">
+        <div
+            class="mx-auto max-w-[1500px] rounded-[var(--radius-showcase)] bg-[var(--color-showcase-surface)] px-6 py-10 sm:px-8 lg:px-12 lg:py-16"
+        >
+            <div class="space-y-16">
+                <div class="space-y-8">
+                    <h1
+                        class="font-heading text-[length:var(--text-heading-lg)] leading-[var(--leading-heading-lg)] font-normal text-[var(--color-showcase-accent)] uppercase"
+                    >
+                        Buttons
+                    </h1>
+                    <div class="overflow-x-auto pb-2">
+                        <div
+                            class="grid min-w-[var(--showcase-standard-min-width)] grid-cols-[var(--showcase-label-column)_repeat(8,minmax(0,1fr))] gap-x-[var(--showcase-column-gap)] gap-y-[var(--showcase-row-gap)]"
+                        >
+                            <div></div>
+                            {
+                                standardColumns.map((column) => (
+                                    <h2 class="font-heading text-[length:var(--text-heading-md)] leading-[var(--leading-heading-md)] font-normal text-[var(--color-showcase-accent)]">
+                                        {column.label}
+                                    </h2>
+                                ))
+                            }
 
-            <div class="button-showcase__table-wrap">
-                <div class="button-showcase__table">
-                    <div></div>
-                    {
-                        textVariants.map((variant) => (
-                            <div class="button-showcase__heading">
-                                {variant.label}
-                            </div>
-                        ))
-                    }
+                            {
+                                stateRows.map((row) => (
+                                    <>
+                                        <p class="font-heading text-[length:var(--text-heading-md)] leading-[var(--leading-heading-md)] font-normal text-[var(--color-showcase-accent)]">
+                                            {row.label}
+                                        </p>
+                                        {standardColumns.map((column) => (
+                                            <div class="flex items-center">
+                                                <Button
+                                                    {...column.props}
+                                                    disabled={row.disabled}
+                                                    state={row.state}
+                                                >
+                                                    Button
+                                                </Button>
+                                            </div>
+                                        ))}
+                                    </>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
 
-                    {
-                        states.map((state) => (
-                            <>
-                                <div class="button-showcase__row-label">
-                                    {state.label}
-                                </div>
-                                {textVariants.map((variant) => (
-                                    <div class="button-showcase__cell">
-                                        <Button
-                                            {...variant.props}
-                                            state={state.value}
-                                        >
-                                            Button
-                                        </Button>
-                                    </div>
-                                ))}
-                            </>
-                        ))
-                    }
+                <div class="space-y-8">
+                    <h2
+                        class="font-heading text-[length:var(--text-heading-lg)] leading-[var(--leading-heading-lg)] font-normal text-[var(--color-showcase-accent)] uppercase"
+                    >
+                        Buttons With Icon
+                    </h2>
+                    <div class="overflow-x-auto pb-2">
+                        <div
+                            class="grid min-w-[var(--showcase-icon-min-width)] grid-cols-[var(--showcase-label-column)_repeat(6,minmax(0,1fr))] gap-x-[var(--showcase-column-gap)] gap-y-[var(--showcase-row-gap)]"
+                        >
+                            <div></div>
+                            {
+                                iconColumns.map((column) => (
+                                    <h3 class="font-heading text-[length:var(--text-heading-md)] leading-[var(--leading-heading-md)] font-normal text-[var(--color-showcase-accent)]">
+                                        {column.label}
+                                    </h3>
+                                ))
+                            }
+                            <h3
+                                class="font-heading text-[length:var(--text-heading-md)] leading-[var(--leading-heading-md)] font-normal text-[var(--color-showcase-accent)]"
+                            >
+                                Naked + Left icon
+                            </h3>
+
+                            {
+                                stateRows.map((row) => (
+                                    <>
+                                        <p class="font-heading text-[length:var(--text-heading-md)] leading-[var(--leading-heading-md)] font-normal text-[var(--color-showcase-accent)]">
+                                            {row.label}
+                                        </p>
+                                        {iconColumns.map((column) => (
+                                            <div class="flex items-center">
+                                                <Button
+                                                    {...column.props}
+                                                    disabled={row.disabled}
+                                                    state={row.state}
+                                                >
+                                                    Button
+                                                </Button>
+                                            </div>
+                                        ))}
+                                        <div class="flex items-center">
+                                            {row.state === 'default' ? (
+                                                <Button
+                                                    href="#"
+                                                    variant="feature"
+                                                >
+                                                    Page title
+                                                </Button>
+                                            ) : (
+                                                <span class="h-[var(--feature-badge-size)]" />
+                                            )}
+                                        </div>
+                                    </>
+                                ))
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <h2 class="button-showcase__title">BUTTONS WITH ICON</h2>
-
-            <div class="button-showcase__table-wrap">
-                <div
-                    class="button-showcase__table button-showcase__table--icons"
-                >
-                    <div></div>
-                    {
-                        iconVariants.map((variant) => (
-                            <div class="button-showcase__heading">
-                                {variant.label}
-                            </div>
-                        ))
-                    }
-
-                    {
-                        states.map((state) => (
-                            <>
-                                <div class="button-showcase__row-label">
-                                    {state.label}
+        <div aria-label="Icons showcase" class="mx-auto max-w-[1500px]">
+            <div
+                class="grid grid-cols-1 gap-x-[var(--icon-showcase-column-gap)] gap-y-12 md:grid-cols-2 xl:grid-cols-4"
+            >
+                {
+                    iconShowcaseColumns.map((column) => (
+                        <div class="space-y-[var(--icon-showcase-row-gap)]">
+                            {column.map((iconName) => (
+                                <div class="flex items-center gap-[var(--icon-showcase-item-gap)] text-neutral-black">
+                                    <Icon name={iconName} size="showcase" />
+                                    <span class="font-icon-label text-[length:var(--icon-showcase-label-size)] leading-normal font-medium text-neutral-black">
+                                        {iconName}
+                                    </span>
                                 </div>
-                                {iconVariants.map((variant) => (
-                                    <div class="button-showcase__cell">
-                                        <Button
-                                            {...variant.props}
-                                            state={state.value}
-                                        >
-                                            Button
-                                        </Button>
-                                    </div>
-                                ))}
-                            </>
-                        ))
-                    }
-                </div>
-            </div>
-
-            <div class="button-showcase__feature-block">
-                <div class="button-showcase__heading">Naked + Left icon</div>
-                <Button
-                    variant="feature"
-                    badgeIcon="source"
-                    icon="arrow-right"
-                    href="/what-is-knodia"
-                >
-                    Page title
-                </Button>
+                            ))}
+                        </div>
+                    ))
+                }
             </div>
         </div>
     </section>
 </Layout>
-
-<style>
-    .button-showcase {
-        padding: 32px 24px 64px;
-    }
-
-    .button-showcase__panel {
-        background: #8d8d8d;
-        border-radius: 28px;
-        padding: clamp(32px, 5vw, 72px);
-    }
-
-    .button-showcase__title {
-        color: #15fbff;
-        font-family: var(--knodia-type-headline-font-family);
-        font-size: clamp(32px, 4vw, 56px);
-        font-weight: 700;
-        line-height: 1;
-        margin: 0 0 36px;
-    }
-
-    .button-showcase__table-wrap {
-        margin-bottom: 56px;
-        overflow-x: auto;
-        padding-bottom: 8px;
-    }
-
-    .button-showcase__table {
-        align-items: center;
-        display: grid;
-        gap: 24px 28px;
-        grid-template-columns: 108px repeat(8, minmax(132px, 1fr));
-        min-width: 1480px;
-    }
-
-    .button-showcase__table--icons {
-        grid-template-columns: 108px repeat(5, minmax(150px, 1fr));
-        min-width: 1040px;
-    }
-
-    .button-showcase__heading,
-    .button-showcase__row-label {
-        color: #15fbff;
-        font-family: var(--knodia-type-headline-font-family);
-        font-size: clamp(18px, 1.5vw, 22px);
-        font-weight: 600;
-        line-height: 1.3;
-    }
-
-    .button-showcase__heading {
-        min-height: 56px;
-    }
-
-    .button-showcase__cell {
-        align-items: center;
-        display: flex;
-        min-height: 56px;
-    }
-
-    .button-showcase__feature-block {
-        align-items: start;
-        display: grid;
-        gap: 20px;
-        max-width: 360px;
-    }
-
-    @media (max-width: 720px) {
-        .button-showcase {
-            padding: 24px 16px 48px;
-        }
-
-        .button-showcase__panel {
-            border-radius: 20px;
-            padding: 24px;
-        }
-
-        .button-showcase__title {
-            margin-bottom: 28px;
-        }
-    }
-</style>

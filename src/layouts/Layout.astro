@@ -1,5 +1,5 @@
 ---
-import Button from '../components/Button.astro'
+import Button from '../components/Button'
 import '../styles/global.css'
 const { title } = Astro.props
 ---
@@ -18,7 +18,7 @@ const { title } = Astro.props
         <header class="flex w-full items-center justify-between p-10">
             <span>Knodia</span>
             <nav>Navigation</nav>
-            <Button href="/core-components">Get Started</Button>
+            <Button href="/what-is-knodia">Get Started</Button>
         </header>
         <main>
             <slot />
