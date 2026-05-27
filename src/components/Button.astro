@@ -8,7 +8,7 @@ type ButtonSize = 'small' | 'medium'
 type ButtonState = 'default' | 'hover' | 'active' | 'disabled'
 
 type Props = {
-    href: string
+    href?: string
     variant?: ButtonVariant
     tone?: ButtonTone
     size?: ButtonSize
@@ -21,10 +21,11 @@ type Props = {
     disabled?: boolean
     rel?: string
     target?: string
+    type?: 'button' | 'submit' | 'reset'
 }
 
 const buttonRoot = tv({
-    base: 'group inline-flex w-fit max-w-full select-none items-center justify-center align-middle whitespace-nowrap transition-colors duration-150 ease-out outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+    base: 'group inline-flex w-fit max-w-full select-none items-center justify-center align-middle whitespace-nowrap transition-colors duration-150 ease-out outline-none focus-visible:[outline-style:solid] focus-visible:outline-2 focus-visible:outline-offset-2',
     variants: {
         variant: {
             contained:
@@ -312,6 +313,7 @@ const {
     state = 'default',
     target,
     tone = 'default',
+    type = 'button',
     variant = 'contained',
     ...rest
 } = Astro.props as Props & Record<string, unknown>
@@ -323,6 +325,7 @@ const resolvedIcon =
 const resolvedBadgeIcon =
     variant === 'feature' ? (badgeIcon ?? SourceIcon) : undefined
 const isDisabled = disabled || state === 'disabled'
+const hasHref = typeof href === 'string' && href.length > 0
 const visualState: ButtonState = isDisabled ? 'disabled' : state
 const showLeadingIcon = resolvedIcon != null && iconPosition === 'left'
 const showTrailingIcon = resolvedIcon != null && iconPosition === 'right'
@@ -335,16 +338,19 @@ const rootClassName = joinClasses(
     className ?? legacyClassName
 )
 const resolvedRel = target === '_blank' && rel == null ? 'noreferrer' : rel
+const ButtonTag = hasHref ? 'a' : 'button'
 ---
 
-<a
+<ButtonTag
     {...rest}
-    aria-disabled={isDisabled || undefined}
+    aria-disabled={hasHref ? isDisabled || undefined : undefined}
     class={rootClassName}
-    href={isDisabled ? undefined : href}
-    rel={resolvedRel}
-    tabindex={isDisabled ? -1 : undefined}
-    target={target}
+    disabled={!hasHref ? isDisabled : undefined}
+    href={hasHref && !isDisabled ? href : undefined}
+    rel={hasHref ? resolvedRel : undefined}
+    tabindex={hasHref && isDisabled ? -1 : undefined}
+    target={hasHref ? target : undefined}
+    type={!hasHref ? type : undefined}
 >
     <span class={buttonContent({ variant })}>
         {
@@ -408,4 +414,4 @@ const resolvedRel = target === '_blank' && rel == null ? 'noreferrer' : rel
             ) : null
         }
     </span>
-</a>
+</ButtonTag>

@@ -129,11 +129,13 @@ const desktopSubmenuLinkClass =
                         <button
                             aria-controls={`header-panel-${group.id}`}
                             aria-expanded="false"
+                            aria-haspopup="true"
                             class={desktopTriggerClass}
                             data-menu-trigger={group.id}
                             data-route-active={
                                 routeGroupId === group.id ? 'true' : 'false'
                             }
+                            id={`header-trigger-${group.id}`}
                             type="button"
                         >
                             <span>{group.label}</span>
@@ -342,11 +344,13 @@ const desktopSubmenuLinkClass =
         {
             headerMenuGroups.map((group) => (
                 <div
+                    aria-labelledby={`header-trigger-${group.id}`}
                     class="pointer-events-auto mx-auto w-full max-w-(--header-menu-width) overflow-hidden rounded-(--radius-button) border border-black/5 bg-neutral-white shadow-sm"
                     data-default-item={initialItemIds.get(group.id)}
                     data-menu-panel={group.id}
                     hidden
                     id={`header-panel-${group.id}`}
+                    role="group"
                 >
                     <div class="grid min-h-(--header-panel-min-height) grid-cols-[var(--header-panel-nav-width)_1fr]">
                         <div class="flex flex-col gap-2 bg-neutral-white px-(--header-panel-nav-padding-x) py-(--header-panel-nav-padding-y)">

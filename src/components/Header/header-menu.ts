@@ -34,6 +34,59 @@ function initHeader(header: HTMLElement) {
             : []
 
     let closeTimer: number | undefined
+    let suppressedKeyboardClickMenuId: string | undefined
+    let suppressedFocusOpenMenuId: string | undefined
+
+    function getTrigger(menuId: string | undefined) {
+        if (!menuId) {
+            return undefined
+        }
+
+        return triggers.find(
+            (trigger) => trigger.dataset.menuTrigger === menuId
+        )
+    }
+
+    function getSubmenuTriggers(menuId: string | undefined) {
+        if (!menuId) {
+            return []
+        }
+
+        const panel = panels.find(
+            (candidate) => candidate.dataset.menuPanel === menuId
+        )
+
+        if (!panel) {
+            return []
+        }
+
+        return toElements<HTMLElement>(
+            panel.querySelectorAll('[data-submenu-trigger]')
+        )
+    }
+
+    function focusSubmenuTrigger(
+        menuId: string | undefined,
+        position: 'first' | 'last' = 'first'
+    ) {
+        const submenuTriggers = getSubmenuTriggers(menuId)
+
+        if (submenuTriggers.length === 0) {
+            return false
+        }
+
+        const selectedTrigger = submenuTriggers.find(
+            (trigger) => trigger.dataset.selected === 'true'
+        )
+        const target =
+            position === 'last'
+                ? submenuTriggers[submenuTriggers.length - 1]
+                : (selectedTrigger ?? submenuTriggers[0])
+
+        target?.focus()
+
+        return target instanceof HTMLElement
+    }
 
     function clearCloseTimer() {
         if (closeTimer !== undefined) {
@@ -175,10 +228,23 @@ function initHeader(header: HTMLElement) {
         })
 
         trigger.addEventListener('focus', () => {
+            if (suppressedFocusOpenMenuId === menuId) {
+                suppressedFocusOpenMenuId = undefined
+                return
+            }
+
             openMenu(menuId)
         })
 
         trigger.addEventListener('click', (event) => {
+            if (
+                event.detail === 0 &&
+                suppressedKeyboardClickMenuId === menuId
+            ) {
+                suppressedKeyboardClickMenuId = undefined
+                return
+            }
+
             event.preventDefault()
 
             if (header.dataset.openMenu === menuId) {
@@ -187,6 +253,44 @@ function initHeader(header: HTMLElement) {
             }
 
             openMenu(menuId)
+        })
+
+        trigger.addEventListener('keydown', (event) => {
+            if (!menuId) {
+                return
+            }
+
+            if (
+                event.key === 'Enter' ||
+                event.key === ' ' ||
+                event.key === 'ArrowDown'
+            ) {
+                event.preventDefault()
+                suppressedKeyboardClickMenuId = menuId
+                openMenu(menuId)
+                focusSubmenuTrigger(menuId)
+                return
+            }
+
+            if (event.key === 'ArrowUp') {
+                event.preventDefault()
+                suppressedKeyboardClickMenuId = menuId
+                openMenu(menuId)
+                focusSubmenuTrigger(menuId, 'last')
+                return
+            }
+
+            if (
+                event.key === 'Tab' &&
+                !event.shiftKey &&
+                header.dataset.openMenu === menuId
+            ) {
+                const movedFocus = focusSubmenuTrigger(menuId)
+
+                if (movedFocus) {
+                    event.preventDefault()
+                }
+            }
         })
     })
 
@@ -202,6 +306,37 @@ function initHeader(header: HTMLElement) {
 
         trigger.addEventListener('pointerenter', selectItem)
         trigger.addEventListener('focus', selectItem)
+        trigger.addEventListener('keydown', (event) => {
+            const submenuTriggers = getSubmenuTriggers(menuId)
+
+            if (
+                event.key === 'Tab' &&
+                event.shiftKey &&
+                submenuTriggers[0] === trigger
+            ) {
+                event.preventDefault()
+                getTrigger(menuId)?.focus()
+                return
+            }
+
+            if (
+                event.key === 'Tab' &&
+                !event.shiftKey &&
+                submenuTriggers[submenuTriggers.length - 1] === trigger
+            ) {
+                event.preventDefault()
+                suppressedFocusOpenMenuId = menuId
+                closeMenus()
+                getTrigger(menuId)?.focus()
+                return
+            }
+
+            if (event.key === 'Escape') {
+                event.preventDefault()
+                closeMenus()
+                getTrigger(menuId)?.focus()
+            }
+        })
     })
 
     mobileGroupTriggers.forEach((trigger) => {
