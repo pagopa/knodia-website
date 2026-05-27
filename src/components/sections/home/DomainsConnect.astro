@@ -1,0 +1,90 @@
+---
+import Icon from '../../Icon'
+import desktopDiagram from '../../../assets/backgrounds/home-domains-connect-desktop.png'
+import mobileDiagram from '../../../assets/backgrounds/home-domains-connect-mobile.png'
+
+const ctaHref = '/core-components'
+const diagramAlt =
+    'Diagram showing how trusted Knodes connect separate domains through cross-border interactions.'
+---
+
+<section
+    aria-labelledby="home-domains-connect-title"
+    class="bg-[linear-gradient(to_bottom,var(--color-primary-light-violet)_0%,var(--color-neutral-white)_88%)]"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-(--home-domains-section-gap-mobile) px-(--header-mobile-padding-x) pt-(--home-domains-padding-top-mobile) pb-(--home-domains-padding-bottom-mobile) md:px-(--home-hero-inline-padding-md) xl:gap-(--home-domains-section-gap) xl:px-(--header-inline-padding) xl:pt-(--home-domains-padding-top) xl:pb-(--home-domains-padding-bottom)"
+    >
+        <div
+            class="flex flex-col gap-(--home-domains-section-gap-mobile) xl:grid xl:grid-cols-[var(--home-domains-heading-width)_1fr] xl:items-start xl:gap-(--home-domains-copy-column-gap)"
+        >
+            <div class="flex flex-col xl:gap-(--home-domains-heading-gap)">
+                <h2
+                    class="max-w-[12ch] font-heading text-home-domains-title-sm leading-home-domains-title-sm font-medium text-neutral-graphite xl:max-w-none xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="home-domains-connect-title"
+                >
+                    Knodia is where domains connect
+                </h2>
+
+                <div
+                    aria-hidden="true"
+                    class="hidden h-(--home-domains-separator-height) w-(--home-domains-separator-width) rounded-full bg-primary-violet xl:block"
+                >
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col gap-(--home-domains-copy-gap) xl:items-end"
+            >
+                <div
+                    class="flex max-w-(--home-domains-copy-width-mobile) flex-col gap-(--home-domains-paragraph-gap) text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-graphite xl:max-w-(--home-domains-copy-width) xl:text-button-md xl:leading-(--leading-button-md)"
+                >
+                    <p>
+                        Knodia enables organisations in different domains to
+                        interact through a shared federated model.
+                    </p>
+                    <p>
+                        Trusted Knodes connect each domain to the wider
+                        framework, without relying on one centralised platform.
+                    </p>
+                </div>
+
+                <a
+                    class="inline-flex w-fit items-center gap-(--button-gap-sm) text-home-domains-link-sm leading-home-domains-link-sm font-medium text-primary-violet transition-colors duration-150 ease-out hover:text-primary-violet-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet xl:gap-(--button-gap) xl:text-button-md xl:leading-(--leading-button-md)"
+                    href={ctaHref}
+                >
+                    <span>See how it works</span>
+                    <Icon
+                        ariaHidden={true}
+                        class="text-current"
+                        name="arrow_forward"
+                        size="button-small"
+                    />
+                </a>
+            </div>
+        </div>
+
+        <div
+            class="overflow-hidden rounded-(--home-domains-image-radius-mobile) bg-neutral-white xl:rounded-(--home-domains-image-radius)"
+        >
+            <img
+                alt={diagramAlt}
+                class="h-auto w-full xl:hidden"
+                decoding="async"
+                height={mobileDiagram.height}
+                loading="lazy"
+                src={mobileDiagram.src}
+                width={mobileDiagram.width}
+            />
+            <img
+                alt={diagramAlt}
+                class="hidden h-auto w-full xl:block"
+                decoding="async"
+                height={desktopDiagram.height}
+                loading="lazy"
+                src={desktopDiagram.src}
+                width={desktopDiagram.width}
+            />
+        </div>
+    </div>
+</section>

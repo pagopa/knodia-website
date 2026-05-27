@@ -23,6 +23,7 @@
     --color-showcase-accent: #1afff0;
     --color-primary-violet-surface: #edeefd;
     --color-header-panel-surface: #f8f8f8;
+    --color-primary-light-violet: #dcdcfa;
     --color-hero-base: #0e162e;
     --color-hero-mid: #1c2757;
     --color-hero-end: #263f81;
@@ -36,14 +37,20 @@
     --text-button-md: 18px;
     --text-heading-md: 28px;
     --text-heading-lg: 40px;
+    --text-home-domains-title-sm: 24px;
     --text-hero-sm: 44px;
     --text-hero-lg: 64px;
+    --text-home-domains-body-sm: 15px;
+    --text-home-domains-link-sm: 15px;
     --text-intro-sm: 17px;
     --text-intro-lg: 22px;
     --leading-button-sm: 24px;
     --leading-button-md: 28px;
     --leading-heading-md: 36px;
     --leading-heading-lg: 48px;
+    --leading-home-domains-title-sm: 30px;
+    --leading-home-domains-body-sm: 24.375px;
+    --leading-home-domains-link-sm: 22.5px;
     --leading-hero-sm: 52px;
     --leading-hero-lg: 80px;
     --leading-intro-sm: 24.375px;
@@ -122,6 +129,24 @@
     --home-hero-copy-width: 610px;
     --home-hero-content-gap-mobile: 17px;
     --home-hero-content-gap: 24px;
+
+    --home-domains-padding-top-mobile: 40px;
+    --home-domains-padding-bottom-mobile: 40px;
+    --home-domains-padding-top: 128px;
+    --home-domains-padding-bottom: 80px;
+    --home-domains-section-gap-mobile: 32px;
+    --home-domains-section-gap: 48px;
+    --home-domains-heading-gap: 32px;
+    --home-domains-heading-width: 513px;
+    --home-domains-copy-column-gap: 24px;
+    --home-domains-copy-width-mobile: 392px;
+    --home-domains-copy-width: 621px;
+    --home-domains-copy-gap: 24px;
+    --home-domains-paragraph-gap: 8px;
+    --home-domains-separator-width: 96px;
+    --home-domains-separator-height: 4px;
+    --home-domains-image-radius-mobile: 21.577px;
+    --home-domains-image-radius: 16px;
 }
 
 @layer base {
