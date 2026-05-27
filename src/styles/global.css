@@ -225,6 +225,55 @@
     --shadow-home-guidance-card-mobile:
         0px 1px 1.5px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.1);
     --shadow-home-guidance-card: 0px 1px 1px rgba(0, 0, 0, 0.05);
+
+    --home-difference-padding-top-mobile: 40px;
+    --home-difference-padding-bottom-mobile: 40px;
+    --home-difference-padding-top: 128px;
+    --home-difference-padding-bottom: 128px;
+    --home-difference-root-gap-mobile: 24px;
+    --home-difference-root-gap: 72px;
+    --home-difference-header-gap-mobile: 14px;
+    --home-difference-header-gap: 24px;
+    --home-difference-header-max: 684px;
+    --home-difference-card-gap-mobile: 16px;
+    --home-difference-card-gap: 24px;
+    --home-difference-card-height-mobile: 160px;
+    --home-difference-card-height: 223px;
+    --home-difference-card-radius-mobile: 16px;
+    --home-difference-card-radius: 24px;
+    --home-difference-card-padding-x-mobile: 16px;
+    --home-difference-card-padding-y-mobile: 24px;
+    --home-difference-card-padding: 32px;
+    --home-difference-card-inner-gap-mobile: 10px;
+    --home-difference-card-inner-gap: 16px;
+    --text-home-difference-card-title-sm: 17px;
+    --leading-home-difference-card-title-sm: 20.625px;
+    --text-home-difference-card-body-sm: 15px;
+    --leading-home-difference-card-body-sm: 21.125px;
+    --text-home-difference-card-body-lg: 16px;
+    --leading-home-difference-card-body-lg: 24px;
+    --home-difference-benefits-gap-mobile: 20px;
+    --home-difference-benefits-gap: 32px;
+    --text-home-difference-overline-sm: 14px;
+    --leading-home-difference-overline-sm: 21px;
+    --border-home-difference-highlight: 3px;
+    --home-difference-benefits-box-radius-mobile: 14px;
+    --home-difference-benefits-box-radius: 16px;
+    --home-difference-benefits-box-padding-x-mobile: 15px;
+    --home-difference-benefits-box-padding-y-mobile: 19px;
+    --home-difference-benefits-box-padding-x: 14px;
+    --home-difference-benefits-box-padding-y: 18px;
+    --home-difference-benefits-gap-x-mobile: 40px;
+    --home-difference-benefits-gap-y-mobile: 30px;
+    --home-difference-benefits-gap-x: 40px;
+    --home-difference-benefit-item-gap-mobile: 8px;
+    --home-difference-benefit-item-gap: 16px;
+    --home-difference-check-circle-size-mobile: 36px;
+    --home-difference-check-circle-size: 48px;
+    --text-home-difference-check-icon-sm: 14px;
+    --text-home-difference-check-icon-lg: 18px;
+    --text-home-difference-benefit-sm: 13px;
+    --leading-home-difference-benefit-sm: 17.875px;
 }
 
 @layer base {

@@ -1,4 +1,5 @@
 ---
+import Button from '../../Button.astro'
 import Icon from '../../Icon'
 
 type GuidanceLink = {
@@ -172,30 +173,29 @@ function joinClasses(...classes: Array<string | undefined>) {
 
                             <div class="flex flex-col gap-(--home-guidance-links-gap-mobile) xl:flex-row xl:flex-wrap xl:gap-(--home-guidance-links-gap)">
                                 {panel.links.map((link) => (
-                                    <a
-                                        class="group flex items-center gap-(--home-guidance-link-gap-mobile) xl:min-w-0 xl:flex-1 xl:gap-(--home-guidance-link-gap)"
+                                    <Button
+                                        class="w-full justify-start text-left text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:min-w-0 xl:flex-1 [&>span]:w-full [&>span]:justify-start"
                                         href={link.href}
+                                        icon="arrow_forward"
+                                        size="small"
+                                        variant="naked"
                                     >
-                                        <span
-                                            aria-hidden="true"
-                                            class="flex size-(--home-guidance-link-icon-box-size-mobile) shrink-0 items-center justify-center rounded-(--home-guidance-link-icon-box-radius-mobile) bg-secondary-soft-quartz xl:size-(--home-guidance-link-icon-box-size) xl:rounded-(--home-guidance-link-icon-box-radius)"
-                                        >
-                                            <Icon
-                                                ariaHidden={true}
-                                                class="text-primary-violet"
-                                                name="source"
-                                            />
+                                        <span class="flex items-center gap-(--home-guidance-link-gap-mobile) xl:gap-(--home-guidance-link-gap)">
+                                            <span
+                                                aria-hidden="true"
+                                                class="flex size-(--home-guidance-link-icon-box-size-mobile) shrink-0 items-center justify-center rounded-(--home-guidance-link-icon-box-radius-mobile) bg-secondary-soft-quartz xl:size-(--home-guidance-link-icon-box-size) xl:rounded-(--home-guidance-link-icon-box-radius)"
+                                            >
+                                                <Icon
+                                                    ariaHidden={true}
+                                                    class="text-primary-violet"
+                                                    name="source"
+                                                />
+                                            </span>
+                                            <span class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)">
+                                                {link.label}
+                                            </span>
                                         </span>
-                                        <span class="inline-flex items-center gap-1 text-home-domains-link-sm leading-home-domains-link-sm font-medium text-primary-violet transition-colors duration-150 ease-out group-hover:text-primary-violet-hover group-focus-visible:text-primary-violet-hover xl:text-button-md xl:leading-(--leading-button-md)">
-                                            <span>{link.label}</span>
-                                            <Icon
-                                                ariaHidden={true}
-                                                class="text-current"
-                                                name="arrow_forward"
-                                                size="button-small"
-                                            />
-                                        </span>
-                                    </a>
+                                    </Button>
                                 ))}
                             </div>
                         </div>
