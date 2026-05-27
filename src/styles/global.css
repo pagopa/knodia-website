@@ -1,1 +1,115 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Plus+Jakarta+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,300..400,0,0');
+@import 'tailwindcss';
+
+@theme {
+    --font-body: 'Instrument Sans', sans-serif;
+    --font-heading: 'Instrument Sans', sans-serif;
+    --font-icon-label: 'Plus Jakarta Sans', sans-serif;
+
+    --color-primary-violet: #4e51e6;
+    --color-primary-violet-hover: #30318e;
+    --color-deep-violet: #002c6f;
+    --color-primary-violet-muted: #b8b9f5;
+    --color-neutral-black: #000000;
+    --color-neutral-white: #ffffff;
+    --color-neutral-gray-40: #9ca3af;
+    --color-neutral-medium-gray: #5e5e5e;
+    --color-neutral-graphite: #313030;
+    --color-secondary-soft-quartz: #ffe2d5;
+    --color-secondary-muted-amber: #ffb796;
+    --color-showcase-surface: #878787;
+    --color-showcase-accent: #1afff0;
+
+    --radius-button: 8px;
+    --radius-feature: 16px;
+    --radius-showcase: 32px;
+    --border-button: 2px;
+
+    --text-button-sm: 16px;
+    --text-button-md: 18px;
+    --text-heading-md: 28px;
+    --text-heading-lg: 40px;
+    --leading-button-sm: 24px;
+    --leading-button-md: 28px;
+    --leading-heading-md: 36px;
+    --leading-heading-lg: 48px;
+
+    --button-height: 48px;
+    --button-padding-x: 16px;
+    --button-gap: 8px;
+    --button-gap-sm: 4px;
+    --button-icon-size: 24px;
+    --button-icon-size-sm: 16px;
+    --feature-gap: 16px;
+    --feature-badge-size: 64px;
+    --icon-showcase-icon-size: 51.073px;
+    --icon-showcase-item-gap: 17.024px;
+    --icon-showcase-column-gap: 42.561px;
+    --icon-showcase-row-gap: 51.073px;
+    --icon-showcase-label-size: 17.024px;
+
+    --showcase-label-column: 140px;
+    --showcase-column-gap: 40px;
+    --showcase-row-gap: 24px;
+    --showcase-standard-min-width: 1420px;
+    --showcase-icon-min-width: 1120px;
+}
+
+@layer base {
+    html {
+        font-family: var(--font-body);
+        color: var(--color-neutral-graphite);
+        background-color: var(--color-neutral-white);
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: inherit;
+        color: inherit;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    img,
+    svg {
+        display: block;
+    }
+}
+
+@layer components {
+    .knodia-material-symbol {
+        font-family: 'Material Symbols Outlined';
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: normal;
+        line-height: 1;
+        text-transform: none;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 300,
+            'GRAD' 0,
+            'opsz' 48;
+        -webkit-font-smoothing: antialiased;
+    }
+}

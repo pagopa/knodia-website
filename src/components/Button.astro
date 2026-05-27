@@ -1,0 +1,411 @@
+---
+import { tv } from 'tailwind-variants'
+import Icon, { ArrowRightIcon, SourceIcon, type IconName } from './Icon'
+
+type ButtonVariant = 'contained' | 'outlined' | 'naked' | 'feature'
+type ButtonTone = 'default' | 'contrast'
+type ButtonSize = 'small' | 'medium'
+type ButtonState = 'default' | 'hover' | 'active' | 'disabled'
+
+type Props = {
+    href: string
+    variant?: ButtonVariant
+    tone?: ButtonTone
+    size?: ButtonSize
+    state?: ButtonState
+    icon?: IconName
+    iconPosition?: 'left' | 'right'
+    badgeIcon?: IconName
+    class?: string
+    className?: string
+    disabled?: boolean
+    rel?: string
+    target?: string
+}
+
+const buttonRoot = tv({
+    base: 'group inline-flex w-fit max-w-full select-none items-center justify-center align-middle whitespace-nowrap transition-colors duration-150 ease-out outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+    variants: {
+        variant: {
+            contained:
+                'h-[var(--button-height)] rounded-[var(--radius-button)] px-[var(--button-padding-x)]',
+            outlined:
+                'h-[var(--button-height)] rounded-[var(--radius-button)] border-[length:var(--border-button)] border-solid px-[calc(var(--button-padding-x)-var(--border-button))]',
+            naked: 'bg-transparent p-0',
+            feature: 'bg-transparent p-0 text-left',
+        },
+        tone: {
+            default: '',
+            contrast: '',
+        },
+        visualState: {
+            default: 'cursor-pointer',
+            hover: 'cursor-pointer',
+            active: 'cursor-pointer',
+            disabled: 'pointer-events-none cursor-not-allowed',
+        },
+    },
+    compoundVariants: [
+        {
+            variant: 'contained',
+            tone: 'default',
+            visualState: 'default',
+            class: 'bg-[var(--color-primary-violet)] text-[var(--color-neutral-white)] hover:bg-[var(--color-primary-violet-hover)] active:bg-[var(--color-deep-violet)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'contained',
+            tone: 'default',
+            visualState: 'hover',
+            class: 'bg-[var(--color-primary-violet-hover)] text-[var(--color-neutral-white)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'contained',
+            tone: 'default',
+            visualState: 'active',
+            class: 'bg-[var(--color-deep-violet)] text-[var(--color-neutral-white)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'contained',
+            tone: 'default',
+            visualState: 'disabled',
+            class: 'bg-[var(--color-neutral-gray-40)] text-[var(--color-neutral-medium-gray)] focus-visible:outline-[var(--color-neutral-medium-gray)]',
+        },
+        {
+            variant: 'contained',
+            tone: 'contrast',
+            visualState: 'default',
+            class: 'bg-[var(--color-neutral-white)] text-[var(--color-primary-violet)] hover:bg-[var(--color-secondary-soft-quartz)] active:bg-[var(--color-secondary-muted-amber)] active:text-[var(--color-deep-violet)] focus-visible:outline-[var(--color-neutral-white)]',
+        },
+        {
+            variant: 'contained',
+            tone: 'contrast',
+            visualState: 'hover',
+            class: 'bg-[var(--color-secondary-soft-quartz)] text-[var(--color-primary-violet)] focus-visible:outline-[var(--color-neutral-white)]',
+        },
+        {
+            variant: 'contained',
+            tone: 'contrast',
+            visualState: 'active',
+            class: 'bg-[var(--color-secondary-muted-amber)] text-[var(--color-deep-violet)] focus-visible:outline-[var(--color-neutral-white)]',
+        },
+        {
+            variant: 'contained',
+            tone: 'contrast',
+            visualState: 'disabled',
+            class: 'bg-[var(--color-neutral-gray-40)] text-[var(--color-neutral-medium-gray)] focus-visible:outline-[var(--color-neutral-medium-gray)]',
+        },
+        {
+            variant: 'outlined',
+            tone: 'default',
+            visualState: 'default',
+            class: 'border-[var(--color-primary-violet)] text-[var(--color-primary-violet)] hover:border-[var(--color-primary-violet-hover)] hover:text-[var(--color-primary-violet-hover)] active:border-[var(--color-deep-violet)] active:text-[var(--color-deep-violet)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'outlined',
+            tone: 'default',
+            visualState: 'hover',
+            class: 'border-[var(--color-primary-violet-hover)] text-[var(--color-primary-violet-hover)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'outlined',
+            tone: 'default',
+            visualState: 'active',
+            class: 'border-[var(--color-deep-violet)] text-[var(--color-deep-violet)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'outlined',
+            tone: 'default',
+            visualState: 'disabled',
+            class: 'border-[var(--color-neutral-medium-gray)] text-[var(--color-neutral-medium-gray)] focus-visible:outline-[var(--color-neutral-medium-gray)]',
+        },
+        {
+            variant: 'outlined',
+            tone: 'contrast',
+            visualState: 'default',
+            class: 'border-[var(--color-neutral-white)] text-[var(--color-neutral-white)] hover:border-[var(--color-secondary-soft-quartz)] hover:text-[var(--color-secondary-soft-quartz)] active:border-[var(--color-secondary-muted-amber)] active:text-[var(--color-secondary-muted-amber)] focus-visible:outline-[var(--color-neutral-white)]',
+        },
+        {
+            variant: 'outlined',
+            tone: 'contrast',
+            visualState: 'hover',
+            class: 'border-[var(--color-secondary-soft-quartz)] text-[var(--color-secondary-soft-quartz)] focus-visible:outline-[var(--color-neutral-white)]',
+        },
+        {
+            variant: 'outlined',
+            tone: 'contrast',
+            visualState: 'active',
+            class: 'border-[var(--color-secondary-muted-amber)] text-[var(--color-secondary-muted-amber)] focus-visible:outline-[var(--color-neutral-white)]',
+        },
+        {
+            variant: 'outlined',
+            tone: 'contrast',
+            visualState: 'disabled',
+            class: 'border-[var(--color-neutral-medium-gray)] text-[var(--color-neutral-medium-gray)] focus-visible:outline-[var(--color-neutral-medium-gray)]',
+        },
+        {
+            variant: 'naked',
+            tone: 'default',
+            visualState: 'default',
+            class: 'text-[var(--color-neutral-graphite)] hover:text-[var(--color-primary-violet-muted)] active:text-[var(--color-primary-violet)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'naked',
+            tone: 'default',
+            visualState: 'hover',
+            class: 'text-[var(--color-primary-violet-muted)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'naked',
+            tone: 'default',
+            visualState: 'active',
+            class: 'text-[var(--color-primary-violet)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'naked',
+            tone: 'default',
+            visualState: 'disabled',
+            class: 'text-[var(--color-neutral-medium-gray)] focus-visible:outline-[var(--color-neutral-medium-gray)]',
+        },
+        {
+            variant: 'naked',
+            tone: 'contrast',
+            visualState: 'default',
+            class: 'text-[var(--color-neutral-white)] hover:text-[var(--color-secondary-soft-quartz)] active:text-[var(--color-secondary-muted-amber)] focus-visible:outline-[var(--color-neutral-white)]',
+        },
+        {
+            variant: 'naked',
+            tone: 'contrast',
+            visualState: 'hover',
+            class: 'text-[var(--color-secondary-soft-quartz)] focus-visible:outline-[var(--color-neutral-white)]',
+        },
+        {
+            variant: 'naked',
+            tone: 'contrast',
+            visualState: 'active',
+            class: 'text-[var(--color-secondary-muted-amber)] focus-visible:outline-[var(--color-neutral-white)]',
+        },
+        {
+            variant: 'naked',
+            tone: 'contrast',
+            visualState: 'disabled',
+            class: 'text-[var(--color-neutral-medium-gray)] focus-visible:outline-[var(--color-neutral-medium-gray)]',
+        },
+        {
+            variant: 'feature',
+            tone: 'default',
+            visualState: 'default',
+            class: 'text-[var(--color-primary-violet)] hover:text-[var(--color-deep-violet)] active:text-[var(--color-deep-violet)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'feature',
+            tone: 'default',
+            visualState: 'hover',
+            class: 'text-[var(--color-deep-violet)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'feature',
+            tone: 'default',
+            visualState: 'active',
+            class: 'text-[var(--color-deep-violet)] focus-visible:outline-[var(--color-primary-violet)]',
+        },
+        {
+            variant: 'feature',
+            tone: 'default',
+            visualState: 'disabled',
+            class: 'text-[var(--color-neutral-medium-gray)] focus-visible:outline-[var(--color-neutral-medium-gray)]',
+        },
+    ],
+    defaultVariants: {
+        tone: 'default',
+        visualState: 'default',
+    },
+})
+
+const buttonContent = tv({
+    base: 'inline-flex items-center justify-center',
+    variants: {
+        variant: {
+            contained: 'gap-[var(--button-gap)]',
+            outlined: 'gap-[var(--button-gap)]',
+            naked: 'gap-[var(--button-gap-sm)]',
+            feature: 'gap-[var(--feature-gap)]',
+        },
+    },
+})
+
+const buttonLabel = tv({
+    base: 'font-body tracking-[0]',
+    variants: {
+        variant: {
+            contained:
+                'text-[length:var(--text-button-md)] leading-[var(--leading-button-md)] font-medium',
+            outlined:
+                'text-[length:var(--text-button-md)] leading-[var(--leading-button-md)] font-medium',
+            naked: '',
+            feature:
+                'text-[length:var(--text-button-md)] leading-[var(--leading-button-md)] font-medium',
+        },
+        size: {
+            small: '',
+            medium: '',
+        },
+    },
+    compoundVariants: [
+        {
+            variant: 'naked',
+            size: 'small',
+            class: 'text-[length:var(--text-button-sm)] leading-[var(--leading-button-sm)] font-medium',
+        },
+        {
+            variant: 'naked',
+            size: 'medium',
+            class: 'text-[length:var(--text-button-md)] leading-[var(--leading-button-md)] font-normal',
+        },
+    ],
+})
+
+const buttonIcon = tv({
+    base: 'shrink-0',
+    variants: {
+        variant: {
+            contained: 'size-[var(--button-icon-size)]',
+            outlined: 'size-[var(--button-icon-size)]',
+            naked: '',
+            feature: 'size-[var(--button-icon-size)]',
+        },
+        size: {
+            small: '',
+            medium: '',
+        },
+    },
+    compoundVariants: [
+        {
+            variant: 'naked',
+            size: 'small',
+            class: 'size-[var(--button-icon-size-sm)]',
+        },
+        {
+            variant: 'naked',
+            size: 'medium',
+            class: 'size-[var(--button-icon-size-sm)]',
+        },
+    ],
+})
+
+const featureBadge =
+    'flex size-[var(--feature-badge-size)] shrink-0 items-center justify-center rounded-[var(--radius-feature)] bg-[var(--color-secondary-soft-quartz)]'
+
+function joinClasses(...classes: Array<string | undefined>) {
+    return classes.filter(Boolean).join(' ')
+}
+
+const {
+    badgeIcon,
+    class: className,
+    className: legacyClassName,
+    disabled = false,
+    href,
+    icon,
+    iconPosition = 'right',
+    rel,
+    size,
+    state = 'default',
+    target,
+    tone = 'default',
+    variant = 'contained',
+    ...rest
+} = Astro.props as Props & Record<string, unknown>
+
+const resolvedTone = variant === 'feature' ? 'default' : tone
+const resolvedSize = size ?? (variant === 'naked' ? 'small' : 'medium')
+const resolvedIcon =
+    icon ?? (variant === 'feature' ? ArrowRightIcon : undefined)
+const resolvedBadgeIcon =
+    variant === 'feature' ? (badgeIcon ?? SourceIcon) : undefined
+const isDisabled = disabled || state === 'disabled'
+const visualState: ButtonState = isDisabled ? 'disabled' : state
+const showLeadingIcon = resolvedIcon != null && iconPosition === 'left'
+const showTrailingIcon = resolvedIcon != null && iconPosition === 'right'
+const rootClassName = joinClasses(
+    buttonRoot({
+        tone: resolvedTone,
+        variant,
+        visualState,
+    }),
+    className ?? legacyClassName
+)
+const resolvedRel = target === '_blank' && rel == null ? 'noreferrer' : rel
+---
+
+<a
+    {...rest}
+    aria-disabled={isDisabled || undefined}
+    class={rootClassName}
+    href={isDisabled ? undefined : href}
+    rel={resolvedRel}
+    tabindex={isDisabled ? -1 : undefined}
+    target={target}
+>
+    <span class={buttonContent({ variant })}>
+        {
+            variant === 'feature' && resolvedBadgeIcon != null ? (
+                <span aria-hidden="true" class={featureBadge}>
+                    <span
+                        class={buttonIcon({
+                            size: 'medium',
+                            variant: 'feature',
+                        })}
+                    >
+                        <Icon
+                            ariaHidden={true}
+                            class="size-full"
+                            name={resolvedBadgeIcon}
+                        />
+                    </span>
+                </span>
+            ) : null
+        }
+        {
+            showLeadingIcon ? (
+                <span
+                    aria-hidden="true"
+                    class={buttonIcon({
+                        size: resolvedSize,
+                        variant,
+                    })}
+                >
+                    <Icon
+                        ariaHidden={true}
+                        class="size-full"
+                        name={resolvedIcon!}
+                    />
+                </span>
+            ) : null
+        }
+        <span
+            class={buttonLabel({
+                size: resolvedSize,
+                variant,
+            })}
+        >
+            <slot />
+        </span>
+        {
+            showTrailingIcon ? (
+                <span
+                    aria-hidden="true"
+                    class={buttonIcon({
+                        size: resolvedSize,
+                        variant,
+                    })}
+                >
+                    <Icon
+                        ariaHidden={true}
+                        class="size-full"
+                        name={resolvedIcon!}
+                    />
+                </span>
+            ) : null
+        }
+    </span>
+</a>
