@@ -274,6 +274,17 @@
     --text-home-difference-check-icon-lg: 18px;
     --text-home-difference-benefit-sm: 13px;
     --leading-home-difference-benefit-sm: 17.875px;
+
+    --home-foundations-height-mobile: 227px;
+    --home-foundations-height: 450px;
+    --home-foundations-padding-top-mobile: 40px;
+    --home-foundations-padding-bottom-mobile: 40px;
+    --home-foundations-gap-mobile: 8px;
+    --home-foundations-gap: 16px;
+    --home-foundations-content-max-mobile: 392px;
+    --home-foundations-content-max: 696px;
+    --text-home-foundations-title-sm: 22px;
+    --leading-home-foundations-title-sm: 27.5px;
 }
 
 @layer base {
