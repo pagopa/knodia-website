@@ -23,6 +23,9 @@
     --color-showcase-accent: #1afff0;
     --color-primary-violet-surface: #edeefd;
     --color-header-panel-surface: #f8f8f8;
+    --color-hero-base: #0e162e;
+    --color-hero-mid: #1c2757;
+    --color-hero-end: #263f81;
 
     --radius-button: 8px;
     --radius-feature: 16px;
@@ -33,10 +36,20 @@
     --text-button-md: 18px;
     --text-heading-md: 28px;
     --text-heading-lg: 40px;
+    --text-hero-sm: 44px;
+    --text-hero-lg: 64px;
+    --text-intro-sm: 17px;
+    --text-intro-lg: 22px;
     --leading-button-sm: 24px;
     --leading-button-md: 28px;
     --leading-heading-md: 36px;
     --leading-heading-lg: 48px;
+    --leading-hero-sm: 52px;
+    --leading-hero-lg: 80px;
+    --leading-intro-sm: 24.375px;
+    --leading-intro-lg: 32px;
+    --tracking-hero-sm: -0.7px;
+    --tracking-hero-lg: 0px;
 
     --button-height: 48px;
     --button-padding-x: 16px;
@@ -80,6 +93,7 @@
     --text-header-menu: 22px;
     --leading-header-menu: 32px;
     --header-mobile-sheet-radius: 24px;
+    --header-mobile-bar-height: 76px;
     --header-mobile-padding-x: 24px;
     --header-mobile-root-padding-top: 20px;
     --header-mobile-root-padding-bottom: 20px;
@@ -94,6 +108,20 @@
     --header-mobile-logo-width: 124px;
     --header-mobile-logo-height: 44px;
     --color-header-mobile-divider: #d2d5ef;
+
+    --home-hero-inline-padding-md: 64px;
+    --home-hero-padding-top-mobile: 163px;
+    --home-hero-padding-top-md: 176px;
+    --home-hero-padding-top: 197px;
+    --home-hero-padding-bottom-mobile: 80px;
+    --home-hero-padding-bottom-md: 120px;
+    --home-hero-padding-bottom: 160px;
+    --home-hero-content-width-mobile: 344px;
+    --home-hero-content-width: 680px;
+    --home-hero-copy-width-mobile: 344px;
+    --home-hero-copy-width: 610px;
+    --home-hero-content-gap-mobile: 17px;
+    --home-hero-content-gap: 24px;
 }
 
 @layer base {

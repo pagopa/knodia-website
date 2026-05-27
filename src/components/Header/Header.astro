@@ -10,6 +10,19 @@ function normalizePath(path: string) {
 }
 
 const normalizedCurrentPath = normalizePath(currentPath)
+const isHomePage = normalizedCurrentPath === '/'
+const headerRootClass = isHomePage
+    ? 'header-root absolute inset-x-0 top-0 isolate z-40'
+    : 'header-root relative isolate z-40'
+const headerBarClass = isHomePage
+    ? 'mx-auto flex min-h-(--header-mobile-bar-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-(--header-mobile-padding-x) xl:min-h-(--header-height) xl:px-(--header-inline-padding)'
+    : 'mx-auto flex min-h-(--header-height) max-w-(--header-shell-max) items-center justify-between gap-6 border-b border-black/5 bg-white/85 px-4 backdrop-blur-xs sm:px-6 xl:px-(--header-inline-padding)'
+const headerLogoSrc = isHomePage
+    ? '/brand/knodia-logo-white.svg'
+    : '/brand/knodia-logo.svg'
+const headerLogoClass = isHomePage
+    ? 'h-(--header-mobile-logo-height) w-(--header-mobile-logo-width) max-w-none xl:h-(--header-logo-height) xl:w-(--header-logo-width)'
+    : 'h-(--header-logo-height) w-(--header-logo-width) max-w-none'
 
 function isPageLink(href: string) {
     return !href.includes('#')
@@ -78,14 +91,20 @@ const mobileRootItems = [
     },
 ] as const
 
-const desktopTriggerClass =
-    'inline-flex items-center gap-(--header-trigger-gap) text-button-md leading-(--leading-button-md) font-medium text-neutral-graphite transition-colors duration-150 ease-out hover:text-primary-violet focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet'
+const desktopTriggerClass = isHomePage
+    ? 'inline-flex items-center gap-(--header-trigger-gap) text-button-md leading-(--leading-button-md) font-medium text-neutral-white transition-colors duration-150 ease-out hover:text-secondary-soft-quartz focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-white'
+    : 'inline-flex items-center gap-(--header-trigger-gap) text-button-md leading-(--leading-button-md) font-medium text-neutral-graphite transition-colors duration-150 ease-out hover:text-primary-violet focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet'
 
-const desktopLinkClass =
-    'hover:text-primary-violet focus-visible:outline-offset-4 [&>span>span]:font-medium'
+const desktopLinkClass = isHomePage
+    ? 'focus-visible:outline-offset-4 [&>span>span]:font-medium'
+    : 'hover:text-primary-violet focus-visible:outline-offset-4 [&>span>span]:font-medium'
 
 const mobileActionButtonClass =
     'inline-flex size-6 items-center justify-center rounded-full text-neutral-graphite focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet'
+
+const mobileOpenButtonClass = isHomePage
+    ? 'inline-flex size-12 items-center justify-center text-neutral-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-white xl:hidden'
+    : 'inline-flex size-12 items-center justify-center text-neutral-graphite focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet xl:hidden'
 
 const mobileMenuRowClass =
     'flex h-(--header-mobile-item-height) items-center justify-between gap-4 rounded-(--header-mobile-item-radius) px-4 text-header-menu leading-(--leading-header-menu) font-normal text-neutral-graphite focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet'
@@ -98,13 +117,12 @@ const desktopSubmenuLinkClass =
 ---
 
 <header
-    class="header-root relative isolate z-40"
+    class={headerRootClass}
     data-header-nav
+    data-home-page={isHomePage ? 'true' : undefined}
     data-route-group={routeGroupId}
 >
-    <div
-        class="mx-auto flex min-h-(--header-height) max-w-(--header-shell-max) items-center justify-between gap-6 border-b border-black/5 bg-white/85 px-4 backdrop-blur-xs sm:px-6 xl:px-(--header-inline-padding)"
-    >
+    <div class={headerBarClass}>
         <a
             aria-label="Knodia home"
             class="shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet"
@@ -112,9 +130,9 @@ const desktopSubmenuLinkClass =
         >
             <img
                 alt="Knodia"
-                class="h-(--header-logo-height) w-(--header-logo-width) max-w-none"
+                class={headerLogoClass}
                 height="56"
-                src="/brand/knodia-logo.svg"
+                src={headerLogoSrc}
                 width="158"
             />
         </a>
@@ -156,6 +174,7 @@ const desktopSubmenuLinkClass =
                             class={desktopLinkClass}
                             href={link.href}
                             size="medium"
+                            tone={isHomePage ? 'contrast' : 'default'}
                             variant="naked"
                         >
                             {link.label}
@@ -166,21 +185,35 @@ const desktopSubmenuLinkClass =
         </div>
 
         <div class="hidden xl:block">
-            <Button href={headerCta.href} icon="arrow_forward">
+            <Button
+                href={headerCta.href}
+                icon="arrow_forward"
+                tone={isHomePage ? 'contrast' : 'default'}
+            >
                 {headerCta.label}
             </Button>
         </div>
 
-        <button
-            aria-controls="header-mobile-overlay"
-            aria-expanded="false"
-            aria-label="Open menu"
-            class="inline-flex size-12 items-center justify-center text-neutral-graphite focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet xl:hidden"
-            data-mobile-open
-            type="button"
-        >
-            <Icon ariaHidden={true} name="menu" />
-        </button>
+        <div class="flex items-center gap-6 xl:hidden">
+            {
+                isHomePage ? (
+                    <Button href={headerCta.href} tone="contrast">
+                        {headerCta.label}
+                    </Button>
+                ) : null
+            }
+
+            <button
+                aria-controls="header-mobile-overlay"
+                aria-expanded="false"
+                aria-label="Open menu"
+                class={mobileOpenButtonClass}
+                data-mobile-open
+                type="button"
+            >
+                <Icon ariaHidden={true} name="menu" />
+            </button>
+        </div>
     </div>
 
     <div
@@ -454,6 +487,11 @@ const desktopSubmenuLinkClass =
         color: var(--color-primary-violet);
     }
 
+    .header-root[data-home-page='true']
+        [data-menu-trigger][aria-expanded='true'] {
+        color: var(--color-secondary-soft-quartz);
+    }
+
     .header-root [data-menu-trigger][aria-expanded='true'] .header-chevron {
         transform: rotate(180deg);
     }
@@ -463,10 +501,21 @@ const desktopSubmenuLinkClass =
         color: var(--color-primary-violet);
     }
 
+    .header-root[data-home-page='true']:not([data-open-menu])
+        [data-menu-trigger][data-route-active='true'] {
+        color: var(--color-neutral-white);
+    }
+
     .header-root:not([data-open-menu])
         [data-menu-trigger][data-route-active='true']
         .header-chevron {
         color: var(--color-primary-violet);
+    }
+
+    .header-root[data-home-page='true']:not([data-open-menu])
+        [data-menu-trigger][data-route-active='true']
+        .header-chevron {
+        color: currentColor;
     }
 
     .header-root [data-submenu-trigger][data-current='true'] {

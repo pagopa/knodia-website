@@ -1,0 +1,59 @@
+---
+import Icon from '../../Icon'
+
+const exploreHref = '/what-is-knodia'
+---
+
+<section
+    aria-labelledby="home-hero-title"
+    class="relative isolate overflow-hidden bg-hero-base text-neutral-white"
+>
+    <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 bg-[linear-gradient(118deg,var(--color-hero-base)_0%,var(--color-hero-mid)_54%,var(--color-hero-end)_100%)]"
+    >
+    </div>
+    <div
+        aria-hidden="true"
+        class="pointer-events-none absolute top-[-12%] right-[-30%] aspect-square w-[92vw] rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-primary-violet)_88%,transparent)_0%,color-mix(in_srgb,var(--color-primary-violet)_72%,transparent)_14%,transparent_58%)] bg-no-repeat md:top-[-18%] md:right-[-18%] md:w-[68vw] xl:top-[-22%] xl:right-[-10%] xl:w-[48vw]"
+    >
+    </div>
+    <div
+        aria-hidden="true"
+        class="pointer-events-none absolute bottom-[-32%] left-[46%] aspect-3/2 w-[132vw] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,color-mix(in_srgb,var(--color-primary-violet-muted)_72%,transparent)_0%,transparent_68%)] bg-no-repeat opacity-[0.88] md:bottom-[-44%] md:left-[52%] md:w-[96vw] xl:bottom-[-52%] xl:left-1/2 xl:w-[82vw]"
+    >
+    </div>
+    <div
+        class="relative mx-auto flex min-h-svh max-w-(--header-shell-max) items-start px-(--header-mobile-padding-x) pt-(--home-hero-padding-top-mobile) pb-(--home-hero-padding-bottom-mobile) md:px-(--home-hero-inline-padding-md) md:pt-(--home-hero-padding-top-md) md:pb-(--home-hero-padding-bottom-md) xl:px-(--header-inline-padding) xl:pt-(--home-hero-padding-top) xl:pb-(--home-hero-padding-bottom)"
+    >
+        <div
+            class="flex max-w-(--home-hero-content-width-mobile) flex-col gap-(--home-hero-content-gap-mobile) xl:max-w-(--home-hero-content-width) xl:gap-(--home-hero-content-gap)"
+        >
+            <h1
+                class="font-heading text-hero-sm leading-hero-sm font-semibold tracking-hero-sm text-neutral-white xl:text-hero-lg xl:leading-hero-lg xl:tracking-hero-lg"
+                id="home-hero-title"
+            >
+                <span class="block">Building the</span>
+                <span class="block">
+                    <span class="text-secondary-muted-amber">
+                        next generation
+                    </span>
+                    <span> of interoperability</span>
+                </span>
+            </h1>
+            <p
+                class="max-w-(--home-hero-copy-width-mobile) text-intro-sm leading-intro-sm font-normal text-neutral-white xl:max-w-(--home-hero-copy-width) xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Knodia is a federated framework that enables trusted
+                cross-border data exchange and service access across Europe.
+            </p>
+            <a
+                class="inline-flex w-fit items-center gap-(--button-gap) text-button-md leading-(--leading-button-md) font-medium text-secondary-muted-amber transition-colors duration-150 ease-out hover:text-secondary-soft-quartz focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-white active:text-secondary-muted-amber"
+                href={exploreHref}
+            >
+                <span>Explore Knodia</span>
+                <Icon ariaHidden={true} name="arrow_forward" />
+            </a>
+        </div>
+    </div>
+</section>
