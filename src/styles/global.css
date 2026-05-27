@@ -16,10 +16,13 @@
     --color-neutral-gray-40: #9ca3af;
     --color-neutral-medium-gray: #5e5e5e;
     --color-neutral-graphite: #313030;
+    --color-neutral-surface-gray: #e5e5e8;
     --color-secondary-soft-quartz: #ffe2d5;
     --color-secondary-muted-amber: #ffb796;
     --color-showcase-surface: #878787;
     --color-showcase-accent: #1afff0;
+    --color-primary-violet-surface: #edeefd;
+    --color-header-panel-surface: #f8f8f8;
 
     --radius-button: 8px;
     --radius-feature: 16px;
@@ -54,6 +57,43 @@
     --showcase-row-gap: 24px;
     --showcase-standard-min-width: 1420px;
     --showcase-icon-min-width: 1120px;
+
+    --header-shell-max: 1440px;
+    --header-height: 88px;
+    --header-inline-padding: 141px;
+    --header-logo-width: 158px;
+    --header-logo-height: 56px;
+    --header-nav-gap: 44px;
+    --header-trigger-gap: 4px;
+    --header-menu-width: 1158px;
+    --header-panel-min-height: 280px;
+    --header-panel-nav-width: 507px;
+    --header-panel-nav-padding-x: 45px;
+    --header-panel-nav-padding-y: 48px;
+    --header-panel-content-padding: 32px;
+    --header-panel-content-gap: 24px;
+    --header-submenu-height: 56px;
+    --header-submenu-radius: 16px;
+    --header-detail-label-width: 240px;
+    --header-detail-column-gap: 24px;
+    --header-bullet-size: 8px;
+    --text-header-menu: 22px;
+    --leading-header-menu: 32px;
+    --header-mobile-sheet-radius: 24px;
+    --header-mobile-padding-x: 24px;
+    --header-mobile-root-padding-top: 20px;
+    --header-mobile-root-padding-bottom: 20px;
+    --header-mobile-submenu-padding-top: 30px;
+    --header-mobile-submenu-padding-bottom: 65px;
+    --header-mobile-root-gap: 22px;
+    --header-mobile-submenu-gap: 34px;
+    --header-mobile-list-gap: 16px;
+    --header-mobile-item-height: 56px;
+    --header-mobile-item-radius: 16px;
+    --header-mobile-submenu-min-height: 426px;
+    --header-mobile-logo-width: 124px;
+    --header-mobile-logo-height: 44px;
+    --color-header-mobile-divider: #d2d5ef;
 }
 
 @layer base {

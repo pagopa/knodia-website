@@ -1,0 +1,467 @@
+---
+import Button from '../Button.astro'
+import Icon from '../Icon'
+import { headerCta, headerMenuGroups, headerPrimaryLinks } from './navigation'
+
+const currentPath = Astro.url.pathname
+
+function normalizePath(path: string) {
+    return path !== '/' ? path.replace(/\/+$/, '') : '/'
+}
+
+const normalizedCurrentPath = normalizePath(currentPath)
+
+function isPageLink(href: string) {
+    return !href.includes('#')
+}
+
+function hrefPathname(href: string) {
+    return normalizePath(href.split('#')[0] || '/')
+}
+
+const routeGroupId = headerMenuGroups.find((group) =>
+    group.items.some(
+        (item) =>
+            isPageLink(item.href) &&
+            hrefPathname(item.href) === normalizedCurrentPath
+    )
+)?.id
+
+const initialItemIds = new Map(
+    headerMenuGroups.map((group) => [
+        group.id,
+        group.items.find(
+            (item) =>
+                isPageLink(item.href) &&
+                hrefPathname(item.href) === normalizedCurrentPath
+        )?.id ?? group.items[0].id,
+    ])
+)
+
+const currentRouteItemIds = new Map(
+    headerMenuGroups.map((group) => [
+        group.id,
+        group.items.find(
+            (item) =>
+                isPageLink(item.href) &&
+                hrefPathname(item.href) === normalizedCurrentPath
+        )?.id,
+    ])
+)
+
+const mobileRootItems = [
+    {
+        id: 'overview',
+        kind: 'group',
+        label: 'Overview',
+    },
+    {
+        id: 'product',
+        kind: 'group',
+        label: 'Product',
+    },
+    {
+        id: 'use-cases',
+        kind: 'link',
+        label: 'Use Cases',
+        href:
+            headerPrimaryLinks.find((link) => link.id === 'use-cases')?.href ??
+            '/#use-cases',
+    },
+    {
+        id: 'resources',
+        kind: 'link',
+        label: 'Resources',
+        href:
+            headerPrimaryLinks.find((link) => link.id === 'resources')?.href ??
+            '/#resources',
+    },
+] as const
+
+const desktopTriggerClass =
+    'inline-flex items-center gap-(--header-trigger-gap) text-button-md leading-(--leading-button-md) font-medium text-neutral-graphite transition-colors duration-150 ease-out hover:text-primary-violet focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet'
+
+const desktopLinkClass =
+    'text-button-md leading-(--leading-button-md) font-medium text-neutral-graphite transition-colors duration-150 ease-out hover:text-primary-violet focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet'
+
+const mobileActionButtonClass =
+    'inline-flex size-6 items-center justify-center rounded-full text-neutral-graphite focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet'
+
+const mobileMenuRowClass =
+    'flex h-(--header-mobile-item-height) items-center justify-between gap-4 rounded-(--header-mobile-item-radius) px-4 text-header-menu leading-(--leading-header-menu) font-normal text-neutral-graphite focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet'
+
+const mobileCurrentRowClass =
+    'flex h-(--header-mobile-item-height) items-center rounded-(--header-mobile-item-radius) px-4 text-header-menu leading-(--leading-header-menu) font-normal text-primary-violet focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet'
+---
+
+<header
+    class="header-root relative isolate z-40"
+    data-header-nav
+    data-route-group={routeGroupId}
+>
+    <div
+        class="mx-auto flex min-h-(--header-height) max-w-(--header-shell-max) items-center justify-between gap-6 border-b border-black/5 bg-white/85 px-4 backdrop-blur-xs sm:px-6 xl:px-(--header-inline-padding)"
+    >
+        <a
+            aria-label="Knodia home"
+            class="shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet"
+            href="/"
+        >
+            <img
+                alt="Knodia"
+                class="h-(--header-logo-height) w-(--header-logo-width) max-w-none"
+                height="56"
+                src="/brand/knodia-logo.svg"
+                width="158"
+            />
+        </a>
+
+        <div class="hidden flex-1 items-center justify-center xl:flex">
+            <nav
+                aria-label="Main navigation"
+                class="flex items-center gap-(--header-nav-gap)"
+            >
+                {
+                    headerMenuGroups.map((group) => (
+                        <button
+                            aria-controls={`header-panel-${group.id}`}
+                            aria-expanded="false"
+                            class={desktopTriggerClass}
+                            data-menu-trigger={group.id}
+                            data-route-active={
+                                routeGroupId === group.id ? 'true' : 'false'
+                            }
+                            type="button"
+                        >
+                            <span>{group.label}</span>
+                            <span class="header-chevron inline-flex text-current transition-transform duration-150 ease-out">
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-current"
+                                    name="keyboard_arrow_down"
+                                    size="button-small"
+                                />
+                            </span>
+                        </button>
+                    ))
+                }
+                {
+                    headerPrimaryLinks.map((link) => (
+                        <a class={desktopLinkClass} href={link.href}>
+                            {link.label}
+                        </a>
+                    ))
+                }
+            </nav>
+        </div>
+
+        <div class="hidden xl:block">
+            <Button href={headerCta.href}>{headerCta.label}</Button>
+        </div>
+
+        <button
+            aria-controls="header-mobile-overlay"
+            aria-expanded="false"
+            aria-label="Open menu"
+            class="inline-flex size-12 items-center justify-center text-neutral-graphite focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet xl:hidden"
+            data-mobile-open
+            type="button"
+        >
+            <Icon ariaHidden={true} name="menu" />
+        </button>
+    </div>
+
+    <div
+        aria-modal="true"
+        class="fixed inset-0 z-50 flex items-end xl:hidden"
+        data-mobile-overlay
+        hidden
+        id="header-mobile-overlay"
+        role="dialog"
+    >
+        <div
+            class="w-full overflow-hidden rounded-t-(--header-mobile-sheet-radius) bg-primary-violet-surface shadow-lg"
+        >
+            <section
+                class="flex flex-col gap-(--header-mobile-root-gap) px-(--header-mobile-padding-x) pt-(--header-mobile-root-padding-top) pb-(--header-mobile-root-padding-bottom)"
+                data-mobile-panel="root"
+            >
+                <div class="flex items-center justify-between gap-4">
+                    <img
+                        alt="Knodia"
+                        class="h-(--header-mobile-logo-height) w-(--header-mobile-logo-width) max-w-none"
+                        height="44"
+                        src="/brand/knodia-logo.svg"
+                        width="124"
+                    />
+
+                    <button
+                        aria-label="Close menu"
+                        class={mobileActionButtonClass}
+                        data-mobile-close
+                        type="button"
+                    >
+                        <Icon ariaHidden={true} name="close" />
+                    </button>
+                </div>
+
+                <div class="flex flex-col gap-(--header-mobile-list-gap)">
+                    {
+                        mobileRootItems.map((item, index) => (
+                            <div class="space-y-(--header-mobile-list-gap)">
+                                {item.kind === 'group' ? (
+                                    <button
+                                        class={mobileMenuRowClass}
+                                        data-mobile-group-trigger={item.id}
+                                        type="button"
+                                    >
+                                        <span>{item.label}</span>
+                                        <Icon
+                                            ariaHidden={true}
+                                            class="text-primary-violet"
+                                            name="arrow_forward_ios"
+                                        />
+                                    </button>
+                                ) : (
+                                    <a
+                                        class={mobileMenuRowClass}
+                                        href={item.href}
+                                    >
+                                        <span>{item.label}</span>
+                                        <Icon
+                                            ariaHidden={true}
+                                            class="text-primary-violet"
+                                            name="arrow_forward"
+                                        />
+                                    </a>
+                                )}
+
+                                {index < mobileRootItems.length - 1 ? (
+                                    <div class="h-px bg-header-mobile-divider" />
+                                ) : null}
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+
+            {
+                headerMenuGroups.map((group) => (
+                    <section
+                        class="flex min-h-(--header-mobile-submenu-min-height) flex-col gap-(--header-mobile-submenu-gap) px-(--header-mobile-padding-x) pt-(--header-mobile-submenu-padding-top) pb-(--header-mobile-submenu-padding-bottom)"
+                        data-mobile-panel={group.id}
+                        hidden
+                    >
+                        <div class="flex items-center justify-between gap-4">
+                            <button
+                                aria-label="Back to main menu"
+                                class={`${mobileActionButtonClass} text-primary-violet`}
+                                data-mobile-back
+                                type="button"
+                            >
+                                <Icon
+                                    ariaHidden={true}
+                                    name="arrow_back_ios_new"
+                                />
+                            </button>
+
+                            <button
+                                aria-label="Close menu"
+                                class={mobileActionButtonClass}
+                                data-mobile-close
+                                type="button"
+                            >
+                                <Icon ariaHidden={true} name="close" />
+                            </button>
+                        </div>
+
+                        <div class="flex flex-col gap-(--header-mobile-list-gap)">
+                            <p class="text-header-menu leading-(--leading-header-menu) font-normal text-neutral-gray-40">
+                                {group.label}
+                            </p>
+
+                            {group.items.map((item, index) => {
+                                const isCurrentItem =
+                                    currentRouteItemIds.get(group.id) ===
+                                        item.id &&
+                                    isPageLink(item.href) &&
+                                    hrefPathname(item.href) ===
+                                        normalizedCurrentPath
+
+                                return (
+                                    <div class="space-y-(--header-mobile-list-gap)">
+                                        <a
+                                            aria-current={
+                                                isCurrentItem
+                                                    ? 'page'
+                                                    : undefined
+                                            }
+                                            class={
+                                                isCurrentItem
+                                                    ? mobileCurrentRowClass
+                                                    : mobileMenuRowClass
+                                            }
+                                            href={item.href}
+                                        >
+                                            <span>{item.label}</span>
+                                            {!isCurrentItem ? (
+                                                <Icon
+                                                    ariaHidden={true}
+                                                    class="text-primary-violet"
+                                                    name="arrow_forward"
+                                                />
+                                            ) : null}
+                                        </a>
+
+                                        {index < group.items.length - 1 ? (
+                                            <div class="h-px bg-header-mobile-divider" />
+                                        ) : null}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </section>
+                ))
+            }
+        </div>
+    </div>
+
+    <div
+        class="pointer-events-none absolute inset-x-0 top-full hidden xl:block"
+    >
+        {
+            headerMenuGroups.map((group) => (
+                <div
+                    class="pointer-events-auto mx-auto w-full max-w-(--header-menu-width) overflow-hidden rounded-(--radius-button) border border-black/5 bg-neutral-white shadow-sm"
+                    data-default-item={initialItemIds.get(group.id)}
+                    data-menu-panel={group.id}
+                    hidden
+                    id={`header-panel-${group.id}`}
+                >
+                    <div class="grid min-h-(--header-panel-min-height) grid-cols-[var(--header-panel-nav-width)_1fr]">
+                        <div class="flex flex-col gap-2 bg-neutral-white px-(--header-panel-nav-padding-x) py-(--header-panel-nav-padding-y)">
+                            {group.items.map((item) => {
+                                const isCurrentItem =
+                                    currentRouteItemIds.get(group.id) ===
+                                    item.id
+
+                                return (
+                                    <a
+                                        aria-current={
+                                            isCurrentItem ? 'page' : undefined
+                                        }
+                                        class="flex h-(--header-submenu-height) items-center justify-between gap-4 rounded-(--header-submenu-radius) px-4 text-header-menu leading-(--leading-header-menu) font-normal text-neutral-graphite transition-colors duration-150 ease-out hover:bg-secondary-soft-quartz focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet"
+                                        data-current={
+                                            isCurrentItem ? 'true' : 'false'
+                                        }
+                                        data-menu-group={group.id}
+                                        data-selected={
+                                            initialItemIds.get(group.id) ===
+                                            item.id
+                                                ? 'true'
+                                                : 'false'
+                                        }
+                                        data-submenu-trigger={item.id}
+                                        href={item.href}
+                                    >
+                                        <span>{item.label}</span>
+                                        <Icon
+                                            ariaHidden={true}
+                                            class="text-primary-violet"
+                                            name="arrow_forward"
+                                        />
+                                    </a>
+                                )
+                            })}
+                        </div>
+
+                        <div class="bg-linear-to-b from-neutral-white to-primary-violet-surface">
+                            {group.items.map((item) => (
+                                <section
+                                    class="flex h-full flex-col gap-(--header-panel-content-gap) p-(--header-panel-content-padding)"
+                                    data-menu-group={group.id}
+                                    data-submenu-panel={item.id}
+                                    hidden={
+                                        initialItemIds.get(group.id) !== item.id
+                                    }
+                                >
+                                    <h2 class="text-header-menu leading-(--leading-header-menu) font-normal text-neutral-graphite">
+                                        {item.title}
+                                    </h2>
+                                    <div class="grid flex-1 grid-cols-[var(--header-detail-label-width)_1fr] gap-(--header-detail-column-gap) text-button-md leading-(--leading-button-md)">
+                                        <div class="space-y-2">
+                                            <p class="text-neutral-medium-gray">
+                                                Best for
+                                            </p>
+                                            <p class="text-neutral-graphite">
+                                                {item.bestFor}
+                                            </p>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <p class="text-neutral-medium-gray">
+                                                Topics
+                                            </p>
+                                            <ul class="space-y-0 text-neutral-graphite">
+                                                {item.topics.map((topic) => (
+                                                    <li class="flex items-start gap-2">
+                                                        <span
+                                                            aria-hidden="true"
+                                                            class="mt-2.5 size-(--header-bullet-size) shrink-0 rounded-full bg-primary-violet"
+                                                        />
+                                                        <span>{topic}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</header>
+
+<script>
+    import './header-menu'
+</script>
+
+<style>
+    .header-root [data-menu-panel][hidden],
+    .header-root [data-submenu-panel][hidden],
+    .header-root [data-mobile-overlay][hidden],
+    .header-root [data-mobile-panel][hidden] {
+        display: none;
+    }
+
+    .header-root [data-menu-trigger][aria-expanded='true'] {
+        color: var(--color-primary-violet);
+    }
+
+    .header-root [data-menu-trigger][aria-expanded='true'] .header-chevron {
+        transform: rotate(180deg);
+    }
+
+    .header-root:not([data-open-menu])
+        [data-menu-trigger][data-route-active='true'] {
+        color: var(--color-primary-violet);
+    }
+
+    .header-root:not([data-open-menu])
+        [data-menu-trigger][data-route-active='true']
+        .header-chevron {
+        color: var(--color-primary-violet);
+    }
+
+    .header-root [data-submenu-trigger][data-current='true'] {
+        color: var(--color-primary-violet);
+    }
+
+    @media (min-width: 1280px) {
+        .header-root [data-mobile-overlay] {
+            display: none !important;
+        }
+    }
+</style>
