@@ -174,6 +174,57 @@
     --border-home-support-icon-outer-mobile: 3px;
     --border-home-support-icon-outer: 4px;
     --border-home-support-icon-inner: 2px;
+
+    --home-guidance-padding-top-mobile: 40px;
+    --home-guidance-padding-bottom-mobile: 40px;
+    --home-guidance-padding-top: 128px;
+    --home-guidance-padding-bottom: 128px;
+    --home-guidance-root-gap-mobile: 24px;
+    --home-guidance-root-gap: 48px;
+    --home-guidance-header-gap-mobile: 14px;
+    --home-guidance-header-gap: 32px;
+    --home-guidance-header-max: 688px;
+    --home-guidance-stack-gap-mobile: 24px;
+    --home-guidance-stack-gap: 32px;
+    --home-guidance-tabs-gap-mobile: 8px;
+    --home-guidance-tabs-gap: 17px;
+    --home-guidance-pill-height-mobile: 48px;
+    --home-guidance-pill-height: 52px;
+    --home-guidance-pill-padding-x-mobile: 14px;
+    --home-guidance-pill-padding-x: 16px;
+    --home-guidance-pill-text-sm: 13px;
+    --home-guidance-pill-leading-sm: 19.5px;
+    --home-guidance-separator-width-mobile: 64px;
+    --home-guidance-separator-width: 96px;
+    --home-guidance-separator-height-mobile: 3px;
+    --home-guidance-separator-height: 4px;
+    --home-guidance-card-max: 922px;
+    --home-guidance-card-radius-mobile: 14px;
+    --home-guidance-card-radius: 16px;
+    --home-guidance-card-padding-mobile: 14px;
+    --home-guidance-card-padding: 32px;
+    --home-guidance-card-gap-mobile: 20px;
+    --home-guidance-card-gap: 40px;
+    --home-guidance-card-copy-gap-mobile: 8px;
+    --home-guidance-card-copy-gap: 12px;
+    --home-guidance-card-title-sm: 19px;
+    --home-guidance-card-leading-sm: 27px;
+    --home-guidance-card-body-sm: 15px;
+    --home-guidance-card-body-leading-sm: 22.75px;
+    --home-guidance-card-body-leading-lg-compact: 26px;
+    --home-guidance-card-body-leading-lg: 28px;
+    --home-guidance-links-gap-mobile: 12px;
+    --home-guidance-links-gap: 12px;
+    --home-guidance-link-gap-mobile: 12px;
+    --home-guidance-link-gap: 16px;
+    --home-guidance-link-icon-box-size-mobile: 44px;
+    --home-guidance-link-icon-box-size: 64px;
+    --home-guidance-link-icon-box-radius-mobile: 14px;
+    --home-guidance-link-icon-box-radius: 16px;
+    --shadow-home-guidance-pill: 0px 1px 1px rgba(0, 0, 0, 0.05);
+    --shadow-home-guidance-card-mobile:
+        0px 1px 1.5px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.1);
+    --shadow-home-guidance-card: 0px 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 @layer base {
