@@ -318,6 +318,32 @@
     --leading-home-use-case-tag: 18px;
     --text-home-use-case-title-sm: 20px;
     --leading-home-use-case-title-sm: 27.5px;
+
+    --home-cta-height-mobile: 340px;
+    --home-cta-height: 672px;
+    --home-cta-padding-y-mobile: 40px;
+    --home-cta-padding-x-mobile: 24px;
+    --home-cta-padding-x: 96px;
+    --home-cta-content-max-mobile: 392px;
+    --home-cta-content-max: 920px;
+    --home-cta-copy-max: 688px;
+    --home-cta-root-gap-mobile: 32px;
+    --home-cta-root-gap: 64px;
+    --home-cta-copy-gap-mobile: 10px;
+    --home-cta-copy-gap: 16px;
+    --home-cta-buttons-gap-mobile: 16px;
+    --home-cta-buttons-gap: 16px;
+    --home-cta-button-width-mobile: 231px;
+    --text-home-cta-title-sm: 24px;
+    --leading-home-cta-title-sm: 30px;
+    --text-home-cta-title: 56px;
+    --leading-home-cta-title: 64px;
+    --text-home-cta-body-sm: 17px;
+    --leading-home-cta-body-sm: 22.75px;
+    --text-home-cta-body: 28px;
+    --leading-home-cta-body: 36px;
+    --text-home-cta-button-sm: 15px;
+    --leading-home-cta-button-sm: 22.5px;
 }
 
 @layer base {
