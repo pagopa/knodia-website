@@ -340,26 +340,39 @@ const mobileCurrentRowClass =
                 >
                     <div class="grid min-h-(--header-panel-min-height) grid-cols-[var(--header-panel-nav-width)_1fr]">
                         <div class="flex flex-col gap-2 bg-neutral-white px-(--header-panel-nav-padding-x) py-(--header-panel-nav-padding-y)">
-                            {group.items.map((item) => (
-                                <a
-                                    class="flex h-(--header-submenu-height) items-center justify-between gap-4 rounded-(--header-submenu-radius) px-4 text-header-menu leading-(--leading-header-menu) font-normal text-neutral-graphite transition-colors duration-150 ease-out hover:bg-secondary-soft-quartz focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet"
-                                    data-menu-group={group.id}
-                                    data-selected={
-                                        initialItemIds.get(group.id) === item.id
-                                            ? 'true'
-                                            : 'false'
-                                    }
-                                    data-submenu-trigger={item.id}
-                                    href={item.href}
-                                >
-                                    <span>{item.label}</span>
-                                    <Icon
-                                        ariaHidden={true}
-                                        class="text-primary-violet"
-                                        name="arrow_forward"
-                                    />
-                                </a>
-                            ))}
+                            {group.items.map((item) => {
+                                const isCurrentItem =
+                                    currentRouteItemIds.get(group.id) ===
+                                    item.id
+
+                                return (
+                                    <a
+                                        aria-current={
+                                            isCurrentItem ? 'page' : undefined
+                                        }
+                                        class="flex h-(--header-submenu-height) items-center justify-between gap-4 rounded-(--header-submenu-radius) px-4 text-header-menu leading-(--leading-header-menu) font-normal text-neutral-graphite transition-colors duration-150 ease-out hover:bg-secondary-soft-quartz focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet"
+                                        data-current={
+                                            isCurrentItem ? 'true' : 'false'
+                                        }
+                                        data-menu-group={group.id}
+                                        data-selected={
+                                            initialItemIds.get(group.id) ===
+                                            item.id
+                                                ? 'true'
+                                                : 'false'
+                                        }
+                                        data-submenu-trigger={item.id}
+                                        href={item.href}
+                                    >
+                                        <span>{item.label}</span>
+                                        <Icon
+                                            ariaHidden={true}
+                                            class="text-primary-violet"
+                                            name="arrow_forward"
+                                        />
+                                    </a>
+                                )
+                            })}
                         </div>
 
                         <div class="bg-linear-to-b from-neutral-white to-primary-violet-surface">
@@ -442,8 +455,8 @@ const mobileCurrentRowClass =
         color: var(--color-primary-violet);
     }
 
-    .header-root [data-submenu-trigger][data-selected='true'] {
-        background: var(--color-secondary-soft-quartz);
+    .header-root [data-submenu-trigger][data-current='true'] {
+        color: var(--color-primary-violet);
     }
 
     @media (min-width: 1280px) {
