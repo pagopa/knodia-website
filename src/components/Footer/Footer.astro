@@ -1,0 +1,376 @@
+---
+import Button from '../Button.astro'
+import {
+    headerCta,
+    headerMenuGroups,
+    headerPrimaryLinks,
+} from '../Header/navigation'
+
+function findGroupItemHref(
+    groupId: string,
+    itemId: string,
+    fallbackHref: string
+) {
+    return (
+        headerMenuGroups
+            .find((group) => group.id === groupId)
+            ?.items.find((item) => item.id === itemId)?.href ?? fallbackHref
+    )
+}
+
+function findPrimaryHref(linkId: string, fallbackHref: string) {
+    return (
+        headerPrimaryLinks.find((link) => link.id === linkId)?.href ??
+        fallbackHref
+    )
+}
+
+const preFooterLinks = [
+    {
+        label: 'Request prototype access',
+        href: '#',
+        icon: 'open_in_new',
+    },
+    {
+        label: 'Read the whitepaper',
+        href: '#',
+        icon: 'open_in_new',
+    },
+    {
+        label: 'Download the executive summary',
+        href: '#',
+        icon: 'download',
+    },
+] as const
+
+const footerSections = [
+    {
+        desktopTone: 'muted',
+        links: [
+            {
+                label: 'What is Knodia',
+                href: findGroupItemHref(
+                    'overview',
+                    'whats-knodia',
+                    '/what-is-knodia'
+                ),
+            },
+            {
+                label: 'Why Knodia',
+                href: findGroupItemHref(
+                    'overview',
+                    'why-knodia',
+                    '/why-knodia'
+                ),
+            },
+            {
+                label: 'Core Functions',
+                href: findGroupItemHref(
+                    'overview',
+                    'core-functions',
+                    '/core-components'
+                ),
+            },
+        ],
+        title: 'Overview',
+    },
+    {
+        desktopTone: 'bright',
+        links: [
+            {
+                label: 'Technology',
+                href: findGroupItemHref(
+                    'product',
+                    'technology',
+                    '/#product-technology'
+                ),
+            },
+            {
+                label: 'Security',
+                href: findGroupItemHref(
+                    'product',
+                    'security',
+                    '/#product-security'
+                ),
+            },
+            {
+                label: 'Compliance',
+                href: findGroupItemHref(
+                    'product',
+                    'compliance',
+                    '/#product-compliance'
+                ),
+            },
+            {
+                label: 'Governance',
+                href: findGroupItemHref(
+                    'product',
+                    'governance',
+                    '/#product-governance'
+                ),
+            },
+        ],
+        title: 'Product',
+    },
+] as const
+
+const standaloneFooterLinks = [
+    {
+        label: 'Use Cases',
+        href: findPrimaryHref('use-cases', '/#use-cases'),
+    },
+    {
+        label: 'Resources',
+        href: findPrimaryHref('resources', '/#resources'),
+    },
+] as const
+
+const desktopLegalLinks = [
+    { label: 'Privacy Policy', href: '#' },
+    { label: 'Legal Notes', href: '#' },
+    { label: 'Company Details', href: '#' },
+] as const
+
+const mobileLegalLinks = [
+    { label: 'Privacy Policy', href: '#' },
+    { label: 'Legal Notice', href: '#' },
+    { label: 'Cookie Policy', href: '#' },
+] as const
+
+const focusRingClass =
+    'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-white'
+const buttonFocusOffsetClass = 'focus-visible:outline-offset-4'
+const preFooterLinkClass = `${buttonFocusOffsetClass} justify-center [&>span]:gap-1.5 xl:[&>span]:gap-2 [&>span>span:first-child]:text-center [&>span>span:first-child]:text-[13px] [&>span>span:first-child]:leading-[19.5px] xl:[&>span>span:first-child]:text-[16px] xl:[&>span>span:first-child]:leading-6 [&>span>span:last-child]:size-[14px] [&>span>span:last-child]:text-[14px] xl:[&>span>span:last-child]:size-[18px] xl:[&>span>span:last-child]:text-[18px]`
+const footerTitleClass =
+    'text-[10.5px] leading-[15.75px] font-medium uppercase tracking-[1.05px] text-[rgba(255,255,255,0.28)] xl:text-[16px] xl:leading-6 xl:tracking-normal xl:text-neutral-gray-40'
+const footerLinkBaseClass = `${buttonFocusOffsetClass} [&>span>span]:text-[13px] [&>span>span]:leading-[19.5px] [&>span>span]:font-normal xl:[&>span>span]:text-[16px] xl:[&>span>span]:leading-6 xl:[&>span>span]:font-medium`
+const footerCtaClass = `${buttonFocusOffsetClass} w-[211px] rounded-[10px] px-[52px] xl:w-auto xl:px-4 [&>span]:gap-[7px] xl:[&>span]:gap-2 [&>span>span:first-child]:text-[15px] [&>span>span:first-child]:leading-[22.5px] xl:[&>span>span:first-child]:text-[18px] xl:[&>span>span:first-child]:leading-7 [&>span>span:last-child]:size-[16px] [&>span>span:last-child]:text-[16px] xl:[&>span>span:last-child]:size-[24px] xl:[&>span>span:last-child]:text-[24px]`
+const desktopLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-white [&>span>span]:text-[14px] [&>span>span]:leading-5 [&>span>span]:font-medium`
+const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gray [&>span>span]:text-[12px] [&>span>span]:leading-[18px] [&>span>span]:font-normal`
+---
+
+<footer class="mt-auto">
+    <div class="bg-primary-violet px-6 py-10 xl:px-[141px] xl:py-[11px]">
+        <div
+            class="mx-auto flex w-full max-w-[1158px] flex-col items-center gap-6 xl:flex-row xl:justify-between xl:gap-[88px]"
+        >
+            <div
+                class="flex w-full flex-col items-center gap-4 xl:w-auto xl:flex-row xl:gap-[31px]"
+            >
+                {
+                    preFooterLinks.map((link) => (
+                        <Button
+                            class={`${preFooterLinkClass} ${focusRingClass}`}
+                            href={link.href}
+                            icon={link.icon}
+                            size="small"
+                            tone="contrast"
+                            variant="naked"
+                        >
+                            {link.label}
+                        </Button>
+                    ))
+                }
+            </div>
+
+            <Button
+                class={footerCtaClass}
+                href={headerCta.href}
+                icon="arrow_forward"
+                tone="contrast"
+                variant="outlined"
+            >
+                Get started
+            </Button>
+        </div>
+    </div>
+
+    <div class="bg-deep-violet px-6 py-10 xl:px-[141px] xl:pt-[60px] xl:pb-12">
+        <div
+            class="mx-auto flex w-full max-w-[393px] flex-col gap-[60px] xl:max-w-[1158px] xl:gap-[52px]"
+        >
+            <div
+                class="flex flex-col gap-[60px] xl:flex-row xl:items-start xl:justify-between"
+            >
+                <a class={focusRingClass} href="/">
+                    <img
+                        alt="Knodia"
+                        class="h-[44px] w-[124.079px] max-w-none xl:h-[56px] xl:w-[157.918px]"
+                        height="56"
+                        src="/brand/knodia-logo-white.svg"
+                        width="158"
+                    />
+                </a>
+
+                <div
+                    class="flex flex-col gap-[60px] xl:flex-row xl:items-start xl:gap-6"
+                >
+                    <nav
+                        aria-label="Footer navigation"
+                        class="flex flex-col gap-[60px] xl:flex-row xl:gap-6"
+                    >
+                        {
+                            footerSections.map((section) => (
+                                <section class="w-full max-w-[189px] xl:w-[191px]">
+                                    <h2 class={footerTitleClass}>
+                                        {section.title}
+                                    </h2>
+                                    <ul class="mt-5 space-y-3 xl:mt-5">
+                                        {section.links.map((link) => (
+                                            <li>
+                                                <Button
+                                                    class={`${footerLinkBaseClass} ${section.desktopTone === 'bright' ? 'text-neutral-surface-gray xl:text-neutral-white' : 'text-neutral-surface-gray xl:text-neutral-surface-gray'}`}
+                                                    href={link.href}
+                                                    size="small"
+                                                    tone="contrast"
+                                                    variant="naked"
+                                                >
+                                                    {link.label}
+                                                </Button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </section>
+                            ))
+                        }
+
+                        <section class="w-full xl:w-[191px] xl:pt-[35.75px]">
+                            <ul class="space-y-[10px] xl:space-y-[10px]">
+                                {
+                                    standaloneFooterLinks.map((link) => (
+                                        <li>
+                                            <Button
+                                                class={`${footerLinkBaseClass} text-neutral-surface-gray xl:text-neutral-white`}
+                                                href={link.href}
+                                                size="small"
+                                                tone="contrast"
+                                                variant="naked"
+                                            >
+                                                {link.label}
+                                            </Button>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </section>
+                    </nav>
+
+                    <section
+                        class="w-full max-w-[327px] text-[14px] leading-5 text-neutral-surface-gray xl:hidden"
+                    >
+                        <p class="font-bold text-neutral-white">
+                            PagoPA S.p.A.
+                        </p>
+                        <div class="mt-5 space-y-4 font-medium">
+                            <div>
+                                <p>Registered office:</p>
+                                <p>Piazza Colonna 370, 00187 Rome, Italy</p>
+                            </div>
+                            <div>
+                                <p>VAT / Tax Code:</p>
+                                <p>15376371009</p>
+                            </div>
+                            <div>
+                                <p>Share Capital:</p>
+                                <p>€1,000,000 fully paid-in</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <aside class="flex w-[219px] flex-col gap-[66px]">
+                        <img
+                            alt="Funded by the European Union"
+                            class="h-auto w-full"
+                            height="58"
+                            src="/brand/eu-funded.png"
+                            width="219"
+                        />
+
+                        <section>
+                            <h2
+                                class="text-[14px] leading-5 font-medium text-neutral-gray-40"
+                            >
+                                PARTNERS
+                            </h2>
+                            <div
+                                class="mt-4 flex items-center justify-between gap-4"
+                            >
+                                <img
+                                    alt="PagoPA"
+                                    class="h-[30px] w-[107.324px] max-w-none"
+                                    height="30"
+                                    src="/brand/pagopa-logo.svg"
+                                    width="108"
+                                />
+                                <img
+                                    alt="Partner logo"
+                                    class="size-[50px]"
+                                    height="50"
+                                    src="/brand/partner-d.png"
+                                    width="50"
+                                />
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+
+            <div
+                class="hidden items-center gap-6 xl:flex xl:text-[14px] xl:leading-5 xl:text-neutral-white"
+            >
+                <p
+                    class="shrink-0 text-[14px] leading-5 font-normal tracking-[0.35px] uppercase"
+                >
+                    © 2026 KNODIA
+                </p>
+                <div class="flex flex-wrap items-center gap-0">
+                    {
+                        desktopLegalLinks.map((link, index) => (
+                            <>
+                                {index > 0 ? (
+                                    <span class="px-3 text-neutral-white/80">
+                                        ·
+                                    </span>
+                                ) : null}
+                                <Button
+                                    class={desktopLegalLinkClass}
+                                    href={link.href}
+                                    size="small"
+                                    tone="contrast"
+                                    variant="naked"
+                                >
+                                    {link.label}
+                                </Button>
+                            </>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center gap-6 text-center xl:hidden">
+                <p
+                    class="text-[12px] leading-[18px] font-normal tracking-[0.35px] text-neutral-surface-gray uppercase"
+                >
+                    © 2026 KNODIA
+                </p>
+                <div
+                    class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
+                >
+                    {
+                        mobileLegalLinks.map((link) => (
+                            <Button
+                                class={mobileLegalLinkClass}
+                                href={link.href}
+                                size="small"
+                                tone="contrast"
+                                variant="naked"
+                            >
+                                {link.label}
+                            </Button>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

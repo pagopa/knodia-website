@@ -82,7 +82,7 @@ const desktopTriggerClass =
     'inline-flex items-center gap-(--header-trigger-gap) text-button-md leading-(--leading-button-md) font-medium text-neutral-graphite transition-colors duration-150 ease-out hover:text-primary-violet focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet'
 
 const desktopLinkClass =
-    'text-button-md leading-(--leading-button-md) font-medium text-neutral-graphite transition-colors duration-150 ease-out hover:text-primary-violet focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet'
+    'hover:text-primary-violet focus-visible:outline-offset-4 [&>span>span]:font-medium'
 
 const mobileActionButtonClass =
     'inline-flex size-6 items-center justify-center rounded-full text-neutral-graphite focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet'
@@ -92,6 +92,9 @@ const mobileMenuRowClass =
 
 const mobileCurrentRowClass =
     'flex h-(--header-mobile-item-height) items-center rounded-(--header-mobile-item-radius) px-4 text-header-menu leading-(--leading-header-menu) font-normal text-primary-violet focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet'
+
+const desktopSubmenuLinkClass =
+    'flex h-(--header-submenu-height) items-center justify-between gap-4 rounded-(--header-submenu-radius) px-4 text-header-menu leading-(--leading-header-menu) font-normal text-neutral-graphite transition-colors duration-150 ease-out hover:bg-secondary-soft-quartz focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet'
 ---
 
 <header
@@ -147,16 +150,23 @@ const mobileCurrentRowClass =
                 }
                 {
                     headerPrimaryLinks.map((link) => (
-                        <a class={desktopLinkClass} href={link.href}>
+                        <Button
+                            class={desktopLinkClass}
+                            href={link.href}
+                            size="medium"
+                            variant="naked"
+                        >
                             {link.label}
-                        </a>
+                        </Button>
                     ))
                 }
             </nav>
         </div>
 
         <div class="hidden xl:block">
-            <Button href={headerCta.href}>{headerCta.label}</Button>
+            <Button href={headerCta.href} icon="arrow_forward">
+                {headerCta.label}
+            </Button>
         </div>
 
         <button
@@ -350,7 +360,7 @@ const mobileCurrentRowClass =
                                         aria-current={
                                             isCurrentItem ? 'page' : undefined
                                         }
-                                        class="flex h-(--header-submenu-height) items-center justify-between gap-4 rounded-(--header-submenu-radius) px-4 text-header-menu leading-(--leading-header-menu) font-normal text-neutral-graphite transition-colors duration-150 ease-out hover:bg-secondary-soft-quartz focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet"
+                                        class={desktopSubmenuLinkClass}
                                         data-current={
                                             isCurrentItem ? 'true' : 'false'
                                         }
