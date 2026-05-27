@@ -285,6 +285,39 @@
     --home-foundations-content-max: 696px;
     --text-home-foundations-title-sm: 22px;
     --leading-home-foundations-title-sm: 27.5px;
+
+    --home-use-case-padding-top-mobile: 40px;
+    --home-use-case-padding-bottom-mobile: 40px;
+    --home-use-case-padding-top: 96px;
+    --home-use-case-padding-bottom: 96px;
+    --home-use-case-header-gap-mobile: 22px;
+    --home-use-case-header-gap: 64px;
+    --home-use-case-content-gap-mobile: 24px;
+    --home-use-case-column-gap: 80px;
+    --home-use-case-copy-width: 571px;
+    --home-use-case-image-width: 507px;
+    --home-use-case-image-height-mobile: 209px;
+    --home-use-case-image-height: 420px;
+    --home-use-case-image-radius-mobile: 16px;
+    --home-use-case-image-radius: 24px;
+    --home-use-case-copy-gap-mobile: 8px;
+    --home-use-case-copy-gap: 24px;
+    --home-use-case-tag-height-mobile: 26.5px;
+    --home-use-case-tag-height: 37px;
+    --home-use-case-tag-padding-x-mobile: 12px;
+    --home-use-case-tag-padding-x: 16px;
+    --text-home-use-case-caption-sm: 12px;
+    --leading-home-use-case-caption-sm: 18px;
+    --text-home-use-case-caption: 14px;
+    --leading-home-use-case-caption: 20px;
+    --text-home-use-case-top-link-sm: 14px;
+    --leading-home-use-case-top-link-sm: 21px;
+    --text-home-use-case-tag-sm: 11px;
+    --leading-home-use-case-tag-sm: 16.5px;
+    --text-home-use-case-tag: 12px;
+    --leading-home-use-case-tag: 18px;
+    --text-home-use-case-title-sm: 20px;
+    --leading-home-use-case-title-sm: 27.5px;
 }
 
 @layer base {

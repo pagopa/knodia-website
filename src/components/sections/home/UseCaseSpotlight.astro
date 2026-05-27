@@ -1,0 +1,101 @@
+---
+import Button from '../../Button.astro'
+import useCaseImage from '../../../assets/backgrounds/home-use-case-single.png'
+
+const sectionHref = '/#use-cases'
+const tagLabel = 'DATA SYNCHRONIZATION'
+const title = 'Keeping local data aligned with a base register'
+const description =
+    'Knodia supports situations where one-time access to data is not enough and local systems need to stay up to date with a trusted source.'
+---
+
+<section
+    aria-labelledby="home-use-case-title"
+    class="bg-neutral-white"
+    id="use-cases"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col px-(--header-mobile-padding-x) pt-(--home-use-case-padding-top-mobile) pb-(--home-use-case-padding-bottom-mobile) md:px-(--home-hero-inline-padding-md) xl:px-(--header-inline-padding) xl:pt-(--home-use-case-padding-top) xl:pb-(--home-use-case-padding-bottom)"
+    >
+        <div class="flex items-center justify-between">
+            <p
+                class="text-(length:--text-home-use-case-caption-sm) leading-(--leading-home-use-case-caption-sm) font-medium tracking-[1.2px] text-neutral-medium-gray uppercase xl:text-(length:--text-home-use-case-caption) xl:leading-(--leading-home-use-case-caption) xl:tracking-normal"
+            >
+                USE CASE
+            </p>
+
+            <Button
+                class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
+                href={sectionHref}
+                icon="arrow_forward"
+                size="small"
+                variant="naked"
+            >
+                <span
+                    class="text-(length:--text-home-use-case-top-link-sm) leading-(--leading-home-use-case-top-link-sm) font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+                >
+                    View all
+                </span>
+            </Button>
+        </div>
+
+        <div
+            class="mt-(--home-use-case-header-gap-mobile) flex flex-col gap-(--home-use-case-content-gap-mobile) xl:mt-(--home-use-case-header-gap) xl:grid xl:grid-cols-[minmax(0,var(--home-use-case-copy-width))_minmax(0,var(--home-use-case-image-width))] xl:items-end xl:gap-x-(--home-use-case-column-gap) xl:gap-y-0"
+        >
+            <div
+                class="flex flex-col xl:min-h-(--home-use-case-image-height) xl:justify-between xl:py-4"
+            >
+                <div
+                    class="flex flex-col gap-(--home-use-case-copy-gap-mobile) xl:gap-(--home-use-case-copy-gap)"
+                >
+                    <span
+                        class="inline-flex h-(--home-use-case-tag-height-mobile) w-fit items-center justify-center rounded-full border border-primary-violet px-(--home-use-case-tag-padding-x-mobile) text-home-use-case-tag-sm leading-home-use-case-tag-sm font-medium text-primary-violet uppercase xl:h-(--home-use-case-tag-height) xl:px-(--home-use-case-tag-padding-x) xl:text-(length:--text-home-use-case-tag) xl:leading-(--leading-home-use-case-tag)"
+                    >
+                        {tagLabel}
+                    </span>
+
+                    <h2
+                        class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                        id="home-use-case-title"
+                    >
+                        {title}
+                    </h2>
+
+                    <p
+                        class="text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)"
+                    >
+                        {description}
+                    </p>
+                </div>
+
+                <Button
+                    class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:mt-auto xl:[&>span]:gap-(--button-gap)"
+                    href={sectionHref}
+                    icon="arrow_forward"
+                    size="small"
+                    variant="naked"
+                >
+                    <span
+                        class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+                    >
+                        Read more
+                    </span>
+                </Button>
+            </div>
+
+            <div
+                class="overflow-hidden rounded-(--home-use-case-image-radius-mobile) xl:rounded-(--home-use-case-image-radius)"
+            >
+                <img
+                    alt=""
+                    class="h-(--home-use-case-image-height-mobile) w-full object-cover xl:h-(--home-use-case-image-height) xl:w-(--home-use-case-image-width)"
+                    decoding="async"
+                    height={useCaseImage.height}
+                    loading="lazy"
+                    src={useCaseImage.src}
+                    width={useCaseImage.width}
+                />
+            </div>
+        </div>
+    </div>
+</section>
