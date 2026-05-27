@@ -11,6 +11,7 @@
     --color-primary-violet-hover: #30318e;
     --color-deep-violet: #002c6f;
     --color-primary-violet-muted: #b8b9f5;
+    --color-primary-violet-60: #9597f0;
     --color-neutral-black: #000000;
     --color-neutral-white: #ffffff;
     --color-neutral-gray-40: #9ca3af;
@@ -38,6 +39,10 @@
     --text-heading-md: 28px;
     --text-heading-lg: 40px;
     --text-home-domains-title-sm: 24px;
+    --text-home-support-title-sm: 22px;
+    --text-home-support-item-sm: 17px;
+    --text-home-support-icon-sm: 16px;
+    --text-home-support-icon-lg: 48px;
     --text-hero-sm: 44px;
     --text-hero-lg: 64px;
     --text-home-domains-body-sm: 15px;
@@ -51,6 +56,8 @@
     --leading-home-domains-title-sm: 30px;
     --leading-home-domains-body-sm: 24.375px;
     --leading-home-domains-link-sm: 22.5px;
+    --leading-home-support-title-sm: 33px;
+    --leading-home-support-item-sm: 20.625px;
     --leading-hero-sm: 52px;
     --leading-hero-lg: 80px;
     --leading-intro-sm: 24.375px;
@@ -147,6 +154,26 @@
     --home-domains-separator-height: 4px;
     --home-domains-image-radius-mobile: 21.577px;
     --home-domains-image-radius: 16px;
+
+    --home-support-padding-top-mobile: 40px;
+    --home-support-padding-bottom-mobile: 40px;
+    --home-support-padding-top: 80px;
+    --home-support-padding-bottom: 128px;
+    --home-support-section-gap-mobile: 32px;
+    --home-support-section-gap: 56px;
+    --home-support-list-gap-mobile: 20px;
+    --home-support-item-gap-mobile: 16px;
+    --home-support-item-gap: 32px;
+    --home-support-item-width: 272px;
+    --home-support-item-padding-x: 8px;
+    --home-support-icon-shell-size-mobile: 72px;
+    --home-support-icon-shell-size: 128px;
+    --home-support-icon-badge-size-mobile: 36px;
+    --home-support-icon-badge-size: 48px;
+    --home-support-icon-ring-inset: 8px;
+    --border-home-support-icon-outer-mobile: 3px;
+    --border-home-support-icon-outer: 4px;
+    --border-home-support-icon-inner: 2px;
 }
 
 @layer base {
