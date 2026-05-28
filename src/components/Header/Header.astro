@@ -11,16 +11,25 @@ function normalizePath(path: string) {
 
 const normalizedCurrentPath = normalizePath(currentPath)
 const isHomePage = normalizedCurrentPath === '/'
-const headerRootClass = isHomePage
+const isWhatIsKnodiaPage = normalizedCurrentPath === '/what-is-knodia'
+const usesOverlayHeader = isHomePage || isWhatIsKnodiaPage
+const headerRootClass = usesOverlayHeader
     ? 'header-root absolute inset-x-0 top-0 isolate z-40'
     : 'header-root relative isolate z-40'
-const headerBarClass = isHomePage
+const headerBarShellClass = isHomePage
+    ? 'w-full'
+    : isWhatIsKnodiaPage
+      ? 'w-full bg-white/40 backdrop-blur-[4px]'
+      : 'w-full border-b border-black/5 bg-white/85 backdrop-blur-xs'
+const headerBarContentClass = isHomePage
     ? 'mx-auto flex min-h-(--header-mobile-bar-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-(--header-mobile-padding-x) xl:min-h-(--header-height) xl:px-(--header-inline-padding)'
-    : 'mx-auto flex min-h-(--header-height) max-w-(--header-shell-max) items-center justify-between gap-6 border-b border-black/5 bg-white/85 px-4 backdrop-blur-xs sm:px-6 xl:px-(--header-inline-padding)'
+    : isWhatIsKnodiaPage
+      ? 'mx-auto flex min-h-(--header-mobile-bar-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-(--header-mobile-padding-x) xl:min-h-(--header-height) xl:px-(--header-inline-padding)'
+      : 'mx-auto flex min-h-(--header-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-4 sm:px-6 xl:px-(--header-inline-padding)'
 const headerLogoSrc = isHomePage
     ? '/brand/knodia-logo-home.svg'
     : '/brand/knodia-logo.svg'
-const headerLogoClass = isHomePage
+const headerLogoClass = usesOverlayHeader
     ? 'h-(--header-mobile-logo-height) w-(--header-mobile-logo-width) max-w-none xl:h-(--header-logo-height) xl:w-(--header-logo-width)'
     : 'h-(--header-logo-height) w-(--header-logo-width) max-w-none'
 
@@ -122,97 +131,99 @@ const desktopSubmenuLinkClass =
     data-home-page={isHomePage ? 'true' : undefined}
     data-route-group={routeGroupId}
 >
-    <div class={headerBarClass}>
-        <a
-            aria-label="Knodia home"
-            class="shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet"
-            href="/"
-        >
-            <img
-                alt="Knodia"
-                class={headerLogoClass}
-                height="56"
-                src={headerLogoSrc}
-                width="158"
-            />
-        </a>
-
-        <div class="hidden flex-1 items-center justify-center xl:flex">
-            <nav
-                aria-label="Main navigation"
-                class="flex items-center gap-(--header-nav-gap)"
+    <div class={headerBarShellClass}>
+        <div class={headerBarContentClass}>
+            <a
+                aria-label="Knodia home"
+                class="shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet"
+                href="/"
             >
+                <img
+                    alt="Knodia"
+                    class={headerLogoClass}
+                    height="56"
+                    src={headerLogoSrc}
+                    width="158"
+                />
+            </a>
+
+            <div class="hidden flex-1 items-center justify-center xl:flex">
+                <nav
+                    aria-label="Main navigation"
+                    class="flex items-center gap-(--header-nav-gap)"
+                >
+                    {
+                        headerMenuGroups.map((group) => (
+                            <button
+                                aria-controls={`header-panel-${group.id}`}
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                class={desktopTriggerClass}
+                                data-menu-trigger={group.id}
+                                data-route-active={
+                                    routeGroupId === group.id ? 'true' : 'false'
+                                }
+                                id={`header-trigger-${group.id}`}
+                                type="button"
+                            >
+                                <span>{group.label}</span>
+                                <span class="header-chevron inline-flex text-current transition-transform duration-150 ease-out">
+                                    <Icon
+                                        ariaHidden={true}
+                                        class="text-current"
+                                        name="keyboard_arrow_down"
+                                        size="button-small"
+                                    />
+                                </span>
+                            </button>
+                        ))
+                    }
+                    {
+                        headerPrimaryLinks.map((link) => (
+                            <Button
+                                class={desktopLinkClass}
+                                href={link.href}
+                                size="medium"
+                                tone={isHomePage ? 'contrast' : 'default'}
+                                variant="naked"
+                            >
+                                {link.label}
+                            </Button>
+                        ))
+                    }
+                </nav>
+            </div>
+
+            <div class="hidden xl:block">
+                <Button
+                    href={headerCta.href}
+                    icon="arrow_forward"
+                    tone={isHomePage ? 'contrast' : 'default'}
+                >
+                    {headerCta.label}
+                </Button>
+            </div>
+
+            <div class="flex items-center gap-6 xl:hidden">
                 {
-                    headerMenuGroups.map((group) => (
-                        <button
-                            aria-controls={`header-panel-${group.id}`}
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            class={desktopTriggerClass}
-                            data-menu-trigger={group.id}
-                            data-route-active={
-                                routeGroupId === group.id ? 'true' : 'false'
-                            }
-                            id={`header-trigger-${group.id}`}
-                            type="button"
-                        >
-                            <span>{group.label}</span>
-                            <span class="header-chevron inline-flex text-current transition-transform duration-150 ease-out">
-                                <Icon
-                                    ariaHidden={true}
-                                    class="text-current"
-                                    name="keyboard_arrow_down"
-                                    size="button-small"
-                                />
-                            </span>
-                        </button>
-                    ))
-                }
-                {
-                    headerPrimaryLinks.map((link) => (
-                        <Button
-                            class={desktopLinkClass}
-                            href={link.href}
-                            size="medium"
-                            tone={isHomePage ? 'contrast' : 'default'}
-                            variant="naked"
-                        >
-                            {link.label}
+                    isHomePage ? (
+                        <Button href={headerCta.href} tone="contrast">
+                            {headerCta.label}
                         </Button>
-                    ))
+                    ) : null
                 }
-            </nav>
-        </div>
 
-        <div class="hidden xl:block">
-            <Button
-                href={headerCta.href}
-                icon="arrow_forward"
-                tone={isHomePage ? 'contrast' : 'default'}
-            >
-                {headerCta.label}
-            </Button>
-        </div>
-
-        <div class="flex items-center gap-6 xl:hidden">
-            {
-                isHomePage ? (
-                    <Button href={headerCta.href} tone="contrast">
-                        {headerCta.label}
-                    </Button>
-                ) : null
-            }
-
-            <button
-                aria-controls="header-mobile-overlay"
-                aria-expanded="false"
-                aria-label="Open menu"
-                class={mobileOpenButtonClass}
-                data-mobile-open
-                type="button"
-            >
-                <Icon ariaHidden={true} name="menu" />
-            </button>
+                <button
+                    aria-controls="header-mobile-overlay"
+                    aria-expanded="false"
+                    aria-label="Open menu"
+                    class={mobileOpenButtonClass}
+                    data-mobile-open
+                    type="button"
+                >
+                    <Icon ariaHidden={true} name="menu" />
+                </button>
+            </div>
         </div>
     </div>
 
