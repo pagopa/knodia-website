@@ -119,87 +119,85 @@ function joinClasses(...classes: Array<string | undefined>) {
         </div>
 
         <div
-            class="flex w-full max-w-(--home-guidance-card-max) flex-col gap-(--home-guidance-stack-gap-mobile) xl:gap-(--home-guidance-stack-gap)"
+            aria-describedby="home-guidance-instructions"
+            aria-label="Audience paths"
+            class="flex w-full max-w-(--home-guidance-card-max) flex-wrap items-start justify-center gap-(--home-guidance-tabs-gap-mobile) xl:gap-(--home-guidance-tabs-gap)"
+            role="group"
         >
-            <div
-                aria-label="Audience paths"
-                class="flex w-full flex-wrap items-center justify-center gap-(--home-guidance-tabs-gap-mobile) xl:gap-(--home-guidance-tabs-gap)"
-                role="tablist"
-            >
-                {
-                    guidancePanels.map((panel) => (
+            <p class="sr-only" id="home-guidance-instructions">
+                Choose an audience path to reveal the related links. You can
+                move between the audience buttons with Tab or the arrow keys.
+            </p>
+
+            {
+                guidancePanels.map((panel) => (
+                    <Fragment>
                         <button
                             aria-controls={`home-guidance-panel-${panel.id}`}
-                            aria-selected={
+                            aria-expanded={
                                 panel.id === defaultPanelId ? 'true' : 'false'
                             }
-                            class="inline-flex h-(--home-guidance-pill-height-mobile) items-center justify-center rounded-full bg-neutral-white px-(--home-guidance-pill-padding-x-mobile) text-(length:--home-guidance-pill-text-sm) leading-(--home-guidance-pill-leading-sm) font-medium whitespace-nowrap text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz xl:h-(--home-guidance-pill-height) xl:px-(--home-guidance-pill-padding-x) xl:text-button-md xl:leading-(--leading-button-md)"
+                            class="order-1 inline-flex h-(--home-guidance-pill-height-mobile) items-center justify-center rounded-full bg-neutral-white px-(--home-guidance-pill-padding-x-mobile) text-(length:--home-guidance-pill-text-sm) leading-(--home-guidance-pill-leading-sm) font-medium whitespace-nowrap text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet focus-visible:outline-solid aria-expanded:bg-secondary-soft-quartz xl:h-(--home-guidance-pill-height) xl:px-(--home-guidance-pill-padding-x) xl:text-button-md xl:leading-(--leading-button-md)"
                             data-guidance-trigger={panel.id}
-                            id={`home-guidance-tab-${panel.id}`}
-                            role="tab"
-                            tabindex={panel.id === defaultPanelId ? '0' : '-1'}
+                            id={`home-guidance-trigger-${panel.id}`}
                             type="button"
                         >
                             {panel.label}
                         </button>
-                    ))
-                }
-            </div>
 
-            {
-                guidancePanels.map((panel) => (
-                    <section
-                        aria-labelledby={`home-guidance-tab-${panel.id}`}
-                        class="w-full rounded-(--home-guidance-card-radius-mobile) bg-neutral-white p-(--home-guidance-card-padding-mobile) shadow-(--shadow-home-guidance-card-mobile) xl:rounded-(--home-guidance-card-radius) xl:p-(--home-guidance-card-padding) xl:shadow-(--shadow-home-guidance-card)"
-                        data-guidance-panel={panel.id}
-                        hidden={panel.id !== defaultPanelId}
-                        id={`home-guidance-panel-${panel.id}`}
-                        role="tabpanel"
-                    >
-                        <div class="flex flex-col gap-(--home-guidance-card-gap-mobile) xl:gap-(--home-guidance-card-gap)">
-                            <div class="flex flex-col gap-(--home-guidance-card-copy-gap-mobile) text-neutral-graphite xl:gap-(--home-guidance-card-copy-gap)">
-                                <h3 class="font-heading text-(length:--home-guidance-card-title-sm) leading-(--home-guidance-card-leading-sm) font-medium xl:text-heading-md xl:leading-heading-md xl:font-normal">
-                                    {panel.title}
-                                </h3>
-                                <p
-                                    class={joinClasses(
-                                        'text-(length:--home-guidance-card-body-sm) leading-(--home-guidance-card-body-leading-sm) font-normal xl:text-button-md',
-                                        panel.descriptionDesktopLeadingClass
-                                    )}
-                                >
-                                    {panel.description}
-                                </p>
-                            </div>
-
-                            <div class="flex flex-col gap-(--home-guidance-links-gap-mobile) xl:flex-row xl:flex-wrap xl:gap-(--home-guidance-links-gap)">
-                                {panel.links.map((link) => (
-                                    <Button
-                                        class="w-full justify-start text-left text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:min-w-0 xl:flex-1 [&>span]:w-full [&>span]:justify-start"
-                                        href={link.href}
-                                        icon="arrow_forward"
-                                        size="small"
-                                        variant="naked"
+                        <section
+                            aria-labelledby={`home-guidance-trigger-${panel.id}`}
+                            class="order-2 mt-[calc(var(--home-guidance-stack-gap-mobile)-var(--home-guidance-tabs-gap-mobile))] w-full basis-full rounded-(--home-guidance-card-radius-mobile) bg-neutral-white p-(--home-guidance-card-padding-mobile) shadow-(--shadow-home-guidance-card-mobile) xl:mt-[calc(var(--home-guidance-stack-gap)-var(--home-guidance-tabs-gap))] xl:rounded-(--home-guidance-card-radius) xl:p-(--home-guidance-card-padding) xl:shadow-(--shadow-home-guidance-card)"
+                            data-guidance-panel={panel.id}
+                            hidden={panel.id !== defaultPanelId}
+                            id={`home-guidance-panel-${panel.id}`}
+                            role="region"
+                        >
+                            <div class="flex flex-col gap-(--home-guidance-card-gap-mobile) xl:gap-(--home-guidance-card-gap)">
+                                <div class="flex flex-col gap-(--home-guidance-card-copy-gap-mobile) text-neutral-graphite xl:gap-(--home-guidance-card-copy-gap)">
+                                    <h3 class="font-heading text-(length:--home-guidance-card-title-sm) leading-(--home-guidance-card-leading-sm) font-medium xl:text-heading-md xl:leading-heading-md xl:font-normal">
+                                        {panel.title}
+                                    </h3>
+                                    <p
+                                        class={joinClasses(
+                                            'text-(length:--home-guidance-card-body-sm) leading-(--home-guidance-card-body-leading-sm) font-normal xl:text-button-md',
+                                            panel.descriptionDesktopLeadingClass
+                                        )}
                                     >
-                                        <span class="flex items-center gap-(--home-guidance-link-gap-mobile) xl:gap-(--home-guidance-link-gap)">
-                                            <span
-                                                aria-hidden="true"
-                                                class="flex size-(--home-guidance-link-icon-box-size-mobile) shrink-0 items-center justify-center rounded-(--home-guidance-link-icon-box-radius-mobile) bg-secondary-soft-quartz xl:size-(--home-guidance-link-icon-box-size) xl:rounded-(--home-guidance-link-icon-box-radius)"
-                                            >
-                                                <Icon
-                                                    ariaHidden={true}
-                                                    class="text-primary-violet"
-                                                    name="source"
-                                                />
+                                        {panel.description}
+                                    </p>
+                                </div>
+
+                                <div class="flex flex-col gap-(--home-guidance-links-gap-mobile) xl:flex-row xl:flex-wrap xl:gap-(--home-guidance-links-gap)">
+                                    {panel.links.map((link) => (
+                                        <Button
+                                            class="w-full justify-start text-left text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:min-w-0 xl:flex-1 [&>span]:w-full [&>span]:justify-start"
+                                            href={link.href}
+                                            icon="arrow_forward"
+                                            size="small"
+                                            variant="naked"
+                                        >
+                                            <span class="flex items-center gap-(--home-guidance-link-gap-mobile) xl:gap-(--home-guidance-link-gap)">
+                                                <span
+                                                    aria-hidden="true"
+                                                    class="flex size-(--home-guidance-link-icon-box-size-mobile) shrink-0 items-center justify-center rounded-(--home-guidance-link-icon-box-radius-mobile) bg-secondary-soft-quartz xl:size-(--home-guidance-link-icon-box-size) xl:rounded-(--home-guidance-link-icon-box-radius)"
+                                                >
+                                                    <Icon
+                                                        ariaHidden={true}
+                                                        class="text-primary-violet"
+                                                        name="source"
+                                                    />
+                                                </span>
+                                                <span class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)">
+                                                    {link.label}
+                                                </span>
                                             </span>
-                                            <span class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)">
-                                                {link.label}
-                                            </span>
-                                        </span>
-                                    </Button>
-                                ))}
+                                        </Button>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </Fragment>
                 ))
             }
         </div>

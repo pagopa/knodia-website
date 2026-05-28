@@ -1,22 +1,21 @@
 const roots = document.querySelectorAll<HTMLElement>('[data-home-guidance]')
 
 roots.forEach((root) => {
-    const tabs = Array.from(
-        root.querySelectorAll<HTMLButtonElement>('[role="tab"]')
+    const triggers = Array.from(
+        root.querySelectorAll<HTMLButtonElement>('[data-guidance-trigger]')
     )
     const panels = Array.from(
-        root.querySelectorAll<HTMLElement>('[role="tabpanel"]')
+        root.querySelectorAll<HTMLElement>('[data-guidance-panel]')
     )
 
-    const activateTab = (panelId: string | undefined) => {
+    const activatePanel = (panelId: string | undefined) => {
         if (panelId == null) {
             return
         }
 
-        tabs.forEach((tab) => {
-            const isActive = tab.dataset.guidanceTrigger === panelId
-            tab.setAttribute('aria-selected', String(isActive))
-            tab.tabIndex = isActive ? 0 : -1
+        triggers.forEach((trigger) => {
+            const isExpanded = trigger.dataset.guidanceTrigger === panelId
+            trigger.setAttribute('aria-expanded', String(isExpanded))
         })
 
         panels.forEach((panel) => {
@@ -24,12 +23,16 @@ roots.forEach((root) => {
         })
     }
 
-    tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => {
-            activateTab(tab.dataset.guidanceTrigger)
+    triggers.forEach((trigger, index) => {
+        trigger.addEventListener('click', () => {
+            activatePanel(trigger.dataset.guidanceTrigger)
         })
 
-        tab.addEventListener('keydown', (event: KeyboardEvent) => {
+        trigger.addEventListener('focus', () => {
+            activatePanel(trigger.dataset.guidanceTrigger)
+        })
+
+        trigger.addEventListener('keydown', (event: KeyboardEvent) => {
             const key = event.key
 
             if (
@@ -46,18 +49,18 @@ roots.forEach((root) => {
             let nextIndex = index
 
             if (key === 'ArrowRight') {
-                nextIndex = (index + 1) % tabs.length
+                nextIndex = (index + 1) % triggers.length
             } else if (key === 'ArrowLeft') {
-                nextIndex = (index - 1 + tabs.length) % tabs.length
+                nextIndex = (index - 1 + triggers.length) % triggers.length
             } else if (key === 'Home') {
                 nextIndex = 0
             } else if (key === 'End') {
-                nextIndex = tabs.length - 1
+                nextIndex = triggers.length - 1
             }
 
-            const nextTab = tabs[nextIndex]
-            activateTab(nextTab?.dataset.guidanceTrigger)
-            nextTab?.focus()
+            const nextTrigger = triggers[nextIndex]
+            activatePanel(nextTrigger?.dataset.guidanceTrigger)
+            nextTrigger?.focus()
         })
     })
 })
