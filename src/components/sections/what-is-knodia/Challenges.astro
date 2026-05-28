@@ -1,0 +1,169 @@
+---
+import analyticsTile from '../../../assets/backgrounds/what-is-knodia-challenges-analytics.png'
+import networkTile from '../../../assets/backgrounds/what-is-knodia-challenges-network.png'
+import Button from '../../Button.astro'
+import Icon from '../../Icon'
+
+type Challenge = {
+    title: string
+    description: string
+}
+
+const challenges: Challenge[] = [
+    {
+        title: 'Repeated integration effort',
+        description:
+            'Each new cross-border interaction can trigger new integration work, new agreements and new coordination effort, often starting from scratch.',
+    },
+    {
+        title: 'Limited scalability',
+        description:
+            'What works in one interaction or one country is often hard to reuse, extend or replicate elsewhere.',
+    },
+    {
+        title: 'Unclear access conditions',
+        description:
+            'Who can access what, under which conditions, is not always easy to define, verify or govern across domains.',
+    },
+    {
+        title: 'Fragmented rules and vocabularies',
+        description:
+            'Different domains still rely on different categories, attributes and vocabularies, making cross-border coordination harder than it should be.',
+    },
+]
+
+const ctaHref = '/why-knodia'
+---
+
+<section
+    aria-labelledby="what-is-knodia-challenges-title"
+    class="bg-primary-violet-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-10 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:grid xl:grid-cols-[minmax(0,571px)_minmax(0,531px)] xl:justify-between xl:gap-14 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div class="flex flex-col gap-8 xl:gap-10">
+            <div class="flex flex-col gap-6 text-neutral-graphite">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="what-is-knodia-challenges-title"
+                >
+                    <span class="block">The challenges</span>
+                    <span class="block">Knodia tackles</span>
+                </h2>
+
+                <p
+                    class="max-w-[392px] text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:max-w-full xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    Cross-border interoperability often breaks down around the
+                    same recurring challenges. Knodia is designed to solve them.
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-4 xl:gap-6">
+                {
+                    challenges.map((challenge) => (
+                        <article class="flex items-start gap-4 rounded-2xl bg-neutral-white px-5 py-5 shadow-(--shadow-home-guidance-card-mobile) xl:rounded-2xl xl:px-6 xl:py-6 xl:shadow-(--shadow-home-guidance-card)">
+                            <span
+                                aria-hidden="true"
+                                class="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center text-primary-violet xl:mt-1"
+                            >
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-[20px] xl:text-[22px]"
+                                    name="info"
+                                />
+                            </span>
+
+                            <div class="flex min-w-0 flex-col gap-2">
+                                <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-intro-lg xl:leading-intro-lg xl:font-normal">
+                                    {challenge.title}
+                                </h3>
+
+                                <p class="text-(length:--text-home-difference-card-body-sm) leading-home-difference-card-body-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {challenge.description}
+                                </p>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div
+            class="flex w-full flex-col gap-6 md:max-w-[531px] md:self-end xl:max-w-none xl:gap-10"
+        >
+            <div class="flex justify-start md:justify-end">
+                <Button
+                    class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
+                    href={ctaHref}
+                    icon="arrow_forward"
+                    size="small"
+                    variant="naked"
+                >
+                    <span
+                        class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+                    >
+                        Why choose Knodia
+                    </span>
+                </Button>
+            </div>
+
+            <div
+                class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:h-[604px] xl:items-center xl:justify-between"
+            >
+                <div class="flex flex-col gap-4 xl:h-[512px] xl:pb-12">
+                    <div
+                        class="h-[220px] overflow-hidden rounded-3xl bg-neutral-surface-gray sm:aspect-square sm:h-auto xl:aspect-auto xl:h-64"
+                    >
+                        <img
+                            alt=""
+                            class="size-full object-cover object-center"
+                            decoding="async"
+                            height={analyticsTile.height}
+                            loading="eager"
+                            src={analyticsTile.src}
+                            width={analyticsTile.width}
+                        />
+                    </div>
+
+                    <div
+                        class="flex min-h-[144px] flex-1 items-end rounded-3xl bg-primary-violet p-6 xl:min-h-[192px] xl:p-8"
+                    >
+                        <h3
+                            class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-normal text-neutral-white xl:text-heading-md xl:leading-heading-md"
+                        >
+                            A single shared framework.
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 xl:h-[512px] xl:pt-12">
+                    <div
+                        class="flex min-h-[144px] flex-1 items-end rounded-3xl bg-secondary-muted-amber p-6 xl:min-h-[192px] xl:p-8"
+                    >
+                        <h3
+                            class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-normal text-neutral-graphite xl:text-heading-md xl:leading-heading-md"
+                        >
+                            Beyond bilateral agreements.
+                        </h3>
+                    </div>
+
+                    <div
+                        class="h-[220px] overflow-hidden rounded-3xl bg-neutral-surface-gray sm:aspect-square sm:h-auto xl:aspect-auto xl:h-64"
+                    >
+                        <img
+                            alt=""
+                            class="size-full object-cover object-center"
+                            decoding="async"
+                            height={networkTile.height}
+                            loading="eager"
+                            src={networkTile.src}
+                            width={networkTile.width}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
