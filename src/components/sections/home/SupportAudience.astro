@@ -1,0 +1,65 @@
+---
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+
+type SupportItem = {
+    icon: IconName
+    label: string
+}
+
+const supportItems: SupportItem[] = [
+    {
+        icon: 'domain',
+        label: 'EU public administrations',
+    },
+    {
+        icon: 'account_balance',
+        label: 'EU institutions and agencies',
+    },
+    {
+        icon: 'corporate_fare',
+        label: 'Private sector organisations',
+    },
+]
+---
+
+<section aria-labelledby="home-support-audience-title" class="bg-neutral-white">
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-start gap-(--home-support-section-gap-mobile) px-(--header-mobile-padding-x) pt-(--home-support-padding-top-mobile) pb-(--home-support-padding-bottom-mobile) md:px-(--home-hero-inline-padding-md) xl:items-center xl:gap-(--home-support-section-gap) xl:px-(--header-inline-padding) xl:pt-(--home-support-padding-top) xl:pb-(--home-support-padding-bottom)"
+    >
+        <h2
+            class="w-full font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-center xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+            id="home-support-audience-title"
+        >
+            Who Knodia can support
+        </h2>
+
+        <div
+            class="flex w-full flex-col gap-(--home-support-list-gap-mobile) xl:flex-row xl:items-start xl:justify-between xl:gap-0"
+        >
+            {
+                supportItems.map((item) => (
+                    <article class="flex items-center gap-(--home-support-item-gap-mobile) xl:w-(--home-support-item-width) xl:flex-col xl:gap-(--home-support-item-gap) xl:px-(--home-support-item-padding-x)">
+                        <div
+                            aria-hidden="true"
+                            class="relative flex size-(--home-support-icon-shell-size-mobile) shrink-0 items-center justify-center rounded-full border-(length:--border-home-support-icon-outer-mobile) border-solid border-primary-violet-muted xl:size-(--home-support-icon-shell-size) xl:border-(length:--border-home-support-icon-outer)"
+                        >
+                            <div class="absolute inset-(--home-support-icon-ring-inset) rounded-full border-(length:--border-home-support-icon-inner) border-solid border-primary-violet-60" />
+                            <div class="relative z-10 flex size-(--home-support-icon-badge-size-mobile) items-center justify-center rounded-full bg-primary-violet-surface xl:size-(--home-support-icon-badge-size) xl:bg-transparent">
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-home-support-icon-sm text-primary-violet xl:text-home-support-icon-lg"
+                                    name={item.icon}
+                                />
+                            </div>
+                        </div>
+
+                        <h3 class="font-heading text-home-support-item-sm leading-home-support-item-sm font-normal text-neutral-graphite xl:text-center xl:text-heading-md xl:leading-heading-md">
+                            {item.label}
+                        </h3>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

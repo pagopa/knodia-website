@@ -51,6 +51,7 @@ If you do create a new component:
 
 - Build it as an `.astro` component in `src/components/`.
 - Keep single-file components flat in `src/components/`.
+- **Page sections** (components that represent a section of a specific page, not reusable across pages) go under `src/components/sections/<page-name>/`, where `<page-name>` matches the page's folder in `src/pages/` (e.g. a hero section for `src/pages/what-is-knodia/` lives in `src/components/sections/what-is-knodia/Hero.astro`). Shared, cross-page components stay at the root of `src/components/`.
 - **Create a component folder only when the component actually needs multiple related files** (for example variants, supporting data/types, subcomponents, tests, or component-scoped assets). In those cases, group them under one PascalCase folder, e.g. `src/components/Icon/` or `src/components/Button/`.
 - Do not scatter a multi-file component's siblings across `src/components/` at the root. If two or more files exist only to support one component, they belong inside that component's folder.
 - In a multi-file component folder, keep the entry component, co-located variants, supporting data/types, subcomponents, and component-scoped assets together. Import the component via the folder using an `index.ts` re-export, or via the explicit file path.

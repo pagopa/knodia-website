@@ -1,0 +1,50 @@
+---
+import bannerBackground from '../../../assets/backgrounds/home-foundations-banner-desktop.png'
+
+const sectionDescription =
+    'Knodia extends a proven Italian national interoperability model into a cross-border framework for Europe, building on operational experience and ready to scale.'
+---
+
+<section
+    aria-labelledby="home-foundations-title"
+    class="relative isolate overflow-hidden bg-neutral-white"
+>
+    <div aria-hidden="true" class="absolute inset-0">
+        <img
+            alt=""
+            class="size-full object-cover"
+            decoding="async"
+            height={bannerBackground.height}
+            loading="lazy"
+            src={bannerBackground.src}
+            width={bannerBackground.width}
+        />
+        <div class="absolute inset-0 bg-white/60"></div>
+    </div>
+
+    <div
+        class="relative mx-auto flex min-h-(--home-foundations-height-mobile) w-full max-w-(--header-shell-max) items-center justify-center px-(--header-mobile-padding-x) pt-(--home-foundations-padding-top-mobile) pb-(--home-foundations-padding-bottom-mobile) md:px-(--home-hero-inline-padding-md) xl:min-h-(--home-foundations-height) xl:px-(--header-inline-padding) xl:py-0"
+    >
+        <div
+            class="flex max-w-(--home-foundations-content-max-mobile) flex-col items-center gap-(--home-foundations-gap-mobile) text-center xl:max-w-(--home-foundations-content-max) xl:gap-(--home-foundations-gap)"
+        >
+            <h2
+                class="font-heading text-home-foundations-title-sm leading-home-foundations-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                id="home-foundations-title"
+            >
+                <span class="xl:hidden">
+                    A new interop model with strong foundations
+                </span>
+                <span class="hidden xl:inline">
+                    A new interoperability model with strong foundations
+                </span>
+            </h2>
+
+            <p
+                class="text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)"
+            >
+                {sectionDescription}
+            </p>
+        </div>
+    </div>
+</section>

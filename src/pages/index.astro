@@ -1,5 +1,22 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import CtaBanner from '../components/sections/home/CtaBanner.astro'
+import DomainsConnect from '../components/sections/home/DomainsConnect.astro'
+import FoundationsBanner from '../components/sections/home/FoundationsBanner.astro'
+import Hero from '../components/sections/home/Hero.astro'
+import InteroperabilityPaths from '../components/sections/home/InteroperabilityPaths.astro'
+import SupportAudience from '../components/sections/home/SupportAudience.astro'
+import UseCaseSpotlight from '../components/sections/home/UseCaseSpotlight.astro'
+import WhatMakesKnodiaDifferent from '../components/sections/home/WhatMakesKnodiaDifferent.astro'
+import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="Home"> Home </Layout>
+<Layout title="Home">
+    <Hero />
+    <DomainsConnect />
+    <SupportAudience />
+    <InteroperabilityPaths />
+    <WhatMakesKnodiaDifferent />
+    <FoundationsBanner />
+    <UseCaseSpotlight />
+    <CtaBanner />
+</Layout>
