@@ -1,0 +1,77 @@
+---
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+
+type GlanceItem = {
+    icon: IconName
+    title: string
+    description: string
+}
+
+const glanceItems: GlanceItem[] = [
+    {
+        icon: 'graph_5',
+        title: 'A scalable federated model',
+        description:
+            'A lightweight model that can be reused across domains and Member States.',
+    },
+    {
+        icon: 'verified_user',
+        title: 'Security and privacy-by-design',
+        description:
+            'Knodia is built to support trusted exchanges and reduce unnecessary data exposure.',
+    },
+    {
+        icon: 'stacks',
+        title: 'Interoperability across all 4 layers',
+        description:
+            'Knodia brings together legal, organizational, semantic and technical interoperability.',
+    },
+]
+---
+
+<section aria-labelledby="what-is-knodia-glance-title" class="bg-neutral-white">
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-8 px-(--header-mobile-padding-x) pt-10 pb-10 md:px-(--home-hero-inline-padding-md) xl:gap-14 xl:px-(--header-inline-padding) xl:pt-32 xl:pb-32"
+    >
+        <h2
+            class="w-full text-center font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+            id="what-is-knodia-glance-title"
+        >
+            Knodia at a glance
+        </h2>
+
+        <div
+            class="flex w-full flex-col items-center gap-10 md:flex-row md:flex-wrap md:items-start md:justify-center md:gap-x-8 md:gap-y-10 xl:flex-nowrap xl:justify-between xl:gap-0"
+        >
+            {
+                glanceItems.map((item) => (
+                    <article class="flex w-full max-w-[320px] flex-col items-center gap-6 px-2 text-center xl:w-(--home-support-item-width) xl:max-w-(--home-support-item-width) xl:gap-8">
+                        <div
+                            aria-hidden="true"
+                            class="relative flex size-24 shrink-0 items-center justify-center rounded-full border-4 border-solid border-primary-violet-muted xl:size-(--home-support-icon-shell-size)"
+                        >
+                            <div class="absolute inset-1.5 rounded-full border-2 border-solid border-primary-violet-60 xl:inset-(--home-support-icon-ring-inset)" />
+
+                            <Icon
+                                ariaHidden={true}
+                                class="relative z-10 text-4xl text-primary-violet xl:text-home-support-icon-lg"
+                                name={item.icon}
+                            />
+                        </div>
+
+                        <div class="flex flex-col items-center gap-4">
+                            <h3 class="font-heading text-home-domains-title-sm leading-home-domains-title-sm font-normal text-neutral-graphite xl:text-heading-md xl:leading-heading-md">
+                                {item.title}
+                            </h3>
+
+                            <p class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                {item.description}
+                            </p>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>
