@@ -101,25 +101,28 @@ function joinClasses(...classes: Array<string | undefined>) {
             <div
                 aria-describedby="what-is-knodia-built-to-do-instructions"
                 aria-label="Knodia capabilities"
+                aria-orientation="vertical"
                 class="flex flex-col gap-4 xl:gap-6"
-                role="group"
+                role="tablist"
             >
                 <p class="sr-only" id="what-is-knodia-built-to-do-instructions">
-                    Choose a capability card to reveal the related explanation
-                    and product area. You can move between cards with Tab, the
-                    arrow keys, Home or End.
+                    Choose a capability tab to reveal the related explanation
+                    and product area. Use the arrow keys, Home or End to move
+                    between tabs. Press Tab to move into the selected panel.
                 </p>
 
                 {
                     builtToDoPanels.map((panel) => (
                         <button
                             aria-controls={`what-is-knodia-built-to-do-panel-${panel.id}`}
-                            aria-expanded={
+                            aria-selected={
                                 panel.id === defaultPanelId ? 'true' : 'false'
                             }
-                            class="flex w-full items-start gap-4 rounded-2xl bg-neutral-white px-5 py-5 text-left shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-expanded:bg-secondary-soft-quartz xl:gap-6 xl:px-6 xl:py-6"
+                            class="flex w-full items-start gap-4 rounded-2xl bg-neutral-white px-5 py-5 text-left shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz xl:gap-6 xl:px-6 xl:py-6"
                             data-built-to-do-trigger={panel.id}
                             id={`what-is-knodia-built-to-do-trigger-${panel.id}`}
+                            role="tab"
+                            tabindex={panel.id === defaultPanelId ? '0' : '-1'}
                             type="button"
                         >
                             <span
@@ -150,7 +153,8 @@ function joinClasses(...classes: Array<string | undefined>) {
                             data-built-to-do-panel={panel.id}
                             hidden={panel.id !== defaultPanelId}
                             id={`what-is-knodia-built-to-do-panel-${panel.id}`}
-                            role="region"
+                            role="tabpanel"
+                            tabindex={panel.id === defaultPanelId ? '0' : '-1'}
                         >
                             <div
                                 aria-hidden="true"
