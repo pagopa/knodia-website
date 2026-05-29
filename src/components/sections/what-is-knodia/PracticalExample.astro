@@ -1,5 +1,6 @@
 ---
 import practicalExampleDiagram from '../../../assets/backgrounds/what-is-knodia-practical-example-diagram.png'
+import practicalExampleDiagramMobile from '../../../assets/backgrounds/what-is-knodia-practical-example-diagram-mobile.png'
 import Icon from '../../Icon'
 import type { IconName } from '../../Icon'
 
@@ -166,8 +167,24 @@ const comparisonCards: ComparisonCard[] = [
         </div>
 
         <div class="w-full max-w-289.5">
+            <div class="md:hidden">
+                <div
+                    class="rounded-2xl bg-white shadow-[0_24px_64px_rgba(78,81,230,0.12)]"
+                >
+                    <img
+                        alt="Diagram showing ANPR and the B\u00FCrgeramt exchanging data through the Italian and German Knodes."
+                        class="block h-auto w-full rounded-2xl"
+                        decoding="async"
+                        height={practicalExampleDiagramMobile.height}
+                        loading="lazy"
+                        src={practicalExampleDiagramMobile.src}
+                        width={practicalExampleDiagramMobile.width}
+                    />
+                </div>
+            </div>
+
             <div
-                class="overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                class="hidden overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] md:block [&::-webkit-scrollbar]:hidden"
             >
                 <div
                     class="min-w-190 rounded-2xl bg-white shadow-[0_24px_64px_rgba(78,81,230,0.12)] md:min-w-0 md:shadow-none"
@@ -183,12 +200,6 @@ const comparisonCards: ComparisonCard[] = [
                     />
                 </div>
             </div>
-
-            <p
-                class="mt-3 text-center font-body text-(length:--text-home-use-case-caption-sm) leading-(--leading-home-use-case-caption-sm) font-medium text-neutral-medium-gray md:hidden"
-            >
-                Scroll horizontally to inspect the full interoperability flow.
-            </p>
         </div>
     </div>
 </section>
