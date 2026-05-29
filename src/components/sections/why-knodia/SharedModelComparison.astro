@@ -1,0 +1,204 @@
+---
+import Icon from '../../Icon'
+
+type ComparisonRow = {
+    traditionalTitle: string
+    traditionalDescription: string
+    knodiaTitle: string
+    knodiaDescription: string
+}
+
+const comparisonRows: ComparisonRow[] = [
+    {
+        traditionalTitle: 'Point-to-point integrations',
+        traditionalDescription:
+            'Cross-border interaction often depends on one-off agreements and bespoke integrations between individual parties.',
+        knodiaTitle: 'A shared federation layer',
+        knodiaDescription:
+            'Domains connect through a common model, reducing the need for bespoke integration every time a new interaction is introduced.',
+    },
+    {
+        traditionalTitle: 'Coordination that gets heavier over time',
+        traditionalDescription:
+            'Different legal frameworks, roles and operational steps make cross-border coordination harder to align and maintain.',
+        knodiaTitle: 'A structured operating model',
+        knodiaDescription:
+            'Shared roles, flows and governance mechanisms make coordination clearer across domains, while leaving room for national requirements.',
+    },
+    {
+        traditionalTitle: 'Repeated effort in every new context',
+        traditionalDescription:
+            'Extending the same interaction to a new country or domain often means rebuilding the setup from the beginning.',
+        knodiaTitle: 'More reuse, less redesign',
+        knodiaDescription:
+            'The same foundations can be reused across countries and domains, reducing repeated effort as the model grows.',
+    },
+]
+---
+
+<section
+    aria-labelledby="why-knodia-shared-model-title"
+    class="bg-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-8 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-17 xl:px-(--header-inline-padding) xl:py-18"
+    >
+        <div class="flex max-w-172 flex-col items-center gap-6 text-center">
+            <h2
+                class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                id="why-knodia-shared-model-title"
+            >
+                <span class="block">From one-off integrations</span>
+                <span class="block">to a shared model</span>
+            </h2>
+
+            <span
+                aria-hidden="true"
+                class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"></span>
+
+            <p
+                class="font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Traditional approaches often solve cross-border interaction case
+                by case. Knodia is designed to replace that logic with a more
+                consistent and scalable foundation.
+            </p>
+        </div>
+
+        <div class="w-full max-w-289.5 xl:hidden">
+            <div class="flex flex-col gap-6">
+                {
+                    comparisonRows.map((row) => (
+                        <article class="grid gap-3 md:grid-cols-[minmax(0,1fr)_3rem_minmax(0,1fr)] md:items-center md:gap-4">
+                            <div class="flex h-full flex-col gap-3 rounded-3xl bg-primary-violet-surface px-5 py-6 md:px-6">
+                                <span class="font-body text-button-sm leading-button-sm font-medium text-neutral-graphite">
+                                    Traditional approach
+                                </span>
+
+                                <div class="flex flex-col gap-2">
+                                    <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite">
+                                        {row.traditionalTitle}
+                                    </h3>
+
+                                    <p class="font-body text-button-sm leading-button-sm font-medium text-neutral-medium-gray">
+                                        {row.traditionalDescription}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div
+                                aria-hidden="true"
+                                class="flex items-center justify-center md:h-full"
+                            >
+                                <span class="inline-flex size-12 items-center justify-center rounded-full bg-primary-violet-surface text-primary-violet md:size-10 md:bg-neutral-white md:text-primary-violet-muted">
+                                    <span class="rotate-90 md:rotate-0">
+                                        <Icon
+                                            ariaHidden={true}
+                                            class="text-[24px] md:text-[22px]"
+                                            name="arrow_forward"
+                                        />
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="flex h-full flex-col gap-3 rounded-3xl border-[3px] border-primary-violet-muted bg-neutral-white px-5 py-6 md:px-6">
+                                <span class="font-body text-button-sm leading-button-sm font-medium text-primary-violet">
+                                    With Knodia
+                                </span>
+
+                                <div class="flex flex-col gap-2">
+                                    <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite">
+                                        {row.knodiaTitle}
+                                    </h3>
+
+                                    <p class="font-body text-button-sm leading-button-sm font-medium text-neutral-medium-gray">
+                                        {row.knodiaDescription}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="hidden w-full max-w-289.5 flex-col gap-4 xl:flex">
+            <div class="grid grid-cols-[1fr_1fr]">
+                <p
+                    class="text-center font-heading text-intro-lg leading-intro-lg font-normal text-neutral-graphite"
+                >
+                    Traditional approach
+                </p>
+
+                <p
+                    class="text-center font-heading text-intro-lg leading-intro-lg font-normal text-primary-violet"
+                >
+                    With Knodia
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-4">
+                {
+                    comparisonRows.map((row) => (
+                        <article class="grid grid-cols-[1fr_1fr]">
+                            <div class="flex h-41 w-139 justify-self-start">
+                                <div class="flex h-full w-128.75 items-center rounded-l-3xl bg-primary-violet-surface px-8 py-8 pr-4">
+                                    <div class="flex w-full max-w-111.5 flex-col gap-2">
+                                        <h3 class="font-heading text-intro-lg leading-intro-lg font-normal text-neutral-graphite">
+                                            {row.traditionalTitle}
+                                        </h3>
+
+                                        <p class="font-body text-button-sm leading-button-sm font-medium text-neutral-medium-gray">
+                                            {row.traditionalDescription}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <svg
+                                    aria-hidden="true"
+                                    class="h-41 w-10.25 shrink-0 text-primary-light-violet"
+                                    fill="none"
+                                    viewBox="0 0 41 164"
+                                >
+                                    <path
+                                        d="M0 0L41 82L0 164V0Z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                            </div>
+
+                            <div class="relative h-41 w-144.75 justify-self-end rounded-r-3xl border-[3px] border-primary-violet-muted bg-neutral-white">
+                                <svg
+                                    aria-hidden="true"
+                                    class="absolute top-0.75 left-0.75 h-39.5 w-9.5"
+                                    fill="none"
+                                    viewBox="0 0 38 158"
+                                >
+                                    <path
+                                        d="M0 0L38 79L0 158V0Z"
+                                        fill="var(--color-neutral-white)"
+                                        stroke="var(--color-primary-violet-muted)"
+                                        stroke-linejoin="round"
+                                        stroke-width="3"
+                                    />
+                                </svg>
+
+                                <div class="flex h-full items-center justify-end px-8">
+                                    <div class="flex w-full max-w-111.75 flex-col gap-2">
+                                        <h3 class="font-heading text-intro-lg leading-intro-lg font-normal text-neutral-graphite">
+                                            {row.knodiaTitle}
+                                        </h3>
+
+                                        <p class="font-body text-button-sm leading-button-sm font-medium text-neutral-medium-gray">
+                                            {row.knodiaDescription}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
