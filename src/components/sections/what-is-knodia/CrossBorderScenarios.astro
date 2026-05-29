@@ -1,0 +1,127 @@
+---
+import Button from '../../Button.astro'
+
+type ScenarioCard = {
+    title: string
+    description?: string
+    href: string
+    tags: string[]
+}
+
+const viewAllHref = '/#use-cases'
+
+const scenarioCards: ScenarioCard[] = [
+    {
+        title: 'A distributed base register',
+        description:
+            'How a shared model can support a register distributed across multiple organizations and Member States.',
+        href: viewAllHref,
+        tags: ['SOURCE DATA'],
+    },
+    {
+        title: 'Handling delayed responses',
+        description:
+            'How organizations can manage requests when a response cannot be produced in real time.',
+        href: viewAllHref,
+        tags: ['ASYNCHRONOUS EXCHANGE'],
+    },
+    {
+        title: 'Standardised communication',
+        href: viewAllHref,
+        tags: ['MANY-TO-MANY', 'SHARED PROTOCOL'],
+    },
+]
+---
+
+<section
+    aria-labelledby="what-is-knodia-scenarios-title"
+    class="bg-[linear-gradient(to_bottom,var(--color-primary-violet-surface)_0%,var(--color-primary-violet-surface)_70%,var(--color-neutral-white)_100%)]"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-8 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="flex w-full flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:gap-6"
+        >
+            <div class="flex flex-col gap-6 xl:gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="what-is-knodia-scenarios-title"
+                >
+                    <span class="block">Cross-border scenarios</span>
+                    <span class="block">Knodia can support</span>
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <div class="flex flex-col gap-6 xl:items-end">
+                <p
+                    class="max-w-(--home-domains-copy-width-mobile) font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:max-w-(--home-domains-copy-width) xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    A few concrete examples to show how the framework can be
+                    applied in different operational contexts.
+                </p>
+
+                <Button
+                    class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:self-end xl:[&>span]:gap-(--button-gap)"
+                    href={viewAllHref}
+                    icon="arrow_forward"
+                    size="small"
+                    variant="naked"
+                >
+                    <span
+                        class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+                    >
+                        View all
+                    </span>
+                </Button>
+            </div>
+        </div>
+
+        <div class="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
+            {
+                scenarioCards.map((card) => (
+                    <article class="md:last:col-span-2 xl:last:col-span-1">
+                        <div class="flex h-full flex-col justify-between gap-8 rounded-3xl bg-neutral-white p-6 shadow-(--shadow-what-is-knodia-audience-card) xl:p-8">
+                            <div class="flex flex-col gap-4">
+                                <div class="flex flex-wrap gap-2 xl:gap-4">
+                                    {card.tags.map((tag) => (
+                                        <span class="inline-flex h-(--home-use-case-tag-height-mobile) w-fit items-center justify-center rounded-full border border-primary-violet px-(--home-use-case-tag-padding-x-mobile) font-caption text-home-use-case-tag-sm leading-home-use-case-tag-sm font-semibold text-primary-violet uppercase xl:h-(--home-use-case-tag-height) xl:px-(--home-use-case-tag-padding-x) xl:text-(length:--text-home-use-case-tag) xl:leading-(--leading-home-use-case-tag)">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal">
+                                    {card.title}
+                                </h3>
+
+                                {card.description ? (
+                                    <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                        {card.description}
+                                    </p>
+                                ) : null}
+                            </div>
+
+                            <Button
+                                class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
+                                href={card.href}
+                                icon="arrow_forward"
+                                size="small"
+                                variant="naked"
+                            >
+                                <span class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)">
+                                    Read more
+                                </span>
+                            </Button>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

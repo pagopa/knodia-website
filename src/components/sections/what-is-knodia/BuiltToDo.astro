@@ -1,0 +1,207 @@
+---
+import type { ImageMetadata } from 'astro'
+import Button from '../../Button.astro'
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+import compliancePanelBackground from '../../../assets/backgrounds/what-is-knodia-built-to-do-compliance.png'
+import securityPanelBackground from '../../../assets/backgrounds/what-is-knodia-built-to-do-security.png'
+import technologyPanelBackground from '../../../assets/backgrounds/what-is-knodia-built-to-do-technology.png'
+
+type BuiltToDoPanelId = 'technology' | 'security' | 'compliance'
+
+type BuiltToDoPanel = {
+    id: BuiltToDoPanelId
+    title: string
+    description: string
+    href: string
+    hrefLabel: string
+    icon: IconName
+    image: ImageMetadata
+    imageClass: string
+}
+
+const builtToDoPanels: BuiltToDoPanel[] = [
+    {
+        id: 'technology',
+        title: 'Support interoperability at scale',
+        description:
+            'Knodia is designed to make cross-border interoperability easier to extend, govern and maintain over time through a shared model that can be reused across services, organizations and Member States.',
+        href: '/#product-technology',
+        hrefLabel: 'Explore technology',
+        icon: 'support',
+        image: technologyPanelBackground,
+        imageClass: 'size-full object-cover',
+    },
+    {
+        id: 'security',
+        title: 'Enable trusted cross-border interactions',
+        description:
+            'Knodia handles both authentication and authorization through a trusted model, so organizations in different domains can interact without relying on one-off bilateral integrations.',
+        href: '/#product-security',
+        hrefLabel: 'Explore security',
+        icon: 'integration_instructions',
+        image: securityPanelBackground,
+        imageClass: 'h-[150.82%] w-[169.3%] left-[-2.07%] top-[-4.83%]',
+    },
+    {
+        id: 'compliance',
+        title: 'Bring structure to cross-border exchange',
+        description:
+            'Knodia provides a common framework to support legal, organizational, semantic and technical interoperability through shared rules, vocabularies, formats and APIs.',
+        href: '/#product-compliance',
+        hrefLabel: 'Explore compliance',
+        icon: 'compare_arrows',
+        image: compliancePanelBackground,
+        imageClass: 'h-[114.86%] w-[128.93%] left-[-22.8%] top-0',
+    },
+]
+
+const defaultPanelId = builtToDoPanels[0].id
+
+function joinClasses(...classes: Array<string | undefined>) {
+    return classes.filter(Boolean).join(' ')
+}
+---
+
+<section
+    aria-labelledby="what-is-knodia-built-to-do-title"
+    class="bg-linear-to-b from-neutral-white via-neutral-white to-primary-violet-surface"
+    data-built-to-do
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-10 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="flex max-w-171 flex-col items-center gap-6 text-center xl:gap-6"
+        >
+            <h2
+                class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                id="what-is-knodia-built-to-do-title"
+            >
+                What Knodia is built to do
+            </h2>
+
+            <div
+                aria-hidden="true"
+                class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+            >
+            </div>
+
+            <p
+                class="text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                A federated framework designed to make cross-border
+                interoperability trusted, structured and scalable.
+            </p>
+        </div>
+
+        <div
+            class="grid w-full max-w-289.5 gap-6 xl:grid-cols-[minmax(0,571px)_minmax(0,531px)] xl:items-start xl:gap-14"
+        >
+            <div
+                aria-describedby="what-is-knodia-built-to-do-instructions"
+                aria-label="Knodia capabilities"
+                aria-orientation="vertical"
+                class="flex flex-col gap-4 xl:gap-6"
+                role="tablist"
+            >
+                <p class="sr-only" id="what-is-knodia-built-to-do-instructions">
+                    Choose a capability tab to reveal the related explanation
+                    and product area. Use the arrow keys, Home or End to move
+                    between tabs. Press Tab to move into the selected panel.
+                </p>
+
+                {
+                    builtToDoPanels.map((panel) => (
+                        <button
+                            aria-controls={`what-is-knodia-built-to-do-panel-${panel.id}`}
+                            aria-selected={
+                                panel.id === defaultPanelId ? 'true' : 'false'
+                            }
+                            class="flex w-full items-start gap-4 rounded-2xl bg-neutral-white px-5 py-5 text-left shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz xl:gap-6 xl:px-6 xl:py-6"
+                            data-built-to-do-trigger={panel.id}
+                            id={`what-is-knodia-built-to-do-trigger-${panel.id}`}
+                            role="tab"
+                            tabindex={panel.id === defaultPanelId ? '0' : '-1'}
+                            type="button"
+                        >
+                            <span
+                                aria-hidden="true"
+                                class="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center text-primary-violet xl:mt-1"
+                            >
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-[22px]"
+                                    name={panel.icon}
+                                />
+                            </span>
+
+                            <span class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-intro-lg xl:leading-intro-lg xl:font-normal">
+                                {panel.title}
+                            </span>
+                        </button>
+                    ))
+                }
+            </div>
+
+            <div class="flex flex-col">
+                {
+                    builtToDoPanels.map((panel) => (
+                        <section
+                            aria-labelledby={`what-is-knodia-built-to-do-trigger-${panel.id}`}
+                            class="relative overflow-hidden rounded-3xl bg-white/70 p-6 shadow-[0_24px_64px_rgba(78,81,230,0.12)] ring-1 ring-white/45 backdrop-blur-[2px] xl:min-h-69 xl:p-8"
+                            data-built-to-do-panel={panel.id}
+                            hidden={panel.id !== defaultPanelId}
+                            id={`what-is-knodia-built-to-do-panel-${panel.id}`}
+                            role="tabpanel"
+                            tabindex={panel.id === defaultPanelId ? '0' : '-1'}
+                        >
+                            <div
+                                aria-hidden="true"
+                                class="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
+                            >
+                                <img
+                                    alt=""
+                                    class={joinClasses(
+                                        'absolute max-w-none rounded-[inherit]',
+                                        panel.imageClass
+                                    )}
+                                    decoding="async"
+                                    height={panel.image.height}
+                                    loading="lazy"
+                                    src={panel.image.src}
+                                    width={panel.image.width}
+                                />
+                                <div class="absolute inset-0 rounded-[inherit] bg-white/60" />
+                            </div>
+
+                            <div class="relative flex h-full flex-col justify-between gap-8 xl:min-h-53">
+                                <p class="max-w-116.75 text-(length:--text-home-difference-card-body-sm) leading-home-difference-card-body-sm font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {panel.description}
+                                </p>
+
+                                <div class="flex justify-start">
+                                    <Button
+                                        class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
+                                        href={panel.href}
+                                        icon="arrow_forward"
+                                        size="small"
+                                        variant="naked"
+                                    >
+                                        <span class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)">
+                                            {panel.hrefLabel}
+                                        </span>
+                                    </Button>
+                                </div>
+                            </div>
+                        </section>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import './built-to-do'
+</script>

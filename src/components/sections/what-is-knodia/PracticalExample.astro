@@ -1,0 +1,205 @@
+---
+import practicalExampleDiagram from '../../../assets/backgrounds/what-is-knodia-practical-example-diagram.png'
+import practicalExampleDiagramMobile from '../../../assets/backgrounds/what-is-knodia-practical-example-diagram-mobile.png'
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+
+type ContextCard = {
+    icon: IconName
+    title: string
+    description: string
+}
+
+type ComparisonCard = {
+    icon: IconName
+    title: string
+    description: string
+    cardClass: string
+    titleClass: string
+    bodyClass: string
+    iconClass: string
+}
+
+const contextCards: ContextCard[] = [
+    {
+        icon: 'wb_incandescent',
+        title: 'Scenario',
+        description:
+            'A citizen moves from Italy to Germany and registers their new residence with the local public office.',
+    },
+    {
+        icon: 'assignment',
+        title: 'Task',
+        description:
+            'The German administration (B\u00FCrgeramt) needs to retrieve personal data from the Italian national population base register (ANPR) and communicate the residency change back to Italy.',
+    },
+]
+
+const comparisonCards: ComparisonCard[] = [
+    {
+        icon: 'close',
+        title: 'How this usually works',
+        description:
+            'Without a shared model, this kind of interaction often depends on dedicated agreements, one-off integrations and extra coordination between the organizations involved.',
+        cardClass:
+            'border-l-[6px] border-deep-violet bg-[#E5EAF1] text-neutral-graphite',
+        titleClass: 'text-neutral-graphite',
+        bodyClass: 'text-neutral-graphite',
+        iconClass: 'text-deep-violet',
+    },
+    {
+        icon: 'check',
+        title: 'How Knodia helps',
+        description:
+            'ANPR can provide the services needed for the residency change, while the B\u00FCrgeramt can use them through a trusted framework that connects the Italian and German Knodes.',
+        cardClass:
+            'border-l-[6px] border-primary-light-violet bg-primary-violet text-neutral-white',
+        titleClass: 'text-neutral-white',
+        bodyClass: 'text-neutral-white',
+        iconClass: 'text-neutral-white',
+    },
+]
+---
+
+<section
+    aria-labelledby="what-is-knodia-practical-example-title"
+    class="bg-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-8 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-17 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="flex w-full max-w-289.5 flex-col items-center gap-6 xl:gap-14"
+        >
+            <h2
+                class="w-full text-center font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                id="what-is-knodia-practical-example-title"
+            >
+                A practical example
+            </h2>
+
+            <div class="flex w-full flex-col items-center">
+                <div
+                    class="grid w-full gap-8 rounded-3xl border-[5px] border-primary-violet bg-neutral-white p-6 md:p-8 xl:grid-cols-2 xl:gap-6 xl:px-8 xl:py-8"
+                >
+                    {
+                        contextCards.map((card) => (
+                            <article class="flex min-w-0 items-start gap-4 xl:gap-6">
+                                <span
+                                    aria-hidden="true"
+                                    class="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-secondary-soft-quartz text-primary-violet xl:size-14"
+                                >
+                                    <Icon
+                                        ariaHidden={true}
+                                        class="text-[24px] xl:text-[28px]"
+                                        name={card.icon}
+                                    />
+                                </span>
+
+                                <div class="flex min-w-0 flex-1 flex-col gap-2 xl:max-w-113.75 xl:gap-2">
+                                    <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal">
+                                        {card.title}
+                                    </h3>
+
+                                    <p class="font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                        {card.description}
+                                    </p>
+                                </div>
+                            </article>
+                        ))
+                    }
+                </div>
+
+                <div
+                    aria-hidden="true"
+                    class="h-6 w-16 bg-primary-violet xl:h-7.25 xl:w-34.75"
+                    style="clip-path: polygon(0 0, 100% 0, 50% 100%);"
+                >
+                </div>
+            </div>
+        </div>
+
+        <div class="grid w-full max-w-289.5 gap-6 xl:grid-cols-2 xl:gap-10">
+            {
+                comparisonCards.map((card) => (
+                    <article
+                        class:list={[
+                            'flex flex-col gap-6 rounded-3xl px-6 py-8 xl:min-h-81 xl:gap-10 xl:px-10 xl:py-12',
+                            card.cardClass,
+                        ]}
+                    >
+                        <h3
+                            class:list={[
+                                'font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium xl:text-heading-md xl:leading-heading-md xl:font-normal',
+                                card.titleClass,
+                            ]}
+                        >
+                            {card.title}
+                        </h3>
+
+                        <div class="flex items-center gap-5 xl:gap-10">
+                            <span
+                                aria-hidden="true"
+                                class:list={[
+                                    'inline-flex size-8 shrink-0 items-center justify-center xl:size-10',
+                                    card.iconClass,
+                                ]}
+                            >
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-[24px] xl:text-[28px]"
+                                    name={card.icon}
+                                />
+                            </span>
+
+                            <p
+                                class:list={[
+                                    'font-body text-intro-sm leading-intro-sm font-normal xl:max-w-83.5 xl:text-button-md xl:leading-(--leading-button-md)',
+                                    card.bodyClass,
+                                ]}
+                            >
+                                {card.description}
+                            </p>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+
+        <div class="w-full max-w-289.5">
+            <div class="md:hidden">
+                <div
+                    class="rounded-2xl bg-white shadow-[0_24px_64px_rgba(78,81,230,0.12)]"
+                >
+                    <img
+                        alt="Diagram showing ANPR and the B\u00FCrgeramt exchanging data through the Italian and German Knodes."
+                        class="block h-auto w-full rounded-2xl"
+                        decoding="async"
+                        height={practicalExampleDiagramMobile.height}
+                        loading="lazy"
+                        src={practicalExampleDiagramMobile.src}
+                        width={practicalExampleDiagramMobile.width}
+                    />
+                </div>
+            </div>
+
+            <div
+                class="hidden overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] md:block [&::-webkit-scrollbar]:hidden"
+            >
+                <div
+                    class="min-w-190 rounded-2xl bg-white shadow-[0_24px_64px_rgba(78,81,230,0.12)] md:min-w-0 md:shadow-none"
+                >
+                    <img
+                        alt="Diagram showing ANPR and the B\u00FCrgeramt exchanging data through the Italian and German Knodes."
+                        class="block h-auto w-full rounded-2xl xl:rounded-[16px]"
+                        decoding="async"
+                        height={practicalExampleDiagram.height}
+                        loading="lazy"
+                        src={practicalExampleDiagram.src}
+                        width={practicalExampleDiagram.width}
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
