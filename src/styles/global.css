@@ -225,6 +225,7 @@
     --shadow-home-guidance-card-mobile:
         0px 1px 1.5px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.1);
     --shadow-home-guidance-card: 0px 1px 1px rgba(0, 0, 0, 0.05);
+    --shadow-what-is-knodia-audience-card: 0px 4px 16px rgba(14, 15, 19, 0.1);
 
     --home-difference-padding-top-mobile: 40px;
     --home-difference-padding-bottom-mobile: 40px;

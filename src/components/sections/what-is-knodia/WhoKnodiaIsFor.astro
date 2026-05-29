@@ -1,0 +1,116 @@
+---
+import Icon from '../../Icon'
+import audienceBackground from '../../../assets/backgrounds/what-is-knodia-audience-background.png'
+import type { IconName } from '../../Icon'
+
+type AudienceCard = {
+    icon: IconName
+    title: string
+    description: string
+}
+
+const audienceCards: AudienceCard[] = [
+    {
+        icon: 'domain',
+        title: 'EU public administrations',
+        description:
+            'A common model for providing and using cross-border digital services with clear roles and access conditions.',
+    },
+    {
+        icon: 'account_balance',
+        title: 'EU institutions and agencies',
+        description:
+            'A shared framework for coordinating cross-border interoperability across Member States and public service ecosystems.',
+    },
+    {
+        icon: 'corporate_fare',
+        title: 'Private sector organisations',
+        description:
+            'A structured model for accessing cross-border digital services where relevant, permitted and governed by shared rules.',
+    },
+]
+---
+
+<section
+    aria-labelledby="what-is-knodia-audience-title"
+    class="relative isolate overflow-hidden"
+>
+    <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 overflow-hidden"
+    >
+        <img
+            alt=""
+            class="size-full object-cover object-center"
+            decoding="async"
+            height={audienceBackground.height}
+            loading="lazy"
+            src={audienceBackground.src}
+            width={audienceBackground.width}
+        />
+        <div class="absolute inset-0 bg-white/60"></div>
+    </div>
+
+    <div
+        class="relative mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-8 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="flex w-full flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:gap-6"
+        >
+            <div class="flex flex-col gap-6 xl:gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="what-is-knodia-audience-title"
+                >
+                    Who Knodia is for
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <div class="xl:flex xl:justify-end">
+                <p
+                    class="max-w-(--home-domains-copy-width-mobile) font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:max-w-(--home-domains-copy-width) xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    Knodia is designed for the institutions, administrations and
+                    organizations involved in enabling, governing or using
+                    cross-border digital services.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
+            {
+                audienceCards.map((card) => (
+                    <article class="md:last:col-span-2 xl:last:col-span-1">
+                        <div class="flex h-full flex-col gap-4 rounded-3xl bg-neutral-white p-6 shadow-(--shadow-what-is-knodia-audience-card) xl:p-8">
+                            <span
+                                aria-hidden="true"
+                                class="inline-flex size-12 items-center justify-center rounded-full bg-secondary-soft-quartz text-primary-violet"
+                            >
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-[length:var(--button-icon-size)]"
+                                    name={card.icon}
+                                />
+                            </span>
+
+                            <div class="flex flex-1 flex-col gap-4">
+                                <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal">
+                                    {card.title}
+                                </h3>
+
+                                <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {card.description}
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>
