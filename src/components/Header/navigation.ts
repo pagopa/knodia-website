@@ -53,7 +53,7 @@ export const headerMenuGroups = [
             {
                 id: 'core-functions',
                 label: 'Core Functions',
-                href: '/core-components',
+                href: '/core-functions',
                 title: 'The five functions behind the model',
                 bestFor: 'Decision makers, tech teams',
                 topics: [
