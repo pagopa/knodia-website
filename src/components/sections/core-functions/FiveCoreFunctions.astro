@@ -1,0 +1,318 @@
+---
+import type { ImageMetadata } from 'astro'
+import Icon from '../../Icon'
+import accessTokenIssuanceDiagram from '../../../assets/backgrounds/core-functions-access-token-issuance.png'
+import consumerKeyManagementDiagram from '../../../assets/backgrounds/core-functions-consumer-key-management.png'
+import interactionActivationDiagram from '../../../assets/backgrounds/core-functions-interaction-activation.png'
+import knodeCatalogueDiagram from '../../../assets/backgrounds/core-functions-knode-catalogue.png'
+import knodeManagementDiagram from '../../../assets/backgrounds/core-functions-knode-management.png'
+
+type CoreFunctionPanelId =
+    | 'knode-management'
+    | 'knode-catalogue'
+    | 'interaction-activation'
+    | 'consumer-key-management'
+    | 'access-token-issuance'
+
+type CoreFunctionBenefit = {
+    title: string
+    description: string
+}
+
+type CoreFunctionPanel = {
+    id: CoreFunctionPanelId
+    tabLabel: string
+    title: string
+    description: string
+    whyItMatters: string
+    benefits: CoreFunctionBenefit[]
+    image: ImageMetadata
+}
+
+const coreFunctionPanels: CoreFunctionPanel[] = [
+    {
+        id: 'knode-management',
+        tabLabel: 'Knode management',
+        title: 'Knode management',
+        description:
+            'Keeps the Knode identifiable, trusted and ready to operate across the federation.',
+        whyItMatters:
+            'This function gives the federation a reliable way to recognise participating organizations and the information linked to them.',
+        benefits: [
+            {
+                title: 'Recognises organizations in a domain',
+                description:
+                    'It allows a Knode to identify the organizations that belong to its interoperability domain.',
+            },
+            {
+                title: 'Maintains shared attributes',
+                description:
+                    'It manages the shared attributes used to describe organizations and support access decisions.',
+            },
+            {
+                title: 'Provides the basis for trusted interaction',
+                description:
+                    'It makes that organizational information available, so other domains can rely on it when interaction starts.',
+            },
+        ],
+        image: knodeManagementDiagram,
+    },
+    {
+        id: 'knode-catalogue',
+        tabLabel: 'Knode catalogue',
+        title: 'Knode catalogue',
+        description:
+            'Lets a Knode make its APIs visible and understandable across the federation',
+        whyItMatters:
+            'This function gives other domains a clear way to understand what is available, for whom, and under which conditions.',
+        benefits: [
+            {
+                title: 'Publishes cross-border APIs',
+                description:
+                    'It makes a service visible beyond its own domain.',
+            },
+            {
+                title: 'Defines access requirements',
+                description:
+                    'It states which types of organizations are allowed to use it.',
+            },
+            {
+                title: 'Defines data transmission mode',
+                description:
+                    'It indicates whether the API sends data, receives data or both.',
+            },
+            {
+                title: 'Manages the API lifecycle',
+                description:
+                    'It supports versioning and lifecycle management over time.',
+            },
+        ],
+        image: knodeCatalogueDiagram,
+    },
+    {
+        id: 'interaction-activation',
+        tabLabel: 'Interaction activation',
+        title: 'Interaction activation',
+        description:
+            'Lets a Knodia consumer find an API, request access, and complete the steps needed to start using it.',
+        whyItMatters:
+            'A service may be available in the federation, but it still needs a clear path to actual use.',
+        benefits: [
+            {
+                title: 'Searches APIs across domains',
+                description:
+                    'It lets a consumer identify which APIs are available and understand which ones are relevant to its needs.',
+            },
+            {
+                title: 'Requests access to selected APIs',
+                description:
+                    'It allows a consumer to submit requests to use the APIs it is interested in.',
+            },
+            {
+                title: 'Supports purpose declarations',
+                description:
+                    'It supports the submission of purpose-related information when access is subject to privacy or compliance requirements.',
+            },
+        ],
+        image: interactionActivationDiagram,
+    },
+    {
+        id: 'consumer-key-management',
+        tabLabel: 'Consumer key management',
+        title: 'Consumer key management',
+        description:
+            'Lets a Knodia consumer manage the public cryptographic material needed to access APIs in other domains.',
+        whyItMatters:
+            'Access across domains needs a reliable way to manage that material and link it to the right interaction.',
+        benefits: [
+            {
+                title: 'Defines consumer keychains',
+                description:
+                    'It lets a Knodia consumer create keychains and assign them to the operators who manage them.',
+            },
+            {
+                title: 'Uses consumer keychains',
+                description:
+                    'It allows those keychains to be linked to the purpose declarations used for API access.',
+            },
+        ],
+        image: consumerKeyManagementDiagram,
+    },
+    {
+        id: 'access-token-issuance',
+        tabLabel: 'Access token issuance',
+        title: 'Access token issuance',
+        description:
+            'Lets a Knodia consumer request the access tokens needed to use the APIs it is allowed to access.',
+        whyItMatters:
+            'A service can only be used if access is verified and formally enabled. This function is what turns an approved request into actual API access.',
+        benefits: [
+            {
+                title: 'Verifies the Knodia consumer',
+                description:
+                    'It checks the status of the Knodia consumer and the attributes associated with it.',
+            },
+            {
+                title: 'Retrieves cryptographic material',
+                description:
+                    "It retrieves the cryptographic material used by the consumer's client when access needs to be activated.",
+            },
+            {
+                title: 'Verifies the right to access the API',
+                description:
+                    'It checks the status of the access request and the purpose declaration before issuing the token.',
+            },
+        ],
+        image: accessTokenIssuanceDiagram,
+    },
+]
+
+const defaultPanelId = coreFunctionPanels[0].id
+---
+
+<section
+    aria-labelledby="core-functions-overview-title"
+    class="bg-[linear-gradient(180deg,var(--color-primary-violet-surface)_0%,rgba(237,238,253,0.84)_34%,var(--color-neutral-white)_100%)]"
+    data-core-functions-tabs
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-10 px-(--header-mobile-padding-x) py-14 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-16 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div class="flex max-w-[684px] flex-col items-center gap-6 text-center">
+            <h2
+                class="font-heading text-[32px] leading-[40px] font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                id="core-functions-overview-title"
+            >
+                The five core functions of a Knode
+            </h2>
+
+            <div
+                aria-hidden="true"
+                class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+            >
+            </div>
+
+            <p
+                class="max-w-[684px] font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Each Knode supports a common set of functions for its
+                interoperability domain, making secure cross-border interaction
+                possible in practice.
+            </p>
+        </div>
+
+        <div class="flex w-full flex-col gap-8 xl:gap-16">
+            <div
+                aria-describedby="core-functions-tabs-instructions"
+                aria-label="Core function tabs"
+                aria-orientation="horizontal"
+                class="flex w-full flex-wrap justify-center gap-2 md:gap-3 xl:gap-[17px]"
+                role="tablist"
+            >
+                <p class="sr-only" id="core-functions-tabs-instructions">
+                    Choose a core function tab to reveal its explanation and
+                    diagram. Use the arrow keys, Home or End to move between
+                    tabs. Press Tab to move into the selected panel.
+                </p>
+
+                {
+                    coreFunctionPanels.map((panel) => (
+                        <button
+                            aria-controls={`core-functions-panel-${panel.id}`}
+                            aria-selected={
+                                panel.id === defaultPanelId ? 'true' : 'false'
+                            }
+                            class="inline-flex min-h-[52px] items-center justify-center rounded-full bg-neutral-white px-4 py-3 font-body text-[16px] leading-[24px] font-medium text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out hover:bg-primary-violet-surface focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz aria-selected:text-neutral-medium-gray md:text-button-md md:leading-(--leading-button-md)"
+                            data-core-functions-trigger={panel.id}
+                            id={`core-functions-trigger-${panel.id}`}
+                            role="tab"
+                            tabindex={panel.id === defaultPanelId ? '0' : '-1'}
+                            type="button"
+                        >
+                            {panel.tabLabel}
+                        </button>
+                    ))
+                }
+            </div>
+
+            {
+                coreFunctionPanels.map((panel) => (
+                    <section
+                        aria-labelledby={`core-functions-trigger-${panel.id}`}
+                        class="flex w-full flex-col gap-10 xl:gap-16"
+                        data-core-functions-panel={panel.id}
+                        hidden={panel.id !== defaultPanelId}
+                        id={`core-functions-panel-${panel.id}`}
+                        role="tabpanel"
+                        tabindex={panel.id === defaultPanelId ? '0' : '-1'}
+                    >
+                        <div class="grid w-full gap-10 xl:grid-cols-[minmax(0,453px)_minmax(0,569px)] xl:items-start xl:justify-between xl:gap-14">
+                            <div class="flex flex-col gap-4 xl:gap-6">
+                                <h3 class="font-heading text-[32px] leading-[40px] font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg">
+                                    {panel.title}
+                                </h3>
+
+                                <p class="font-body text-[16px] leading-[24px] font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {panel.description}
+                                </p>
+
+                                <div class="flex flex-col gap-2">
+                                    <p class="font-body text-[16px] leading-[24px] font-medium text-neutral-graphite">
+                                        WHY IT MATTERS
+                                    </p>
+
+                                    <p class="font-body text-[16px] leading-[24px] font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
+                                        {panel.whyItMatters}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-5 xl:gap-6">
+                                {panel.benefits.map((benefit) => (
+                                    <div class="flex items-start gap-3 xl:gap-4">
+                                        <span
+                                            aria-hidden="true"
+                                            class="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center text-primary-violet xl:size-10"
+                                        >
+                                            <Icon
+                                                ariaHidden={true}
+                                                class="text-[24px]"
+                                                name="keyboard_arrow_right"
+                                            />
+                                        </span>
+
+                                        <div class="flex flex-col gap-1.5">
+                                            <h4 class="font-heading text-[20px] leading-[28px] font-normal text-neutral-graphite xl:text-intro-lg xl:leading-intro-lg">
+                                                {benefit.title}
+                                            </h4>
+
+                                            <p class="font-body text-[15px] leading-[22px] font-medium text-neutral-graphite xl:text-[16px] xl:leading-[24px]">
+                                                {benefit.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div class="w-full">
+                            <img
+                                alt=""
+                                class="mx-auto block h-auto w-full max-w-[1158px] drop-shadow-[0_24px_64px_rgba(78,81,230,0.08)]"
+                                decoding="async"
+                                height={panel.image.height}
+                                loading="lazy"
+                                src={panel.image.src}
+                                width={panel.image.width}
+                            />
+                        </div>
+                    </section>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    import './core-functions-tabs'
+</script>
