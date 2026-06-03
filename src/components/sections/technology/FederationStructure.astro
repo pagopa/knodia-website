@@ -1,0 +1,168 @@
+---
+type FederationRoleId = 'knodia' | 'knodes' | 'organizations'
+
+type FederationRole = {
+    id: FederationRoleId
+    label: string
+    description: string
+}
+
+const federationRoles: FederationRole[] = [
+    {
+        id: 'knodia',
+        label: 'Knodia',
+        description:
+            'Knodia is the shared federation layer that connects separate domains through common rules and technical mechanisms. It provides the structure that makes recognition, access management and interaction possible across domains.',
+    },
+    {
+        id: 'knodes',
+        label: 'Knodes',
+        description:
+            'A Knode manages a specific domain. It recognizes the organizations in that domain, maintains the information and conditions needed for interaction, and provides the functions that support exchange with other Knodes.',
+    },
+    {
+        id: 'organizations',
+        label: 'Organizations',
+        description:
+            'Organizations participate in Knodia through the domain they belong to. They act as producers, when they make an e-service available to others, or as consumers, when they request access to an e-service provided by another organization.',
+    },
+]
+
+const defaultRoleId = federationRoles[0].id
+
+function panelAtmosphereClass(roleId: FederationRoleId) {
+    if (roleId === 'knodia') {
+        return 'bg-linear-to-br from-white/88 via-white/76 to-primary-violet/14'
+    }
+
+    if (roleId === 'knodes') {
+        return 'bg-linear-to-br from-white/90 via-white/74 to-primary-violet/18'
+    }
+
+    return 'bg-linear-to-br from-white/88 via-white/72 to-primary-violet/20'
+}
+---
+
+<section
+    aria-labelledby="technology-federation-title"
+    class="bg-primary-violet-surface"
+    data-technology-federation
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-10 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="grid w-full gap-6 xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:gap-6"
+        >
+            <div class="flex flex-col gap-6 xl:gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="technology-federation-title"
+                >
+                    How the federation is structured
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <p
+                class="font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                At the centre of Knodia is a federation built on trust between
+                domains. Knodes make that federation work by recognizing
+                organizations, managing the conditions for interaction and
+                supporting a shared operating framework across domains.
+            </p>
+        </div>
+
+        <div
+            class="grid w-full max-w-289.5 gap-6 xl:grid-cols-[minmax(0,571px)_minmax(0,531px)] xl:items-start xl:gap-14"
+        >
+            <div
+                aria-describedby="technology-federation-instructions"
+                aria-label="Federation roles"
+                aria-orientation="vertical"
+                class="flex flex-col gap-4 xl:gap-6"
+                role="tablist"
+            >
+                <p class="sr-only" id="technology-federation-instructions">
+                    Choose a federation role to reveal its description. Use the
+                    arrow keys, Home or End to move between tabs.
+                </p>
+
+                {
+                    federationRoles.map((role) => (
+                        <button
+                            aria-controls={`technology-federation-panel-${role.id}`}
+                            aria-selected={
+                                role.id === defaultRoleId ? 'true' : 'false'
+                            }
+                            class="w-full rounded-2xl bg-neutral-white px-6 py-6 text-left font-heading text-intro-sm leading-intro-sm font-normal text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz xl:text-intro-lg xl:leading-intro-lg"
+                            data-technology-federation-trigger={role.id}
+                            id={`technology-federation-trigger-${role.id}`}
+                            role="tab"
+                            tabindex={role.id === defaultRoleId ? '0' : '-1'}
+                            type="button"
+                        >
+                            {role.label}
+                        </button>
+                    ))
+                }
+            </div>
+
+            <div class="flex flex-col">
+                {
+                    federationRoles.map((role) => (
+                        <section
+                            aria-labelledby={`technology-federation-trigger-${role.id}`}
+                            class="relative overflow-hidden rounded-2xl ring-1 ring-white/45 xl:min-h-69"
+                            data-technology-federation-panel={role.id}
+                            hidden={role.id !== defaultRoleId}
+                            id={`technology-federation-panel-${role.id}`}
+                            role="tabpanel"
+                            tabindex={role.id === defaultRoleId ? '0' : '-1'}
+                        >
+                            <div
+                                aria-hidden="true"
+                                class={`pointer-events-none absolute inset-0 rounded-[inherit] ${panelAtmosphereClass(role.id)}`}
+                            >
+                                <div class="absolute inset-0 rounded-[inherit] bg-white/65" />
+
+                                {role.id === 'knodia' && (
+                                    <div class="absolute -right-10 -bottom-14 size-52 rounded-full bg-primary-violet/14 blur-2xl" />
+                                )}
+
+                                {role.id === 'knodes' && (
+                                    <>
+                                        <div class="absolute -top-12 right-10 h-56 w-24 rotate-[36deg] bg-linear-to-b from-white/80 via-white/35 to-transparent blur-sm" />
+                                        <div class="absolute top-18 -right-8 size-48 rounded-full bg-primary-violet/18 blur-2xl" />
+                                    </>
+                                )}
+
+                                {role.id === 'organizations' && (
+                                    <>
+                                        <div class="absolute bottom-[-72px] -left-12 size-56 rounded-full bg-white/78 blur-2xl" />
+                                        <div class="absolute -right-6 bottom-0 size-44 rounded-full bg-primary-violet/14 blur-2xl" />
+                                    </>
+                                )}
+                            </div>
+
+                            <div class="relative flex h-full items-center px-6 py-8 xl:px-8 xl:py-10">
+                                <p class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {role.description}
+                                </p>
+                            </div>
+                        </section>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import './technology-federation-tabs'
+</script>
