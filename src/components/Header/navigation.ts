@@ -83,7 +83,7 @@ export const headerMenuGroups = [
             {
                 id: 'security',
                 label: 'Security',
-                href: '/#product-security',
+                href: '/security',
                 title: 'Trust, access and security mechanisms',
                 bestFor: 'Tech teams + privacy and legal teams',
                 topics: [

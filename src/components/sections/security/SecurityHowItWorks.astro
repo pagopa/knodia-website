@@ -1,0 +1,120 @@
+---
+type SecurityStep = {
+    id: 'cryptographic-material' | 'bearer-dpop' | 'signed-responses'
+    label: string
+    description: string
+}
+
+const securitySteps: SecurityStep[] = [
+    {
+        id: 'cryptographic-material',
+        label: 'Cryptographic material',
+        description:
+            'Public keys are uploaded while private keys are used to sign client assertions. A token is then requested to the Knode authorization server (OAuth 2.0).',
+    },
+    {
+        id: 'bearer-dpop',
+        label: 'Bearer or DPoP',
+        description:
+            'Depending on the level of security required by the producer of the service, access can rely on Bearer or DPoP-based tokens.',
+    },
+    {
+        id: 'signed-responses',
+        label: 'Signed responses',
+        description:
+            'The producer can always sign the response so that the consumer can be sure that data was not altered in transit and cannot be disputed later.',
+    },
+]
+
+const defaultStepId = securitySteps[0].id
+---
+
+<section
+    aria-labelledby="security-how-it-works-title"
+    class="bg-primary-violet-surface"
+    data-security-how-it-works
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-8 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="flex w-full flex-col gap-6 xl:flex-row xl:items-start xl:justify-between"
+        >
+            <div class="flex max-w-lg flex-col gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="security-how-it-works-title"
+                >
+                    How security works
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <p
+                class="max-w-155 font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Interactions are protected through verifiable identities,
+                cryptographic evidence and token-based access, so they can be
+                trusted, checked and validated across domains.
+            </p>
+        </div>
+
+        <div
+            class="flex w-full flex-col gap-6 xl:flex-row xl:items-start xl:gap-14"
+        >
+            <div
+                aria-label="Security flow steps"
+                class="flex w-full max-w-142.75 flex-col gap-6"
+                role="tablist"
+                aria-orientation="vertical"
+            >
+                {
+                    securitySteps.map((step) => (
+                        <button
+                            aria-controls={`security-how-it-works-panel-${step.id}`}
+                            aria-selected={
+                                step.id === defaultStepId ? 'true' : 'false'
+                            }
+                            class="w-full rounded-2xl bg-neutral-white px-6 py-6 text-left font-heading text-intro-sm leading-intro-sm font-normal text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz xl:text-intro-lg xl:leading-intro-lg"
+                            data-security-how-it-works-trigger={step.id}
+                            id={`security-how-it-works-trigger-${step.id}`}
+                            role="tab"
+                            tabindex={step.id === defaultStepId ? '0' : '-1'}
+                            type="button"
+                        >
+                            {step.label}
+                        </button>
+                    ))
+                }
+            </div>
+
+            <div class="w-full xl:max-w-132.75">
+                {
+                    securitySteps.map((step) => (
+                        <section
+                            aria-labelledby={`security-how-it-works-trigger-${step.id}`}
+                            class="relative overflow-hidden rounded-2xl bg-linear-to-br from-neutral-white/95 via-neutral-white/80 to-primary-light-violet/60 px-6 py-8 shadow-(--shadow-what-is-knodia-audience-card) xl:min-h-69 xl:px-8 xl:py-10"
+                            data-security-how-it-works-panel={step.id}
+                            hidden={step.id !== defaultStepId}
+                            id={`security-how-it-works-panel-${step.id}`}
+                            role="tabpanel"
+                            tabindex={step.id === defaultStepId ? '0' : '-1'}
+                        >
+                            <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
+                                {step.description}
+                            </p>
+                        </section>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import './security-how-it-works-tabs'
+</script>
