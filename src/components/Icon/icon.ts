@@ -1,4 +1,5 @@
 export const iconNames = [
+    'api',
     'attach_file',
     'block',
     'bookmark',
@@ -56,6 +57,7 @@ export const iconNames = [
     'menu',
     'keyboard_arrow_down',
     'arrow_back',
+    'confirmation_number',
     'content_copy',
     'flag',
     'download',
