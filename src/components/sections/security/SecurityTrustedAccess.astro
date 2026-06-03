@@ -1,0 +1,52 @@
+---
+import trustedAccessDiagram from '../../../assets/backgrounds/security-two-layers-trusted-access.png'
+---
+
+<section
+    aria-labelledby="security-trusted-access-title"
+    class="bg-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-8 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-12 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="flex w-full flex-col gap-6 xl:flex-row xl:items-start xl:justify-between"
+        >
+            <div class="flex max-w-lg flex-col gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="security-trusted-access-title"
+                >
+                    Two layers of trusted access
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <p
+                class="max-w-155 font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Knodia combines authentication and authorization layers: trust
+                between Knodes + token-based access, so data is available only
+                to the right actors, under the right conditions.
+            </p>
+        </div>
+
+        <div
+            class="w-full overflow-hidden rounded-2xl border border-primary-light-violet/60 bg-neutral-white shadow-(--shadow-home-guidance-card)"
+        >
+            <img
+                alt="Diagram showing the two security layers in Knodia: trust between Knodes with mutual TLS, and controlled data access with Bearer or DPoP tokens."
+                class="block h-auto w-full"
+                decoding="async"
+                height={trustedAccessDiagram.height}
+                loading="lazy"
+                src={trustedAccessDiagram.src}
+                width={trustedAccessDiagram.width}
+            />
+        </div>
+    </div>
+</section>
