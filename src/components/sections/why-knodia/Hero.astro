@@ -1,0 +1,72 @@
+---
+import Button from '../../Button.astro'
+import Icon from '../../Icon'
+import sharedHeroBackground from '../../../assets/backgrounds/shared-hero-background.png'
+
+const executiveSummaryHref = '#'
+---
+
+<section
+    aria-labelledby="why-knodia-hero-title"
+    class="relative isolate overflow-hidden bg-primary-violet-surface"
+>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <img
+            alt=""
+            class="size-full object-cover object-[68%_center] sm:object-[62%_center] md:object-[60%_center] xl:object-center"
+            decoding="async"
+            fetchpriority="high"
+            height={sharedHeroBackground.height}
+            loading="eager"
+            src={sharedHeroBackground.src}
+            width={sharedHeroBackground.width}
+        />
+    </div>
+
+    <div
+        class="relative mx-auto flex min-h-[680px] max-w-(--header-shell-max) items-start px-(--header-mobile-padding-x) pt-[136px] pb-20 md:min-h-[720px] md:px-(--home-hero-inline-padding-md) md:pt-[168px] md:pb-24 xl:min-h-[800px] xl:px-(--header-inline-padding) xl:pt-(--home-hero-padding-top) xl:pb-[120px]"
+    >
+        <div
+            class="flex w-full max-w-[calc(100vw-48px)] flex-col gap-6 sm:max-w-[360px] md:max-w-[560px] md:gap-8 xl:max-w-[680px]"
+        >
+            <span
+                class="inline-flex w-fit rounded-[4px] bg-secondary-soft-quartz px-2 py-1 font-body text-[16px] leading-[24px] font-medium tracking-[0] text-deep-violet"
+            >
+                WHY KNODIA
+            </span>
+
+            <div class="flex flex-col gap-5 xl:gap-6">
+                <h1
+                    class="font-heading text-hero-sm leading-hero-sm font-semibold tracking-hero-sm text-neutral-graphite md:text-[56px] md:leading-[68px] md:tracking-[-0.84px] xl:text-hero-lg xl:leading-hero-lg xl:tracking-hero-lg"
+                    id="why-knodia-hero-title"
+                >
+                    A stronger foundation for cross-border interaction in Europe
+                </h1>
+
+                <p
+                    class="max-w-full font-body text-intro-sm leading-intro-sm font-normal text-neutral-graphite md:max-w-[560px] md:text-[20px] md:leading-[30px] xl:max-w-[610px] xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    Knodia reduces cross-border fragmentation and complexity,
+                    enabling more consistent interaction and scalable growth.
+                </p>
+
+                <Button
+                    class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet!"
+                    href={executiveSummaryHref}
+                    variant="naked"
+                >
+                    <span
+                        class="inline-flex items-center gap-(--button-gap-sm)"
+                    >
+                        <span
+                            class="font-body text-button-md leading-(--leading-button-md) font-medium"
+                        >
+                            Download the executive summary
+                        </span>
+                        <Icon ariaHidden={true} name="download" />
+                    </span>
+                </Button>
+            </div>
+        </div>
+    </div>
+</section>

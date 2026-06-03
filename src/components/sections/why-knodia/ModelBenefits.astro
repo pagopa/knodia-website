@@ -1,0 +1,97 @@
+---
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+
+type BenefitCard = {
+    icon: IconName
+    title: string
+    description: string
+}
+
+const benefitCards: BenefitCard[] = [
+    {
+        icon: 'stacks',
+        title: 'Less fragmentation',
+        description:
+            'One shared model reduces the need for one-off solutions between individual organizations or countries.',
+    },
+    {
+        icon: 'integration_instructions',
+        title: 'Faster integration',
+        description:
+            'Consistent processes for discovery, agreement and access help move initiatives more quickly into implementation.',
+    },
+    {
+        icon: 'account_circle',
+        title: 'Clear responsibilities',
+        description:
+            'Roles and governance boundaries are easier to define across Knodia, each Knode and the actors involved.',
+    },
+    {
+        icon: 'graph_5',
+        title: 'Scalable growth',
+        description:
+            'The same approach can extend across countries and domains without redesigning the model for each new context.',
+    },
+]
+---
+
+<section
+    aria-labelledby="why-knodia-model-benefits-title"
+    class="bg-primary-violet-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-8 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div class="flex max-w-[684px] flex-col items-center gap-6 text-center">
+            <h2
+                class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                id="why-knodia-model-benefits-title"
+            >
+                What a federated model makes possible
+            </h2>
+
+            <span
+                aria-hidden="true"
+                class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"></span>
+
+            <p
+                class="font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                A federated model makes cross-border interaction easier to
+                manage, extend and trust over time.
+            </p>
+        </div>
+
+        <div class="grid w-full gap-4 md:grid-cols-2 xl:gap-6">
+            {
+                benefitCards.map((card) => (
+                    <article class="flex h-full">
+                        <div class="flex w-full flex-col gap-6 rounded-3xl bg-neutral-white p-6 shadow-(--shadow-what-is-knodia-audience-card) xl:min-h-[264px] xl:gap-8 xl:px-10 xl:py-8">
+                            <span
+                                aria-hidden="true"
+                                class="inline-flex size-12 items-center justify-center rounded-full bg-secondary-soft-quartz text-primary-violet xl:size-15"
+                            >
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-[26px] xl:text-[28px]"
+                                    name={card.icon}
+                                />
+                            </span>
+
+                            <div class="flex flex-1 flex-col gap-4">
+                                <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-intro-lg xl:leading-intro-lg xl:font-normal">
+                                    {card.title}
+                                </h3>
+
+                                <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {card.description}
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>
