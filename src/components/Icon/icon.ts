@@ -1,4 +1,5 @@
 export const iconNames = [
+    'api',
     'attach_file',
     'block',
     'bookmark',
@@ -56,6 +57,7 @@ export const iconNames = [
     'menu',
     'keyboard_arrow_down',
     'arrow_back',
+    'confirmation_number',
     'content_copy',
     'flag',
     'download',
@@ -76,7 +78,7 @@ export const iconNames = [
 ] as const
 
 export type MaterialIconName = (typeof iconNames)[number]
-export type IconName = MaterialIconName | 'source'
+export type IconName = MaterialIconName | 'source' | 'topic'
 export type IconSize = 'button' | 'button-small' | 'showcase'
 
 export const iconShowcaseColumns = [
@@ -153,3 +155,4 @@ export const iconShowcaseColumns = [
 export const ArrowRightIcon: MaterialIconName = 'arrow_forward'
 export const ChevronDownIcon: MaterialIconName = 'keyboard_arrow_down'
 export const SourceIcon: IconName = 'source'
+export const TopicIcon: IconName = 'topic'

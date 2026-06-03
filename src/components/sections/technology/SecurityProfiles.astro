@@ -1,0 +1,102 @@
+---
+import Button from '../../Button.astro'
+import Icon from '../../Icon'
+
+type SecurityProfile = {
+    id: string
+    title: string
+    description: string
+}
+
+const securityProfiles: SecurityProfile[] = [
+    {
+        id: 'bearer',
+        title: 'Bearer',
+        description: 'Suitable for simpler access patterns',
+    },
+    {
+        id: 'dpop',
+        title: 'DPop',
+        description: 'Used when access requires stronger proof of possession',
+    },
+]
+
+const securityHref = '/#product-security'
+---
+
+<section
+    aria-labelledby="technology-security-profiles-title"
+    class="bg-primary-violet-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-8 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:flex-row xl:items-center xl:justify-between xl:gap-11.5 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div class="flex w-full max-w-133.25 flex-col gap-6 xl:max-w-133.25">
+            <h2
+                class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                id="technology-security-profiles-title"
+            >
+                Security profiles for different protection needs
+            </h2>
+
+            <p
+                class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)"
+            >
+                Different e-services can require different protection measures.
+                Knodia supports different token and proof mechanisms within the
+                same framework, so access remains controlled and aligned with
+                GDPR-related requirements.
+            </p>
+
+            <Button
+                class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet!"
+                href={securityHref}
+                variant="naked"
+            >
+                <span class="inline-flex items-center gap-(--button-gap-sm)">
+                    <span
+                        class="font-body text-button-md leading-(--leading-button-md) font-medium"
+                    >
+                        Explore Security
+                    </span>
+                    <Icon ariaHidden={true} name="arrow_forward" />
+                </span>
+            </Button>
+        </div>
+
+        <div
+            class="w-full max-w-149 rounded-2xl bg-neutral-white p-6 shadow-(--shadow-home-guidance-card) xl:min-h-60.75 xl:px-6.25 xl:py-6.75"
+        >
+            <div class="flex flex-col gap-8 xl:gap-14">
+                {
+                    securityProfiles.map((profile) => (
+                        <article
+                            class="flex items-center gap-4"
+                            id={profile.id}
+                        >
+                            <span
+                                aria-hidden="true"
+                                class="inline-flex size-16 shrink-0 items-center justify-center rounded-2xl bg-secondary-soft-quartz text-primary-violet"
+                            >
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-6"
+                                    name="topic"
+                                />
+                            </span>
+
+                            <div class="flex min-w-0 flex-1 flex-col gap-1">
+                                <h3 class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-graphite xl:text-intro-lg xl:leading-intro-lg">
+                                    {profile.title}
+                                </h3>
+                                <p class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {profile.description}
+                                </p>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
