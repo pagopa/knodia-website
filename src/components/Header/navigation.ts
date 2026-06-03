@@ -71,7 +71,7 @@ export const headerMenuGroups = [
             {
                 id: 'technology',
                 label: 'Technology',
-                href: '/#product-technology',
+                href: '/technology',
                 title: 'Architecture and technical foundations',
                 bestFor: 'Tech teams',
                 topics: [
