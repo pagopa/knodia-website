@@ -1,0 +1,82 @@
+---
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+
+type ResourceDocument = {
+    title: string
+    description: string
+    href: string
+    icon: IconName
+    target?: '_blank'
+    rel?: string
+}
+
+const resourceDocuments: ResourceDocument[] = [
+    {
+        title: 'Executive summary',
+        description:
+            'Download a concise introduction to Knodia, its objectives and the role it can play in cross-domain interaction.',
+        href: '#',
+        icon: 'download',
+    },
+    {
+        title: 'Whitepaper',
+        description:
+            'Explore the technical documentation behind Knodia, how it works and what the prototype enables.',
+        href: '#',
+        icon: 'open_in_new',
+        target: '_blank',
+        rel: 'noopener noreferrer',
+    },
+]
+---
+
+<section
+    aria-labelledby="resources-key-documents-title"
+    class="bg-primary-violet-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-10 px-(--header-mobile-padding-x) pt-10 pb-10 md:px-(--home-hero-inline-padding-md) md:pt-14 md:pb-14 xl:grid xl:grid-cols-[337px_minmax(0,688px)] xl:items-start xl:justify-between xl:gap-x-12 xl:gap-y-0 xl:px-(--header-inline-padding) xl:pt-32 xl:pb-32"
+    >
+        <h2
+            class="max-w-80 font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite md:max-w-96 md:text-heading-md md:leading-heading-md xl:max-w-84.25 xl:text-heading-lg xl:leading-heading-lg"
+            id="resources-key-documents-title"
+        >
+            Read the key documents
+        </h2>
+
+        <div class="flex flex-col gap-6 xl:w-full xl:gap-8">
+            {
+                resourceDocuments.map((document) => (
+                    <a
+                        class="group flex w-full items-center justify-between gap-6 rounded-3xl border-2 border-primary-violet bg-neutral-white px-6 py-6 transition-colors duration-150 ease-out hover:bg-primary-violet-surface focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet md:px-8 md:py-7 xl:px-10 xl:py-8.25"
+                        href={document.href}
+                        rel={document.rel}
+                        target={document.target}
+                    >
+                        <div class="flex min-w-0 flex-1 flex-col gap-4">
+                            <h3 class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite md:text-heading-md md:leading-heading-md xl:text-heading-lg xl:leading-heading-lg">
+                                {document.title}
+                            </h3>
+
+                            <p class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-medium-gray md:text-button-md md:leading-6.5">
+                                {document.description}
+                            </p>
+                        </div>
+
+                        <span
+                            aria-hidden="true"
+                            class="flex shrink-0 items-center justify-center text-primary-violet"
+                        >
+                            <Icon
+                                ariaHidden={true}
+                                class="text-[32px] md:text-[36px] xl:text-heading-lg"
+                                name={document.icon}
+                            />
+                        </span>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>
