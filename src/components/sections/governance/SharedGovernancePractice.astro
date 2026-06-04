@@ -1,0 +1,114 @@
+---
+type PracticeCard = {
+    title: string
+    description: string
+}
+
+const topRowCards: PracticeCard[] = [
+    {
+        title: 'Trust and node partecipation',
+        description:
+            'The federation defines how new domains join, how trust is established between them and what each one needs in order to participate as a Knodia node.',
+    },
+    {
+        title: 'Technical standards and API protocols',
+        description:
+            'Shared governance defines the APIs and communication rules that Knodes use to exchange data, commands and events in a consistent way.',
+    },
+    {
+        title: 'Administrative and legal standards',
+        description:
+            'Shared administrative and legal elements provide the common basis for declarations, formal steps and responsibilities that need to be handled across domains.',
+    },
+]
+
+const bottomRowCards: PracticeCard[] = [
+    {
+        title: 'System events',
+        description:
+            'The federation defines which events Knodes need to track and publish, so other domains can react when relevant states change.',
+    },
+    {
+        title: 'Advanced support tools',
+        description:
+            'Additional shared capabilities can also be governed at federation level, including asynchronous patterns, signal distribution and templates for recurring use cases.',
+    },
+]
+---
+
+<section aria-labelledby="governance-practice-title" class="bg-neutral-white">
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-10 px-(--header-mobile-padding-x) pt-10 pb-12 md:px-(--home-hero-inline-padding-md) xl:gap-20 xl:px-(--header-inline-padding) xl:pt-32 xl:pb-32"
+    >
+        <div
+            class="flex w-full flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:items-start xl:gap-6"
+        >
+            <div class="flex flex-col gap-6 xl:gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="governance-practice-title"
+                >
+                    How shared governance works in practice
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <div class="xl:flex xl:justify-end">
+                <p
+                    class="max-w-(--home-domains-copy-width-mobile) font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:max-w-(--home-domains-copy-width) xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    The shared layer in Knodia is not just about high-level
+                    principles. It also includes the rules, interfaces and
+                    common assets that help domains stay aligned as the
+                    federation grows and evolves.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex w-full flex-col gap-4 xl:gap-6">
+            <div
+                class="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-6"
+            >
+                {
+                    topRowCards.map((card) => (
+                        <article class="rounded-3xl bg-primary-violet-surface p-6 shadow-[0px_4px_8px_rgba(14,15,19,0.1)] md:last:col-span-2 xl:min-h-66.75 xl:p-8 xl:last:col-span-1">
+                            <div class="flex h-full flex-col gap-4 xl:justify-center">
+                                <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal">
+                                    {card.title}
+                                </h3>
+
+                                <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {card.description}
+                                </p>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+
+            <div
+                class="grid w-full gap-4 md:grid-cols-2 xl:mx-auto xl:max-w-191 xl:gap-6"
+            >
+                {
+                    bottomRowCards.map((card) => (
+                        <article class="rounded-3xl bg-primary-violet-surface p-6 shadow-[0px_4px_8px_rgba(14,15,19,0.1)] xl:min-h-66.75 xl:p-8">
+                            <div class="flex h-full flex-col gap-4 xl:justify-center">
+                                <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal">
+                                    {card.title}
+                                </h3>
+
+                                <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {card.description}
+                                </p>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
