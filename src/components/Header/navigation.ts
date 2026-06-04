@@ -110,7 +110,7 @@ export const headerMenuGroups = [
             {
                 id: 'governance',
                 label: 'Governance',
-                href: '/#product-governance',
+                href: '/governance',
                 title: 'Shared rules and distributed responsibilities',
                 bestFor: 'Privacy and legals teams',
                 topics: [
