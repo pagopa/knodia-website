@@ -81,7 +81,11 @@ export const iconNames = [
 ] as const
 
 export type MaterialIconName = (typeof iconNames)[number]
-export type IconName = MaterialIconName | 'source' | 'topic'
+export type IconName =
+    | MaterialIconName
+    | 'source'
+    | 'topic'
+    | 'compliance_captive_portal'
 export type IconSize = 'button' | 'button-small' | 'showcase'
 
 export const iconShowcaseColumns = [
