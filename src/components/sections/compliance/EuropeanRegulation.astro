@@ -1,0 +1,123 @@
+---
+import Icon from '../../Icon'
+
+type RegulationCard = {
+    id: string
+    title: string
+    description: string
+}
+
+const regulationCards: RegulationCard[] = [
+    {
+        id: 'interoperable-europe-act',
+        title: 'Regulation (EU) 2024/903 - Interoperable Europe Act',
+        description:
+            'The broader regulatory context for public sector interoperability across the Union, including the use of interoperability regulatory sandboxes.',
+    },
+    {
+        id: 'eif',
+        title: 'European Interoperability Framework (EIF)',
+        description:
+            'The reference framework for the legal, organizational, semantic and technical dimensions that shape cross-domain interaction.',
+    },
+    {
+        id: 'gdpr',
+        title: 'Regulation (EU) 2016/679 - GDPR',
+        description:
+            'The data protection framework considered for lawful access to personal data through APIs.',
+    },
+]
+---
+
+<section
+    aria-labelledby="compliance-european-regulation-title"
+    class="bg-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-10 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="grid w-full gap-6 xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:gap-6"
+        >
+            <div class="flex flex-col gap-6 xl:gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="compliance-european-regulation-title"
+                >
+                    Grounded in European regulation
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <p
+                class="font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Knodia is shaped by the European regulatory and interoperability
+                framework that governs cross-domain public sector interaction.
+                These references matter because they inform how the model
+                handles access, responsibilities and shared interoperability
+                requirements.
+            </p>
+        </div>
+
+        <div
+            class="grid w-full max-w-289.5 gap-6 md:grid-cols-2 xl:grid-cols-3"
+        >
+            {
+                regulationCards.map((card) => (
+                    <article class="flex h-full flex-col gap-4 rounded-3xl bg-primary-violet-surface p-6 shadow-(--shadow-what-is-knodia-audience-card) md:last:col-span-2 xl:min-h-66.75 xl:gap-8 xl:p-8 xl:last:col-span-1">
+                        <h3 class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal">
+                            {card.title}
+                        </h3>
+
+                        <p class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                            {card.description}
+                        </p>
+                    </article>
+                ))
+            }
+        </div>
+
+        <section
+            aria-labelledby="compliance-national-frameworks-title"
+            class="rounded-3xl bg-primary-light-violet px-6 py-8 xl:px-12 xl:py-12"
+        >
+            <div
+                class="flex w-full flex-col gap-6 xl:flex-row xl:items-center xl:gap-10"
+            >
+                <span
+                    aria-hidden="true"
+                    class="inline-flex size-16 items-center justify-center text-deep-violet md:size-23"
+                >
+                    <Icon
+                        ariaHidden={true}
+                        class="size-[50px] max-w-none md:size-[76.67px]"
+                        name="compliance_captive_portal"
+                    />
+                </span>
+
+                <div class="flex flex-1 flex-col gap-4">
+                    <h3
+                        class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal"
+                        id="compliance-national-frameworks-title"
+                    >
+                        Adaptable across national frameworks
+                    </h3>
+
+                    <p
+                        class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)"
+                    >
+                        Knodia supports a shared European model, while allowing
+                        Member State-specific regulatory requirements to be
+                        implemented within Agreement Requests and Purpose
+                        Statements where needed.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

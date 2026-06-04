@@ -98,7 +98,7 @@ export const headerMenuGroups = [
             {
                 id: 'compliance',
                 label: 'Compliance',
-                href: '/#product-compliance',
+                href: '/compliance',
                 title: 'European requirements and data protection',
                 bestFor: 'Privacy and legals teams',
                 topics: [

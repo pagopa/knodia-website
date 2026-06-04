@@ -1,0 +1,79 @@
+---
+import Button from '../../Button.astro'
+import bannerBackground from '../../../assets/backgrounds/compliance-cta-banner-background.png'
+
+const prototypeHref = '#'
+const whitepaperHref = '#'
+---
+
+<section
+    aria-labelledby="compliance-cta-title"
+    class="relative isolate overflow-hidden bg-neutral-white"
+>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <img
+            alt=""
+            class="size-full object-cover object-center"
+            decoding="async"
+            height={bannerBackground.height}
+            loading="lazy"
+            src={bannerBackground.src}
+            width={bannerBackground.width}
+        />
+        <div class="absolute inset-0 bg-white/60"></div>
+    </div>
+
+    <div
+        class="relative mx-auto flex min-h-(--home-cta-height-mobile) w-full max-w-(--header-shell-max) items-center justify-center px-(--home-cta-padding-x-mobile) py-(--home-cta-padding-y-mobile) md:px-(--home-hero-inline-padding-md) xl:min-h-(--home-cta-height) xl:px-(--home-cta-padding-x) xl:py-0"
+    >
+        <div
+            class="flex max-w-(--home-cta-content-max-mobile) flex-col items-center gap-(--home-cta-root-gap-mobile) text-center xl:max-w-(--home-cta-content-max) xl:gap-(--home-cta-root-gap)"
+        >
+            <div
+                class="flex flex-col items-center gap-(--home-cta-copy-gap-mobile) xl:gap-(--home-cta-copy-gap)"
+            >
+                <h2
+                    class="font-body text-home-cta-title-sm leading-home-cta-title-sm font-medium text-neutral-graphite xl:text-home-cta-title xl:leading-home-cta-title"
+                    id="compliance-cta-title"
+                >
+                    See the model at work in the prototype environment
+                </h2>
+
+                <p
+                    class="text-home-cta-body-sm leading-home-cta-body-sm font-normal text-neutral-graphite xl:max-w-(--home-cta-copy-max) xl:text-home-cta-body xl:leading-home-cta-body"
+                >
+                    Navigate the main interaction flows and see how the core
+                    features work firsthand.
+                </p>
+            </div>
+
+            <div
+                class="flex flex-col items-center gap-(--home-cta-buttons-gap-mobile) xl:flex-row xl:justify-center xl:gap-(--home-cta-buttons-gap)"
+            >
+                <Button
+                    class="w-(--home-cta-button-width-mobile) justify-center xl:w-auto"
+                    href={prototypeHref}
+                    variant="contained"
+                >
+                    <span
+                        class="text-home-cta-button-sm leading-home-cta-button-sm font-medium text-neutral-white xl:text-button-md xl:leading-(--leading-button-md)"
+                    >
+                        Access the prototype
+                    </span>
+                </Button>
+
+                <Button
+                    class="w-(--home-cta-button-width-mobile) justify-center xl:w-auto"
+                    href={whitepaperHref}
+                    variant="outlined"
+                >
+                    <span
+                        class="text-home-cta-button-sm leading-home-cta-button-sm font-medium text-primary-violet xl:text-button-md xl:leading-(--leading-button-md)"
+                    >
+                        Read the whitepaper
+                    </span>
+                </Button>
+            </div>
+        </div>
+    </div>
+</section>
