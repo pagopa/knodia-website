@@ -12,13 +12,14 @@ function normalizePath(path: string) {
 const normalizedCurrentPath = normalizePath(currentPath)
 const isHomePage = normalizedCurrentPath === '/'
 const isWhatIsKnodiaPage = normalizedCurrentPath === '/what-is-knodia'
-const usesOverlayHeader = isHomePage || isWhatIsKnodiaPage
+const isResourcesPage = normalizedCurrentPath === '/resources'
+const usesOverlayHeader = isHomePage || isWhatIsKnodiaPage || isResourcesPage
 const headerRootClass = usesOverlayHeader
     ? 'header-root absolute inset-x-0 top-0 isolate z-40'
     : 'header-root relative isolate z-40'
 const headerBarShellClass = isHomePage
     ? 'w-full'
-    : isWhatIsKnodiaPage
+    : isWhatIsKnodiaPage || isResourcesPage
       ? 'w-full bg-white/40 backdrop-blur-[4px]'
       : 'w-full border-b border-black/5 bg-white/85 backdrop-blur-xs'
 const headerBarContentClass = isHomePage
@@ -179,17 +180,29 @@ const desktopSubmenuLinkClass =
                         ))
                     }
                     {
-                        headerPrimaryLinks.map((link) => (
-                            <Button
-                                class={desktopLinkClass}
-                                href={link.href}
-                                size="medium"
-                                tone={isHomePage ? 'contrast' : 'default'}
-                                variant="naked"
-                            >
-                                {link.label}
-                            </Button>
-                        ))
+                        headerPrimaryLinks.map((link) => {
+                            const isCurrentPrimaryLink =
+                                isPageLink(link.href) &&
+                                hrefPathname(link.href) ===
+                                    normalizedCurrentPath
+
+                            return (
+                                <Button
+                                    aria-current={
+                                        isCurrentPrimaryLink
+                                            ? 'page'
+                                            : undefined
+                                    }
+                                    class={`${desktopLinkClass} ${isCurrentPrimaryLink ? 'text-primary-violet!' : ''}`}
+                                    href={link.href}
+                                    size="medium"
+                                    tone={isHomePage ? 'contrast' : 'default'}
+                                    variant="naked"
+                                >
+                                    {link.label}
+                                </Button>
+                            )
+                        })
                     }
                 </nav>
             </div>
@@ -279,17 +292,37 @@ const desktopSubmenuLinkClass =
                                         />
                                     </button>
                                 ) : (
-                                    <a
-                                        class={mobileMenuRowClass}
-                                        href={item.href}
-                                    >
-                                        <span>{item.label}</span>
-                                        <Icon
-                                            ariaHidden={true}
-                                            class="text-primary-violet"
-                                            name="arrow_forward"
-                                        />
-                                    </a>
+                                    (() => {
+                                        const isCurrentItem =
+                                            isPageLink(item.href) &&
+                                            hrefPathname(item.href) ===
+                                                normalizedCurrentPath
+
+                                        return (
+                                            <a
+                                                aria-current={
+                                                    isCurrentItem
+                                                        ? 'page'
+                                                        : undefined
+                                                }
+                                                class={
+                                                    isCurrentItem
+                                                        ? mobileCurrentRowClass
+                                                        : mobileMenuRowClass
+                                                }
+                                                href={item.href}
+                                            >
+                                                <span>{item.label}</span>
+                                                {!isCurrentItem ? (
+                                                    <Icon
+                                                        ariaHidden={true}
+                                                        class="text-primary-violet"
+                                                        name="arrow_forward"
+                                                    />
+                                                ) : null}
+                                            </a>
+                                        )
+                                    })()
                                 )}
 
                                 {index < mobileRootItems.length - 1 ? (

@@ -132,7 +132,7 @@ export const headerPrimaryLinks = [
     {
         id: 'resources',
         label: 'Resources',
-        href: '/#resources',
+        href: '/resources',
     },
 ] as const satisfies readonly HeaderPrimaryLink[]
 
