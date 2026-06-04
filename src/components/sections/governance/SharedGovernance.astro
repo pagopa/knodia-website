@@ -1,0 +1,129 @@
+---
+import Button from '../../Button.astro'
+import Icon from '../../Icon'
+
+type GovernanceCard = {
+    title: string
+    bullets: string[]
+}
+
+const governanceCards: GovernanceCard[] = [
+    {
+        title: 'What Knodia governs',
+        bullets: [
+            'Shared federation rules',
+            'Common assets maintained across the federation',
+            'Shared trust, semantic and protocol standards',
+        ],
+    },
+    {
+        title: 'What each Knode governs',
+        bullets: [
+            'The organizations recognized within its domain',
+            'How the shared model is implemented locally',
+            'Additional national or domain-specific integration',
+        ],
+    },
+    {
+        title: 'What each organization governs',
+        bullets: [
+            'How services and data are handled and exchanged',
+            'The security profile chosen for a given interaction',
+            'Service-level implementation and access configuration',
+        ],
+    },
+]
+
+const complianceHref = '/compliance'
+---
+
+<section
+    aria-labelledby="governance-shared-autonomy-title"
+    class="bg-primary-violet-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-10 px-(--header-mobile-padding-x) pt-10 pb-12 md:px-(--home-hero-inline-padding-md) xl:gap-20 xl:px-(--header-inline-padding) xl:pt-32 xl:pb-32"
+    >
+        <div
+            class="flex w-full flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:items-start xl:gap-6"
+        >
+            <div class="flex flex-col gap-6 xl:gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg xl:font-normal"
+                    id="governance-shared-autonomy-title"
+                >
+                    Shared governance, local autonomy
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <div class="xl:flex xl:justify-end">
+                <p
+                    class="max-w-(--home-domains-copy-width-mobile) font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:max-w-(--home-domains-copy-width) xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    Responsibilities in Knodia are distributed across three
+                    levels: the federation, each domain and each participating
+                    organization. This helps keep what must be shared aligned,
+                    while leaving implementation and operations closer to where
+                    they happen.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
+            {
+                governanceCards.map((card) => (
+                    <article class="rounded-3xl bg-neutral-white p-6 md:last:col-span-2 xl:min-h-76 xl:p-10 xl:last:col-span-1">
+                        <div class="flex h-full flex-col gap-6">
+                            <h3 class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal">
+                                {card.title}
+                            </h3>
+
+                            <ul class="flex flex-col gap-4 xl:gap-5">
+                                {card.bullets.map((bullet) => (
+                                    <li class="flex items-start gap-3">
+                                        <span
+                                            aria-hidden="true"
+                                            class="inline-flex size-8 shrink-0 items-center justify-center text-primary-violet"
+                                        >
+                                            <Icon
+                                                ariaHidden={true}
+                                                name="arrow_forward_ios"
+                                                size="button-small"
+                                            />
+                                        </span>
+
+                                        <p class="pt-0.5 font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
+                                            {bullet}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+
+        <div class="flex justify-center">
+            <Button
+                class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet!"
+                href={complianceHref}
+                variant="naked"
+            >
+                <span class="inline-flex items-center gap-(--button-gap)">
+                    <span
+                        class="font-body text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+                    >
+                        Explore Compliance
+                    </span>
+                    <Icon ariaHidden={true} name="arrow_forward" />
+                </span>
+            </Button>
+        </div>
+    </div>
+</section>
