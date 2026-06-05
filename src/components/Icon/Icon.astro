@@ -1,6 +1,7 @@
 ---
 import { tv } from 'tailwind-variants'
 import type { IconName, IconSize } from './icon'
+import { joinClasses } from '../../utils'
 
 type Props = {
     name: IconName
@@ -37,10 +38,6 @@ const svgIconRoot = tv({
         size: 'button',
     },
 })
-
-function joinClasses(...classes: Array<string | undefined>) {
-    return classes.filter(Boolean).join(' ')
-}
 
 const {
     ariaHidden = true,

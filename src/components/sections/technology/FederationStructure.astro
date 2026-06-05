@@ -1,7 +1,8 @@
 ---
-import technologyPanelKnodia from '../../../assets/backgrounds/technology-federation-panel-knodia.png'
-import technologyPanelKnodes from '../../../assets/backgrounds/technology-federation-panel-knodes.png'
-import technologyPanelOrganizations from '../../../assets/backgrounds/technology-federation-panel-organizations.png'
+import sharedBgFirstPanel from '../../../assets/backgrounds/shared-bg-first-panel.png'
+import sharedBgSecondPanel from '../../../assets/backgrounds/shared-bg-second-panel.png'
+import sharedBgThirdPanel from '../../../assets/backgrounds/shared-bg-third-panel.png'
+import { joinClasses } from '../../../utils'
 
 type FederationRoleId = 'knodia' | 'knodes' | 'organizations'
 
@@ -19,7 +20,7 @@ const federationRoles: FederationRole[] = [
         label: 'Knodia',
         description:
             'Knodia is the shared federation layer that connects separate domains through common rules and technical mechanisms. It provides the structure that makes recognition, access management and interaction possible across domains.',
-        image: technologyPanelKnodia,
+        image: sharedBgFirstPanel,
         imageClass: 'size-full object-cover',
     },
     {
@@ -27,7 +28,7 @@ const federationRoles: FederationRole[] = [
         label: 'Knodes',
         description:
             'A Knode manages a specific domain. It recognizes the organizations in that domain, maintains the information and conditions needed for interaction, and provides the functions that support exchange with other Knodes.',
-        image: technologyPanelKnodes,
+        image: sharedBgSecondPanel,
         imageClass: 'size-full object-cover',
     },
     {
@@ -35,15 +36,12 @@ const federationRoles: FederationRole[] = [
         label: 'Organizations',
         description:
             'Organizations participate in Knodia through the domain they belong to. They act as producers, when they make an e-service available to others, or as consumers, when they request access to an e-service provided by another organization.',
-        image: technologyPanelOrganizations,
+        image: sharedBgThirdPanel,
         imageClass: 'h-[114.86%] w-[128.93%] left-[-22.8%] top-0',
     },
 ]
 
 const defaultPanelId = federationRoles[0].id
-function joinClasses(...classes: Array<string | undefined>) {
-    return classes.filter(Boolean).join(' ')
-}
 ---
 
 <section

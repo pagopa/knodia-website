@@ -1,4 +1,5 @@
 ---
+import { joinClasses } from '../../../utils'
 import Button from '../../Button.astro'
 import Icon from '../../Icon'
 
@@ -81,10 +82,6 @@ const guidancePanels: GuidancePanel[] = [
 ]
 
 const defaultPanelId = guidancePanels[0].id
-
-function joinClasses(...classes: Array<string | undefined>) {
-    return classes.filter(Boolean).join(' ')
-}
 ---
 
 <section

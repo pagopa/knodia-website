@@ -1,6 +1,7 @@
 ---
 import { tv } from 'tailwind-variants'
 import Icon, { ArrowRightIcon, SourceIcon, type IconName } from './Icon'
+import { joinClasses } from '../utils'
 
 type ButtonVariant = 'contained' | 'outlined' | 'naked' | 'feature'
 type ButtonTone = 'default' | 'contrast'
@@ -295,10 +296,6 @@ const buttonIcon = tv({
 
 const featureBadge =
     'flex size-[var(--feature-badge-size)] shrink-0 items-center justify-center rounded-[var(--radius-feature)] bg-[var(--color-secondary-soft-quartz)]'
-
-function joinClasses(...classes: Array<string | undefined>) {
-    return classes.filter(Boolean).join(' ')
-}
 
 const {
     badgeIcon,
