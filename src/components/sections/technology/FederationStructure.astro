@@ -1,10 +1,16 @@
 ---
+import technologyPanelKnodia from '../../../assets/backgrounds/technology-federation-panel-knodia.png'
+import technologyPanelKnodes from '../../../assets/backgrounds/technology-federation-panel-knodes.png'
+import technologyPanelOrganizations from '../../../assets/backgrounds/technology-federation-panel-organizations.png'
+
 type FederationRoleId = 'knodia' | 'knodes' | 'organizations'
 
 type FederationRole = {
     id: FederationRoleId
     label: string
     description: string
+    image: ImageMetadata
+    imageClass?: string
 }
 
 const federationRoles: FederationRole[] = [
@@ -13,33 +19,30 @@ const federationRoles: FederationRole[] = [
         label: 'Knodia',
         description:
             'Knodia is the shared federation layer that connects separate domains through common rules and technical mechanisms. It provides the structure that makes recognition, access management and interaction possible across domains.',
+        image: technologyPanelKnodia,
+        imageClass: 'size-full object-cover',
     },
     {
         id: 'knodes',
         label: 'Knodes',
         description:
             'A Knode manages a specific domain. It recognizes the organizations in that domain, maintains the information and conditions needed for interaction, and provides the functions that support exchange with other Knodes.',
+        image: technologyPanelKnodes,
+        imageClass: 'size-full object-cover',
     },
     {
         id: 'organizations',
         label: 'Organizations',
         description:
             'Organizations participate in Knodia through the domain they belong to. They act as producers, when they make an e-service available to others, or as consumers, when they request access to an e-service provided by another organization.',
+        image: technologyPanelOrganizations,
+        imageClass: 'h-[114.86%] w-[128.93%] left-[-22.8%] top-0',
     },
 ]
 
-const defaultRoleId = federationRoles[0].id
-
-function panelAtmosphereClass(roleId: FederationRoleId) {
-    if (roleId === 'knodia') {
-        return 'bg-linear-to-br from-white/88 via-white/76 to-primary-violet/14'
-    }
-
-    if (roleId === 'knodes') {
-        return 'bg-linear-to-br from-white/90 via-white/74 to-primary-violet/18'
-    }
-
-    return 'bg-linear-to-br from-white/88 via-white/72 to-primary-violet/20'
+const defaultPanelId = federationRoles[0].id
+function joinClasses(...classes: Array<string | undefined>) {
+    return classes.filter(Boolean).join(' ')
 }
 ---
 
@@ -94,20 +97,20 @@ function panelAtmosphereClass(roleId: FederationRoleId) {
                 </p>
 
                 {
-                    federationRoles.map((role) => (
+                    federationRoles.map((panel) => (
                         <button
-                            aria-controls={`technology-federation-panel-${role.id}`}
+                            aria-controls={`technology-federation-panel-${panel.id}`}
                             aria-selected={
-                                role.id === defaultRoleId ? 'true' : 'false'
+                                panel.id === defaultPanelId ? 'true' : 'false'
                             }
                             class="w-full rounded-2xl bg-neutral-white px-6 py-6 text-left font-heading text-intro-sm leading-intro-sm font-normal text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz xl:text-intro-lg xl:leading-intro-lg"
-                            data-technology-federation-trigger={role.id}
-                            id={`technology-federation-trigger-${role.id}`}
+                            data-technology-federation-trigger={panel.id}
+                            id={`technology-federation-trigger-${panel.id}`}
                             role="tab"
-                            tabindex={role.id === defaultRoleId ? '0' : '-1'}
+                            tabindex={panel.id === defaultPanelId ? '0' : '-1'}
                             type="button"
                         >
-                            {role.label}
+                            {panel.label}
                         </button>
                     ))
                 }
@@ -115,44 +118,38 @@ function panelAtmosphereClass(roleId: FederationRoleId) {
 
             <div class="flex flex-col">
                 {
-                    federationRoles.map((role) => (
+                    federationRoles.map((panel) => (
                         <section
-                            aria-labelledby={`technology-federation-trigger-${role.id}`}
+                            aria-labelledby={`technology-federation-trigger-${panel.id}`}
                             class="relative overflow-hidden rounded-2xl ring-1 ring-white/45 xl:min-h-69"
-                            data-technology-federation-panel={role.id}
-                            hidden={role.id !== defaultRoleId}
-                            id={`technology-federation-panel-${role.id}`}
+                            data-technology-federation-panel={panel.id}
+                            hidden={panel.id !== defaultPanelId}
+                            id={`technology-federation-panel-${panel.id}`}
                             role="tabpanel"
-                            tabindex={role.id === defaultRoleId ? '0' : '-1'}
+                            tabindex={panel.id === defaultPanelId ? '0' : '-1'}
                         >
                             <div
                                 aria-hidden="true"
-                                class={`pointer-events-none absolute inset-0 rounded-[inherit] ${panelAtmosphereClass(role.id)}`}
+                                class="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
                             >
-                                <div class="absolute inset-0 rounded-[inherit] bg-white/65" />
-
-                                {role.id === 'knodia' && (
-                                    <div class="absolute -right-10 -bottom-14 size-52 rounded-full bg-primary-violet/14 blur-2xl" />
-                                )}
-
-                                {role.id === 'knodes' && (
-                                    <>
-                                        <div class="absolute -top-12 right-10 h-56 w-24 rotate-[36deg] bg-linear-to-b from-white/80 via-white/35 to-transparent blur-sm" />
-                                        <div class="absolute top-18 -right-8 size-48 rounded-full bg-primary-violet/18 blur-2xl" />
-                                    </>
-                                )}
-
-                                {role.id === 'organizations' && (
-                                    <>
-                                        <div class="absolute bottom-[-72px] -left-12 size-56 rounded-full bg-white/78 blur-2xl" />
-                                        <div class="absolute -right-6 bottom-0 size-44 rounded-full bg-primary-violet/14 blur-2xl" />
-                                    </>
-                                )}
+                                <img
+                                    alt=""
+                                    class={joinClasses(
+                                        'absolute max-w-none rounded-[inherit]',
+                                        panel.imageClass
+                                    )}
+                                    decoding="async"
+                                    height={panel.image.height}
+                                    loading="lazy"
+                                    src={panel.image.src}
+                                    width={panel.image.width}
+                                />
+                                <div class="absolute inset-0 rounded-[inherit] bg-white/60" />
                             </div>
 
                             <div class="relative flex h-full items-center px-6 py-8 xl:px-8 xl:py-10">
                                 <p class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
-                                    {role.description}
+                                    {panel.description}
                                 </p>
                             </div>
                         </section>
