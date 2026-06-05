@@ -2,15 +2,9 @@
 import sharedBgFirstPanel from '../../../assets/backgrounds/shared-bg-first-panel.png'
 import sharedBgSecondPanel from '../../../assets/backgrounds/shared-bg-second-panel.png'
 import sharedBgThirdPanel from '../../../assets/backgrounds/shared-bg-third-panel.png'
+import type { CardData } from '../../../types'
 
-type SecurityStep = {
-    id: 'cryptographic-material' | 'bearer-dpop' | 'signed-responses'
-    label: string
-    description: string
-    image: ImageMetadata
-}
-
-const securitySteps: SecurityStep[] = [
+const securitySteps: CardData[] = [
     {
         id: 'cryptographic-material',
         label: 'Cryptographic material',

@@ -4,18 +4,11 @@ import Icon from '../../Icon'
 import sharedBgFirstPanel from '../../../assets/backgrounds/shared-bg-first-panel.png'
 import sharedBgSecondPanel from '../../../assets/backgrounds/shared-bg-second-panel.png'
 import sharedBgThirdPanel from '../../../assets/backgrounds/shared-bg-third-panel.png'
-import { joinClasses } from '../../../utils'
-
-type GdprAccessStep = {
-    id: 'controlled-access' | 'enforced-requirements' | 'full-traceability'
-    label: string
-    description: string
-    image: ImageMetadata
-}
+import type { CardData } from '../../../types'
 
 const exploreSecurityHref = '/security'
 
-const gdprAccessSteps: GdprAccessStep[] = [
+const gdprAccessSteps: CardData[] = [
     {
         id: 'controlled-access',
         label: 'Controlled access',

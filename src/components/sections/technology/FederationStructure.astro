@@ -2,17 +2,9 @@
 import sharedBgFirstPanel from '../../../assets/backgrounds/shared-bg-first-panel.png'
 import sharedBgSecondPanel from '../../../assets/backgrounds/shared-bg-second-panel.png'
 import sharedBgThirdPanel from '../../../assets/backgrounds/shared-bg-third-panel.png'
+import type { CardData } from '../../../types'
 
-type FederationRoleId = 'knodia' | 'knodes' | 'organizations'
-
-type FederationRole = {
-    id: FederationRoleId
-    label: string
-    description: string
-    image: ImageMetadata
-}
-
-const federationRoles: FederationRole[] = [
+const federationRoles: CardData[] = [
     {
         id: 'knodia',
         label: 'Knodia',
