@@ -2,14 +2,12 @@
 import sharedBgFirstPanel from '../../../assets/backgrounds/shared-bg-first-panel.png'
 import sharedBgSecondPanel from '../../../assets/backgrounds/shared-bg-second-panel.png'
 import sharedBgThirdPanel from '../../../assets/backgrounds/shared-bg-third-panel.png'
-import { joinClasses } from '../../../utils'
 
 type SecurityStep = {
     id: 'cryptographic-material' | 'bearer-dpop' | 'signed-responses'
     label: string
     description: string
     image: ImageMetadata
-    imageClass?: string
 }
 
 const securitySteps: SecurityStep[] = [
@@ -19,7 +17,6 @@ const securitySteps: SecurityStep[] = [
         description:
             'Public keys are uploaded while private keys are used to sign client assertions. A token is then requested to the Knode authorization server (OAuth 2.0).',
         image: sharedBgFirstPanel,
-        imageClass: 'size-full object-cover',
     },
     {
         id: 'bearer-dpop',
@@ -27,7 +24,6 @@ const securitySteps: SecurityStep[] = [
         description:
             'Depending on the level of security required by the producer of the service, access can rely on Bearer or DPoP-based tokens.',
         image: sharedBgSecondPanel,
-        imageClass: 'size-full object-cover',
     },
     {
         id: 'signed-responses',
@@ -35,7 +31,6 @@ const securitySteps: SecurityStep[] = [
         description:
             'The producer can always sign the response so that the consumer can be sure that data was not altered in transit and cannot be disputed later.',
         image: sharedBgThirdPanel,
-        imageClass: 'h-[114.86%] w-[128.93%] left-[-22.8%] top-0',
     },
 ]
 
@@ -123,10 +118,7 @@ const defaultStepId = securitySteps[0].id
                             >
                                 <img
                                     alt=""
-                                    class={joinClasses(
-                                        'absolute max-w-none rounded-[inherit]',
-                                        step.imageClass
-                                    )}
+                                    class="absolute size-full max-w-none rounded-[inherit] object-cover"
                                     decoding="async"
                                     height={step.image.height}
                                     loading="lazy"

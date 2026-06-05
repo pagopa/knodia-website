@@ -2,7 +2,6 @@
 import sharedBgFirstPanel from '../../../assets/backgrounds/shared-bg-first-panel.png'
 import sharedBgSecondPanel from '../../../assets/backgrounds/shared-bg-second-panel.png'
 import sharedBgThirdPanel from '../../../assets/backgrounds/shared-bg-third-panel.png'
-import { joinClasses } from '../../../utils'
 
 type FederationRoleId = 'knodia' | 'knodes' | 'organizations'
 
@@ -11,7 +10,6 @@ type FederationRole = {
     label: string
     description: string
     image: ImageMetadata
-    imageClass?: string
 }
 
 const federationRoles: FederationRole[] = [
@@ -21,7 +19,6 @@ const federationRoles: FederationRole[] = [
         description:
             'Knodia is the shared federation layer that connects separate domains through common rules and technical mechanisms. It provides the structure that makes recognition, access management and interaction possible across domains.',
         image: sharedBgFirstPanel,
-        imageClass: 'size-full object-cover',
     },
     {
         id: 'knodes',
@@ -29,7 +26,6 @@ const federationRoles: FederationRole[] = [
         description:
             'A Knode manages a specific domain. It recognizes the organizations in that domain, maintains the information and conditions needed for interaction, and provides the functions that support exchange with other Knodes.',
         image: sharedBgSecondPanel,
-        imageClass: 'size-full object-cover',
     },
     {
         id: 'organizations',
@@ -37,7 +33,6 @@ const federationRoles: FederationRole[] = [
         description:
             'Organizations participate in Knodia through the domain they belong to. They act as producers, when they make an e-service available to others, or as consumers, when they request access to an e-service provided by another organization.',
         image: sharedBgThirdPanel,
-        imageClass: 'h-[114.86%] w-[128.93%] left-[-22.8%] top-0',
     },
 ]
 
@@ -132,10 +127,7 @@ const defaultPanelId = federationRoles[0].id
                             >
                                 <img
                                     alt=""
-                                    class={joinClasses(
-                                        'absolute max-w-none rounded-[inherit]',
-                                        panel.imageClass
-                                    )}
+                                    class="absolute size-full max-w-none rounded-[inherit] object-cover"
                                     decoding="async"
                                     height={panel.image.height}
                                     loading="lazy"
