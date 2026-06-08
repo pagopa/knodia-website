@@ -1,28 +1,30 @@
 ---
-type SecurityStep = {
-    id: 'cryptographic-material' | 'bearer-dpop' | 'signed-responses'
-    label: string
-    description: string
-}
+import sharedBgFirstPanel from '../../../assets/backgrounds/shared-bg-first-panel.png'
+import sharedBgSecondPanel from '../../../assets/backgrounds/shared-bg-second-panel.png'
+import sharedBgThirdPanel from '../../../assets/backgrounds/shared-bg-third-panel.png'
+import type { CardData } from '../../../types'
 
-const securitySteps: SecurityStep[] = [
+const securitySteps: CardData[] = [
     {
         id: 'cryptographic-material',
         label: 'Cryptographic material',
         description:
             'Public keys are uploaded while private keys are used to sign client assertions. A token is then requested to the Knode authorization server (OAuth 2.0).',
+        image: sharedBgFirstPanel,
     },
     {
         id: 'bearer-dpop',
         label: 'Bearer or DPoP',
         description:
             'Depending on the level of security required by the producer of the service, access can rely on Bearer or DPoP-based tokens.',
+        image: sharedBgSecondPanel,
     },
     {
         id: 'signed-responses',
         label: 'Signed responses',
         description:
             'The producer can always sign the response so that the consumer can be sure that data was not altered in transit and cannot be disputed later.',
+        image: sharedBgThirdPanel,
     },
 ]
 
@@ -104,9 +106,26 @@ const defaultStepId = securitySteps[0].id
                             role="tabpanel"
                             tabindex={step.id === defaultStepId ? '0' : '-1'}
                         >
-                            <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
-                                {step.description}
-                            </p>
+                            <div
+                                aria-hidden="true"
+                                class="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
+                            >
+                                <img
+                                    alt=""
+                                    class="absolute size-full max-w-none rounded-[inherit] object-cover"
+                                    decoding="async"
+                                    height={step.image.height}
+                                    loading="lazy"
+                                    src={step.image.src}
+                                    width={step.image.width}
+                                />
+                                <div class="absolute inset-0 rounded-[inherit] bg-white/60" />
+                            </div>
+                            <div class="relative flex h-full items-center px-6 py-8 xl:px-8 xl:py-10">
+                                <p class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {step.description}
+                                </p>
+                            </div>
                         </section>
                     ))
                 }

@@ -1,4 +1,5 @@
 ---
+import { joinClasses } from '../../../utils'
 import Button from '../../Button.astro'
 import Icon from '../../Icon'
 
@@ -54,7 +55,7 @@ const guidancePanels: GuidancePanel[] = [
                 label: 'Technology',
             },
             {
-                href: '/#product-security',
+                href: '/security',
                 label: 'Security',
             },
         ],
@@ -69,11 +70,11 @@ const guidancePanels: GuidancePanel[] = [
             'xl:leading-(--home-guidance-card-body-leading-lg)',
         links: [
             {
-                href: '/#product-compliance',
+                href: '/compliance',
                 label: 'Compliance',
             },
             {
-                href: '/#product-governance',
+                href: '/governance',
                 label: 'Governance',
             },
         ],
@@ -81,10 +82,6 @@ const guidancePanels: GuidancePanel[] = [
 ]
 
 const defaultPanelId = guidancePanels[0].id
-
-function joinClasses(...classes: Array<string | undefined>) {
-    return classes.filter(Boolean).join(' ')
-}
 ---
 
 <section

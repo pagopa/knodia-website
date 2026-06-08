@@ -1,11 +1,16 @@
 ---
 import type { ImageMetadata } from 'astro'
 import Icon from '../../Icon'
-import accessTokenIssuanceDiagram from '../../../assets/backgrounds/core-functions-access-token-issuance.png'
-import consumerKeyManagementDiagram from '../../../assets/backgrounds/core-functions-consumer-key-management.png'
-import interactionActivationDiagram from '../../../assets/backgrounds/core-functions-interaction-activation.png'
-import knodeCatalogueDiagram from '../../../assets/backgrounds/core-functions-knode-catalogue.png'
-import knodeManagementDiagram from '../../../assets/backgrounds/core-functions-knode-management.png'
+import accessTokenIssuanceDesktopDiagram from '../../../assets/backgrounds/core-functions-access-token-issuance-desktop.png'
+import accessTokenIssuanceMobileDiagram from '../../../assets/backgrounds/core-functions-access-token-issuance-mobile.png'
+import consumerKeyManagementDesktopDiagram from '../../../assets/backgrounds/core-functions-consumer-key-management-desktop.png'
+import consumerKeyManagementMobileDiagram from '../../../assets/backgrounds/core-functions-consumer-key-management-mobile.png'
+import interactionActivationDesktopDiagram from '../../../assets/backgrounds/core-functions-interaction-activation-desktop.png'
+import interactionActivationMobileDiagram from '../../../assets/backgrounds/core-functions-interaction-activation-mobile.png'
+import knodeCatalogueDesktopDiagram from '../../../assets/backgrounds/core-functions-knode-catalogue-desktop.png'
+import knodeCatalogueMobileDiagram from '../../../assets/backgrounds/core-functions-knode-catalogue-mobile.png'
+import knodeManagementDesktopDiagram from '../../../assets/backgrounds/core-functions-knode-management-desktop.png'
+import knodeManagementMobileDiagram from '../../../assets/backgrounds/core-functions-knode-management-mobile.png'
 
 type CoreFunctionPanelId =
     | 'knode-management'
@@ -26,7 +31,8 @@ type CoreFunctionPanel = {
     description: string
     whyItMatters: string
     benefits: CoreFunctionBenefit[]
-    image: ImageMetadata
+    imageDesktop: ImageMetadata
+    imageMobile: ImageMetadata
 }
 
 const coreFunctionPanels: CoreFunctionPanel[] = [
@@ -55,7 +61,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
                     'It makes that organizational information available, so other domains can rely on it when interaction starts.',
             },
         ],
-        image: knodeManagementDiagram,
+        imageDesktop: knodeManagementDesktopDiagram,
+        imageMobile: knodeManagementMobileDiagram,
     },
     {
         id: 'knode-catalogue',
@@ -87,7 +94,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
                     'It supports versioning and lifecycle management over time.',
             },
         ],
-        image: knodeCatalogueDiagram,
+        imageDesktop: knodeCatalogueDesktopDiagram,
+        imageMobile: knodeCatalogueMobileDiagram,
     },
     {
         id: 'interaction-activation',
@@ -114,7 +122,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
                     'It supports the submission of purpose-related information when access is subject to privacy or compliance requirements.',
             },
         ],
-        image: interactionActivationDiagram,
+        imageDesktop: interactionActivationDesktopDiagram,
+        imageMobile: interactionActivationMobileDiagram,
     },
     {
         id: 'consumer-key-management',
@@ -136,7 +145,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
                     'It allows those keychains to be linked to the purpose declarations used for API access.',
             },
         ],
-        image: consumerKeyManagementDiagram,
+        imageDesktop: consumerKeyManagementDesktopDiagram,
+        imageMobile: consumerKeyManagementMobileDiagram,
     },
     {
         id: 'access-token-issuance',
@@ -163,7 +173,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
                     'It checks the status of the access request and the purpose declaration before issuing the token.',
             },
         ],
-        image: accessTokenIssuanceDiagram,
+        imageDesktop: accessTokenIssuanceDesktopDiagram,
+        imageMobile: accessTokenIssuanceMobileDiagram,
     },
 ]
 
@@ -222,7 +233,7 @@ const defaultPanelId = coreFunctionPanels[0].id
                             aria-selected={
                                 panel.id === defaultPanelId ? 'true' : 'false'
                             }
-                            class="inline-flex min-h-[52px] items-center justify-center rounded-full bg-neutral-white px-4 py-3 font-body text-[16px] leading-[24px] font-medium text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out hover:bg-primary-violet-surface focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz aria-selected:text-neutral-medium-gray md:text-button-md md:leading-(--leading-button-md)"
+                            class="inline-flex min-h-[52px] items-center justify-center rounded-full bg-neutral-white px-4 py-3 font-body text-[16px] leading-[24px] font-medium text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz aria-selected:text-neutral-medium-gray md:text-button-md md:leading-(--leading-button-md)"
                             data-core-functions-trigger={panel.id}
                             id={`core-functions-trigger-${panel.id}`}
                             role="tab"
@@ -296,15 +307,22 @@ const defaultPanelId = coreFunctionPanels[0].id
                         </div>
 
                         <div class="w-full">
-                            <img
-                                alt=""
-                                class="mx-auto block h-auto w-full max-w-[1158px] drop-shadow-[0_24px_64px_rgba(78,81,230,0.08)]"
-                                decoding="async"
-                                height={panel.image.height}
-                                loading="lazy"
-                                src={panel.image.src}
-                                width={panel.image.width}
-                            />
+                            <picture>
+                                <source
+                                    media="(min-width: 768px)"
+                                    srcset={panel.imageDesktop.src}
+                                />
+
+                                <img
+                                    alt={panel.title}
+                                    class="mx-auto block h-auto w-full max-w-[1158px] drop-shadow-[0_24px_64px_rgba(78,81,230,0.08)]"
+                                    decoding="async"
+                                    height={panel.imageMobile.height}
+                                    loading="lazy"
+                                    src={panel.imageMobile.src}
+                                    width={panel.imageMobile.width}
+                                />
+                            </picture>
                         </div>
                     </section>
                 ))

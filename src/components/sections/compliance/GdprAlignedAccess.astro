@@ -1,33 +1,34 @@
 ---
 import Button from '../../Button.astro'
 import Icon from '../../Icon'
-
-type GdprAccessStep = {
-    id: 'controlled-access' | 'enforced-requirements' | 'full-traceability'
-    label: string
-    description: string
-}
+import sharedBgFirstPanel from '../../../assets/backgrounds/shared-bg-first-panel.png'
+import sharedBgSecondPanel from '../../../assets/backgrounds/shared-bg-second-panel.png'
+import sharedBgThirdPanel from '../../../assets/backgrounds/shared-bg-third-panel.png'
+import type { CardData } from '../../../types'
 
 const exploreSecurityHref = '/security'
 
-const gdprAccessSteps: GdprAccessStep[] = [
+const gdprAccessSteps: CardData[] = [
     {
         id: 'controlled-access',
         label: 'Controlled access',
         description:
             'Knodia allows access conditions to be defined before data is exchanged. Producers can set the requirements for access, and consumers can declare the lawfulness of processing, including the basis under Article 6 GDPR where personal data is involved.',
+        image: sharedBgFirstPanel,
     },
     {
         id: 'enforced-requirements',
         label: 'Enforced requirements',
         description:
             'The framework connects privacy requirements to the technical flow of the interaction. Token issuance, keychains and proof mechanisms help ensure that the conditions defined for access can also be reflected in implementation.',
+        image: sharedBgSecondPanel,
     },
     {
         id: 'full-traceability',
         label: 'Full traceability',
         description:
             'Requests, approvals, declared purposes and access tokens remain part of the same governed sequence. This makes access easier to trace, review and document.',
+        image: sharedBgThirdPanel,
     },
 ]
 
@@ -104,9 +105,27 @@ const defaultStepId = gdprAccessSteps[0].id
                             role="tabpanel"
                             tabindex={step.id === defaultStepId ? '0' : '-1'}
                         >
-                            <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
-                                {step.description}
-                            </p>
+                            <div
+                                aria-hidden="true"
+                                class="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
+                            >
+                                <img
+                                    alt=""
+                                    class="absolute size-full max-w-none rounded-[inherit] object-cover"
+                                    decoding="async"
+                                    height={step.image.height}
+                                    loading="lazy"
+                                    src={step.image.src}
+                                    width={step.image.width}
+                                />
+                                <div class="absolute inset-0 rounded-[inherit] bg-white/60" />
+                            </div>
+
+                            <div class="relative flex h-full items-center px-6 py-8 xl:px-8 xl:py-10">
+                                <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-graphite xl:text-button-md xl:leading-(--leading-button-md)">
+                                    {step.description}
+                                </p>
+                            </div>
                         </section>
                     ))
                 }
