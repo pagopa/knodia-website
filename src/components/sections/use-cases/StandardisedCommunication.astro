@@ -1,0 +1,79 @@
+---
+import Button from '../../Button.astro'
+import useCasesAbstractDataNetworkFigma from '../../../assets/backgrounds/use-cases-abstract-data-network-figma.png'
+
+const readMoreHref = '#'
+const tags = ['MANY-TO-MANY', 'SHARED PROTOCOL']
+---
+
+<section
+    aria-labelledby="use-cases-standardised-title"
+    class="bg-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col px-(--header-mobile-padding-x) pt-10 pb-14 md:px-(--home-hero-inline-padding-md) md:pt-14 md:pb-18 xl:px-(--header-inline-padding) xl:pt-18 xl:pb-32"
+    >
+        <div
+            class="flex flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,571px)_minmax(0,507px)] xl:items-end xl:justify-between xl:gap-x-20 xl:gap-y-0"
+        >
+            <div
+                class="flex flex-col gap-10 xl:min-h-105 xl:justify-between xl:py-4"
+            >
+                <div class="flex flex-col gap-6">
+                    <div class="flex flex-wrap items-center gap-4">
+                        {
+                            tags.map((tag) => (
+                                <span class="inline-flex h-9.25 items-center justify-center rounded-3xl border border-primary-violet px-4 font-caption text-home-use-case-tag leading-home-use-case-tag font-semibold text-primary-violet uppercase">
+                                    {tag}
+                                </span>
+                            ))
+                        }
+                    </div>
+
+                    <h2
+                        class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite md:text-heading-md md:leading-heading-md xl:text-heading-lg xl:leading-heading-lg"
+                        id="use-cases-standardised-title"
+                    >
+                        Standardised communication across domains
+                    </h2>
+
+                    <p
+                        class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-graphite md:text-button-md md:leading-(--leading-button-md)"
+                    >
+                        Knodia supports situations where multiple organizations
+                        across domains need to exchange data through the same
+                        shared communication protocol.
+                    </p>
+                </div>
+
+                <Button
+                    class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
+                    href={readMoreHref}
+                    icon="arrow_forward"
+                    size="small"
+                    variant="naked"
+                >
+                    <span
+                        class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+                    >
+                        Read more
+                    </span>
+                </Button>
+            </div>
+
+            <div
+                class="relative h-64 w-full overflow-hidden rounded-3xl bg-primary-violet-surface md:h-80 xl:h-105 xl:w-126.75"
+            >
+                <img
+                    alt="Abstract data network visual"
+                    class="size-full object-cover"
+                    decoding="async"
+                    height={useCasesAbstractDataNetworkFigma.height}
+                    loading="lazy"
+                    src={useCasesAbstractDataNetworkFigma.src}
+                    width={useCasesAbstractDataNetworkFigma.width}
+                />
+            </div>
+        </div>
+    </div>
+</section>
