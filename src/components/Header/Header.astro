@@ -13,7 +13,9 @@ const normalizedCurrentPath = normalizePath(currentPath)
 const isHomePage = normalizedCurrentPath === '/'
 const isWhatIsKnodiaPage = normalizedCurrentPath === '/what-is-knodia'
 const isResourcesPage = normalizedCurrentPath === '/resources'
-const isUseCasesPage = normalizedCurrentPath === '/use-cases'
+const isUseCasesPage =
+    normalizedCurrentPath === '/use-cases' ||
+    normalizedCurrentPath.startsWith('/use-cases/')
 const usesOverlayHeader =
     isHomePage || isWhatIsKnodiaPage || isResourcesPage || isUseCasesPage
 const headerRootClass = 'header-root fixed inset-x-0 top-0 isolate z-40'

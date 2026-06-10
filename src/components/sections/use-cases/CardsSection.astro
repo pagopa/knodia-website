@@ -1,7 +1,6 @@
 ---
 import Button from '../../Button.astro'
 
-const readMoreHref = '#'
 const viewMoreHref = '#'
 
 const cards = [
@@ -10,18 +9,21 @@ const cards = [
         title: 'A distributed base register',
         description:
             'How a shared model can support a register distributed across multiple organizations and Member States.',
+        href: '/use-cases/standardised-communication-across-domains',
     },
     {
         tag: 'ASYNCHRONOUS EXCHANGE',
         title: 'Handling delayed responses',
         description:
             'How organizations can manage requests when a response cannot be produced in real time.',
+        href: '#',
     },
     {
         tag: 'DATA SYNCHRONIZATION',
         title: 'Keeping local data aligned with a base register',
         description:
             'How organizations can stay aligned with changes in data retrieved from an authoritative source.',
+        href: '#',
     },
 ] as const
 ---
@@ -55,7 +57,7 @@ const cards = [
 
                         <Button
                             class="mt-8 self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
-                            href={readMoreHref}
+                            href={card.href}
                             icon="arrow_forward"
                             size="small"
                             variant="naked"
