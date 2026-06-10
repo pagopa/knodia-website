@@ -1,0 +1,167 @@
+---
+import Button from '../../Button.astro'
+---
+
+<section
+    aria-labelledby="managing-distributed-base-register-hero-title"
+    class="bg-primary-violet-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-12 px-(--header-mobile-padding-x) pt-34 pb-14 md:px-(--home-hero-inline-padding-md) md:pt-40 md:pb-20 xl:gap-(--home-use-case-column-gap) xl:px-(--header-inline-padding) xl:pt-40.75 xl:pb-27"
+    >
+        <Button
+            class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet!"
+            href="/use-cases"
+            icon="arrow_back"
+            iconPosition="left"
+            size="small"
+            variant="naked"
+        >
+            <span
+                class="text-button-md leading-(--leading-button-md) font-medium"
+                >Back</span
+            >
+        </Button>
+
+        <div
+            class="flex flex-col gap-10 xl:grid xl:grid-cols-[minmax(0,570px)_minmax(0,507px)] xl:items-center xl:justify-between"
+        >
+            <div class="flex flex-col gap-6 xl:gap-(--home-use-case-copy-gap)">
+                <p
+                    class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray md:text-intro-lg md:leading-intro-lg"
+                >
+                    Source data
+                </p>
+
+                <h1
+                    class="font-heading text-hero-sm leading-hero-sm font-semibold tracking-hero-sm text-neutral-graphite md:text-home-cta-title md:leading-17 md:tracking-[-0.84px] xl:text-hero-lg xl:leading-hero-lg xl:tracking-hero-lg"
+                    id="managing-distributed-base-register-hero-title"
+                >
+                    A distributed base register
+                </h1>
+
+                <p
+                    class="max-w-full font-heading text-intro-sm leading-intro-sm font-normal text-neutral-graphite md:max-w-155 md:text-home-use-case-title-sm md:leading-[30px] xl:max-w-(--home-use-case-copy-width) xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    Knodia makes distributed registers easier to implement, so
+                    each organization can manage the data under its own
+                    competence without centralizing everything in one database.
+                </p>
+            </div>
+
+            <div class="hero-network-visual" aria-hidden="true">
+                <svg
+                    class="hero-network-svg"
+                    viewBox="0 0 507 420"
+                    role="presentation"
+                >
+                    <g fill="none" stroke-linecap="round">
+                        <path
+                            d="M129 139V200C129 254 172 294 252 294"
+                            stroke="rgba(78,81,230,0.5)"
+                            stroke-width="1.5"></path>
+                        <path
+                            d="M190 139V212C190 260 211 294 252 294"
+                            stroke="rgba(78,81,230,0.5)"
+                            stroke-width="1.5"></path>
+                        <path
+                            d="M314 139V212C314 260 293 294 252 294"
+                            stroke="rgba(78,81,230,0.5)"
+                            stroke-width="1.5"></path>
+                        <path
+                            d="M377 139V200C377 254 334 294 252 294"
+                            stroke="rgba(78,81,230,0.5)"
+                            stroke-width="1.5"></path>
+                    </g>
+
+                    <g fill="none" stroke-width="3">
+                        <circle
+                            cx="68"
+                            cy="102"
+                            r="24"
+                            stroke="#4E51E6"
+                            stroke-dasharray="9 9"></circle>
+                        <circle cx="129" cy="102" r="24" stroke="#4E51E6"
+                        ></circle>
+                        <circle
+                            cx="252"
+                            cy="102"
+                            r="24"
+                            stroke="#4E51E6"
+                            stroke-dasharray="9 9"></circle>
+                        <circle cx="314" cy="102" r="24" stroke="#4E51E6"
+                        ></circle>
+                        <circle
+                            cx="438"
+                            cy="102"
+                            r="24"
+                            stroke="#4E51E6"
+                            stroke-dasharray="9 9"></circle>
+                    </g>
+
+                    <g transform="translate(203 248)">
+                        <rect
+                            x="0"
+                            y="0"
+                            width="98"
+                            height="98"
+                            rx="16"
+                            fill="url(#knodia-square)"></rect>
+
+                        <g transform="translate(49 49)" fill="#FFFFFF">
+                            <ellipse cx="-12" cy="0" rx="8" ry="4"></ellipse>
+                            <ellipse
+                                cx="12"
+                                cy="0"
+                                rx="14"
+                                ry="5"
+                                transform="rotate(28)"></ellipse>
+                            <ellipse
+                                cx="-1"
+                                cy="-14"
+                                rx="10"
+                                ry="4"
+                                transform="rotate(-55)"></ellipse>
+                            <ellipse
+                                cx="-2"
+                                cy="13"
+                                rx="6"
+                                ry="3"
+                                transform="rotate(-90)"></ellipse>
+                            <circle cx="-2" cy="1" r="5"></circle>
+                        </g>
+                    </g>
+
+                    <defs>
+                        <linearGradient
+                            id="knodia-square"
+                            x1="0"
+                            y1="0"
+                            x2="98"
+                            y2="98"
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stop-color="#4E51E6"></stop>
+                            <stop offset="1" stop-color="#787ADF"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-network-visual {
+        width: 100%;
+        max-width: 507px;
+        align-self: center;
+        filter: drop-shadow(0 8px 18px rgba(78, 81, 230, 0.16));
+    }
+
+    .hero-network-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+</style>
