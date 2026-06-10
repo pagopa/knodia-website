@@ -1,0 +1,43 @@
+---
+import resourcesHeroBackgroundFigma from '../../../assets/backgrounds/resources-hero-background-figma.png'
+---
+
+<section
+    aria-labelledby="resources-hero-title"
+    class="relative isolate overflow-hidden bg-primary-violet-surface"
+>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <img
+            alt=""
+            class="size-full object-cover object-center"
+            decoding="async"
+            fetchpriority="high"
+            height={resourcesHeroBackgroundFigma.height}
+            loading="eager"
+            src={resourcesHeroBackgroundFigma.src}
+            width={resourcesHeroBackgroundFigma.width}
+        />
+    </div>
+
+    <div
+        class="relative mx-auto flex min-h-150 max-w-(--header-shell-max) items-start px-(--header-mobile-padding-x) pt-34 pb-16 md:min-h-160 md:px-(--home-hero-inline-padding-md) md:pt-42 md:pb-20 xl:px-(--header-inline-padding) xl:pt-(--home-hero-padding-top) xl:pb-24"
+    >
+        <div
+            class="flex w-full max-w-[calc(100vw-48px)] flex-col gap-6 sm:max-w-90 md:max-w-140 xl:max-w-170"
+        >
+            <h1
+                class="font-heading text-hero-sm leading-hero-sm font-semibold tracking-hero-sm text-neutral-graphite md:text-home-cta-title md:leading-17 md:tracking-[-0.84px] xl:text-hero-lg xl:leading-hero-lg xl:tracking-hero-lg"
+                id="resources-hero-title"
+            >
+                Resources
+            </h1>
+
+            <p
+                class="max-w-full font-body text-intro-sm leading-intro-sm font-normal text-neutral-graphite md:max-w-140 md:text-home-use-case-title-sm md:leading-[30px] xl:max-w-170 xl:text-intro-lg xl:leading-intro-lg"
+            >
+                A collection of materials for understanding Knodia in depth,
+                from its structure to the technical logic that shapes the model.
+            </p>
+        </div>
+    </div>
+</section>
