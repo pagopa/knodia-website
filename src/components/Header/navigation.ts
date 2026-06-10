@@ -127,7 +127,7 @@ export const headerPrimaryLinks = [
     {
         id: 'use-cases',
         label: 'Use cases',
-        href: '/#use-cases',
+        href: '/use-cases',
     },
     {
         id: 'resources',

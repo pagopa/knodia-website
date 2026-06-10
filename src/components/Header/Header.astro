@@ -13,16 +13,18 @@ const normalizedCurrentPath = normalizePath(currentPath)
 const isHomePage = normalizedCurrentPath === '/'
 const isWhatIsKnodiaPage = normalizedCurrentPath === '/what-is-knodia'
 const isResourcesPage = normalizedCurrentPath === '/resources'
-const usesOverlayHeader = isHomePage || isWhatIsKnodiaPage || isResourcesPage
+const isUseCasesPage = normalizedCurrentPath === '/use-cases'
+const usesOverlayHeader =
+    isHomePage || isWhatIsKnodiaPage || isResourcesPage || isUseCasesPage
 const headerRootClass = 'header-root fixed inset-x-0 top-0 isolate z-40'
 const headerBarShellClass = isHomePage
     ? 'w-full'
-    : isWhatIsKnodiaPage || isResourcesPage
+    : isWhatIsKnodiaPage || isResourcesPage || isUseCasesPage
       ? 'w-full bg-white/40 backdrop-blur-[4px]'
       : 'w-full border-b border-black/5 bg-white/85 backdrop-blur-xs'
 const headerBarContentClass = isHomePage
     ? 'mx-auto flex min-h-(--header-mobile-bar-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-(--header-mobile-padding-x) xl:min-h-(--header-height) xl:px-(--header-inline-padding)'
-    : isWhatIsKnodiaPage
+    : isWhatIsKnodiaPage || isUseCasesPage
       ? 'mx-auto flex min-h-(--header-mobile-bar-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-(--header-mobile-padding-x) xl:min-h-(--header-height) xl:px-(--header-inline-padding)'
       : 'mx-auto flex min-h-(--header-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-4 sm:px-6 xl:px-(--header-inline-padding)'
 const headerLogoSrc = isHomePage
@@ -87,7 +89,7 @@ const mobileRootItems = [
         label: 'Use Cases',
         href:
             headerPrimaryLinks.find((link) => link.id === 'use-cases')?.href ??
-            '/#use-cases',
+            '/use-cases',
     },
     {
         id: 'resources',
