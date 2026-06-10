@@ -1,11 +1,11 @@
 ---
 import Button from '../../Button.astro'
-import sharedHeroBackground from '../../../assets/backgrounds/shared-hero-background.png'
+import resourcesUseCaseSingleFigma from '../../../assets/backgrounds/resources-use-case-single-figma.png'
 
 const viewAllHref = '#'
 const readMoreHref = '#'
 
-const tags = ['LOREM IPSUM', 'LOREM IPSUM']
+const tags = ['DATA SYNCHRONIZATION']
 ---
 
 <section aria-labelledby="resources-use-case-title" class="bg-neutral-white">
@@ -55,14 +55,15 @@ const tags = ['LOREM IPSUM', 'LOREM IPSUM']
                         class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite md:text-heading-md md:leading-heading-md xl:text-heading-lg xl:leading-heading-lg"
                         id="resources-use-case-title"
                     >
-                        Keeping data aligned
+                        Keeping local data aligned with a base register
                     </h2>
 
                     <p
                         class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-graphite md:text-button-md md:leading-(--leading-button-md)"
                     >
-                        How organizations can stay aligned with changes in data
-                        retrieved from an authoritative source.
+                        Knodia supports situations where one-time access to data
+                        is not enough and local systems need to stay up to date
+                        with a trusted source.
                     </p>
                 </div>
 
@@ -82,16 +83,16 @@ const tags = ['LOREM IPSUM', 'LOREM IPSUM']
             </div>
 
             <div
-                class="relative h-64 w-full overflow-hidden bg-deep-violet md:h-80 xl:h-105 xl:w-126.75"
+                class="relative h-64 w-full overflow-hidden rounded-3xl bg-primary-violet-surface md:h-80 xl:h-105 xl:w-126.75"
             >
                 <img
                     alt=""
-                    class="size-full object-cover opacity-80"
+                    class="size-full object-cover"
                     decoding="async"
-                    height={sharedHeroBackground.height}
+                    height={resourcesUseCaseSingleFigma.height}
                     loading="lazy"
-                    src={sharedHeroBackground.src}
-                    width={sharedHeroBackground.width}
+                    src={resourcesUseCaseSingleFigma.src}
+                    width={resourcesUseCaseSingleFigma.width}
                 />
             </div>
         </div>
