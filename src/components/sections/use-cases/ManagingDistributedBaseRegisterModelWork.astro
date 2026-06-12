@@ -6,19 +6,24 @@ type ModelWorkCard = {
 
 const modelWorkCards: ModelWorkCard[] = [
     {
-        title: 'Equivalent behavior across all participants',
+        title: 'A shared service template',
         description:
-            'The same type of exchange needs to behave in the same way for every organization that instantiates the shared template.',
+            'Participating organizations need to expose their part of the register by implementing a shared e-service template.',
     },
     {
-        title: 'A model that can be updated over time',
+        title: 'Consistent behavior across domains',
         description:
-            'When the shared behaviour changes, participating organizations need a way to adopt those updates without redesigning the exchange.',
+            'The same interaction rules need to apply across all organizations involved in the register.',
     },
     {
-        title: 'Optional non-repudiation for exchanged data',
+        title: 'Clear ownership of the data',
         description:
-            'Where needed, the model can also support non-repudiation so exchanged data can be tied more strongly to the organization that sent it.',
+            'Each organization remains responsible for the data under its own territorial or domain competence.',
+    },
+    {
+        title: 'Shared updates adopted by all',
+        description:
+            'Participating organizations must agree on and implement updates to the shared service model.',
     },
 ]
 ---
@@ -51,21 +56,23 @@ const modelWorkCards: ModelWorkCard[] = [
             <p
                 class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
             >
-                Consistent many-to-many exchange depends on shared conditions
-                around equivalence, updateability and trust between
-                participants.
+                A distributed register can work consistently across domains only
+                when participating organizations share common rules for access,
+                structure and interaction modes.
             </p>
         </div>
 
-        <div class="grid w-full gap-6 xl:grid-cols-3">
+        <div
+            class="grid w-full max-w-289.5 gap-6 md:grid-cols-2 xl:grid-cols-4"
+        >
             {
                 modelWorkCards.map((card) => (
-                    <article class="flex min-h-66.75 flex-col gap-4 rounded-3xl bg-primary-violet-surface p-8 shadow-[0px_4px_8px_rgba(14,15,19,0.1)]">
-                        <h3 class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite">
+                    <article class="flex h-full flex-col gap-4 rounded-3xl bg-primary-violet-surface p-6 shadow-(--shadow-what-is-knodia-audience-card) xl:min-h-66.75 xl:gap-8 xl:p-8">
+                        <h3 class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal">
                             {card.title}
                         </h3>
 
-                        <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
+                        <p class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
                             {card.description}
                         </p>
                     </article>

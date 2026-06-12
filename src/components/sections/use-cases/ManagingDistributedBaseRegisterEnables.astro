@@ -9,19 +9,24 @@ type EnableCard = {
 
 const enableCards: EnableCard[] = [
     {
-        title: 'Define a shared service template',
+        title: 'Access the authentic source',
         description:
-            'One organization can make a shared cross-border e-Service template available for a specific type of exchange.',
+            'Organizations can retrieve the data they need directly from the source that manages them.',
     },
     {
-        title: 'Instantiate it across multiple organizations',
+        title: 'Avoid central aggregation',
         description:
-            'Other organizations can instantiate that template as their own cross-border e-Service, while keeping the same expected behavior.',
+            'The register can work across domains without relying on one central data aggregator.',
     },
     {
-        title: 'Exchange data point-to-point without a central hub',
+        title: 'Distribute responsibility clearly',
         description:
-            'Once instantiated across participants, the same model supports direct exchange between organizations without introducing a central intermediary.',
+            'Each organization remains responsible for the part of the register under its own competence.',
+    },
+    {
+        title: 'Support a shared operating model',
+        description:
+            'All participating organizations can follow the same interaction model across Member States.',
     },
 ]
 ---
@@ -54,34 +59,39 @@ const enableCards: EnableCard[] = [
                 <p
                     class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
                 >
-                    Knodia allows organizations to define shared communication
-                    protocols for exposing equivalent services and exchanging
-                    data consistently.
+                    Knodia supports this scenario through a distributed model
+                    where each organization manages the data under its own
+                    competence, without moving everything into one central
+                    system.
                 </p>
             </div>
 
-            <div class="grid w-full gap-6 xl:grid-cols-3">
+            <div class="grid w-full gap-4 md:grid-cols-2 xl:gap-12">
                 {
                     enableCards.map((card) => (
-                        <article class="flex min-h-66.75 flex-col gap-4 rounded-3xl bg-neutral-white p-8 shadow-[0px_4px_8px_rgba(14,15,19,0.1)]">
-                            <span
-                                aria-hidden="true"
-                                class="inline-flex size-12 items-center justify-center rounded-full bg-secondary-soft-quartz"
-                            >
-                                <Icon
-                                    ariaHidden={true}
-                                    class="text-[24px] text-primary-violet"
-                                    name="check"
-                                />
-                            </span>
+                        <article class="flex h-full">
+                            <div class="flex w-full flex-col gap-6 rounded-3xl bg-neutral-white p-6 shadow-(--shadow-what-is-knodia-audience-card) xl:min-h-[264px] xl:gap-8 xl:px-10 xl:py-8">
+                                <span
+                                    aria-hidden="true"
+                                    class="inline-flex size-12 items-center justify-center rounded-full bg-secondary-soft-quartz xl:size-15"
+                                >
+                                    <Icon
+                                        ariaHidden={true}
+                                        class="text-[24px] text-primary-violet"
+                                        name="check"
+                                    />
+                                </span>
 
-                            <h3 class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite">
-                                {card.title}
-                            </h3>
+                                <div class="flex flex-1 flex-col gap-4">
+                                    <h3 class="font-heading text-[20px] leading-[28px] font-medium text-neutral-graphite xl:text-intro-lg xl:leading-intro-lg xl:font-normal">
+                                        {card.title}
+                                    </h3>
 
-                            <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
-                                {card.description}
-                            </p>
+                                    <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                        {card.description}
+                                    </p>
+                                </div>
+                            </div>
                         </article>
                     ))
                 }
@@ -115,24 +125,21 @@ const enableCards: EnableCard[] = [
                     <p
                         class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite"
                     >
-                        This kind of need appears when different organizations
-                        need to exchange data through the same shared protocol.
-                        One example is certified electronic delivery under the
-                        eIDAS Regulation, the EU framework for electronic
-                        identification and trust services. In this context,
-                        providers that let citizens send and receive certified
-                        digital documents need to communicate with one another
-                        so those documents can move across providers in a
-                        consistent way.
+                        This kind of need appears when a register needs to
+                        operate across borders without becoming a single
+                        centralized database. One example is BORIS, which
+                        connects national beneficial ownership registers at
+                        European level while keeping data with the relevant
+                        national sources.
                     </p>
 
                     <p
                         class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite"
                     >
                         -&gt; In a context like this, Knodia can support a
-                        shared service template that participating organizations
-                        instantiate locally, so data can be exchanged
-                        point-to-point through equivalent cross-border services.
+                        distributed register model that enables direct access to
+                        the authoritative source, without requiring central
+                        aggregation of the data.
                     </p>
                 </div>
             </div>

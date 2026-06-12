@@ -5,24 +5,24 @@ const viewAllHref = '/use-cases'
 
 const cards = [
     {
-        tag: 'SOURCE DATA',
+        tags: ['SOURCE DATA'],
         title: 'A distributed base register',
         description:
             'How a shared model can support a register distributed across multiple organizations and Member States.',
         href: '/use-cases/managing-a-distributed-base-register',
     },
     {
-        tag: 'ASYNCHRONOUS EXCHANGE',
+        tags: ['ASYNCHRONOUS EXCHANGE'],
         title: 'Handling delayed responses',
         description:
             'How organizations can manage requests when a response cannot be produced in real time.',
         href: '#',
     },
     {
-        tag: 'DATA SYNCHRONIZATION',
-        title: 'Keeping local data aligned with a base register',
+        tags: ['MANY-TO-MANY', 'SHARED PROTOCOL'],
+        title: 'Standardised communication',
         description:
-            'How organizations can stay aligned with changes in data retrieved from an authoritative source.',
+            'How multiple organizations can exchange data through a shared interaction model.',
         href: '#',
     },
 ] as const
@@ -75,9 +75,13 @@ const cards = [
                 cards.map((card) => (
                     <article class="flex min-h-66.75 flex-col justify-between rounded-3xl bg-neutral-white p-8 shadow-what-is-knodia-audience-card">
                         <div class="flex flex-col gap-4">
-                            <span class="inline-flex h-9.25 w-fit items-center justify-center rounded-3xl border border-primary-violet px-4 font-caption text-home-use-case-tag leading-home-use-case-tag font-semibold text-primary-violet uppercase">
-                                {card.tag}
-                            </span>
+                            <div class="flex flex-wrap gap-2 xl:gap-4">
+                                {card.tags.map((tag) => (
+                                    <span class="inline-flex h-(--home-use-case-tag-height-mobile) w-fit items-center justify-center rounded-full border border-primary-violet px-(--home-use-case-tag-padding-x-mobile) font-caption text-home-use-case-tag-sm leading-home-use-case-tag-sm font-semibold text-primary-violet uppercase xl:h-(--home-use-case-tag-height) xl:px-(--home-use-case-tag-padding-x) xl:text-(length:--text-home-use-case-tag) xl:leading-(--leading-home-use-case-tag)">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
 
                             <h3 class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite">
                                 {card.title}
