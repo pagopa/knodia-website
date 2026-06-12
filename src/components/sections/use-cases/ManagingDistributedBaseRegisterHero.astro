@@ -1,5 +1,6 @@
 ---
 import Button from '../../Button.astro'
+import useCasesDistributedBaseRegisterFigma from '../../../assets/backgrounds/use-cases-distributed-base-register-hero.png'
 ---
 
 <section
@@ -49,119 +50,20 @@ import Button from '../../Button.astro'
                 </p>
             </div>
 
-            <div class="hero-network-visual" aria-hidden="true">
-                <svg
-                    class="hero-network-svg"
-                    viewBox="0 0 507 420"
-                    role="presentation"
-                >
-                    <g fill="none" stroke-linecap="round">
-                        <path
-                            d="M129 139V200C129 254 172 294 252 294"
-                            stroke="rgba(78,81,230,0.5)"
-                            stroke-width="1.5"></path>
-                        <path
-                            d="M190 139V212C190 260 211 294 252 294"
-                            stroke="rgba(78,81,230,0.5)"
-                            stroke-width="1.5"></path>
-                        <path
-                            d="M314 139V212C314 260 293 294 252 294"
-                            stroke="rgba(78,81,230,0.5)"
-                            stroke-width="1.5"></path>
-                        <path
-                            d="M377 139V200C377 254 334 294 252 294"
-                            stroke="rgba(78,81,230,0.5)"
-                            stroke-width="1.5"></path>
-                    </g>
-
-                    <g fill="none" stroke-width="3">
-                        <circle
-                            cx="68"
-                            cy="102"
-                            r="24"
-                            stroke="#4E51E6"
-                            stroke-dasharray="9 9"></circle>
-                        <circle cx="129" cy="102" r="24" stroke="#4E51E6"
-                        ></circle>
-                        <circle
-                            cx="252"
-                            cy="102"
-                            r="24"
-                            stroke="#4E51E6"
-                            stroke-dasharray="9 9"></circle>
-                        <circle cx="314" cy="102" r="24" stroke="#4E51E6"
-                        ></circle>
-                        <circle
-                            cx="438"
-                            cy="102"
-                            r="24"
-                            stroke="#4E51E6"
-                            stroke-dasharray="9 9"></circle>
-                    </g>
-
-                    <g transform="translate(203 248)">
-                        <rect
-                            x="0"
-                            y="0"
-                            width="98"
-                            height="98"
-                            rx="16"
-                            fill="url(#knodia-square)"></rect>
-
-                        <g transform="translate(49 49)" fill="#FFFFFF">
-                            <ellipse cx="-12" cy="0" rx="8" ry="4"></ellipse>
-                            <ellipse
-                                cx="12"
-                                cy="0"
-                                rx="14"
-                                ry="5"
-                                transform="rotate(28)"></ellipse>
-                            <ellipse
-                                cx="-1"
-                                cy="-14"
-                                rx="10"
-                                ry="4"
-                                transform="rotate(-55)"></ellipse>
-                            <ellipse
-                                cx="-2"
-                                cy="13"
-                                rx="6"
-                                ry="3"
-                                transform="rotate(-90)"></ellipse>
-                            <circle cx="-2" cy="1" r="5"></circle>
-                        </g>
-                    </g>
-
-                    <defs>
-                        <linearGradient
-                            id="knodia-square"
-                            x1="0"
-                            y1="0"
-                            x2="98"
-                            y2="98"
-                            gradientUnits="userSpaceOnUse"
-                        >
-                            <stop stop-color="#4E51E6"></stop>
-                            <stop offset="1" stop-color="#787ADF"></stop>
-                        </linearGradient>
-                    </defs>
-                </svg>
+            <div
+                class="relative h-(--home-use-case-image-height-mobile) w-full overflow-hidden rounded-(--home-use-case-image-radius-mobile) bg-primary-violet-surface md:h-80 xl:h-(--home-use-case-image-height) xl:w-(--home-use-case-image-width) xl:rounded-(--home-use-case-image-radius)"
+            >
+                <img
+                    alt=""
+                    class="size-full object-cover"
+                    decoding="async"
+                    fetchpriority="high"
+                    height={useCasesDistributedBaseRegisterFigma.height}
+                    loading="eager"
+                    src={useCasesDistributedBaseRegisterFigma.src}
+                    width={useCasesDistributedBaseRegisterFigma.width}
+                />
             </div>
         </div>
     </div>
 </section>
-
-<style>
-    .hero-network-visual {
-        width: 100%;
-        max-width: 507px;
-        align-self: center;
-        filter: drop-shadow(0 8px 18px rgba(78, 81, 230, 0.16));
-    }
-
-    .hero-network-svg {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-</style>
