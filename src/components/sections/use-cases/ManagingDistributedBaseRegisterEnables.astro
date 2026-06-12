@@ -1,0 +1,141 @@
+---
+import Icon from '../../Icon'
+import euLogoFigma from '../../../assets/icons/use-cases-eu-logo.png'
+
+type EnableCard = {
+    title: string
+    description: string
+}
+
+const enableCards: EnableCard[] = [
+    {
+        title: 'Define a shared service template',
+        description:
+            'One organization can make a shared cross-border e-Service template available for a specific type of exchange.',
+    },
+    {
+        title: 'Instantiate it across multiple organizations',
+        description:
+            'Other organizations can instantiate that template as their own cross-border e-Service, while keeping the same expected behavior.',
+    },
+    {
+        title: 'Exchange data point-to-point without a central hub',
+        description:
+            'Once instantiated across participants, the same model supports direct exchange between organizations without introducing a central intermediary.',
+    },
+]
+---
+
+<section
+    aria-labelledby="managing-distributed-base-register-enables-title"
+    class="bg-primary-violet-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-14 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div class="flex flex-col gap-10 xl:gap-20">
+            <div
+                class="flex flex-col gap-6 xl:grid xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:items-start xl:justify-between xl:gap-6"
+            >
+                <div class="flex flex-col gap-8">
+                    <h2
+                        class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                        id="managing-distributed-base-register-enables-title"
+                    >
+                        What Knodia enables
+                    </h2>
+
+                    <span
+                        aria-hidden="true"
+                        class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                    ></span>
+                </div>
+
+                <p
+                    class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    Knodia allows organizations to define shared communication
+                    protocols for exposing equivalent services and exchanging
+                    data consistently.
+                </p>
+            </div>
+
+            <div class="grid w-full gap-6 xl:grid-cols-3">
+                {
+                    enableCards.map((card) => (
+                        <article class="flex min-h-66.75 flex-col gap-4 rounded-3xl bg-neutral-white p-8 shadow-[0px_4px_8px_rgba(14,15,19,0.1)]">
+                            <span
+                                aria-hidden="true"
+                                class="inline-flex size-12 items-center justify-center rounded-full bg-secondary-soft-quartz"
+                            >
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-[24px] text-primary-violet"
+                                    name="check"
+                                />
+                            </span>
+
+                            <h3 class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite">
+                                {card.title}
+                            </h3>
+
+                            <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
+                                {card.description}
+                            </p>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+
+        <article class="rounded-3xl bg-primary-light-violet p-6 md:p-8 xl:p-12">
+            <div
+                class="flex flex-col gap-6 md:grid md:grid-cols-[auto_minmax(0,1fr)] md:items-start md:gap-8 xl:gap-10"
+            >
+                <div
+                    class="relative size-16 shrink-0 md:mt-1 xl:size-23"
+                    aria-hidden="true"
+                >
+                    <img
+                        alt=""
+                        class="size-full"
+                        decoding="async"
+                        loading="lazy"
+                        src={euLogoFigma.src}
+                    />
+                </div>
+
+                <div class="flex flex-col gap-4 text-neutral-graphite">
+                    <h3
+                        class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-normal xl:text-heading-md xl:leading-heading-md"
+                    >
+                        A relevant EU example
+                    </h3>
+
+                    <p
+                        class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite"
+                    >
+                        This kind of need appears when different organizations
+                        need to exchange data through the same shared protocol.
+                        One example is certified electronic delivery under the
+                        eIDAS Regulation, the EU framework for electronic
+                        identification and trust services. In this context,
+                        providers that let citizens send and receive certified
+                        digital documents need to communicate with one another
+                        so those documents can move across providers in a
+                        consistent way.
+                    </p>
+
+                    <p
+                        class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite"
+                    >
+                        -&gt; In a context like this, Knodia can support a
+                        shared service template that participating organizations
+                        instantiate locally, so data can be exchanged
+                        point-to-point through equivalent cross-border services.
+                    </p>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
