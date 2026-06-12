@@ -1,0 +1,95 @@
+---
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+import useCasesDistributedChallengeBackgroundFigma from '../../../assets/backgrounds/use-cases-distributed-base-register-challenge-background-figma.png'
+
+type ChallengeCard = {
+    icon: IconName
+    title: string
+    description: string
+}
+
+const challengeCards: ChallengeCard[] = [
+    {
+        icon: 'wb_incandescent',
+        title: 'What organizations need',
+        description:
+            'Organizations need a common communication model that can be instantiated by all participants and applied with equivalent behavior across domains.',
+    },
+    {
+        icon: 'assignment',
+        title: 'The recurring problem',
+        description:
+            'If each organization implements the exchange in its own way, interoperability becomes harder to maintain, update and scale over time.',
+    },
+]
+---
+
+<section
+    aria-labelledby="managing-distributed-base-register-challenge-title"
+    class="bg-cover bg-center bg-no-repeat"
+    style={`background-image: url(${useCasesDistributedChallengeBackgroundFigma.src});`}
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-12 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-20 xl:px-(--header-inline-padding) xl:py-28"
+    >
+        <div
+            class="flex w-full max-w-171 flex-col items-center gap-6 text-center"
+        >
+            <h2
+                class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-white xl:text-heading-lg xl:leading-heading-lg"
+                id="managing-distributed-base-register-challenge-title"
+            >
+                The challenge
+            </h2>
+
+            <span
+                aria-hidden="true"
+                class="h-1 w-24 rounded-full bg-primary-violet"></span>
+
+            <p
+                class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-white md:max-w-155 xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Standardised communication across many organizations depends on
+                a shared protocol that keeps the exchange consistent across
+                domains.
+            </p>
+        </div>
+
+        <div
+            class="flex w-full flex-col items-center gap-8 md:flex-row md:items-start md:justify-center md:gap-8 xl:gap-14.5"
+        >
+            {
+                challengeCards.map((card, index) => (
+                    <article
+                        class:list={[
+                            'flex w-full max-w-86 flex-col gap-8 rounded-3xl bg-neutral-white px-10 py-8 shadow-what-is-knodia-audience-card',
+                            index === 1 && 'md:mt-26',
+                        ]}
+                    >
+                        <span
+                            aria-hidden="true"
+                            class="inline-flex size-15 items-center justify-center rounded-full bg-secondary-soft-quartz"
+                        >
+                            <Icon
+                                ariaHidden={true}
+                                class="text-[32px] text-primary-violet"
+                                name={card.icon}
+                            />
+                        </span>
+
+                        <div class="flex flex-col gap-4">
+                            <h3 class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite">
+                                {card.title}
+                            </h3>
+
+                            <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
+                                {card.description}
+                            </p>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>
