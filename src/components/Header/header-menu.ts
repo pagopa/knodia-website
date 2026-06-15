@@ -409,6 +409,15 @@ toElements<HTMLElement>(document.querySelectorAll('[data-header-nav]')).forEach(
         )
         const ctaButtonDefault = header.querySelector('.cta-button-default')
         const ctaButtonContrast = header.querySelector('.cta-button-contrast')
+        const ctaButtonDefaultMobile = header.querySelector(
+            '.cta-button-default-mobile'
+        )
+        const ctaButtonContrastMobile = header.querySelector(
+            '.cta-button-contrast-mobile'
+        )
+        const homePageMobileMenuButton = header.querySelector(
+            '.home-page-mobile-menu-button'
+        )
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.setAttribute('data-scroll', 'true')
@@ -430,8 +439,18 @@ toElements<HTMLElement>(document.querySelectorAll('[data-header-nav]')).forEach(
 
                 ctaButtonContrast?.classList.add('hidden')
                 ctaButtonDefault?.classList.remove('hidden')
+                ctaButtonContrastMobile?.classList.add('hidden')
+                ctaButtonDefaultMobile?.classList.remove('hidden')
+                homePageMobileMenuButton?.classList.remove('text-neutral-white')
+                homePageMobileMenuButton?.classList.remove(
+                    'focus-visible:outline-neutral-white'
+                )
+                homePageMobileMenuButton?.classList.add('text-neutral-graphite')
+                homePageMobileMenuButton?.classList.add(
+                    'focus-visible:outline-primary-violet'
+                )
             } else {
-                header.setAttribute('data-scroll', 'false')
+                header.setAttribute('data-scrol"l', 'false')
                 header.classList.add('bg-transparent')
                 header.classList.remove('bg-white', 'shadow-md')
                 homePageLogo?.setAttribute('src', '/brand/knodia-logo-home.svg')
@@ -451,6 +470,18 @@ toElements<HTMLElement>(document.querySelectorAll('[data-header-nav]')).forEach(
 
                 ctaButtonContrast?.classList.remove('hidden')
                 ctaButtonDefault?.classList.add('hidden')
+                ctaButtonContrastMobile?.classList.remove('hidden')
+                ctaButtonDefaultMobile?.classList.add('hidden')
+                homePageMobileMenuButton?.classList.add('text-neutral-white')
+                homePageMobileMenuButton?.classList.add(
+                    'focus-visible:outline-neutral-white'
+                )
+                homePageMobileMenuButton?.classList.remove(
+                    'text-neutral-graphite'
+                )
+                homePageMobileMenuButton?.classList.remove(
+                    'focus-visible:outline-primary-violet'
+                )
             }
         })
     }
