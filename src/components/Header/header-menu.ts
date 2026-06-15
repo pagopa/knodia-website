@@ -400,5 +400,58 @@ function initHeader(header: HTMLElement) {
 toElements<HTMLElement>(document.querySelectorAll('[data-header-nav]')).forEach(
     (header) => {
         initHeader(header)
+        const homePageLogo = header.querySelector('.home-page-logo')
+        const homePageNavTriggers = toElements<HTMLElement>(
+            header.querySelectorAll('.home-page-nav-trigger')
+        )
+        const homePageNavLinks = toElements<HTMLElement>(
+            header.querySelectorAll('.home-page-nav-link')
+        )
+        const ctaButtonDefault = header.querySelector('.cta-button-default')
+        const ctaButtonContrast = header.querySelector('.cta-button-contrast')
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.setAttribute('data-scroll', 'true')
+                header.classList.add('bg-white', 'shadow-md')
+                header.classList.remove('bg-transparent')
+                homePageLogo?.setAttribute('src', '/brand/knodia-logo.svg')
+                homePageNavTriggers.forEach((trigger) => {
+                    trigger.classList.remove('text-neutral-white')
+                    trigger.classList.remove('hover:text-secondary-soft-quartz')
+                    trigger.classList.add('text-neutral-graphite')
+                    trigger.classList.add('hover:text-primary-violet')
+                })
+                homePageNavLinks.forEach((link) => {
+                    link.setAttribute('tone', 'default')
+                    link.classList.add('text-neutral-graphite')
+                    link.classList.remove('hover:text-secondary-soft-quartz')
+                    link.classList.add('hover:text-primary-violet')
+                })
+
+                ctaButtonContrast?.classList.add('hidden')
+                ctaButtonDefault?.classList.remove('hidden')
+            } else {
+                header.setAttribute('data-scroll', 'false')
+                header.classList.add('bg-transparent')
+                header.classList.remove('bg-white', 'shadow-md')
+                homePageLogo?.setAttribute('src', '/brand/knodia-logo-home.svg')
+
+                homePageNavTriggers.forEach((trigger) => {
+                    trigger.classList.remove('text-neutral-graphite')
+                    trigger.classList.remove('hover:text-primary-violet')
+                    trigger.classList.add('text-neutral-white')
+                    trigger.classList.add('hover:text-secondary-soft-quartz')
+                })
+                homePageNavLinks.forEach((link) => {
+                    link.setAttribute('tone', 'contrast')
+                    link.classList.remove('text-neutral-graphite')
+                    link.classList.add('hover:text-secondary-soft-quartz')
+                    link.classList.remove('hover:text-primary-violet')
+                })
+
+                ctaButtonContrast?.classList.remove('hidden')
+                ctaButtonDefault?.classList.add('hidden')
+            }
+        })
     }
 )
