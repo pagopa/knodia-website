@@ -14,9 +14,7 @@ const isHomePage = normalizedCurrentPath === '/'
 const isWhatIsKnodiaPage = normalizedCurrentPath === '/what-is-knodia'
 const isResourcesPage = normalizedCurrentPath === '/resources'
 const usesOverlayHeader = isHomePage || isWhatIsKnodiaPage || isResourcesPage
-const headerRootClass = usesOverlayHeader
-    ? 'header-root absolute inset-x-0 top-0 isolate z-40'
-    : 'header-root relative isolate z-40'
+const headerRootClass = 'header-root fixed inset-x-0 top-0 isolate z-40'
 const headerBarShellClass = isHomePage
     ? 'w-full'
     : isWhatIsKnodiaPage || isResourcesPage
@@ -130,6 +128,7 @@ const desktopSubmenuLinkClass =
     class={headerRootClass}
     data-header-nav
     data-home-page={isHomePage ? 'true' : undefined}
+    data-scroll={'false'}
     data-route-group={routeGroupId}
 >
     <div class={headerBarShellClass}>
@@ -141,7 +140,7 @@ const desktopSubmenuLinkClass =
             >
                 <img
                     alt="Knodia"
-                    class={headerLogoClass}
+                    class={`${isHomePage ? 'home-page-logo' : ''} ${headerLogoClass}`}
                     height="56"
                     src={headerLogoSrc}
                     width="158"
@@ -159,7 +158,7 @@ const desktopSubmenuLinkClass =
                                 aria-controls={`header-panel-${group.id}`}
                                 aria-expanded="false"
                                 aria-haspopup="true"
-                                class={desktopTriggerClass}
+                                class={`${isHomePage ? 'home-page-nav-trigger' : ''} ${desktopTriggerClass}`}
                                 data-menu-trigger={group.id}
                                 data-route-active={
                                     routeGroupId === group.id ? 'true' : 'false'
@@ -193,7 +192,7 @@ const desktopSubmenuLinkClass =
                                             ? 'page'
                                             : undefined
                                     }
-                                    class={`${desktopLinkClass} ${isCurrentPrimaryLink ? 'text-primary-violet!' : ''}`}
+                                    class={`${isHomePage ? 'home-page-nav-link' : ''} ${desktopLinkClass} ${isCurrentPrimaryLink ? 'text-primary-violet!' : ''}`}
                                     href={link.href}
                                     size="medium"
                                     tone={isHomePage ? 'contrast' : 'default'}
@@ -208,21 +207,63 @@ const desktopSubmenuLinkClass =
             </div>
 
             <div class="hidden xl:block">
-                <Button
-                    href={headerCta.href}
-                    icon="arrow_forward"
-                    tone={isHomePage ? 'contrast' : 'default'}
-                >
-                    {headerCta.label}
-                </Button>
+                {
+                    isHomePage ? (
+                        <>
+                            <span class="cta-button-default hidden">
+                                <Button
+                                    href={headerCta.href}
+                                    icon="arrow_forward"
+                                    tone={'default'}
+                                >
+                                    {headerCta.label}
+                                </Button>
+                            </span>
+                            <span class="cta-button-contrast">
+                                <Button
+                                    href={headerCta.href}
+                                    icon="arrow_forward"
+                                    tone={'contrast'}
+                                >
+                                    {headerCta.label}
+                                </Button>
+                            </span>
+                        </>
+                    ) : (
+                        <Button
+                            href={headerCta.href}
+                            icon="arrow_forward"
+                            tone={'default'}
+                        >
+                            {headerCta.label}
+                        </Button>
+                    )
+                }
             </div>
 
             <div class="flex items-center gap-6 xl:hidden">
                 {
                     isHomePage ? (
-                        <Button href={headerCta.href} tone="contrast">
-                            {headerCta.label}
-                        </Button>
+                        <>
+                            <span class="cta-button-default-mobile hidden">
+                                <Button
+                                    href={headerCta.href}
+                                    icon="arrow_forward"
+                                    tone={'default'}
+                                >
+                                    {headerCta.label}
+                                </Button>
+                            </span>
+                            <span class="cta-button-contrast-mobile">
+                                <Button
+                                    href={headerCta.href}
+                                    icon="arrow_forward"
+                                    tone={'contrast'}
+                                >
+                                    {headerCta.label}
+                                </Button>
+                            </span>
+                        </>
                     ) : null
                 }
 
@@ -230,7 +271,7 @@ const desktopSubmenuLinkClass =
                     aria-controls="header-mobile-overlay"
                     aria-expanded="false"
                     aria-label="Open menu"
-                    class={mobileOpenButtonClass}
+                    class={`${isHomePage ? 'home-page-mobile-menu-button' : ''} ${mobileOpenButtonClass}`}
                     data-mobile-open
                     type="button"
                 >
@@ -534,6 +575,11 @@ const desktopSubmenuLinkClass =
     .header-root[data-home-page='true']
         [data-menu-trigger][aria-expanded='true'] {
         color: var(--color-secondary-soft-quartz);
+    }
+
+    .header-root[data-home-page='true'][data-scroll='true']
+        [data-menu-trigger][aria-expanded='true'] {
+        color: var(--color-primary-violet);
     }
 
     .header-root [data-menu-trigger][aria-expanded='true'] .header-chevron {
