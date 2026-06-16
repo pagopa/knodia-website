@@ -1,36 +1,10 @@
 ---
 import Button from '../../Button.astro'
+import { getRandomUseCases } from '../../../use-cases'
 
-type ScenarioCard = {
-    title: string
-    description?: string
-    href: string
-    tags: string[]
-}
+const useCases = getRandomUseCases()
 
 const viewAllHref = '/#use-cases'
-
-const scenarioCards: ScenarioCard[] = [
-    {
-        title: 'A distributed base register',
-        description:
-            'How a shared model can support a register distributed across multiple organizations and Member States.',
-        href: viewAllHref,
-        tags: ['SOURCE DATA'],
-    },
-    {
-        title: 'Handling delayed responses',
-        description:
-            'How organizations can manage requests when a response cannot be produced in real time.',
-        href: viewAllHref,
-        tags: ['ASYNCHRONOUS EXCHANGE'],
-    },
-    {
-        title: 'Standardised communication',
-        href: viewAllHref,
-        tags: ['MANY-TO-MANY', 'SHARED PROTOCOL'],
-    },
-] as const
 ---
 
 <section
@@ -84,7 +58,7 @@ const scenarioCards: ScenarioCard[] = [
 
         <div class="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
             {
-                scenarioCards.map((card) => (
+                useCases.map((card) => (
                     <article class="md:last:col-span-2 xl:last:col-span-1">
                         <div class="flex h-full flex-col justify-between gap-8 rounded-3xl bg-neutral-white p-6 shadow-(--shadow-what-is-knodia-audience-card) xl:min-h-66.75 xl:p-8">
                             <div class="flex flex-col gap-4">
