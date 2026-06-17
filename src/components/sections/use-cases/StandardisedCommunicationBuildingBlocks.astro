@@ -1,0 +1,112 @@
+---
+import Button from '../../Button.astro'
+import Icon from '../../Icon'
+
+const coreFunctions = [
+    'Knode management',
+    'Knode catalogue',
+    'Interaction activation',
+    'Consumer key management',
+    'Access token issuance',
+] as const
+
+const additionalFunctions = ['API template', 'Producer keychain'] as const
+---
+
+<section
+    aria-labelledby="standardised-communication-building-blocks-title"
+    class="bg-primary-light-violet"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-12 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-18 xl:gap-17 xl:px-(--header-inline-padding) xl:py-18"
+    >
+        <h2
+            class="text-center font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+            id="standardised-communication-building-blocks-title"
+        >
+            Knodia building blocks involved
+        </h2>
+
+        <div class="grid w-full max-w-189 gap-6 md:grid-cols-2 md:gap-10">
+            <article class="rounded-3xl bg-neutral-white px-6 py-8 xl:py-12">
+                <div class="flex flex-col gap-6">
+                    <h3
+                        class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite"
+                    >
+                        Core functions
+                    </h3>
+
+                    <ul class="flex flex-col gap-2">
+                        {
+                            coreFunctions.map((item) => (
+                                <li class="flex items-center gap-3">
+                                    <span
+                                        aria-hidden="true"
+                                        class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary-soft-quartz"
+                                    >
+                                        <Icon
+                                            ariaHidden={true}
+                                            class="text-[24px] text-primary-violet"
+                                            name="check"
+                                        />
+                                    </span>
+
+                                    <span class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite">
+                                        {item}
+                                    </span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </article>
+
+            <article class="rounded-3xl bg-neutral-white px-6 py-8 xl:py-12">
+                <div class="flex flex-col gap-6">
+                    <h3
+                        class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite"
+                    >
+                        Additional functions
+                    </h3>
+
+                    <ul class="flex flex-col gap-2">
+                        {
+                            additionalFunctions.map((item) => (
+                                <li class="flex items-center gap-3">
+                                    <span
+                                        aria-hidden="true"
+                                        class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary-soft-quartz"
+                                    >
+                                        <Icon
+                                            ariaHidden={true}
+                                            class="text-[24px] text-primary-violet"
+                                            name="check"
+                                        />
+                                    </span>
+
+                                    <span class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite">
+                                        {item}
+                                    </span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <Button
+            class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
+            href="/core-functions"
+            icon="arrow_forward"
+            size="small"
+            variant="naked"
+        >
+            <span
+                class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+            >
+                Explore Knodia core functions
+            </span>
+        </Button>
+    </div>
+</section>

@@ -1,0 +1,76 @@
+---
+type ModelWorkCard = {
+    title: string
+    description: string
+}
+
+const modelWorkCards: ModelWorkCard[] = [
+    {
+        title: 'Equivalent behavior across all participants',
+        description:
+            'The same type of exchange needs to behave in the same way for every organization that instantiates the shared template.',
+    },
+    {
+        title: 'A model that can be updated over time',
+        description:
+            'When the shared behaviour changes, participating organizations need a way to adopt those updates without redesigning the exchange.',
+    },
+    {
+        title: 'Optional non-repudiation for exchanged data',
+        description:
+            'Where needed, the model can also support non-repudiation so exchanged data can be tied more strongly to the organization that sent it.',
+    },
+]
+---
+
+<section
+    aria-labelledby="standardised-communication-model-work-title"
+    class="bg-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-12 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="flex flex-col gap-6 xl:grid xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:items-start xl:justify-between"
+        >
+            <div class="flex flex-col gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                    id="standardised-communication-model-work-title"
+                >
+                    <span class="block">What makes this</span>
+                    <span class="block">model work</span>
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <p
+                class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Consistent many-to-many exchange depends on shared conditions
+                around equivalence, updateability and trust between
+                participants.
+            </p>
+        </div>
+
+        <div class="grid w-full gap-6 xl:grid-cols-3">
+            {
+                modelWorkCards.map((card) => (
+                    <article class="flex min-h-66.75 flex-col gap-4 rounded-3xl bg-primary-violet-surface p-8 shadow-[0px_4px_8px_rgba(14,15,19,0.1)]">
+                        <h3 class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite">
+                            {card.title}
+                        </h3>
+
+                        <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
+                            {card.description}
+                        </p>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

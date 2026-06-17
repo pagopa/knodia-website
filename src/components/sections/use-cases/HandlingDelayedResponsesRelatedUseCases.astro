@@ -1,0 +1,111 @@
+---
+import Button from '../../Button.astro'
+
+const viewAllHref = '/use-cases'
+
+const cards = [
+    {
+        tags: ['SOURCE DATA'],
+        title: 'A distributed base register',
+        description:
+            'How a shared model can support a register distributed across multiple organizations and Member States.',
+        href: '/use-cases/managing-a-distributed-base-register',
+    },
+    {
+        tags: ['ASYNCHRONOUS EXCHANGE'],
+        title: 'Handling delayed responses',
+        description:
+            'How organizations can manage requests when a response cannot be produced in real time.',
+        href: '#',
+    },
+    {
+        tags: ['MANY-TO-MANY', 'SHARED PROTOCOL'],
+        title: 'Standardised communication',
+        description:
+            'How multiple organizations can exchange data through a shared interaction model.',
+        href: '/use-cases/standardised-communication-across-domains',
+    },
+] as const
+---
+
+<section
+    aria-labelledby="handling-delayed-responses-related-use-cases-title"
+    class="bg-[linear-gradient(180deg,var(--color-primary-violet-surface)_0%,var(--color-primary-violet-surface)_70%,var(--color-neutral-white)_100%)]"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-12 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-16 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="flex flex-col gap-8 xl:flex-row xl:items-end xl:justify-between"
+        >
+            <div class="flex max-w-113 flex-col gap-6">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                    id="handling-delayed-responses-related-use-cases-title"
+                >
+                    Related use cases
+                </h2>
+
+                <p
+                    class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray"
+                >
+                    Explore other scenarios supported by Knodia, from
+                    distributed registers to asynchronous cross-border
+                    interactions.
+                </p>
+            </div>
+
+            <Button
+                class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:self-auto xl:[&>span]:gap-(--button-gap)"
+                href={viewAllHref}
+                icon="arrow_forward"
+                size="small"
+                variant="naked"
+            >
+                <span
+                    class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+                >
+                    View all
+                </span>
+            </Button>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {
+                cards.map((card) => (
+                    <article class="flex min-h-66.75 flex-col justify-between rounded-3xl bg-neutral-white p-8 shadow-what-is-knodia-audience-card">
+                        <div class="flex flex-col gap-4">
+                            <div class="flex flex-wrap gap-2 xl:gap-4">
+                                {card.tags.map((tag) => (
+                                    <span class="inline-flex h-(--home-use-case-tag-height-mobile) w-fit items-center justify-center rounded-full border border-primary-violet px-(--home-use-case-tag-padding-x-mobile) font-caption text-home-use-case-tag-sm leading-home-use-case-tag-sm font-semibold text-primary-violet uppercase xl:h-(--home-use-case-tag-height) xl:px-(--home-use-case-tag-padding-x) xl:text-(length:--text-home-use-case-tag) xl:leading-(--leading-home-use-case-tag)">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
+                            <h3 class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite">
+                                {card.title}
+                            </h3>
+
+                            <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
+                                {card.description}
+                            </p>
+                        </div>
+
+                        <Button
+                            class="mt-8 self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
+                            href={card.href}
+                            icon="arrow_forward"
+                            size="small"
+                            variant="naked"
+                        >
+                            <span class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)">
+                                Read more
+                            </span>
+                        </Button>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

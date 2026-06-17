@@ -1,0 +1,69 @@
+---
+import Button from '../../Button.astro'
+import useCasesDistributedBaseRegisterFigma from '../../../assets/backgrounds/use-cases-distributed-base-register-hero.png'
+---
+
+<section
+    aria-labelledby="managing-distributed-base-register-hero-title"
+    class="bg-primary-violet-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-12 px-(--header-mobile-padding-x) pt-34 pb-14 md:px-(--home-hero-inline-padding-md) md:pt-40 md:pb-20 xl:gap-(--home-use-case-column-gap) xl:px-(--header-inline-padding) xl:pt-40.75 xl:pb-27"
+    >
+        <Button
+            class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet!"
+            href="/use-cases"
+            icon="arrow_back"
+            iconPosition="left"
+            size="small"
+            variant="naked"
+        >
+            <span
+                class="text-button-md leading-(--leading-button-md) font-medium"
+                >Back</span
+            >
+        </Button>
+
+        <div
+            class="flex flex-col gap-10 xl:grid xl:grid-cols-[minmax(0,570px)_minmax(0,507px)] xl:items-center xl:justify-between"
+        >
+            <div class="flex flex-col gap-6 xl:gap-(--home-use-case-copy-gap)">
+                <p
+                    class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray md:text-intro-lg md:leading-intro-lg"
+                >
+                    Source data
+                </p>
+
+                <h1
+                    class="font-heading text-hero-sm leading-hero-sm font-semibold tracking-hero-sm text-neutral-graphite md:text-home-cta-title md:leading-17 md:tracking-[-0.84px] xl:text-hero-lg xl:leading-hero-lg xl:tracking-hero-lg"
+                    id="managing-distributed-base-register-hero-title"
+                >
+                    A distributed base register
+                </h1>
+
+                <p
+                    class="max-w-full font-heading text-intro-sm leading-intro-sm font-normal text-neutral-graphite md:max-w-155 md:text-home-use-case-title-sm md:leading-[30px] xl:max-w-(--home-use-case-copy-width) xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    Knodia makes distributed registers easier to implement, so
+                    each organization can manage the data under its own
+                    competence without centralizing everything in one database.
+                </p>
+            </div>
+
+            <div
+                class="relative h-(--home-use-case-image-height-mobile) w-full overflow-hidden rounded-(--home-use-case-image-radius-mobile) bg-primary-violet-surface md:h-80 xl:h-(--home-use-case-image-height) xl:w-(--home-use-case-image-width) xl:rounded-(--home-use-case-image-radius)"
+            >
+                <img
+                    alt=""
+                    class="size-full object-cover"
+                    decoding="async"
+                    fetchpriority="high"
+                    height={useCasesDistributedBaseRegisterFigma.height}
+                    loading="eager"
+                    src={useCasesDistributedBaseRegisterFigma.src}
+                    width={useCasesDistributedBaseRegisterFigma.width}
+                />
+            </div>
+        </div>
+    </div>
+</section>

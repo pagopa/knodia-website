@@ -1,0 +1,86 @@
+---
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+
+type Pillar = {
+    icon: IconName
+    title: string
+    description: string
+}
+
+const pillars: Pillar[] = [
+    {
+        icon: 'wb_incandescent',
+        title: 'Scenario',
+        description:
+            'A register is distributed across multiple organizations and Member States, but it still needs to be accessed as one coherent system.',
+    },
+    {
+        icon: 'fact_check',
+        title: 'Useful when',
+        description:
+            'Cross-border access is needed, but the data must remain with the organizations that manage them.',
+    },
+    {
+        icon: 'share',
+        title: 'What it enables',
+        description:
+            'Direct access to distributed source data through a consistent cross-border model.',
+    },
+    {
+        icon: 'groups',
+        title: 'Actors involved',
+        description:
+            'Multiple organizations, each responsible for the data under its own territorial or domain competence.',
+    },
+]
+---
+
+<section
+    aria-labelledby="managing-distributed-base-register-in-short-title"
+    class="bg-header-panel-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-10 px-(--header-mobile-padding-x) py-10 md:px-(--home-hero-inline-padding-md) md:py-14 xl:gap-14 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <h2
+            class="text-center font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+            id="managing-distributed-base-register-in-short-title"
+        >
+            This use case, in short
+        </h2>
+
+        <div
+            class="grid w-full justify-items-center gap-10 md:grid-cols-2 xl:grid-cols-4 xl:gap-x-5.5 xl:gap-y-0"
+        >
+            {
+                pillars.map((pillar) => (
+                    <article class="flex w-full max-w-68 flex-col items-center gap-8 px-2">
+                        <span
+                            aria-hidden="true"
+                            class="relative inline-flex size-(--home-support-icon-shell-size-mobile) shrink-0 items-center justify-center rounded-full border-(length:--border-home-support-icon-outer-mobile) border-primary-violet-muted xl:size-(--home-support-icon-shell-size) xl:border-(length:--border-home-support-icon-outer)"
+                        >
+                            <span class="absolute inset-(--home-support-icon-ring-inset) rounded-full border-(length:--border-home-support-icon-inner) border-primary-violet-60 bg-neutral-white" />
+
+                            <Icon
+                                ariaHidden={true}
+                                class="relative z-10 text-[28px] text-primary-violet-60 xl:text-[30px]"
+                                name={pillar.icon}
+                            />
+                        </span>
+
+                        <div class="flex flex-col items-center gap-4 text-center">
+                            <h3 class="font-heading text-home-domains-title-sm leading-home-domains-title-sm font-normal text-neutral-graphite xl:text-heading-md xl:leading-heading-md">
+                                {pillar.title}
+                            </h3>
+
+                            <p class="font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                {pillar.description}
+                            </p>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

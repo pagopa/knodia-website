@@ -1,0 +1,70 @@
+---
+type ModelWorkCard = {
+    title: string
+    description: string
+}
+
+const modelWorkCards: ModelWorkCard[] = [
+    {
+        title: 'One structured asynchronous exchange',
+        description:
+            'The request, the response and the steps in between remain part of the same governed flow, rather than being handled as disconnected interactions.',
+    },
+    {
+        title: 'Evidences that keep the exchange traceable',
+        description:
+            'The same flow can include the evidences needed to confirm how the exchange progressed over time, from delivery and receipt to the later stages of the response.',
+    },
+]
+---
+
+<section
+    aria-labelledby="handling-delayed-responses-model-work-title"
+    class="bg-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-12 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div
+            class="flex flex-col gap-6 xl:grid xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:items-start xl:justify-between"
+        >
+            <div class="flex flex-col gap-8">
+                <h2
+                    class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                    id="handling-delayed-responses-model-work-title"
+                >
+                    <span class="block">What makes this</span>
+                    <span class="block">model work</span>
+                </h2>
+
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                ></span>
+            </div>
+
+            <p
+                class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Cross-domain requests with delayed responses depend on shared
+                conditions for continuity, evidences and coordinated follow-up.
+            </p>
+        </div>
+
+        <div class="grid w-full gap-6 md:grid-cols-2">
+            {
+                modelWorkCards.map((card) => (
+                    <article class="flex h-full flex-col gap-4 rounded-3xl bg-primary-violet-surface p-6 shadow-(--shadow-what-is-knodia-audience-card) xl:min-h-66.75 xl:gap-8 xl:p-8">
+                        <h3 class="font-heading text-home-support-title-sm leading-home-support-title-sm font-medium text-neutral-graphite xl:text-heading-md xl:leading-heading-md xl:font-normal">
+                            {card.title}
+                        </h3>
+
+                        <p class="font-body text-button-sm leading-(--leading-button-sm) font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                            {card.description}
+                        </p>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

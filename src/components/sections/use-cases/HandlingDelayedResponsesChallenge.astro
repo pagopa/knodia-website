@@ -1,0 +1,94 @@
+---
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+import useCasesStandardisedChallengeBackgroundFigma from '../../../assets/backgrounds/use-cases-standardised-challenge-background-figma.png'
+
+type ChallengeCard = {
+    icon: IconName
+    title: string
+    description: string
+}
+
+const challengeCards: ChallengeCard[] = [
+    {
+        icon: 'wb_incandescent',
+        title: 'What organizations need',
+        description:
+            'Organizations need a way to send a request, wait for the outcome, and receive the response at a later stage without losing continuity in the cross-domain interaction.',
+    },
+    {
+        icon: 'assignment',
+        title: 'The recurring problem',
+        description:
+            'When the response depends on activities that take time to complete, a synchronous model is not enough. Without an asynchronous mechanism, requests become harder to manage, trace and complete reliably across domains.',
+    },
+]
+---
+
+<section
+    aria-labelledby="handling-delayed-responses-challenge-title"
+    class="bg-cover bg-center bg-no-repeat"
+    style={`background-image: url(${useCasesStandardisedChallengeBackgroundFigma.src});`}
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-12 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-20 xl:px-(--header-inline-padding) xl:py-28"
+    >
+        <div
+            class="flex w-full max-w-171 flex-col items-center gap-6 text-center"
+        >
+            <h2
+                class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-white xl:text-heading-lg xl:leading-heading-lg"
+                id="handling-delayed-responses-challenge-title"
+            >
+                The challenge
+            </h2>
+
+            <span
+                aria-hidden="true"
+                class="h-1 w-24 rounded-full bg-primary-violet"></span>
+
+            <p
+                class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-white md:max-w-155 xl:text-intro-lg xl:leading-intro-lg"
+            >
+                Some requests cannot be completed within a single synchronous
+                cross-domain interaction.
+            </p>
+        </div>
+
+        <div
+            class="flex w-full flex-col items-center gap-8 md:flex-row md:items-start md:justify-center md:gap-8 xl:gap-14.5"
+        >
+            {
+                challengeCards.map((card, index) => (
+                    <article
+                        class:list={[
+                            'flex w-full max-w-86 flex-col gap-8 rounded-3xl bg-neutral-white px-10 py-8 shadow-what-is-knodia-audience-card',
+                            index === 1 && 'md:mt-26',
+                        ]}
+                    >
+                        <span
+                            aria-hidden="true"
+                            class="inline-flex size-15 items-center justify-center rounded-full bg-secondary-soft-quartz"
+                        >
+                            <Icon
+                                ariaHidden={true}
+                                class="text-[32px] text-primary-violet"
+                                name={card.icon}
+                            />
+                        </span>
+
+                        <div class="flex flex-col gap-4">
+                            <h3 class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite">
+                                {card.title}
+                            </h3>
+
+                            <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
+                                {card.description}
+                            </p>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

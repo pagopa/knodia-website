@@ -1,0 +1,148 @@
+---
+import Icon from '../../Icon'
+import euLogoFigma from '../../../assets/icons/use-cases-eu-logo.png'
+
+type EnableCard = {
+    title: string
+    description: string
+}
+
+const enableCards: EnableCard[] = [
+    {
+        title: 'Access the authentic source',
+        description:
+            'Organizations can retrieve the data they need directly from the source that manages them.',
+    },
+    {
+        title: 'Avoid central aggregation',
+        description:
+            'The register can work across domains without relying on one central data aggregator.',
+    },
+    {
+        title: 'Distribute responsibility clearly',
+        description:
+            'Each organization remains responsible for the part of the register under its own competence.',
+    },
+    {
+        title: 'Support a shared operating model',
+        description:
+            'All participating organizations can follow the same interaction model across Member States.',
+    },
+]
+---
+
+<section
+    aria-labelledby="managing-distributed-base-register-enables-title"
+    class="bg-primary-violet-surface"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-14 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div class="flex flex-col gap-10 xl:gap-20">
+            <div
+                class="flex flex-col gap-6 xl:grid xl:grid-cols-[minmax(0,513px)_minmax(0,621px)] xl:items-start xl:justify-between xl:gap-6"
+            >
+                <div class="flex flex-col gap-8">
+                    <h2
+                        class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                        id="managing-distributed-base-register-enables-title"
+                    >
+                        What Knodia enables
+                    </h2>
+
+                    <span
+                        aria-hidden="true"
+                        class="h-1 w-16 rounded-full bg-primary-violet xl:w-24"
+                    ></span>
+                </div>
+
+                <p
+                    class="font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    Knodia supports this scenario through a distributed model
+                    where each organization manages the data under its own
+                    competence, without moving everything into one central
+                    system.
+                </p>
+            </div>
+
+            <div class="grid w-full gap-4 md:grid-cols-2 xl:gap-12">
+                {
+                    enableCards.map((card) => (
+                        <article class="flex h-full">
+                            <div class="flex w-full flex-col gap-6 rounded-3xl bg-neutral-white p-6 shadow-(--shadow-what-is-knodia-audience-card) xl:min-h-[264px] xl:gap-8 xl:px-10 xl:py-8">
+                                <span
+                                    aria-hidden="true"
+                                    class="inline-flex size-12 items-center justify-center rounded-full bg-secondary-soft-quartz xl:size-15"
+                                >
+                                    <Icon
+                                        ariaHidden={true}
+                                        class="text-[24px] text-primary-violet"
+                                        name="check"
+                                    />
+                                </span>
+
+                                <div class="flex flex-1 flex-col gap-4">
+                                    <h3 class="font-heading text-[20px] leading-[28px] font-medium text-neutral-graphite xl:text-intro-lg xl:leading-intro-lg xl:font-normal">
+                                        {card.title}
+                                    </h3>
+
+                                    <p class="font-body text-home-domains-body-sm leading-home-domains-body-sm font-normal text-neutral-medium-gray xl:text-button-md xl:leading-(--leading-button-md)">
+                                        {card.description}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+
+        <article class="rounded-3xl bg-primary-light-violet p-6 md:p-8 xl:p-12">
+            <div
+                class="flex flex-col gap-6 md:grid md:grid-cols-[auto_minmax(0,1fr)] md:items-start md:gap-8 xl:gap-10"
+            >
+                <div
+                    class="relative size-16 shrink-0 md:mt-1 xl:size-23"
+                    aria-hidden="true"
+                >
+                    <img
+                        alt=""
+                        class="size-full"
+                        decoding="async"
+                        loading="lazy"
+                        src={euLogoFigma.src}
+                    />
+                </div>
+
+                <div class="flex flex-col gap-4 text-neutral-graphite">
+                    <h3
+                        class="font-heading text-home-use-case-title-sm leading-home-use-case-title-sm font-normal xl:text-heading-md xl:leading-heading-md"
+                    >
+                        A relevant EU example
+                    </h3>
+
+                    <p
+                        class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite"
+                    >
+                        This kind of need appears when a register needs to
+                        operate across borders without becoming a single
+                        centralized database. One example is BORIS, which
+                        connects national beneficial ownership registers at
+                        European level while keeping data with the relevant
+                        national sources.
+                    </p>
+
+                    <p
+                        class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite"
+                    >
+                        -&gt; In a context like this, Knodia can support a
+                        distributed register model that enables direct access to
+                        the authoritative source, without requiring central
+                        aggregation of the data.
+                    </p>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>

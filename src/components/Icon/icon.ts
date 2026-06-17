@@ -34,6 +34,7 @@ export const iconNames = [
     'edit',
     'compare_arrows',
     'adf_scanner',
+    'fact_check',
     'share',
     'security',
     'system_update_alt',
@@ -81,6 +82,7 @@ export const iconNames = [
     'encrypted',
     'handshake',
     'database',
+    'groups',
 ] as const
 
 export type MaterialIconName = (typeof iconNames)[number]

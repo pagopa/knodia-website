@@ -1,0 +1,90 @@
+---
+import Button from '../../Button.astro'
+
+const viewMoreHref = '#'
+
+const cards = [
+    {
+        tag: 'SOURCE DATA',
+        title: 'A distributed base register',
+        description:
+            'How a shared model can support a register distributed across multiple organizations and Member States.',
+        href: '/use-cases/managing-a-distributed-base-register',
+    },
+    {
+        tag: 'ASYNCHRONOUS EXCHANGE',
+        title: 'Handling delayed responses',
+        description:
+            'How organizations can manage requests when a response cannot be produced in real time.',
+        href: '/use-cases/handling-requests-with-delayed-responses',
+    },
+    {
+        tag: 'DATA SYNCHRONIZATION',
+        title: 'Keeping local data aligned with a base register',
+        description:
+            'How organizations can stay aligned with changes in data retrieved from an authoritative source.',
+        href: '/use-cases/data-synchronisation-with-a-base-register',
+    },
+] as const
+---
+
+<section
+    aria-labelledby="use-cases-cards-title"
+    class="bg-[linear-gradient(180deg,var(--color-primary-violet-surface)_0%,var(--color-primary-violet-surface)_70%,var(--color-neutral-white)_100%)]"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-12 px-(--header-mobile-padding-x) pt-16 pb-16 md:gap-16 md:px-(--home-hero-inline-padding-md) md:pt-20 md:pb-20 xl:gap-20 xl:px-(--header-inline-padding) xl:pt-32 xl:pb-32"
+    >
+        <h2 class="sr-only" id="use-cases-cards-title">Use Cases Cards</h2>
+
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {
+                cards.map((card) => (
+                    <article class="flex min-h-66.75 flex-col justify-between rounded-3xl bg-neutral-white p-8 shadow-[0px_4px_8px_rgba(14,15,19,0.1)]">
+                        <div class="flex flex-col gap-4">
+                            <span class="inline-flex h-9.25 w-fit items-center justify-center rounded-3xl border border-primary-violet px-4 font-caption text-home-use-case-tag leading-home-use-case-tag font-semibold text-primary-violet uppercase">
+                                {card.tag}
+                            </span>
+
+                            <h3 class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite">
+                                {card.title}
+                            </h3>
+
+                            <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
+                                {card.description}
+                            </p>
+                        </div>
+
+                        <Button
+                            class="mt-8 self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
+                            href={card.href}
+                            icon="arrow_forward"
+                            size="small"
+                            variant="naked"
+                        >
+                            <span class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)">
+                                Read more
+                            </span>
+                        </Button>
+                    </article>
+                ))
+            }
+        </div>
+
+        <div class="flex justify-center">
+            <Button
+                class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
+                href={viewMoreHref}
+                icon="arrow_downward"
+                size="small"
+                variant="naked"
+            >
+                <span
+                    class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+                >
+                    View more
+                </span>
+            </Button>
+        </div>
+    </div>
+</section>
