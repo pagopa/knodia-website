@@ -1,0 +1,59 @@
+---
+import Button from '../components/Button.astro'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="404 | Page not found">
+    <section
+        class="bg-linear-to-b from-primary-violet-surface from-70% to-neutral-white"
+    >
+        <div
+            class="mx-auto flex w-full max-w-(--header-shell-max) flex-col items-center gap-(--not-found-content-gap) px-(--header-mobile-padding-x) pt-(--not-found-padding-top-mobile) pb-(--not-found-padding-bottom-mobile) text-center md:px-(--home-hero-inline-padding-md) xl:px-(--header-inline-padding) xl:pt-(--not-found-padding-top) xl:pb-(--not-found-padding-bottom)"
+        >
+            <div class="flex flex-col items-center gap-(--not-found-copy-gap)">
+                <h1
+                    class="max-w-(--not-found-title-max) font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                >
+                    Looking for something specific?
+                </h1>
+                <p
+                    class="max-w-(--not-found-description-max) text-intro-sm leading-intro-sm font-normal text-neutral-graphite xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    We couldn't find this page: the link might be broken or the
+                    page may have been moved. You can continue from here.
+                </p>
+            </div>
+
+            <div
+                class="flex flex-col items-center gap-(--not-found-actions-gap)"
+            >
+                <div
+                    class="flex w-full flex-col items-center gap-(--not-found-button-row-gap) sm:w-auto sm:flex-row"
+                >
+                    <Button href="/">Go to the homepage</Button>
+                    <Button href="/resources" variant="outlined">
+                        Explore the resources
+                    </Button>
+                </div>
+
+                <p
+                    class="text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite"
+                >
+                    Need help?
+                    <a
+                        class="font-medium text-primary-violet underline-offset-4 transition-colors duration-150 ease-out hover:text-primary-violet-hover hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet"
+                        href="/resources"
+                    >
+                        Contact us
+                    </a>
+                </p>
+            </div>
+
+            <p
+                class="text-button-sm leading-(--leading-button-sm) font-medium text-neutral-graphite"
+            >
+                Error code: 404
+            </p>
+        </div>
+    </section>
+</Layout>
