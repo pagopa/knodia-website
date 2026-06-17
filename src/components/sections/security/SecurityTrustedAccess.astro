@@ -1,5 +1,8 @@
 ---
 import trustedAccessDiagram from '../../../assets/backgrounds/security-two-layers-trusted-access.png'
+
+const altText =
+    'Diagram showing two layers of trusted access in Knodia: first, mutual trust between Knodes through authentication; second, controlled access to protected data through authentication, authorisation and an access token used by a data consumer to reach a data producer.'
 ---
 
 <section
@@ -39,7 +42,7 @@ import trustedAccessDiagram from '../../../assets/backgrounds/security-two-layer
             class="w-full overflow-hidden rounded-2xl border border-primary-light-violet/60 bg-neutral-white shadow-(--shadow-home-guidance-card)"
         >
             <img
-                alt="Diagram showing the two security layers in Knodia: trust between Knodes with mutual TLS, and controlled data access with Bearer or DPoP tokens."
+                alt={altText}
                 class="block h-auto w-full"
                 decoding="async"
                 height={trustedAccessDiagram.height}

@@ -33,6 +33,7 @@ type CoreFunctionPanel = {
     benefits: CoreFunctionBenefit[]
     imageDesktop: ImageMetadata
     imageMobile: ImageMetadata
+    altText: string
 }
 
 const coreFunctionPanels: CoreFunctionPanel[] = [
@@ -63,6 +64,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
         ],
         imageDesktop: knodeManagementDesktopDiagram,
         imageMobile: knodeManagementMobileDiagram,
+        altText:
+            'Diagram showing a Knode at the centre of several organisations in the same domain, illustrating that the Knode identifies participating organisations and supports trusted interaction between them.',
     },
     {
         id: 'knode-catalogue',
@@ -96,6 +99,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
         ],
         imageDesktop: knodeCatalogueDesktopDiagram,
         imageMobile: knodeCatalogueMobileDiagram,
+        altText:
+            'Diagram showing a Knode publishing APIs to a shared catalogue, where other Knodes can discover available APIs and see whether access is allowed under the stated conditions.',
     },
     {
         id: 'interaction-activation',
@@ -124,6 +129,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
         ],
         imageDesktop: interactionActivationDesktopDiagram,
         imageMobile: interactionActivationMobileDiagram,
+        altText:
+            'Diagram showing a consumer and an API provider connected through an activated interaction, where the consumer finds an API, requests access and submits the information needed to start using it.',
     },
     {
         id: 'consumer-key-management',
@@ -147,6 +154,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
         ],
         imageDesktop: consumerKeyManagementDesktopDiagram,
         imageMobile: consumerKeyManagementMobileDiagram,
+        altText:
+            'Diagram showing consumer keychains managed by operators on one Knode and linked to purpose declarations and access to APIs in other domains.',
     },
     {
         id: 'access-token-issuance',
@@ -175,6 +184,8 @@ const coreFunctionPanels: CoreFunctionPanel[] = [
         ],
         imageDesktop: accessTokenIssuanceDesktopDiagram,
         imageMobile: accessTokenIssuanceMobileDiagram,
+        altText:
+            'Diagram showing a consumer requesting access to an API provider, with token issuance supported by consumer verification, credential retrieval and access-right checks.',
     },
 ]
 
