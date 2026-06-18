@@ -1,0 +1,97 @@
+---
+import Icon from '../../Icon'
+
+type Capability = {
+    action: string
+    detail: string
+}
+
+const introText =
+    'Once you access Knodia, you will be able to move across Orion Knode or Lynx Knode and explore a range of interactions.'
+
+const capabilityColumns: Capability[][] = [
+    [
+        {
+            action: 'Browse',
+            detail: 'the Knode catalogue and view the available cross-border e-services as a consumer.',
+        },
+        {
+            action: 'Publish',
+            detail: 'a cross-border e-service in the Knode catalogue.',
+        },
+        {
+            action: 'Request',
+            detail: 'access to a cross-border e-service, via agreement requests and purpose statements.',
+        },
+    ],
+    [
+        {
+            action: 'Create',
+            detail: 'consumer keychains to register, manage and use the requested keys.',
+        },
+        {
+            action: 'Obtain',
+            detail: 'Bearer and DPoP tokens from Knodes and use them to access a cross-border e-service.',
+        },
+        {
+            action: 'Test',
+            detail: 'the tools for distributing data change signals through the Signal Hub, e-service templates, and purpose statement templates.',
+        },
+    ],
+]
+---
+
+<section
+    aria-labelledby="signup-intro-capabilities-title"
+    class="bg-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-10 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div class="flex w-full flex-col gap-6 xl:flex-row xl:justify-between">
+            <div class="flex max-w-128.25 flex-col gap-8">
+                <h2
+                    class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                    id="signup-intro-capabilities-title"
+                >
+                    What you can do in the prototype
+                </h2>
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-24 rounded-full bg-primary-violet"></span>
+            </div>
+
+            <p
+                class="max-w-155 font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                {introText}
+            </p>
+        </div>
+
+        <div class="grid w-full grid-cols-1 gap-x-33.25 gap-y-3 xl:grid-cols-2">
+            {
+                capabilityColumns.map((column) => (
+                    <ul class="flex list-none flex-col gap-3 p-0">
+                        {column.map((capability) => (
+                            <li class="flex min-h-25 items-center gap-3">
+                                <span
+                                    aria-hidden="true"
+                                    class="flex size-12 shrink-0 items-center justify-center rounded-full bg-secondary-soft-quartz text-primary-violet"
+                                >
+                                    <Icon ariaHidden={true} name="check" />
+                                </span>
+
+                                <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-graphite">
+                                    <span class="font-medium">
+                                        {capability.action}
+                                    </span>
+                                    <span>{` ${capability.detail}`}</span>
+                                </p>
+                            </li>
+                        ))}
+                    </ul>
+                ))
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,76 @@
+---
+import Icon from '../../Icon'
+
+type RequirementCard = {
+    title: string
+    description: string
+}
+
+const cards: RequirementCard[] = [
+    {
+        title: 'As a cross-border e-service consumer',
+        description:
+            'You need to be able to use a REST API, either through your own implementation or by using a tool such as Postman.',
+    },
+    {
+        title: 'As a cross-border e-service producer',
+        description:
+            'You need to be able to expose a REST API, either through your own implementation or through a tool such as Postman.',
+    },
+]
+---
+
+<section
+    aria-labelledby="signup-intro-technical-requirements-title"
+    class="bg-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-10 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div class="flex max-w-128.25 flex-col gap-8">
+            <h2
+                class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                id="signup-intro-technical-requirements-title"
+            >
+                Technical requirements
+            </h2>
+            <span
+                aria-hidden="true"
+                class="h-1 w-24 rounded-full bg-primary-violet"></span>
+        </div>
+
+        <ul
+            class="grid list-none grid-cols-1 gap-6 p-0 xl:grid-cols-2 xl:gap-12"
+        >
+            {
+                cards.map((card) => (
+                    <li>
+                        <article class="flex min-h-66.75 flex-col gap-4 rounded-3xl bg-primary-violet-surface p-8 shadow-(--shadow-what-is-knodia-audience-card)">
+                            <h3 class="font-heading text-home-support-title-sm leading-[32px] font-normal text-neutral-graphite">
+                                {card.title}
+                            </h3>
+                            <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
+                                {card.description}
+                            </p>
+                        </article>
+                    </li>
+                ))
+            }
+        </ul>
+
+        <p
+            class="mx-auto flex max-w-207.5 flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center font-body text-button-sm leading-button-sm font-medium text-neutral-medium-gray md:text-button-md md:leading-(--leading-button-md)"
+        >
+            <span>Familiarity with the</span>
+            <a
+                class="text-primary-violet underline transition-colors duration-150 ease-out hover:text-primary-violet-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet"
+                href="https://swagger.io/specification/"
+                rel="noreferrer"
+                target="_blank"
+            >
+                OpenAPI
+            </a>
+            <span> interface description language is also recommended. </span>
+        </p>
+    </div>
+</section>
