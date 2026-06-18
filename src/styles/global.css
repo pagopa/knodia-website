@@ -124,6 +124,17 @@
     --header-mobile-logo-height: 44px;
     --color-header-mobile-divider: #d2d5ef;
 
+    --not-found-padding-top-mobile: 120px;
+    --not-found-padding-bottom-mobile: 96px;
+    --not-found-padding-top: 224px;
+    --not-found-padding-bottom: 136px;
+    --not-found-content-gap: 48px;
+    --not-found-copy-gap: 24px;
+    --not-found-actions-gap: 32px;
+    --not-found-button-row-gap: 24px;
+    --not-found-title-max: 688px;
+    --not-found-description-max: 556px;
+
     --home-hero-inline-padding-md: 64px;
     --home-hero-padding-top-mobile: 163px;
     --home-hero-padding-top-md: 176px;
