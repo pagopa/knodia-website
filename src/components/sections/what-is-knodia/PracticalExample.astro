@@ -59,6 +59,9 @@ const comparisonCards: ComparisonCard[] = [
         iconClass: 'text-neutral-white',
     },
 ]
+
+const practicalExampleDiagramAlt =
+    'Diagram showing cross-border data exchange between Italy and Germany: ANPR connects to the Italian Knode, authentication and authorisation are handled between the two Knodes, and data is exchanged with the German Bürgeramt.'
 ---
 
 <section
@@ -172,7 +175,7 @@ const comparisonCards: ComparisonCard[] = [
                     class="rounded-2xl bg-white shadow-[0_24px_64px_rgba(78,81,230,0.12)]"
                 >
                     <img
-                        alt="Diagram showing ANPR and the B\u00FCrgeramt exchanging data through the Italian and German Knodes."
+                        alt={practicalExampleDiagramAlt}
                         class="block h-auto w-full rounded-2xl"
                         decoding="async"
                         height={practicalExampleDiagramMobile.height}

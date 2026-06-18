@@ -6,6 +6,9 @@ import federatedNetworkDiagram from '../../../assets/backgrounds/why-knodia-fede
 const technologyHref = '/technology'
 const buttonClass =
     'text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet!'
+
+const altText =
+    'Diagram showing a federated network of connected domains, with Knodia enabling interaction between multiple domains while each one keeps its own systems, data and governance.'
 ---
 
 <section
@@ -84,7 +87,7 @@ const buttonClass =
                     class="min-w-[860px] rounded-2xl bg-white shadow-[0_20px_80px_rgba(78,81,230,0.08)] xl:min-w-0"
                 >
                     <img
-                        alt="Diagram showing Knodes governing their own domains while enabling connected cross-domain interactions between organizations."
+                        alt={altText}
                         class="block h-auto w-full rounded-2xl"
                         decoding="async"
                         height={federatedNetworkDiagram.height}
