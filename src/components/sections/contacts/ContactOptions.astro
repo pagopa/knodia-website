@@ -1,0 +1,85 @@
+---
+import Icon from '../../Icon'
+import type { IconName } from '../../Icon'
+import { prototypeLink } from '../../../constants'
+
+type ContactOption = {
+    title: string
+    description: string
+    href: string
+    icon: IconName
+}
+
+const contactOptions: ContactOption[] = [
+    {
+        title: 'Talk to the Knodia team',
+        description:
+            'For teams and organizations who want to ask questions, speak with an expert, request a guided demo or discuss a possible collaboration.',
+        href: 'mailto:info@pagopa.it',
+        icon: 'groups',
+    },
+    {
+        title: 'Request prototype access',
+        description:
+            'For technical teams who want to see Knodia in action in a controlled environment, with credential-based access to the prototype.',
+        href: prototypeLink.href,
+        icon: 'stacks',
+    },
+]
+---
+
+<section
+    aria-labelledby="contacts-options-title"
+    class="bg-linear-to-b from-primary-violet-surface from-70% to-neutral-white"
+>
+    <div
+        class="mx-auto flex w-full max-w-(--header-shell-max) flex-col px-(--header-mobile-padding-x) pt-10 pb-10 md:px-(--home-hero-inline-padding-md) md:pt-14 md:pb-14 xl:px-(--header-inline-padding) xl:pt-32 xl:pb-32"
+    >
+        <h2 class="sr-only" id="contacts-options-title">Contact options</h2>
+
+        <div class="flex w-full flex-col gap-6 xl:flex-row xl:gap-8">
+            {
+                contactOptions.map((option) => (
+                    <a
+                        class="group flex w-full items-center justify-between gap-6 rounded-3xl border-2 border-primary-violet bg-neutral-white px-7 py-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet xl:min-h-76 xl:px-10 xl:py-8.25"
+                        href={option.href}
+                    >
+                        <div class="flex min-w-0 flex-1 items-center gap-4 xl:gap-6">
+                            <span
+                                aria-hidden="true"
+                                class="flex size-15 shrink-0 items-center justify-center rounded-full bg-secondary-soft-quartz text-primary-violet"
+                            >
+                                <Icon
+                                    ariaHidden={true}
+                                    class="text-[30px]"
+                                    name={option.icon}
+                                />
+                            </span>
+
+                            <div class="flex min-w-0 flex-1 flex-col gap-4">
+                                <h3 class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite md:text-heading-md md:leading-heading-md">
+                                    {option.title}
+                                </h3>
+
+                                <p class="font-body text-button-sm leading-7 font-normal text-neutral-medium-gray md:text-button-md md:leading-7">
+                                    {option.description}
+                                </p>
+                            </div>
+                        </div>
+
+                        <span
+                            aria-hidden="true"
+                            class="flex shrink-0 items-center justify-center text-primary-violet transition-colors duration-150 group-hover:text-deep-violet"
+                        >
+                            <Icon
+                                ariaHidden={true}
+                                class="text-heading-lg"
+                                name="arrow_forward"
+                            />
+                        </span>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>
