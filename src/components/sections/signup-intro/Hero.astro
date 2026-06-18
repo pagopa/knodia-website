@@ -1,0 +1,64 @@
+---
+import signupIntroHeroBackgroundFigma from '../../../assets/backgrounds/signup-intro-hero-background-figma.png'
+import Icon from '../../Icon'
+
+const backHref = '/contacts'
+const prototypeHref = '#'
+---
+
+<section
+    aria-labelledby="signup-intro-hero-title"
+    class="relative isolate overflow-hidden bg-primary-violet-surface"
+>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <img
+            alt=""
+            class="size-full object-cover object-center"
+            decoding="async"
+            fetchpriority="high"
+            height={signupIntroHeroBackgroundFigma.height}
+            loading="eager"
+            src={signupIntroHeroBackgroundFigma.src}
+            width={signupIntroHeroBackgroundFigma.width}
+        />
+    </div>
+
+    <div
+        class="relative mx-auto flex min-h-svh max-w-(--header-shell-max) items-start px-(--header-mobile-padding-x) pt-34 pb-16 md:px-(--home-hero-inline-padding-md) md:pt-42 md:pb-20 xl:px-(--header-inline-padding) xl:pt-44 xl:pb-24"
+    >
+        <div class="flex w-full max-w-142.5 flex-col gap-12">
+            <a
+                class="inline-flex w-fit items-center gap-(--button-gap) text-button-md leading-(--leading-button-md) font-medium text-primary-violet transition-colors duration-150 ease-out hover:text-primary-violet-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet"
+                href={backHref}
+            >
+                <Icon ariaHidden={true} name="arrow_back" />
+                <span>Back</span>
+            </a>
+
+            <div class="flex flex-col gap-6">
+                <h1
+                    class="font-heading text-hero-sm leading-hero-sm font-semibold tracking-hero-sm text-neutral-graphite md:text-home-cta-title md:leading-17 md:tracking-[-0.84px] xl:text-hero-lg xl:leading-hero-lg xl:tracking-hero-lg"
+                    id="signup-intro-hero-title"
+                >
+                    <span class="block">See Knodia</span>
+                    <span class="block">in action</span>
+                </h1>
+
+                <p
+                    class="font-body text-intro-sm leading-intro-sm font-normal text-neutral-graphite md:text-home-use-case-title-sm md:leading-[30px] xl:text-intro-lg xl:leading-intro-lg"
+                >
+                    Access the prototype environment and explore what the
+                    framework makes possible in practice.
+                </p>
+            </div>
+
+            <a
+                class="inline-flex w-fit items-center gap-(--button-gap) text-button-md leading-(--leading-button-md) font-medium text-primary-violet transition-colors duration-150 ease-out hover:text-primary-violet-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet"
+                href={prototypeHref}
+            >
+                <span>Access the prototype</span>
+                <Icon ariaHidden={true} name="open_in_new" />
+            </a>
+        </div>
+    </div>
+</section>
