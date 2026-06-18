@@ -1,0 +1,105 @@
+---
+import scenariosBackgroundFigma from '../../../assets/backgrounds/signup-intro-scenarios-background-figma.png'
+
+type Scenario = {
+    title: string
+    description: string
+}
+
+const introText =
+    'The prototype includes a set of preconfigured cross-border e-services to help you explore the main consumer flows.'
+
+const scenarios: Scenario[] = [
+    {
+        title: 'Provide data with Bearer token',
+        description:
+            'Test a standard data delivery flow where a service returns data to an authorized consumer using Bearer token access.',
+    },
+    {
+        title: 'Provide data with DPoP token',
+        description:
+            'Test the use of DPoP access tokens, where access is reinforced by proof of possession of the private key used to obtain the token.',
+    },
+    {
+        title: 'Distribute signals with Bearer token',
+        description:
+            'Test how signals can be distributed when relevant data changes, using a Bearer token to access the Signal Hub.',
+    },
+    {
+        title: 'Receive data with Bearer token',
+        description:
+            'Test a flow where a producer receives data from an authorized consumer through a service that uses Bearer token access.',
+    },
+    {
+        title: 'Asynchronous data exchange',
+        description:
+            'Test an asynchronous request-response flow when the producer needs time to complete the requested activity.',
+    },
+    {
+        title: 'Provide data with signed response',
+        description:
+            'Test a data delivery flow where the service returns signed data, ensuring non-repudiation.',
+    },
+]
+---
+
+<section
+    aria-labelledby="signup-intro-scenarios-title"
+    class="relative isolate overflow-hidden bg-primary-violet-surface"
+>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <img
+            alt=""
+            class="size-full object-cover object-center"
+            decoding="async"
+            height={scenariosBackgroundFigma.height}
+            loading="lazy"
+            src={scenariosBackgroundFigma.src}
+            width={scenariosBackgroundFigma.width}
+        />
+        <div class="absolute inset-0 bg-white/60"></div>
+    </div>
+
+    <div
+        class="relative mx-auto flex w-full max-w-(--header-shell-max) flex-col gap-10 px-(--header-mobile-padding-x) py-16 md:px-(--home-hero-inline-padding-md) md:py-20 xl:gap-20 xl:px-(--header-inline-padding) xl:py-32"
+    >
+        <div class="flex w-full flex-col gap-6 xl:flex-row xl:justify-between">
+            <div class="flex max-w-128.25 flex-col gap-8">
+                <h2
+                    class="font-heading text-heading-md leading-heading-md font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
+                    id="signup-intro-scenarios-title"
+                >
+                    6 scenarios to try
+                </h2>
+                <span
+                    aria-hidden="true"
+                    class="h-1 w-24 rounded-full bg-primary-violet"></span>
+            </div>
+
+            <p
+                class="max-w-155 font-heading text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
+            >
+                {introText}
+            </p>
+        </div>
+
+        <ul
+            class="grid list-none grid-cols-1 gap-6 p-0 md:grid-cols-2 xl:grid-cols-3"
+        >
+            {
+                scenarios.map((scenario) => (
+                    <li>
+                        <article class="flex min-h-66.75 flex-col gap-4 rounded-3xl bg-neutral-white p-8 shadow-(--shadow-what-is-knodia-audience-card)">
+                            <h3 class="font-heading text-home-cta-body leading-home-cta-body font-normal text-neutral-graphite">
+                                {scenario.title}
+                            </h3>
+                            <p class="font-body text-button-md leading-(--leading-button-md) font-normal text-neutral-medium-gray">
+                                {scenario.description}
+                            </p>
+                        </article>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</section>
