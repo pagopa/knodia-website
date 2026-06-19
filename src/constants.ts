@@ -1,7 +1,7 @@
 const startConversationHref = '#'
 const startConversationLabel = 'Start the conversation'
 
-const prototypeHref = '#'
+const prototypeHref = '/signup-intro'
 const prototypeLabel = 'Access the prototype'
 
 const whitepaperHref = '#'

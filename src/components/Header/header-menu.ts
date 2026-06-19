@@ -223,10 +223,6 @@ function initHeader(header: HTMLElement) {
     triggers.forEach((trigger) => {
         const menuId = trigger.dataset.menuTrigger
 
-        trigger.addEventListener('pointerenter', () => {
-            openMenu(menuId)
-        })
-
         trigger.addEventListener('focus', () => {
             if (suppressedFocusOpenMenuId === menuId) {
                 suppressedFocusOpenMenuId = undefined
@@ -246,11 +242,6 @@ function initHeader(header: HTMLElement) {
             }
 
             event.preventDefault()
-
-            if (header.dataset.openMenu === menuId) {
-                closeMenus()
-                return
-            }
 
             openMenu(menuId)
         })
@@ -371,8 +362,6 @@ function initHeader(header: HTMLElement) {
         })
     }
 
-    header.addEventListener('pointerenter', clearCloseTimer)
-    header.addEventListener('pointerleave', scheduleClose)
     header.addEventListener('focusout', (event) => {
         const nextTarget = event.relatedTarget
 
