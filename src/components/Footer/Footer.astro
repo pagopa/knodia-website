@@ -1,10 +1,16 @@
 ---
+import {
+    executiveSummaryLink,
+    prototypeLink,
+    whitepaperLink,
+} from '../../constants'
 import Button from '../Button.astro'
 import {
     headerCta,
     headerMenuGroups,
     headerPrimaryLinks,
 } from '../Header/navigation'
+import type { IconName } from '../Icon'
 
 function findGroupItemHref(
     groupId: string,
@@ -25,21 +31,27 @@ function findPrimaryHref(linkId: string, fallbackHref: string) {
     )
 }
 
-const preFooterLinks = [
+const preFooterLinks: {
+    label: string
+    href: string
+    icon: IconName
+    download?: boolean
+}[] = [
     {
         label: 'Request prototype access',
-        href: '/signup-intro',
+        href: prototypeLink.href,
         icon: 'open_in_new',
     },
     {
-        label: 'Read the whitepaper',
-        href: '#',
+        label: whitepaperLink.label,
+        href: whitepaperLink.href,
         icon: 'open_in_new',
     },
     {
-        label: 'Download the executive summary',
-        href: '#',
+        label: executiveSummaryLink.label,
+        href: executiveSummaryLink.href,
         icon: 'download',
+        download: true,
     },
 ] as const
 
@@ -150,6 +162,7 @@ const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gra
                             size="small"
                             tone="contrast"
                             variant="naked"
+                            download={link.download}
                         >
                             {link.label}
                         </Button>

@@ -2,7 +2,6 @@
 import Button from '../../Button.astro'
 import useCaseImage from '../../../assets/backgrounds/home-use-case-single.png'
 
-const sectionHref = '/#use-cases'
 const tagLabel = 'DATA SYNCHRONIZATION'
 const title = 'Keeping local data aligned with a base register'
 const description =
@@ -26,7 +25,7 @@ const description =
 
             <Button
                 class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
-                href={sectionHref}
+                href="/use-cases"
                 icon="arrow_forward"
                 size="small"
                 variant="naked"
@@ -70,7 +69,7 @@ const description =
 
                 <Button
                     class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:mt-auto xl:[&>span]:gap-(--button-gap)"
-                    href={sectionHref}
+                    href={'/use-cases/data-synchronisation-with-a-base-register'}
                     icon="arrow_forward"
                     size="small"
                     variant="naked"

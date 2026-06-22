@@ -137,6 +137,6 @@ export const headerPrimaryLinks = [
 ] as const satisfies readonly HeaderPrimaryLink[]
 
 export const headerCta = {
-    href: '/what-is-knodia',
+    href: '/contacts',
     label: 'Get started',
 } as const
