@@ -2,8 +2,7 @@
 import Button from '../../Button.astro'
 import sharedHeroBackground from '../../../assets/backgrounds/shared-hero-background.png'
 import Icon from '../../Icon'
-
-const executiveSummaryHref = '#'
+import { executiveSummaryLink } from '../../../constants'
 ---
 
 <section
@@ -53,8 +52,9 @@ const executiveSummaryHref = '#'
 
                 <Button
                     class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet!"
-                    href={executiveSummaryHref}
+                    href={executiveSummaryLink.href}
                     variant="naked"
+                    download
                 >
                     <span
                         class="inline-flex items-center gap-(--button-gap-sm)"
@@ -62,7 +62,7 @@ const executiveSummaryHref = '#'
                         <span
                             class="font-body text-button-md leading-(--leading-button-md) font-medium"
                         >
-                            Download the executive summary
+                            executiveSummaryLink.label
                         </span>
                         <Icon ariaHidden={true} name="download" />
                     </span>

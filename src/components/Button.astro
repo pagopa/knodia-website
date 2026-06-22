@@ -23,6 +23,7 @@ type Props = {
     rel?: string
     target?: string
     type?: 'button' | 'submit' | 'reset'
+    download?: boolean
 }
 
 const buttonRoot = tv({
@@ -312,6 +313,7 @@ const {
     tone = 'default',
     type = 'button',
     variant = 'contained',
+    download,
     ...rest
 } = Astro.props as Props & Record<string, unknown>
 
@@ -348,6 +350,7 @@ const ButtonTag = hasHref ? 'a' : 'button'
     tabindex={hasHref && isDisabled ? -1 : undefined}
     target={hasHref ? target : undefined}
     type={!hasHref ? type : undefined}
+    download={hasHref ? download : undefined}
 >
     <span class={buttonContent({ variant })}>
         {

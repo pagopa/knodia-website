@@ -1,4 +1,5 @@
 ---
+import { executiveSummaryLink, whitepaperLink } from '../../../constants'
 import Icon from '../../Icon'
 import type { IconName } from '../../Icon'
 
@@ -9,6 +10,7 @@ type ResourceDocument = {
     icon: IconName
     target?: '_blank'
     rel?: string
+    download?: boolean
 }
 
 const resourceDocuments: ResourceDocument[] = [
@@ -16,14 +18,15 @@ const resourceDocuments: ResourceDocument[] = [
         title: 'Executive summary',
         description:
             'Download a concise introduction to Knodia, its objectives and the role it can play in cross-domain interaction.',
-        href: '#',
+        href: executiveSummaryLink.href,
         icon: 'download',
+        download: true,
     },
     {
         title: 'Whitepaper',
         description:
             'Explore the technical documentation behind Knodia, how it works and what the prototype enables.',
-        href: '#',
+        href: whitepaperLink.href,
         icon: 'open_in_new',
         target: '_blank',
         rel: 'noopener noreferrer',
@@ -53,6 +56,7 @@ const resourceDocuments: ResourceDocument[] = [
                         href={document.href}
                         rel={document.rel}
                         target={document.target}
+                        download={document.download}
                     >
                         <div class="flex min-w-0 flex-1 flex-col gap-4">
                             <h3 class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite md:text-heading-md md:leading-heading-md xl:text-heading-lg xl:leading-heading-lg">
