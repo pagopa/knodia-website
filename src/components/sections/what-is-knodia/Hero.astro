@@ -1,7 +1,7 @@
 ---
 import Button from '../../Button.astro'
-import sharedHeroBackground from '../../../assets/backgrounds/shared-hero-background.png'
 import Icon from '../../Icon'
+import heroBackground from '../../../assets/backgrounds/what-is-knodia-hero-background.png'
 import { executiveSummaryLink } from '../../../constants'
 ---
 
@@ -15,10 +15,10 @@ import { executiveSummaryLink } from '../../../constants'
             class="size-full object-cover object-[60%_center] md:object-[63%_center] xl:object-center"
             decoding="async"
             fetchpriority="high"
-            height={sharedHeroBackground.height}
+            height={heroBackground.height}
             loading="eager"
-            src={sharedHeroBackground.src}
-            width={sharedHeroBackground.width}
+            src={heroBackground.src}
+            width={heroBackground.width}
         />
     </div>
 
@@ -62,7 +62,7 @@ import { executiveSummaryLink } from '../../../constants'
                         <span
                             class="font-body text-button-md leading-(--leading-button-md) font-medium"
                         >
-                            executiveSummaryLink.label
+                            {executiveSummaryLink.label}
                         </span>
                         <Icon ariaHidden={true} name="download" />
                     </span>

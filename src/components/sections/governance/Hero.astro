@@ -1,7 +1,8 @@
 ---
 import Button from '../../Button.astro'
 import Icon from '../../Icon'
-import sharedHeroBackground from '../../../assets/backgrounds/shared-hero-background.png'
+import heroBackground from '../../../assets/backgrounds/governance-hero-background.png'
+import heroBackgroundMobile from '../../../assets/backgrounds/governance-hero-background-mobile.png'
 
 const whitepaperHref = '#'
 ---
@@ -13,13 +14,23 @@ const whitepaperHref = '#'
     <div aria-hidden="true" class="pointer-events-none absolute inset-0">
         <img
             alt=""
-            class="size-full object-cover object-[64%_center] md:object-[60%_center] xl:object-center"
+            class="hidden size-full object-cover object-[62%_center] md:block xl:object-center"
             decoding="async"
             fetchpriority="high"
-            height={sharedHeroBackground.height}
+            height={heroBackground.height}
             loading="eager"
-            src={sharedHeroBackground.src}
-            width={sharedHeroBackground.width}
+            src={heroBackground.src}
+            width={heroBackground.width}
+        />
+        <img
+            alt=""
+            class="block size-full h-auto w-full object-cover object-[62%_center] md:hidden"
+            decoding="async"
+            fetchpriority="high"
+            height={heroBackgroundMobile.height}
+            loading="eager"
+            src={heroBackgroundMobile.src}
+            width={heroBackgroundMobile.width}
         />
     </div>
 

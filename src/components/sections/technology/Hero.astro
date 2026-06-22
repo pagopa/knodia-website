@@ -1,9 +1,9 @@
 ---
 import Button from '../../Button.astro'
 import Icon from '../../Icon'
-import sharedHeroBackground from '../../../assets/backgrounds/shared-hero-background.png'
-
-const whitepaperHref = '#'
+import heroBackground from '../../../assets/backgrounds/technology-hero-background.png'
+import heroBackgroundMobile from '../../../assets/backgrounds/technology-hero-background-mobile.png'
+import { whitepaperLink } from '../../../constants'
 ---
 
 <section
@@ -13,13 +13,23 @@ const whitepaperHref = '#'
     <div aria-hidden="true" class="pointer-events-none absolute inset-0">
         <img
             alt=""
-            class="size-full object-cover object-[64%_center] md:object-[60%_center] xl:object-center"
+            class="hidden size-full object-cover object-[62%_center] md:block xl:object-center"
             decoding="async"
             fetchpriority="high"
-            height={sharedHeroBackground.height}
+            height={heroBackground.height}
             loading="eager"
-            src={sharedHeroBackground.src}
-            width={sharedHeroBackground.width}
+            src={heroBackground.src}
+            width={heroBackground.width}
+        />
+        <img
+            alt=""
+            class="block size-full h-auto w-full object-cover object-[62%_center] md:hidden"
+            decoding="async"
+            fetchpriority="high"
+            height={heroBackgroundMobile.height}
+            loading="eager"
+            src={heroBackgroundMobile.src}
+            width={heroBackgroundMobile.width}
         />
     </div>
 
@@ -27,7 +37,7 @@ const whitepaperHref = '#'
         class="relative mx-auto flex min-h-170 max-w-(--header-shell-max) items-start px-(--header-mobile-padding-x) pt-34 pb-20 md:min-h-180 md:px-(--home-hero-inline-padding-md) md:pt-42 md:pb-24 xl:min-h-200 xl:px-(--header-inline-padding) xl:pt-(--home-hero-padding-top) xl:pb-30"
     >
         <div
-            class="flex w-full max-w-[calc(100vw-48px)] flex-col gap-6 sm:max-w-90 md:max-w-140 md:gap-8 xl:max-w-170"
+            class="flex w-full max-w-(--home-hero-content-width-mobile) flex-col gap-6 md:max-w-(--home-hero-content-width) md:gap-8"
         >
             <span
                 class="inline-flex w-fit rounded-sm bg-secondary-soft-quartz px-2 py-1 font-body text-[16px] leading-[24px] font-medium tracking-[0] text-deep-violet"
@@ -35,16 +45,16 @@ const whitepaperHref = '#'
                 TECHNOLOGY
             </span>
 
-            <div class="flex flex-col gap-5 xl:gap-6">
+            <div class="flex flex-col gap-6">
                 <h1
-                    class="font-heading text-hero-sm leading-hero-sm font-semibold tracking-hero-sm text-neutral-graphite md:text-home-cta-title md:leading-17 md:tracking-[-0.84px] xl:text-hero-lg xl:leading-hero-lg xl:tracking-hero-lg"
+                    class="font-heading text-hero-sm leading-hero-sm font-semibold tracking-hero-sm text-neutral-graphite md:text-home-cta-title md:leading-17 md:tracking-hero-lg xl:text-hero-lg xl:leading-hero-lg"
                     id="technology-hero-title"
                 >
                     How Knodia works across domains
                 </h1>
 
                 <p
-                    class="max-w-full font-body text-intro-sm leading-intro-sm font-normal text-neutral-graphite md:max-w-140 md:text-home-use-case-title-sm md:leading-[30px] xl:max-w-170 xl:text-intro-lg xl:leading-intro-lg"
+                    class="max-w-full font-body text-intro-sm leading-intro-sm font-normal text-neutral-graphite md:max-w-(--home-hero-content-width) md:text-intro-lg md:leading-intro-lg"
                 >
                     Knodia provides a federated technical architecture that
                     defines how domains, organizations and technical components
@@ -53,7 +63,7 @@ const whitepaperHref = '#'
 
                 <Button
                     class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet!"
-                    href={whitepaperHref}
+                    href={whitepaperLink.href}
                     variant="naked"
                 >
                     <span class="inline-flex items-center gap-(--button-gap)">
