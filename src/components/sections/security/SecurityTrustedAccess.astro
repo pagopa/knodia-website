@@ -1,5 +1,6 @@
 ---
-import trustedAccessDiagram from '../../../assets/backgrounds/security-two-layers-trusted-access.png'
+import trustedAccessDesktopDiagram from '../../../assets/backgrounds/security-two-layers-trusted-access-desktop.png'
+import trustedAccessMobileDiagram from '../../../assets/backgrounds/security-two-layers-trusted-access-mobile.png'
 
 const altText =
     'Diagram showing two layers of trusted access in Knodia: first, mutual trust between Knodes through authentication; second, controlled access to protected data through authentication, authorisation and an access token used by a data consumer to reach a data producer.'
@@ -43,12 +44,21 @@ const altText =
         >
             <img
                 alt={altText}
-                class="block h-auto w-full"
+                class="hidden h-auto w-full xl:block"
                 decoding="async"
-                height={trustedAccessDiagram.height}
+                height={trustedAccessDesktopDiagram.height}
                 loading="lazy"
-                src={trustedAccessDiagram.src}
-                width={trustedAccessDiagram.width}
+                src={trustedAccessDesktopDiagram.src}
+                width={trustedAccessDesktopDiagram.width}
+            />
+            <img
+                alt={altText}
+                class="h-auto w-full xl:hidden"
+                decoding="async"
+                height={trustedAccessMobileDiagram.height}
+                loading="lazy"
+                src={trustedAccessMobileDiagram.src}
+                width={trustedAccessMobileDiagram.width}
             />
         </div>
     </div>

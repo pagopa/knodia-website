@@ -1,6 +1,6 @@
 ---
 import Button from '../../Button.astro'
-import knodiaMark from '../../../assets/icons/knodia-mark.svg'
+import useCasesHandlingDelayedResponsesHeroFigma from '../../../assets/backgrounds/use-cases-handling-delayed-responses-hero.png'
 ---
 
 <section
@@ -53,60 +53,16 @@ import knodiaMark from '../../../assets/icons/knodia-mark.svg'
             <div
                 class="relative h-(--home-use-case-image-height-mobile) w-full overflow-hidden rounded-(--home-use-case-image-radius-mobile) bg-primary-violet-surface md:h-80 xl:h-(--home-use-case-image-height) xl:w-(--home-use-case-image-width) xl:rounded-(--home-use-case-image-radius)"
             >
-                <svg
-                    aria-hidden="true"
-                    class="absolute inset-0 h-full w-full"
-                    fill="none"
-                    viewBox="0 0 507 320"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M170 65C238 65 246 132 246 148"
-                        stroke="#A1A5FF"
-                        stroke-width="1.5"
-                    />
-                    <path
-                        d="M182 75C182 198 275 250 406 250"
-                        stroke="#A1A5FF"
-                        stroke-dasharray="6 7"
-                        stroke-width="1.5"
-                    />
-                    <path
-                        d="M246 148C312 148 312 205 346 205"
-                        stroke="#A1A5FF"
-                        stroke-width="1.5"
-                    />
-
-                    <circle
-                        cx="246"
-                        cy="148"
-                        r="21"
-                        stroke="#4E51E6"
-                        stroke-dasharray="6 6"
-                        stroke-width="3"
-                    />
-                    <circle
-                        cx="346"
-                        cy="205"
-                        r="21"
-                        stroke="#4E51E6"
-                        stroke-dasharray="6 6"
-                        stroke-width="3"
-                    />
-                    <circle cx="435" cy="245" r="21" stroke="#4E51E6" stroke-width="3" />
-                </svg>
-
-                <div
-                    class="absolute top-8 left-24 flex size-21 items-center justify-center rounded-2xl bg-primary-violet shadow-[0_8px_18px_rgba(78,81,230,0.35)]"
-                >
-                    <img
-                        alt=""
-                        class="h-12 w-13.5"
-                        decoding="async"
-                        loading="eager"
-                        src={knodiaMark.src}
-                    />
-                </div>
+                <img
+                    alt=""
+                    class="size-full object-contain"
+                    decoding="async"
+                    fetchpriority="high"
+                    height={useCasesHandlingDelayedResponsesHeroFigma.height}
+                    loading="eager"
+                    src={useCasesHandlingDelayedResponsesHeroFigma.src}
+                    width={useCasesHandlingDelayedResponsesHeroFigma.width}
+                />
             </div>
         </div>
     </div>
