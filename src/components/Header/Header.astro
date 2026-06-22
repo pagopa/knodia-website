@@ -13,7 +13,7 @@ const normalizedCurrentPath = normalizePath(currentPath)
 const isHomePage = normalizedCurrentPath === '/'
 const isWhatIsKnodiaPage = normalizedCurrentPath === '/what-is-knodia'
 const isResourcesPage = normalizedCurrentPath === '/resources'
-const isSignupIntroPage = normalizedCurrentPath === '/signup-intro'
+const isPrototypeAccessPage = normalizedCurrentPath === '/prototype-access'
 const isUseCasesPage =
     normalizedCurrentPath === '/use-cases' ||
     normalizedCurrentPath.startsWith('/use-cases/')
@@ -22,19 +22,19 @@ const usesOverlayHeader =
     isWhatIsKnodiaPage ||
     isResourcesPage ||
     isUseCasesPage ||
-    isSignupIntroPage
+    isPrototypeAccessPage
 const headerRootClass = 'header-root fixed inset-x-0 top-0 isolate z-40'
 const headerBarShellClass = isHomePage
     ? 'w-full'
     : isWhatIsKnodiaPage ||
         isResourcesPage ||
         isUseCasesPage ||
-        isSignupIntroPage
+        isPrototypeAccessPage
       ? 'w-full bg-white/40 backdrop-blur-[4px]'
       : 'w-full border-b border-black/5 bg-white/85 backdrop-blur-xs'
 const headerBarContentClass = isHomePage
     ? 'mx-auto flex min-h-(--header-mobile-bar-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-(--header-mobile-padding-x) xl:min-h-(--header-height) xl:px-(--header-inline-padding)'
-    : isWhatIsKnodiaPage || isUseCasesPage || isSignupIntroPage
+    : isWhatIsKnodiaPage || isUseCasesPage || isPrototypeAccessPage
       ? 'mx-auto flex min-h-(--header-mobile-bar-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-(--header-mobile-padding-x) xl:min-h-(--header-height) xl:px-(--header-inline-padding)'
       : 'mx-auto flex min-h-(--header-height) max-w-(--header-shell-max) items-center justify-between gap-6 px-4 sm:px-6 xl:px-(--header-inline-padding)'
 const headerLogoSrc = isHomePage
