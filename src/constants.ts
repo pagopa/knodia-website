@@ -1,7 +1,7 @@
 const startConversationHref = '/contacts'
 const startConversationLabel = 'Start the conversation'
 
-const prototypeHref = '/signup-intro'
+const prototypeHref = '/prototype-access'
 const prototypeLabel = 'Access the prototype'
 
 const whitepaperHref = '/docs/2025_01_15_knodia_whitepaper_v.1.0.pdf'
