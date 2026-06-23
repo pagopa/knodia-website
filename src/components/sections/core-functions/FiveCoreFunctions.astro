@@ -244,7 +244,7 @@ const defaultPanelId = coreFunctionPanels[0].id
                             aria-selected={
                                 panel.id === defaultPanelId ? 'true' : 'false'
                             }
-                            class="inline-flex min-h-[52px] items-center justify-center rounded-full bg-neutral-white px-4 py-3 font-body text-[16px] leading-[24px] font-medium text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out hover:bg-secondary-soft-quartz focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz md:text-button-md md:leading-(--leading-button-md)"
+                            class="inline-flex min-h-[52px] items-center justify-center rounded-full bg-neutral-white px-4 py-3 font-body text-[16px] leading-[24px] font-medium text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-200 ease-out hover:bg-secondary-soft-quartz hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid active:bg-secondary-muted-amber! not-active:aria-selected:bg-secondary-soft-quartz md:text-button-md md:leading-(--leading-button-md)"
                             data-core-functions-trigger={panel.id}
                             id={`core-functions-trigger-${panel.id}`}
                             role="tab"
