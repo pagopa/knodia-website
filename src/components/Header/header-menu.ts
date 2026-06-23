@@ -36,6 +36,18 @@ function initHeader(header: HTMLElement) {
     let closeTimer: number | undefined
     let suppressedKeyboardClickMenuId: string | undefined
     let suppressedFocusOpenMenuId: string | undefined
+    let mobileLastFocusedElement: HTMLElement | null = null
+
+    const mobileFocusableSelectors = [
+        'a[href]',
+        'area[href]',
+        'button:not([disabled])',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])',
+        '[contenteditable="true"]',
+    ].join(',')
 
     function getTrigger(menuId: string | undefined) {
         if (!menuId) {
@@ -188,10 +200,45 @@ function initHeader(header: HTMLElement) {
         header.dataset.mobilePanel = panelId
     }
 
+    function isElementVisible(element: HTMLElement) {
+        if (element.hidden) {
+            return false
+        }
+
+        if (element.closest('[hidden]')) {
+            return false
+        }
+
+        return element.getClientRects().length > 0
+    }
+
+    function getMobileFocusableElements() {
+        if (!(mobileOverlay instanceof HTMLElement) || mobileOverlay.hidden) {
+            return []
+        }
+
+        return toElements<HTMLElement>(
+            mobileOverlay.querySelectorAll(mobileFocusableSelectors)
+        ).filter(isElementVisible)
+    }
+
+    function focusFirstMobileElement() {
+        const [firstFocusable] = getMobileFocusableElements()
+
+        if (firstFocusable) {
+            firstFocusable.focus()
+        }
+    }
+
     function openMobileMenu() {
         if (!(mobileOverlay instanceof HTMLElement)) {
             return
         }
+
+        mobileLastFocusedElement =
+            document.activeElement instanceof HTMLElement
+                ? document.activeElement
+                : null
 
         mobileOverlay.hidden = false
         header.dataset.mobileOpen = 'true'
@@ -202,6 +249,10 @@ function initHeader(header: HTMLElement) {
         if (mobileOpenButton instanceof HTMLElement) {
             mobileOpenButton.setAttribute('aria-expanded', 'true')
         }
+
+        window.requestAnimationFrame(() => {
+            focusFirstMobileElement()
+        })
     }
 
     function closeMobileMenu() {
@@ -218,6 +269,12 @@ function initHeader(header: HTMLElement) {
         }
 
         setMobilePanel('root')
+
+        const focusTarget =
+            mobileOpenButton instanceof HTMLElement
+                ? mobileOpenButton
+                : mobileLastFocusedElement
+        focusTarget?.focus()
     }
 
     triggers.forEach((trigger) => {
@@ -333,12 +390,18 @@ function initHeader(header: HTMLElement) {
     mobileGroupTriggers.forEach((trigger) => {
         trigger.addEventListener('click', () => {
             setMobilePanel(trigger.dataset.mobileGroupTrigger)
+            window.requestAnimationFrame(() => {
+                focusFirstMobileElement()
+            })
         })
     })
 
     mobileBackButtons.forEach((button) => {
         button.addEventListener('click', () => {
             setMobilePanel('root')
+            window.requestAnimationFrame(() => {
+                focusFirstMobileElement()
+            })
         })
     })
 
@@ -355,6 +418,44 @@ function initHeader(header: HTMLElement) {
     }
 
     if (mobileOverlay instanceof HTMLElement) {
+        mobileOverlay.addEventListener('keydown', (event) => {
+            if (event.key !== 'Tab') {
+                return
+            }
+
+            const focusableElements = getMobileFocusableElements()
+
+            if (focusableElements.length === 0) {
+                event.preventDefault()
+                return
+            }
+
+            const firstFocusable = focusableElements[0]
+            const lastFocusable =
+                focusableElements[focusableElements.length - 1]
+            const activeElement =
+                document.activeElement instanceof HTMLElement
+                    ? document.activeElement
+                    : null
+
+            if (!event.shiftKey && activeElement === lastFocusable) {
+                event.preventDefault()
+                firstFocusable.focus()
+                return
+            }
+
+            if (event.shiftKey && activeElement === firstFocusable) {
+                event.preventDefault()
+                lastFocusable.focus()
+                return
+            }
+
+            if (activeElement && !focusableElements.includes(activeElement)) {
+                event.preventDefault()
+                firstFocusable.focus()
+            }
+        })
+
         mobileOverlay.addEventListener('click', (event) => {
             if (event.target === mobileOverlay) {
                 closeMobileMenu()

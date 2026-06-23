@@ -408,6 +408,28 @@
 }
 
 @layer components {
+    .skip-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transform: translateY(-120%);
+        padding: 0.75rem 1rem;
+        border-radius: 0 0 0.5rem 0;
+        background-color: var(--color-neutral-black);
+        color: var(--color-neutral-white);
+        font-weight: 500;
+        line-height: 1;
+        transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus,
+    .skip-link:focus-visible {
+        transform: translateY(0);
+        outline: 2px solid var(--color-primary-violet);
+        outline-offset: 2px;
+    }
+
     .knodia-material-symbol {
         font-family: 'Material Symbols Outlined';
         font-style: normal;

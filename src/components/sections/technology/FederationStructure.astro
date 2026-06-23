@@ -88,7 +88,7 @@ const defaultPanelId = federationRoles[0].id
                             aria-selected={
                                 panel.id === defaultPanelId ? 'true' : 'false'
                             }
-                            class="w-full rounded-2xl bg-neutral-white px-6 py-6 text-left font-heading text-intro-sm leading-intro-sm font-normal text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz xl:text-intro-lg xl:leading-intro-lg"
+                            class="w-full rounded-2xl bg-neutral-white px-6 py-6 text-left font-heading text-intro-sm leading-intro-sm font-normal text-neutral-graphite shadow-(--shadow-home-guidance-pill) transition-colors duration-200 ease-out hover:bg-secondary-soft-quartz hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid active:bg-secondary-muted-amber! not-active:aria-selected:bg-secondary-soft-quartz xl:text-intro-lg xl:leading-intro-lg"
                             data-technology-federation-trigger={panel.id}
                             id={`technology-federation-trigger-${panel.id}`}
                             role="tab"

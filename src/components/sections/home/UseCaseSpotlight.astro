@@ -24,6 +24,7 @@ const description =
             </p>
 
             <Button
+                aria-label="View all use cases"
                 class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
                 href="/use-cases"
                 icon="arrow_forward"
@@ -68,6 +69,7 @@ const description =
                 </div>
 
                 <Button
+                    aria-label={`Read more about ${title}`}
                     class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:mt-auto xl:[&>span]:gap-(--button-gap)"
                     href={'/use-cases/data-synchronisation-with-a-base-register'}
                     icon="arrow_forward"

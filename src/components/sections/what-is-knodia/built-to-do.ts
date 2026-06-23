@@ -27,23 +27,111 @@ roots.forEach((root) => {
     const panels = Array.from(
         root.querySelectorAll<HTMLElement>('[data-built-to-do-panel]')
     )
+    const triggerList =
+        triggers[0]?.closest<HTMLElement>('[role="tablist"]') ?? null
+    const panelsContainer = panels[0]?.parentElement ?? null
+    const desktopQuery = window.matchMedia('(min-width: 80rem)')
+
+    let activePanelId: string | undefined
+
+    const getTriggerById = (panelId: string | undefined) => {
+        return triggers.find((trigger) => {
+            return trigger.dataset.builtToDoTrigger === panelId
+        })
+    }
+
+    const movePanelsToDesktopContainer = () => {
+        if (panelsContainer == null) {
+            return
+        }
+
+        panels.forEach((panel) => {
+            panelsContainer.append(panel)
+        })
+    }
+
+    const applyDesktopSemantics = () => {
+        triggerList?.setAttribute('role', 'tablist')
+        triggerList?.setAttribute('aria-orientation', 'vertical')
+
+        triggers.forEach((trigger) => {
+            trigger.setAttribute('role', 'tab')
+            trigger.removeAttribute('aria-expanded')
+        })
+
+        panels.forEach((panel) => {
+            panel.setAttribute('role', 'tabpanel')
+        })
+    }
+
+    const applyMobileSemantics = () => {
+        triggerList?.removeAttribute('role')
+        triggerList?.removeAttribute('aria-orientation')
+
+        triggers.forEach((trigger) => {
+            trigger.removeAttribute('role')
+            trigger.removeAttribute('aria-selected')
+            trigger.tabIndex = 0
+        })
+
+        panels.forEach((panel) => {
+            panel.removeAttribute('role')
+        })
+    }
 
     const activatePanel = (panelId: string | undefined) => {
         if (panelId == null) {
             return
         }
 
+        activePanelId = panelId
+
+        const isDesktop = desktopQuery.matches
+
+        if (isDesktop) {
+            movePanelsToDesktopContainer()
+            applyDesktopSemantics()
+        } else {
+            applyMobileSemantics()
+        }
+
         triggers.forEach((trigger) => {
-            const isSelected = trigger.dataset.builtToDoTrigger === panelId
-            trigger.setAttribute('aria-selected', String(isSelected))
-            trigger.tabIndex = isSelected ? 0 : -1
+            const isActive = trigger.dataset.builtToDoTrigger === panelId
+
+            if (isDesktop) {
+                trigger.setAttribute('aria-selected', String(isActive))
+                trigger.tabIndex = isActive ? 0 : -1
+                return
+            }
+
+            trigger.setAttribute('aria-expanded', String(isActive))
+            trigger.tabIndex = 0
         })
 
         panels.forEach((panel) => {
             const isActive = panel.dataset.builtToDoPanel === panelId
             panel.hidden = !isActive
             panel.tabIndex = isActive ? 0 : -1
+
+            if (isDesktop || isActive) {
+                return
+            }
+
+            panelsContainer?.append(panel)
         })
+
+        if (isDesktop) {
+            return
+        }
+
+        const activeTrigger = getTriggerById(panelId)
+        const activePanel = getPanelById(panelId)
+
+        if (activeTrigger == null || activePanel == null) {
+            return
+        }
+
+        activeTrigger.insertAdjacentElement('afterend', activePanel)
     }
 
     const getTriggerIndex = (panelId: string | undefined) => {
@@ -62,10 +150,18 @@ roots.forEach((root) => {
         })
 
         trigger.addEventListener('focus', () => {
+            if (!desktopQuery.matches) {
+                return
+            }
+
             activatePanel(trigger.dataset.builtToDoTrigger)
         })
 
         trigger.addEventListener('keydown', (event: KeyboardEvent) => {
+            if (!desktopQuery.matches) {
+                return
+            }
+
             const key = event.key
 
             if (key === 'Tab' && event.shiftKey) {
@@ -128,6 +224,10 @@ roots.forEach((root) => {
 
     panels.forEach((panel) => {
         panel.addEventListener('keydown', (event: KeyboardEvent) => {
+            if (!desktopQuery.matches) {
+                return
+            }
+
             if (event.key !== 'Tab' || event.shiftKey || panel.hidden) {
                 return
             }
@@ -165,7 +265,13 @@ roots.forEach((root) => {
             (trigger) => trigger.getAttribute('aria-selected') === 'true'
         ) ?? triggers[0]
 
-    activatePanel(initialTrigger?.dataset.builtToDoTrigger)
+    const initialPanelId = initialTrigger?.dataset.builtToDoTrigger
+    activePanelId = initialPanelId
+    activatePanel(initialPanelId)
+
+    desktopQuery.addEventListener('change', () => {
+        activatePanel(activePanelId)
+    })
 })
 
 export {}

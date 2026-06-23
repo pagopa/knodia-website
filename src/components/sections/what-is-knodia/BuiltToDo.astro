@@ -115,7 +115,7 @@ const defaultPanelId = builtToDoPanels[0].id
                             aria-selected={
                                 panel.id === defaultPanelId ? 'true' : 'false'
                             }
-                            class="flex w-full items-start gap-4 rounded-2xl bg-neutral-white px-5 py-5 text-left shadow-(--shadow-home-guidance-pill) transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid aria-selected:bg-secondary-soft-quartz xl:gap-6 xl:px-6 xl:py-6"
+                            class="flex w-full items-start gap-4 rounded-2xl bg-neutral-white px-5 py-5 text-left shadow-(--shadow-home-guidance-pill) transition-colors duration-200 ease-out hover:bg-secondary-soft-quartz hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-violet focus-visible:outline-solid active:bg-secondary-muted-amber! not-active:aria-expanded:bg-secondary-soft-quartz aria-selected:bg-secondary-soft-quartz xl:gap-6 xl:px-6 xl:py-6"
                             data-built-to-do-trigger={panel.id}
                             id={`what-is-knodia-built-to-do-trigger-${panel.id}`}
                             role="tab"
