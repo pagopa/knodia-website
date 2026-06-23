@@ -144,7 +144,7 @@ const defaultPanelId = guidancePanels[0].id
 
                         <section
                             aria-labelledby={`home-guidance-trigger-${panel.id}`}
-                            class="order-2 mt-[calc(var(--home-guidance-stack-gap-mobile)-var(--home-guidance-tabs-gap-mobile))] w-full basis-full rounded-(--home-guidance-card-radius-mobile) bg-neutral-white p-(--home-guidance-card-padding-mobile) shadow-(--shadow-home-guidance-card-mobile) xl:mt-[calc(var(--home-guidance-stack-gap)-var(--home-guidance-tabs-gap))] xl:rounded-(--home-guidance-card-radius) xl:p-(--home-guidance-card-padding) xl:shadow-(--shadow-home-guidance-card)"
+                            class="order-2 mt-[calc(var(--home-guidance-stack-gap-mobile)-var(--home-guidance-tabs-gap-mobile))] h-[300px] w-full basis-full rounded-(--home-guidance-card-radius-mobile) bg-neutral-white p-(--home-guidance-card-padding-mobile) shadow-(--shadow-home-guidance-card-mobile) xl:mt-[calc(var(--home-guidance-stack-gap)-var(--home-guidance-tabs-gap))] xl:rounded-(--home-guidance-card-radius) xl:p-(--home-guidance-card-padding) xl:shadow-(--shadow-home-guidance-card)"
                             data-guidance-panel={panel.id}
                             hidden={panel.id !== defaultPanelId}
                             id={`home-guidance-panel-${panel.id}`}
