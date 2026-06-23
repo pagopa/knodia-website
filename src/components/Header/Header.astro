@@ -552,7 +552,12 @@ const desktopSubmenuLinkClass =
                                                             aria-hidden="true"
                                                             class="mt-2.5 size-(--header-bullet-size) shrink-0 rounded-full bg-primary-violet"
                                                         />
-                                                        <span>{topic}</span>
+                                                        <a
+                                                            class="transition-colors duration-150 ease-out hover:text-primary-violet focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-violet"
+                                                            href={topic.href}
+                                                        >
+                                                            {topic.label}
+                                                        </a>
                                                     </li>
                                                 ))}
                                             </ul>

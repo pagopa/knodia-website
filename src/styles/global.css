@@ -366,6 +366,16 @@
         background-color: var(--color-neutral-white);
     }
 
+    :where([id]):target {
+        scroll-margin-top: calc(var(--header-mobile-bar-height) + 24px);
+    }
+
+    @media (min-width: 1280px) {
+        :where([id]):target {
+            scroll-margin-top: calc(var(--header-height) + 24px);
+        }
+    }
+
     body {
         margin: 0;
         min-height: 100vh;
