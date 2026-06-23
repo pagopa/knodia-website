@@ -4,7 +4,12 @@ export type HeaderMenuItem = {
     href: string
     title: string
     bestFor: string
-    topics: string[]
+    topics: HeaderMenuTopic[]
+}
+
+export type HeaderMenuTopic = {
+    label: string
+    href: string
 }
 
 export type HeaderMenuGroup = {
@@ -31,10 +36,22 @@ export const headerMenuGroups = [
                 title: 'Framework, origins and audience',
                 bestFor: 'Decision makers',
                 topics: [
-                    'Built on proven expertise',
-                    'Who Knodia is for',
-                    'What Knodia is built to do',
-                    'Knodia principles',
+                    {
+                        label: 'Built on proven expertise',
+                        href: '/what-is-knodia#what-is-knodia-about-title',
+                    },
+                    {
+                        label: 'Who Knodia is for',
+                        href: '/what-is-knodia#what-is-knodia-audience-title',
+                    },
+                    {
+                        label: 'What Knodia is built to do',
+                        href: '/what-is-knodia#what-is-knodia-built-to-do-title',
+                    },
+                    {
+                        label: 'Knodia principles',
+                        href: '/what-is-knodia#what-is-knodia-glance-title',
+                    },
                 ],
             },
             {
@@ -44,10 +61,22 @@ export const headerMenuGroups = [
                 title: 'Benefits and practical value',
                 bestFor: 'Decision makers',
                 topics: [
-                    'Our architecture at a glance',
-                    'Benefits for you',
-                    'Comparing approaches',
-                    'What Knodia handles',
+                    {
+                        label: 'Our architecture at a glance',
+                        href: '/why-knodia#why-knodia-federated-network-title',
+                    },
+                    {
+                        label: 'Benefits for you',
+                        href: '/why-knodia#why-knodia-model-benefits-title',
+                    },
+                    {
+                        label: 'Comparing approaches',
+                        href: '/why-knodia#why-knodia-shared-model-title',
+                    },
+                    {
+                        label: 'What Knodia handles',
+                        href: '/why-knodia#why-knodia-practical-adoption-title',
+                    },
                 ],
             },
             {
@@ -57,9 +86,18 @@ export const headerMenuGroups = [
                 title: 'The five functions behind the model',
                 bestFor: 'Decision makers, tech teams',
                 topics: [
-                    'Knodes core functions',
-                    'How the core functions work together',
-                    'Knodes addictional functions',
+                    {
+                        label: 'Knodes core functions',
+                        href: '/core-functions#core-functions-overview-title',
+                    },
+                    {
+                        label: 'How the core functions work together',
+                        href: '/core-functions#core-functions-overview-title',
+                    },
+                    {
+                        label: 'Knodes addictional functions',
+                        href: '/core-functions#core-functions-additional-functions-title',
+                    },
                 ],
             },
         ],
@@ -75,9 +113,18 @@ export const headerMenuGroups = [
                 title: 'Architecture and technical foundations',
                 bestFor: 'Tech teams',
                 topics: [
-                    'Knodia federated model',
-                    'Technical foundations',
-                    'Different security requirements',
+                    {
+                        label: 'Knodia federated model',
+                        href: '/technology#technology-federation-title',
+                    },
+                    {
+                        label: 'Technical foundations',
+                        href: '/technology#technology-foundations-title',
+                    },
+                    {
+                        label: 'Different security requirements',
+                        href: '/technology#technology-security-profiles-title',
+                    },
                 ],
             },
             {
@@ -87,12 +134,30 @@ export const headerMenuGroups = [
                 title: 'Trust, access and security mechanisms',
                 bestFor: 'Tech teams + privacy and legal teams',
                 topics: [
-                    'Security principles',
-                    'Privacy-first architecture',
-                    'How Knodia security works',
-                    'Trust + token-based access',
-                    'Levels of security',
-                    'Open standards',
+                    {
+                        label: 'Security principles',
+                        href: '/security#security-principles-title',
+                    },
+                    {
+                        label: 'Privacy-first architecture',
+                        href: '/security#security-design-title',
+                    },
+                    {
+                        label: 'How Knodia security works',
+                        href: '/security#security-how-it-works-title',
+                    },
+                    {
+                        label: 'Trust + token-based access',
+                        href: '/security#security-trusted-access-title',
+                    },
+                    {
+                        label: 'Levels of security',
+                        href: '/security#security-framework-levels-title',
+                    },
+                    {
+                        label: 'Open standards',
+                        href: '/security#security-open-standards-title',
+                    },
                 ],
             },
             {
@@ -102,9 +167,18 @@ export const headerMenuGroups = [
                 title: 'European requirements and data protection',
                 bestFor: 'Privacy and legals teams',
                 topics: [
-                    'How Knodia addresses the 4 interop layers',
-                    'Designed for GDPR-aligned access',
-                    'Built on European references',
+                    {
+                        label: 'How Knodia addresses the 4 interop layers',
+                        href: '/compliance#compliance-layers-title',
+                    },
+                    {
+                        label: 'Designed for GDPR-aligned access',
+                        href: '/compliance#compliance-gdpr-title',
+                    },
+                    {
+                        label: 'Built on European references',
+                        href: '/compliance#compliance-european-regulation-title',
+                    },
                 ],
             },
             {
@@ -114,9 +188,18 @@ export const headerMenuGroups = [
                 title: 'Shared rules and distributed responsibilities',
                 bestFor: 'Privacy and legals teams',
                 topics: [
-                    'Shared governance',
-                    'How governance works',
-                    'Shared semantics',
+                    {
+                        label: 'Shared governance',
+                        href: '/governance#governance-shared-autonomy-title',
+                    },
+                    {
+                        label: 'How governance works',
+                        href: '/governance#governance-practice-title',
+                    },
+                    {
+                        label: 'Shared semantics',
+                        href: '/governance#governance-semantic-alignment-title',
+                    },
                 ],
             },
         ],
