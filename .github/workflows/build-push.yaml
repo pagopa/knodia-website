@@ -54,4 +54,4 @@ jobs:
 
           aws cloudfront create-invalidation \
             --distribution-id "${CF_DISTRIBUTION_ID}" \
-            --paths ${CF_INVALIDATION_PATHS}    #space separated paths
+            --paths "${CF_INVALIDATION_PATHS}"    #space separated paths
