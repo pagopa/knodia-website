@@ -1,6 +1,11 @@
 ---
 import Button from '../../Button.astro'
 import { getRandomUseCases } from '../../../use-cases'
+import {
+    viewAllUseCasesAriaLabel,
+    viewAllUseCasesHref,
+    viewAllUseCasesLabel,
+} from '../../../constants'
 
 const useCases = getRandomUseCases()
 
@@ -41,9 +46,9 @@ const viewAllHref = '/use-cases'
                 </p>
 
                 <Button
-                    aria-label="View all use cases"
+                    aria-label={viewAllUseCasesAriaLabel}
                     class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:self-end xl:[&>span]:gap-(--button-gap)"
-                    href={viewAllHref}
+                    href={viewAllUseCasesHref}
                     icon="arrow_forward"
                     size="small"
                     variant="naked"
@@ -51,7 +56,7 @@ const viewAllHref = '/use-cases'
                     <span
                         class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
                     >
-                        View all
+                        {viewAllUseCasesLabel}
                     </span>
                 </Button>
             </div>
