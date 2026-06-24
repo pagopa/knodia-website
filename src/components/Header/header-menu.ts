@@ -463,13 +463,13 @@ function initHeader(header: HTMLElement) {
         })
     }
 
-    header.addEventListener('focusout', (event) => {
-        const nextTarget = event.relatedTarget
-
-        if (!(nextTarget instanceof Node) || !header.contains(nextTarget)) {
-            scheduleClose()
-        }
-    })
+    // header.addEventListener('focusout', (event) => {
+    //     const nextTarget = event.relatedTarget
+    //
+    //     if (!(nextTarget instanceof Node) || !header.contains(nextTarget)) {
+    //         scheduleClose()
+    //     }
+    // })
 
     document.addEventListener('pointerdown', (event) => {
         if (!(event.target instanceof Node) || header.contains(event.target)) {
