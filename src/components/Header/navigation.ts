@@ -31,26 +31,26 @@ export const headerMenuGroups = [
         items: [
             {
                 id: 'whats-knodia',
-                label: 'What’s Knodia',
+                label: 'What is Knodia',
                 href: '/what-is-knodia',
                 title: 'Framework, origins and audience',
                 bestFor: 'Decision makers',
                 topics: [
                     {
-                        label: 'Built on proven expertise',
-                        href: '/what-is-knodia#what-is-knodia-about-title',
+                        label: 'Knodia at a glance',
+                        href: '/what-is-knodia#what-is-knodia-glance-title',
                     },
                     {
-                        label: 'Who Knodia is for',
-                        href: '/what-is-knodia#what-is-knodia-audience-title',
+                        label: 'The challenges Knodia tackles',
+                        href: '/what-is-knodia#what-is-knodia-challenges-title',
                     },
                     {
                         label: 'What Knodia is built to do',
                         href: '/what-is-knodia#what-is-knodia-built-to-do-title',
                     },
                     {
-                        label: 'Knodia principles',
-                        href: '/what-is-knodia#what-is-knodia-glance-title',
+                        label: 'Who Knodia is for',
+                        href: '/what-is-knodia#what-is-knodia-audience-title',
                     },
                 ],
             },
@@ -91,10 +91,6 @@ export const headerMenuGroups = [
                         href: '/core-functions#core-functions-overview-title',
                     },
                     {
-                        label: 'How the core functions work together',
-                        href: '/core-functions#core-functions-overview-title',
-                    },
-                    {
                         label: 'Knodes addictional functions',
                         href: '/core-functions#core-functions-additional-functions-title',
                     },
@@ -132,7 +128,7 @@ export const headerMenuGroups = [
                 label: 'Security',
                 href: '/security',
                 title: 'Trust, access and security mechanisms',
-                bestFor: 'Tech teams + privacy and legal teams',
+                bestFor: 'Tech teams, privacy and legal teams',
                 topics: [
                     {
                         label: 'Security principles',
