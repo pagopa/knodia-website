@@ -4,16 +4,18 @@ const startConversationLabel = 'Start the conversation'
 export const viewAllUseCasesHref = '/use-cases'
 export const viewAllUseCasesLabel = 'View all'
 export const viewAllUseCasesAriaLabel = 'View all use cases'
+const baseURL = 'https://knodia.gitbook.io/'
 
 const prototypeHref = '/prototype-access'
 const prototypeLabel = 'Access the prototype'
 
-const whitepaperHref = '/docs/2025_01_15_knodia_whitepaper_v.1.0.pdf'
+const accessPrototypeExternalHref = 'https://signup.knodia.com'
+
+const whitepaperHref = `${baseURL}knodia-docs/knodia-whitepaper`
 const whitepaperLabel = 'Read the whitepaper'
 
-const executiveSummaryHref =
-    '/docs/2025_01_30_knodia_executive_summary_v.1.0.pdf'
-const executiveSummaryLabel = 'Download the executive summary'
+const executiveSummaryHref = `${baseURL}knodia-docs/knodia-executive-summary`
+const executiveSummaryLabel = 'Read the executive summary'
 
 export const startConversationLink = {
     href: startConversationHref,
@@ -22,6 +24,11 @@ export const startConversationLink = {
 
 export const prototypeLink = {
     href: prototypeHref,
+    label: prototypeLabel,
+}
+
+export const accessPrototypeExternalLink = {
+    href: accessPrototypeExternalHref,
     label: prototypeLabel,
 }
 
