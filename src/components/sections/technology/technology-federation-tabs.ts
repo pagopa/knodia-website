@@ -21,6 +21,7 @@ roots.forEach((root) => {
             const isSelected =
                 trigger.dataset.technologyFederationTrigger === panelId
             trigger.setAttribute('aria-selected', String(isSelected))
+            trigger.setAttribute('aria-expanded', String(isSelected))
             trigger.tabIndex = isSelected ? 0 : -1
         })
 

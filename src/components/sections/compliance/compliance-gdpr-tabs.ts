@@ -18,6 +18,7 @@ roots.forEach((root) => {
         triggers.forEach((trigger) => {
             const isSelected = trigger.dataset.complianceGdprTrigger === panelId
             trigger.setAttribute('aria-selected', String(isSelected))
+            trigger.setAttribute('aria-expanded', String(isSelected))
             trigger.tabIndex = isSelected ? 0 : -1
         })
 
