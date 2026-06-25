@@ -9,6 +9,8 @@ const baseURL = 'https://knodia.gitbook.io/'
 const prototypeHref = '/prototype-access'
 const prototypeLabel = 'Access the prototype'
 
+const accessPrototypeExternalHref = 'https://signup.knodia.com'
+
 const whitepaperHref = `${baseURL}knodia-docs/knodia-whitepaper`
 const whitepaperLabel = 'Read the whitepaper'
 
@@ -22,6 +24,11 @@ export const startConversationLink = {
 
 export const prototypeLink = {
     href: prototypeHref,
+    label: prototypeLabel,
+}
+
+export const accessPrototypeExternalLink = {
+    href: accessPrototypeExternalHref,
     label: prototypeLabel,
 }
 
