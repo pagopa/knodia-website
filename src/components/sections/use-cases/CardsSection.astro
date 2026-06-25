@@ -2,7 +2,7 @@
 import Button from '../../Button.astro'
 import { useCases } from '../../../use-cases'
 
-const renderedUseCases = useCases.filter((card) => card.description) //we doesn'want to render the use case shown in the section above the cards section, so we filter out the use case that doesn't have a description
+const renderedUseCases = useCases.slice(1) //we doesn'want to render the use case shown in the section above the cards section, so we filter out the use case that doesn't have a description
 const revealStep = 3
 const shouldShowViewMore = renderedUseCases.length > 6 //the section is a grid of 3 columns, so we want to show the "View more" button if there are more than 6 use cases to render
 const initialVisibleCount = shouldShowViewMore ? 6 : renderedUseCases.length

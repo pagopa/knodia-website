@@ -1,4 +1,5 @@
 type UseCaseCard = {
+    id: string
     title: string
     description?: string
     href: string
@@ -7,11 +8,15 @@ type UseCaseCard = {
 
 const useCases: UseCaseCard[] = [
     {
+        id: 'standardised-communication',
         title: 'Standardised communication',
+        description:
+            'How multiple organizations can exchange data through a shared interaction model.',
         href: '/use-cases/standardised-communication-across-domains',
         tags: ['MANY-TO-MANY', 'SHARED PROTOCOL'],
     },
     {
+        id: 'distributed-base-register',
         title: 'A distributed base register',
         description:
             'How a shared model can support a register distributed across multiple organizations and Member States.',
@@ -19,6 +24,7 @@ const useCases: UseCaseCard[] = [
         tags: ['SOURCE DATA'],
     },
     {
+        id: 'asynchronous-exchange',
         title: 'Handling delayed responses',
         description:
             'How organizations can manage requests when a response cannot be produced in real time.',
@@ -26,6 +32,7 @@ const useCases: UseCaseCard[] = [
         tags: ['ASYNCHRONOUS EXCHANGE'],
     },
     {
+        id: 'data-synchronisation',
         title: 'Keeping local data aligned with a base register',
         description:
             'How organizations can stay aligned with changes in data retrieved from an authoritative source.',
