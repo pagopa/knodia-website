@@ -88,7 +88,9 @@ const defaultStepId = gdprAccessSteps[0].id
                                 data-compliance-gdpr-trigger={step.id}
                                 id={`compliance-gdpr-trigger-${step.id}`}
                                 role="tab"
-                                tabindex={step.id === defaultStepId ? '0' : '-1'}
+                                tabindex={
+                                    step.id === defaultStepId ? '0' : '-1'
+                                }
                                 type="button"
                             >
                                 <span>{step.label}</span>
@@ -106,7 +108,9 @@ const defaultStepId = gdprAccessSteps[0].id
                                 hidden={step.id !== defaultStepId}
                                 id={`compliance-gdpr-mobile-panel-${step.id}`}
                                 role="tabpanel"
-                                tabindex={step.id === defaultStepId ? '0' : '-1'}
+                                tabindex={
+                                    step.id === defaultStepId ? '0' : '-1'
+                                }
                             >
                                 <div
                                     aria-hidden="true"
