@@ -67,6 +67,7 @@ const schema = {
         <meta name="twitter:description" content={ogDescription} />
         {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
         <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+        <slot name="head" />
         <title>{title}</title>
     </head>
     <body>
