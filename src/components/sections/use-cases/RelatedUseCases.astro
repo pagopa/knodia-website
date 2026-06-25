@@ -4,37 +4,23 @@ import {
     viewAllUseCasesHref,
     viewAllUseCasesLabel,
 } from '../../../constants'
+import { useCases } from '../../../use-cases'
 import Button from '../../Button.astro'
 
-const viewAllHref = '/use-cases'
+type Props = {
+    id:
+        | 'standardised-communication'
+        | 'distributed-base-register'
+        | 'asynchronous-exchange'
+        | 'data-synchronisation'
+}
 
-const cards = [
-    {
-        tags: ['SOURCE DATA'],
-        title: 'A distributed base register',
-        description:
-            'How a shared model can support a register distributed across multiple organizations and Member States.',
-        href: '/use-cases/managing-a-distributed-base-register',
-    },
-    {
-        tags: ['ASYNCHRONOUS EXCHANGE'],
-        title: 'Handling delayed responses',
-        description:
-            'How organizations can manage requests when a response cannot be produced in real time.',
-        href: '/use-cases/handling-requests-with-delayed-responses',
-    },
-    {
-        tags: ['MANY-TO-MANY', 'SHARED PROTOCOL'],
-        title: 'Standardised communication',
-        description:
-            'How multiple organizations can exchange data through a shared interaction model.',
-        href: '/use-cases/standardised-communication-across-domains',
-    },
-] as const
+const { id } = Astro.props as Props
+const cards = useCases.filter((card) => card.id !== id)
 ---
 
 <section
-    aria-labelledby="handling-delayed-responses-related-use-cases-title"
+    aria-labelledby="related-use-cases-title"
     class="bg-[linear-gradient(180deg,var(--color-primary-violet-surface)_0%,var(--color-primary-violet-surface)_70%,var(--color-neutral-white)_100%)]"
 >
     <div
@@ -46,7 +32,7 @@ const cards = [
             <div class="flex max-w-113 flex-col gap-6">
                 <h2
                     class="font-heading text-home-support-title-sm leading-home-support-title-sm font-normal text-neutral-graphite xl:text-heading-lg xl:leading-heading-lg"
-                    id="handling-delayed-responses-related-use-cases-title"
+                    id="related-use-cases-title"
                 >
                     Related use cases
                 </h2>
