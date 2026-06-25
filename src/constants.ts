@@ -1,6 +1,10 @@
 const startConversationHref = '/contacts'
 const startConversationLabel = 'Start the conversation'
 
+export const viewAllUseCasesHref = '/use-cases'
+export const viewAllUseCasesLabel = 'View all'
+export const viewAllUseCasesAriaLabel = 'View all use cases'
+
 const prototypeHref = '/prototype-access'
 const prototypeLabel = 'Access the prototype'
 

@@ -1,6 +1,11 @@
 ---
 import Button from '../../Button.astro'
 import resourcesUseCaseSingleFigma from '../../../assets/backgrounds/resources-use-case-single-figma.png'
+import {
+    viewAllUseCasesAriaLabel,
+    viewAllUseCasesHref,
+    viewAllUseCasesLabel,
+} from '../../../constants'
 
 const viewAllHref = '#'
 const readMoreHref = '#'
@@ -20,17 +25,17 @@ const tags = ['DATA SYNCHRONIZATION']
             </p>
 
             <Button
-                aria-label="View all use cases"
-                class="text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:[&>span]:gap-(--button-gap)"
-                href={viewAllHref}
+                aria-label={viewAllUseCasesAriaLabel}
+                class="self-start text-primary-violet! hover:text-primary-violet-hover! focus-visible:outline-offset-4 focus-visible:outline-primary-violet active:text-deep-violet! xl:self-end xl:[&>span]:gap-(--button-gap)"
+                href={viewAllUseCasesHref}
                 icon="arrow_forward"
                 size="small"
                 variant="naked"
             >
                 <span
-                    class="text-(length:--text-home-use-case-top-link-sm) leading-(--leading-home-use-case-top-link-sm) font-medium xl:text-button-md xl:leading-(--leading-button-md)"
+                    class="text-home-domains-link-sm leading-home-domains-link-sm font-medium xl:text-button-md xl:leading-(--leading-button-md)"
                 >
-                    View all
+                    {viewAllUseCasesLabel}
                 </span>
             </Button>
         </div>

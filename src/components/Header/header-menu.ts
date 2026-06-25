@@ -183,11 +183,6 @@ function initHeader(header: HTMLElement) {
         })
     }
 
-    function scheduleClose() {
-        clearCloseTimer()
-        closeTimer = window.setTimeout(closeMenus, 120)
-    }
-
     function setMobilePanel(panelId: string | undefined) {
         if (!panelId) {
             return
@@ -280,6 +275,10 @@ function initHeader(header: HTMLElement) {
     triggers.forEach((trigger) => {
         const menuId = trigger.dataset.menuTrigger
 
+        trigger.addEventListener('mousedown', () => {
+            suppressedFocusOpenMenuId = menuId
+        })
+
         trigger.addEventListener('focus', () => {
             if (suppressedFocusOpenMenuId === menuId) {
                 suppressedFocusOpenMenuId = undefined
@@ -299,6 +298,12 @@ function initHeader(header: HTMLElement) {
             }
 
             event.preventDefault()
+            event.stopPropagation()
+
+            if (header.dataset.openMenu === menuId) {
+                closeMenus()
+                return
+            }
 
             openMenu(menuId)
         })
@@ -462,14 +467,6 @@ function initHeader(header: HTMLElement) {
             }
         })
     }
-
-    // header.addEventListener('focusout', (event) => {
-    //     const nextTarget = event.relatedTarget
-    //
-    //     if (!(nextTarget instanceof Node) || !header.contains(nextTarget)) {
-    //         scheduleClose()
-    //     }
-    // })
 
     document.addEventListener('pointerdown', (event) => {
         if (!(event.target instanceof Node) || header.contains(event.target)) {
