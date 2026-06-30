@@ -30,7 +30,6 @@ function findPrimaryHref(linkId: string, fallbackHref: string) {
         fallbackHref
     )
 }
-
 const preFooterLinks: {
     label: string
     href: string
@@ -56,7 +55,6 @@ const preFooterLinks: {
 
 const footerSections = [
     {
-        desktopTone: 'muted',
         links: [
             {
                 label: 'What is Knodia',
@@ -86,7 +84,6 @@ const footerSections = [
         title: 'Overview',
     },
     {
-        desktopTone: 'bright',
         links: [
             {
                 label: 'Technology',
@@ -124,14 +121,12 @@ const desktopLegalLinks = [
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Legal Notes', href: '/legal-notes' },
     { label: 'Accessibility Statement', href: '#' },
-    { label: 'Company Details', href: '/company-details' },
 ] as const
 
 const mobileLegalLinks = [
     { label: 'Privacy Policy', href: '/privacy-policy' },
-    { label: 'Legal Notice', href: '/legal-notes' },
+    { label: 'Legal Notes', href: '/legal-notes' },
     { label: 'Accessibility Statement', href: '#' },
-    { label: 'Cookie Policy', href: '#' },
 ] as const
 
 const focusRingClass =
@@ -139,20 +134,20 @@ const focusRingClass =
 const buttonFocusOffsetClass = 'focus-visible:outline-offset-4'
 const preFooterLinkClass = `${buttonFocusOffsetClass} justify-center [&>span]:gap-1.5 xl:[&>span]:gap-2 [&>span>span:first-child]:text-center [&>span>span:first-child]:text-[13px] [&>span>span:first-child]:leading-[19.5px] xl:[&>span>span:first-child]:text-[16px] xl:[&>span>span:first-child]:leading-6 [&>span>span:last-child]:size-[14px] [&>span>span:last-child]:text-[14px] xl:[&>span>span:last-child]:size-[18px] xl:[&>span>span:last-child]:text-[18px]`
 const footerTitleClass =
-    'text-[10.5px] leading-[15.75px] font-medium uppercase tracking-[1.05px] text-[rgba(255,255,255,0.28)] xl:text-[16px] xl:leading-6 xl:tracking-normal xl:text-neutral-gray-40'
-const footerLinkBaseClass = `${buttonFocusOffsetClass} [&>span>span]:text-[13px] [&>span>span]:leading-[19.5px] [&>span>span]:font-normal xl:[&>span>span]:text-[16px] xl:[&>span>span]:leading-6 xl:[&>span>span]:font-medium`
-const footerCtaClass = `${buttonFocusOffsetClass} w-[211px] rounded-[10px] px-[52px] xl:w-auto xl:px-4 [&>span]:gap-[7px] xl:[&>span]:gap-2 [&>span>span:first-child]:text-[15px] [&>span>span:first-child]:leading-[22.5px] xl:[&>span>span:first-child]:text-[18px] xl:[&>span>span:first-child]:leading-7 [&>span>span:last-child]:size-[16px] [&>span>span:last-child]:text-[16px] xl:[&>span>span:last-child]:size-[24px] xl:[&>span>span:last-child]:text-[24px]`
+    'text-[16px] leading-6 font-medium uppercase tracking-normal text-neutral-surface-gray'
+const footerLinkBaseClass = `${buttonFocusOffsetClass} text-neutral-white [&>span>span]:text-[16px] [&>span>span]:leading-6 [&>span>span]:font-medium`
+const footerCtaClass = `${buttonFocusOffsetClass} w-[211px] rounded-[8px] px-[52px] xl:w-auto xl:px-4 [&>span]:gap-[7px] xl:[&>span]:gap-2 [&>span>span:first-child]:text-[15px] [&>span>span:first-child]:leading-[22.5px] xl:[&>span>span:first-child]:text-[18px] xl:[&>span>span:first-child]:leading-7 [&>span>span:last-child]:size-[16px] [&>span>span:last-child]:text-[16px] xl:[&>span>span:last-child]:size-[24px] xl:[&>span>span:last-child]:text-[24px]`
 const desktopLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-white [&>span>span]:text-[14px] [&>span>span]:leading-5 [&>span>span]:font-medium`
 const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gray [&>span>span]:text-[12px] [&>span>span]:leading-[18px] [&>span>span]:font-normal`
 ---
 
 <footer class="mt-auto">
-    <div class="bg-primary-violet px-6 py-10 xl:px-[141px] xl:py-[11px]">
+    <div class="bg-primary-violet px-6 py-10 xl:px-35.25 xl:py-2.75">
         <div
-            class="mx-auto flex w-full max-w-[1158px] flex-col items-center gap-6 xl:flex-row xl:justify-between xl:gap-[88px]"
+            class="mx-auto flex w-full max-w-289.5 flex-col items-center gap-6 xl:flex-row xl:justify-between xl:gap-22"
         >
             <div
-                class="flex w-full flex-col items-center gap-4 xl:w-auto xl:flex-row xl:gap-[31px]"
+                class="flex w-full flex-col items-center gap-4 xl:w-auto xl:flex-row xl:gap-7.75"
             >
                 {
                     preFooterLinks.map((link) => (
@@ -182,18 +177,17 @@ const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gra
             </Button>
         </div>
     </div>
-
-    <div class="bg-deep-violet px-6 py-10 xl:px-[141px] xl:pt-[60px] xl:pb-12">
+    <div class="bg-deep-violet px-6 pt-10 pb-8 xl:px-35.25 xl:pt-15 xl:pb-12">
         <div
-            class="mx-auto flex w-full max-w-[393px] flex-col gap-[60px] xl:max-w-[1158px] xl:gap-[52px]"
+            class="mx-auto flex w-full max-w-98.25 flex-col gap-10 xl:max-w-289.5 xl:gap-13"
         >
             <div
-                class="flex flex-col gap-[60px] xl:flex-row xl:items-start xl:justify-between"
+                class="flex flex-col gap-15 xl:flex-row xl:items-start xl:justify-between"
             >
                 <a class={focusRingClass} href="/">
                     <img
                         alt="Knodia"
-                        class="h-[44px] w-[124.079px] max-w-none xl:h-[56px] xl:w-[157.918px]"
+                        class="h-11 w-[124.079px] max-w-none xl:h-14 xl:w-[157.918px]"
                         height="56"
                         src="/brand/knodia-logo-white.svg"
                         width="158"
@@ -201,23 +195,23 @@ const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gra
                 </a>
 
                 <div
-                    class="flex flex-col gap-[60px] xl:flex-row xl:items-start xl:gap-6"
+                    class="flex flex-col gap-15 xl:flex-row xl:items-start xl:gap-6"
                 >
                     <nav
                         aria-label="Footer navigation"
-                        class="flex flex-col gap-[60px] xl:flex-row xl:gap-6"
+                        class="flex flex-col gap-15 xl:flex-row xl:gap-6"
                     >
                         {
                             footerSections.map((section) => (
-                                <section class="w-full max-w-[189px] xl:w-[191px]">
+                                <section class="w-full max-w-47.75 xl:w-47.75">
                                     <h2 class={footerTitleClass}>
                                         {section.title}
                                     </h2>
-                                    <ul class="mt-5 space-y-3 xl:mt-5">
+                                    <ul class="mt-5 space-y-3">
                                         {section.links.map((link) => (
                                             <li>
                                                 <Button
-                                                    class={`${footerLinkBaseClass} ${section.desktopTone === 'bright' ? 'text-neutral-surface-gray xl:text-neutral-white' : 'text-neutral-surface-gray xl:text-neutral-surface-gray'}`}
+                                                    class={footerLinkBaseClass}
                                                     href={link.href}
                                                     size="small"
                                                     tone="contrast"
@@ -232,13 +226,13 @@ const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gra
                             ))
                         }
 
-                        <section class="w-full xl:w-[191px] xl:pt-[35.75px]">
-                            <ul class="space-y-[10px] xl:space-y-[10px]">
+                        <section class="w-full xl:w-47.75">
+                            <ul class="space-y-2.5">
                                 {
                                     standaloneFooterLinks.map((link) => (
                                         <li>
                                             <Button
-                                                class={`${footerLinkBaseClass} text-neutral-surface-gray xl:text-neutral-white`}
+                                                class={footerLinkBaseClass}
                                                 href={link.href}
                                                 size="small"
                                                 tone="contrast"
@@ -253,60 +247,60 @@ const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gra
                         </section>
                     </nav>
 
-                    <section
-                        class="w-full max-w-[327px] text-[14px] leading-5 text-neutral-surface-gray xl:hidden"
-                    >
-                        <p class="font-bold text-neutral-white">
-                            PagoPA S.p.A.
-                        </p>
-                        <div class="mt-5 space-y-4 font-medium">
-                            <div>
-                                <p>Registered office:</p>
-                                <p>Piazza Colonna 370, 00187 Rome, Italy</p>
-                            </div>
-                            <div>
-                                <p>VAT / Tax Code:</p>
-                                <p>15376371009</p>
-                            </div>
-                            <div>
-                                <p>Share Capital:</p>
-                                <p>€1,000,000 fully paid-in</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <aside class="flex w-[219px] flex-col gap-[66px]">
-                        <img
-                            alt="Funded by the European Union"
-                            class="h-auto w-full"
-                            height="58"
-                            src="/brand/eu-funded.png"
-                            width="219"
-                        />
+                    <aside class="flex w-54.75 flex-col gap-16.5">
+                        <a
+                            class={`${focusRingClass} block`}
+                            href="https://commission.europa.eu/index_en"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            title="Go to EU Commission website"
+                        >
+                            <img
+                                alt="Logo NextGenerationEU"
+                                class="h-auto w-full"
+                                height="58"
+                                src="/brand/eu-funded.png"
+                                width="219"
+                            />
+                        </a>
 
                         <section>
                             <h2
-                                class="text-[14px] leading-5 font-medium text-neutral-gray-40"
+                                class="text-[14px] leading-5 font-medium text-neutral-surface-gray"
                             >
                                 PARTNERS
                             </h2>
-                            <div
-                                class="mt-4 flex items-center justify-between gap-4"
-                            >
-                                <img
-                                    alt="PagoPA"
-                                    class="h-[30px] w-[107.324px] max-w-none"
-                                    height="30"
-                                    src="/brand/pagopa-logo.svg"
-                                    width="108"
-                                />
-                                <img
-                                    alt="Partner logo"
-                                    class="size-[50px]"
-                                    height="50"
-                                    src="/brand/partner-d.png"
-                                    width="50"
-                                />
+                            <div class="mt-4 flex flex-col items-start gap-6">
+                                <a
+                                    class={focusRingClass}
+                                    href="https://innovazione.gov.it/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                    title="Go to Dipartimento per la trasformazione digitale website"
+                                >
+                                    <img
+                                        alt="Logo Dipartimento per la trasformazione digitale"
+                                        class="h-auto w-54.75"
+                                        height="34"
+                                        src="/brand/dtd-footer-logo.svg"
+                                        width="219"
+                                    />
+                                </a>
+                                <a
+                                    class={focusRingClass}
+                                    href="https://www.pagopa.it/en/homepage/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                    title="Go to PagoPA S.p.A. website"
+                                >
+                                    <img
+                                        alt="Logo PagoPA S.p.A."
+                                        class="h-7.5 w-[107.324px] max-w-none"
+                                        height="30"
+                                        src="/brand/pagopa-logo.svg"
+                                        width="108"
+                                    />
+                                </a>
                             </div>
                         </section>
                     </aside>
@@ -317,7 +311,7 @@ const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gra
                 class="hidden items-center gap-6 xl:flex xl:text-[14px] xl:leading-5 xl:text-neutral-white"
             >
                 <p
-                    class="shrink-0 text-[14px] leading-5 font-normal tracking-[0.35px] uppercase"
+                    class="shrink-0 text-[14px] leading-5 font-normal tracking-[0.35px] text-neutral-white uppercase"
                 >
                     &copy; 2026 KNODIA
                 </p>
