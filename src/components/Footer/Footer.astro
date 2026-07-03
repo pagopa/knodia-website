@@ -117,16 +117,41 @@ const standaloneFooterLinks = [
     },
 ] as const
 
-const desktopLegalLinks = [
+const accessibilityStatementEnPdfPath =
+    '/docs/2026_07_02_knodia_accessibility_statement_en.pdf'
+
+type FooterLegalLink = {
+    label: string
+    href: string
+    download?: boolean
+}
+
+const desktopLegalLinks: FooterLegalLink[] = [
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Legal Notes', href: '/legal-notes' },
-    { label: 'Accessibility Statement', href: '#' },
+    {
+        label: 'Accessibility statement (IT)',
+        href: 'https://form.agid.gov.it/5N2TR557/Knodia_(public_website)/dichiarazione',
+    },
+    {
+        label: 'Accessibility statement (EN)',
+        href: accessibilityStatementEnPdfPath,
+        download: true,
+    },
 ] as const
 
-const mobileLegalLinks = [
+const mobileLegalLinks: FooterLegalLink[] = [
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Legal Notes', href: '/legal-notes' },
-    { label: 'Accessibility Statement', href: '#' },
+    {
+        label: 'Accessibility statement (IT)',
+        href: 'https://form.agid.gov.it/5N2TR557/Knodia_(public_website)/dichiarazione',
+    },
+    {
+        label: 'Accessibility statement (EN)',
+        href: accessibilityStatementEnPdfPath,
+        download: true,
+    },
 ] as const
 
 const focusRingClass =
@@ -330,6 +355,7 @@ const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gra
                                     size="small"
                                     tone="contrast"
                                     variant="naked"
+                                    download={link.download}
                                 >
                                     {link.label}
                                 </Button>
@@ -356,6 +382,7 @@ const mobileLegalLinkClass = `${buttonFocusOffsetClass} text-neutral-surface-gra
                                 size="small"
                                 tone="contrast"
                                 variant="naked"
+                                download={link.download}
                             >
                                 {link.label}
                             </Button>
