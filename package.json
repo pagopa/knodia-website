@@ -16,7 +16,6 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.2.2",
-    "papaparse": "^5.5.4",
     "tailwind-merge": "^3.6.0",
     "tailwind-variants": "^3.2.2",
     "tailwindcss": "^4.2.4"
@@ -25,7 +24,6 @@
     "@commitlint/cli": "21.0.0",
     "@commitlint/config-conventional": "21.0.0",
     "@commitlint/types": "21.0.0",
-    "@types/papaparse": "^5.5.2",
     "@typescript-eslint/eslint-plugin": "8.59.2",
     "@typescript-eslint/parser": "8.59.2",
     "eslint": "10.3.0",
