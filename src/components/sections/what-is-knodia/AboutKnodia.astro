@@ -1,6 +1,7 @@
 ---
 import Button from '../../Button.astro'
 import aboutKnodiaBackground from '../../../assets/backgrounds/what-is-knodia-about-background.png'
+import { getStats, formatDate } from '../../../utils'
 
 type StatCard = {
     value: string
@@ -11,21 +12,23 @@ const platformHref = 'https://developers.italia.it/en/interoperability'
 const sourceDataHref =
     'https://www.dati.gov.it/view-dataset?tags=pdnd&organization=pcm-dipartimento-trasformazione-digitale'
 
+const stats = await getStats()
+const fallbackDate = 'July 16, 2026'
 const statCards: StatCard[] = [
     {
-        value: '9.300+',
+        value: stats?.tenants.toString().concat('+') ?? '9.978+',
         labelLines: ['PARTICIPATING', 'ENTITIES'],
     },
     {
-        value: '14.000+',
+        value: stats?.eservices.toString().concat('+') ?? '14.677+',
         labelLines: ['PUBLISHED', 'E-SERVICES'],
     },
     {
-        value: '42.000+',
+        value: stats?.connections.toString().concat('+') ?? '47827+',
         labelLines: ['ENTITY TO ENTITY', 'CONNECTIONS'],
     },
     {
-        value: '1.25B+',
+        value: stats?.sessions.toString().concat('B+') ?? '1.5B+',
         labelLines: ['DATA EXCHANGE', 'SESSIONS'],
     },
 ]
@@ -123,7 +126,9 @@ const sourceLinkClass = `${inlineTextLinkClass} text-neutral-medium-gray! hover:
         <p
             class="w-full text-left font-body text-(length:--text-home-use-case-caption) leading-(--leading-home-use-case-caption) font-medium text-neutral-medium-gray xl:text-right"
         >
-            <span>Last updated: month day, year (</span>
+            <span
+                >Last updated: {stats ? formatDate(new Date()) : fallbackDate} (</span
+            >
             <Button
                 class={sourceLinkClass}
                 href={sourceDataHref}
