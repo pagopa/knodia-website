@@ -8,8 +8,8 @@ type StatCard = {
 }
 
 const platformHref = 'https://developers.italia.it/en/interoperability'
-// const sourceDataHref =
-//     'https://www.dati.gov.it/view-dataset?tags=pdnd&organization=pcm-dipartimento-trasformazione-digitale'
+const sourceDataHref =
+    'https://www.dati.gov.it/view-dataset?tags=pdnd&organization=pcm-dipartimento-trasformazione-digitale'
 
 const statCards: StatCard[] = [
     {
@@ -120,12 +120,9 @@ const sourceLinkClass = `${inlineTextLinkClass} text-neutral-medium-gray! hover:
             }
         </div>
 
-        <!-- <p
+        <p
             class="w-full text-left font-body text-(length:--text-home-use-case-caption) leading-(--leading-home-use-case-caption) font-medium text-neutral-medium-gray xl:text-right"
         >
-            <span
-                >Last updated: {stats ? formatDate(new Date()) : fallbackDate} (</span
-            >
             <Button
                 class={sourceLinkClass}
                 href={sourceDataHref}
@@ -135,7 +132,6 @@ const sourceLinkClass = `${inlineTextLinkClass} text-neutral-medium-gray! hover:
             >
                 based on institutional source data
             </Button>
-            <span>)</span>
-        </p> -->
+        </p>
     </div>
 </section>
