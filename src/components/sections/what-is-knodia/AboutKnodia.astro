@@ -1,7 +1,6 @@
 ---
 import Button from '../../Button.astro'
 import aboutKnodiaBackground from '../../../assets/backgrounds/what-is-knodia-about-background.png'
-import { getStats, formatDate } from '../../../utils'
 
 type StatCard = {
     value: string
@@ -9,26 +8,24 @@ type StatCard = {
 }
 
 const platformHref = 'https://developers.italia.it/en/interoperability'
-const sourceDataHref =
-    'https://www.dati.gov.it/view-dataset?tags=pdnd&organization=pcm-dipartimento-trasformazione-digitale'
+// const sourceDataHref =
+//     'https://www.dati.gov.it/view-dataset?tags=pdnd&organization=pcm-dipartimento-trasformazione-digitale'
 
-const stats = await getStats()
-const fallbackDate = 'July 16, 2026'
 const statCards: StatCard[] = [
     {
-        value: stats?.tenants.toString().concat('+') ?? '9.978+',
+        value: '9.000+',
         labelLines: ['PARTICIPATING', 'ENTITIES'],
     },
     {
-        value: stats?.eservices.toString().concat('+') ?? '14.677+',
+        value: '14.000+',
         labelLines: ['PUBLISHED', 'E-SERVICES'],
     },
     {
-        value: stats?.connections.toString().concat('+') ?? '47827+',
+        value: '42000+',
         labelLines: ['ENTITY TO ENTITY', 'CONNECTIONS'],
     },
     {
-        value: stats?.sessions.toString().concat('B+') ?? '1.5B+',
+        value: '1.25B+',
         labelLines: ['DATA EXCHANGE', 'SESSIONS'],
     },
 ]
@@ -123,7 +120,7 @@ const sourceLinkClass = `${inlineTextLinkClass} text-neutral-medium-gray! hover:
             }
         </div>
 
-        <p
+        <!-- <p
             class="w-full text-left font-body text-(length:--text-home-use-case-caption) leading-(--leading-home-use-case-caption) font-medium text-neutral-medium-gray xl:text-right"
         >
             <span
@@ -139,6 +136,6 @@ const sourceLinkClass = `${inlineTextLinkClass} text-neutral-medium-gray! hover:
                 based on institutional source data
             </Button>
             <span>)</span>
-        </p>
+        </p> -->
     </div>
 </section>
