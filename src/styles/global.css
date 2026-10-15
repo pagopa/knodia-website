@@ -394,6 +394,10 @@
         text-decoration: none;
     }
 
+    a.pagopa-link {
+        text-decoration: underline;
+    }
+
     button,
     input,
     textarea,
