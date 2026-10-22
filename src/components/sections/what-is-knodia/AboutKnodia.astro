@@ -8,12 +8,14 @@ type StatCard = {
 }
 
 const platformHref = 'https://developers.italia.it/en/interoperability'
+const dtdHref = 'https://innovazione.gov.it/dipartimento/en/what-we-do/'
+const pagoPaHref = 'https://www.pagopa.it/en/homepage/'
 const sourceDataHref =
     'https://www.dati.gov.it/view-dataset?tags=pdnd&organization=pcm-dipartimento-trasformazione-digitale'
 
 const statCards: StatCard[] = [
     {
-        value: '9.000+',
+        value: '9.300+',
         labelLines: ['PARTICIPATING', 'ENTITIES'],
     },
     {
@@ -21,7 +23,7 @@ const statCards: StatCard[] = [
         labelLines: ['PUBLISHED', 'E-SERVICES'],
     },
     {
-        value: '42000+',
+        value: '42.000+',
         labelLines: ['ENTITY TO ENTITY', 'CONNECTIONS'],
     },
     {
@@ -77,7 +79,9 @@ const sourceLinkClass = `${inlineTextLinkClass} text-neutral-medium-gray! hover:
                 class="flex flex-col gap-6 font-body text-intro-sm leading-intro-sm font-normal text-neutral-medium-gray xl:text-intro-lg xl:leading-intro-lg"
             >
                 <p>
-                    Knodia builds on the experience of the
+                    Knodia is the Italian national proposal for a federated
+                    cross-border interoperability model, building on the
+                    experience of Italy&apos;s
                     <Button
                         class={introLinkClass}
                         href={platformHref}
@@ -85,17 +89,45 @@ const sourceLinkClass = `${inlineTextLinkClass} text-neutral-medium-gray! hover:
                         target="_blank"
                         variant="naked"
                     >
-                        Italian national digital data platform
+                        National Digital Data Platform (PDND)
                     </Button>
-                    that enables organisations to securely exchange data and access
-                    digital services, aligned with the goals of the Interoperable
-                    Europe Act.
+                    , a public infrastructure that enables interoperability and secure
+                    data exchange among more than 10,000 public and private organisations.
                 </p>
 
                 <p>
-                    This foundation provides a mature operational baseline,
-                    carried forward into a cross-border model designed for
-                    Europe.
+                    Promoted by Italy&apos;s
+                    <Button
+                        class={introLinkClass}
+                        href={dtdHref}
+                        rel="noreferrer"
+                        target="_blank"
+                        variant="naked"
+                    >
+                        Department for Digital Transformation
+                    </Button>
+                    and
+                    <Button
+                        class={introLinkClass}
+                        href={pagoPaHref}
+                        rel="noreferrer"
+                        target="_blank"
+                        variant="naked"
+                    >
+                        PagoPA S.p.A.
+                    </Button>
+                    , Knodia brings this proven approach to the European level through
+                    a federated interoperability model proposed by Italy to the Interoperable
+                    Europe Board, to be tested within the interoperability regulatory
+                    sandboxes established under the Interoperable Europe Act (Regulation
+                    (EU) 2024/903).
+                </p>
+
+                <p>
+                    Designed in line with the European Interoperability
+                    Framework, GDPR and the principles of the Interoperable
+                    Europe Act, Knodia aims to enable secure, consistent
+                    cross-border interactions.
                 </p>
             </div>
         </div>
@@ -130,7 +162,7 @@ const sourceLinkClass = `${inlineTextLinkClass} text-neutral-medium-gray! hover:
                 target="_blank"
                 variant="naked"
             >
-                based on institutional source data
+                Based on institutional source data
             </Button>
         </p>
     </div>

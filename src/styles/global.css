@@ -149,6 +149,16 @@
     --home-hero-content-gap-mobile: 17px;
     --home-hero-content-gap: 24px;
 
+    --home-subhero-padding-y-mobile: 32px;
+    --home-subhero-padding-x: 333px;
+    --home-subhero-content-gap-mobile: 24px;
+    --home-subhero-content-gap: 80px;
+    --home-subhero-logo-width-mobile: 158.418px;
+    --home-subhero-logo-height-mobile: 56px;
+    --home-subhero-logo-width: 236.877px;
+    --home-subhero-logo-height: 84px;
+    --home-subhero-copy-width: 321px;
+
     --home-domains-padding-top-mobile: 40px;
     --home-domains-padding-bottom-mobile: 40px;
     --home-domains-padding-top: 128px;
