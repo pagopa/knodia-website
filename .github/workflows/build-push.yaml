@@ -10,7 +10,7 @@ jobs:
   build_push:
     name: Build and push
     runs-on: ubuntu-latest
-    environment: ${{ github.ref_type == 'branch' && github.ref == 'refs/heads/develop' && 'dev' || github.ref_type == 'tag' && 'prod' }}
+    environment: ${{ github.ref_type == 'branch' && github.ref == 'refs/heads/develop' && 'dev' || github.ref_type == 'tag' && 'test' }}
     permissions:
       id-token: write
       contents: read
