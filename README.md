@@ -1,6 +1,6 @@
 # Knodia website
 
-Static website presenting Knodia, the cross-border federation for authentication and authorization in the exchange of data and digital services between organizations. Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
+Website of Knodia, a federated framework for trusted cross-border interaction and data exchange across Europe. Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
 
 ## Project structure
 
