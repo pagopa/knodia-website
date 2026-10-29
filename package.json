@@ -1,5 +1,6 @@
 {
   "name": "knodia-website",
+  "license": "EUPL-1.2",
   "type": "module",
   "version": "0.0.1",
   "packageManager": "pnpm@10.18.2",

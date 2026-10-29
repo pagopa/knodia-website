@@ -44,3 +44,9 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Licensing
+
+This project is licensed under the terms of the **European Union Public Licence version 1.2 (EUPL-1.2)**.
+The full text of the license can be found in the [LICENSE](LICENSE) file.
+Please see the [AUTHORS](AUTHORS) file for the copyright notice.
